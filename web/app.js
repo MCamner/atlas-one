@@ -17,21 +17,39 @@ function mapEls() {
 }
 
 async function loadPrompts() {
-  const res = await fetch('/api/prompts');
+  let res;
+
+  try {
+    res = await fetch('/api/prompts');
+    if (!res.ok) throw new Error(`Backend fetch failed: ${res.status}`);
+  } catch (err) {
+    console.log('No backend detected, loading local prompts.json instead.', err);
+    res = await fetch('prompts.json');
+    if (!res.ok) throw new Error(`Local prompts fetch failed: ${res.status}`);
+  }
+
   promptData = await res.json();
+
+  els.promptType.innerHTML = '';
+  els.commandChips.innerHTML = '';
+
   promptData.promptTypes.forEach(type => {
     const opt = document.createElement('option');
     opt.value = type.toLowerCase();
     opt.textContent = type;
     els.promptType.appendChild(opt);
   });
+
   promptData.commands.forEach(cmd => {
     const btn = document.createElement('button');
     btn.textContent = cmd;
-    btn.addEventListener('click', () => els.commandInput.value = cmd + ' ' + els.goalInput.value);
+    btn.addEventListener('click', () => {
+      els.commandInput.value = cmd + ' ' + els.goalInput.value;
+    });
     els.commandChips.appendChild(btn);
   });
-  renderSavedPrompts(promptData.savedPrompts);
+
+  renderSavedPrompts(promptData.savedPrompts || []);
 }
 
 function bindEvents() {
@@ -51,7 +69,11 @@ function bindEvents() {
   els.loadProjectBtn.addEventListener('click', loadProject);
   els.promptSearch.addEventListener('input', (e) => {
     const q = e.target.value.toLowerCase();
-    renderSavedPrompts(promptData.savedPrompts.filter(p => `${p.id} ${p.title} ${p.category}`.toLowerCase().includes(q)));
+    renderSavedPrompts(
+      promptData.savedPrompts.filter(p =>
+        `${p.id} ${p.title} ${p.category}`.toLowerCase().includes(q)
+      )
+    );
   });
 }
 
@@ -182,7 +204,7 @@ function exportJson() {
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'atlas-studio-v12-export.json';
+  a.download = 'atlas-one-export.json';
   a.click();
   URL.revokeObjectURL(a.href);
 }
