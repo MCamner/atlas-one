@@ -1,9 +1,55 @@
 # Atlas Studio
 
-**Local prompt routing studio for structured AI workflows**
+**Design, route, and execute structured AI workflows — locally.**
 
-Atlas Studio is a local-first tool for designing, testing, and executing structured prompt workflows.  
-Instead of writing prompts ad-hoc, you define intent → route → workflow → execution.
+👉 **Live demo:** https://mcamner.github.io/atlas-one/
+
+---
+
+Atlas Studio is a **local-first prompt routing system** that turns raw input into structured workflows.
+
+Instead of writing prompts ad-hoc, you:
+
+* define intent
+* select the right reasoning route
+* generate a structured execution pipeline
+* hand off cleanly to ChatGPT
+
+---
+
+**One input → structured routing → repeatable workflow → controlled execution**
+
+---
+
+### Why it matters
+
+Most AI usage today is:
+
+* unstructured
+* inconsistent
+* hard to repeat
+
+Atlas Studio introduces:
+
+* **structure** to thinking
+* **consistency** to execution
+* **repeatability** to workflows
+
+---
+
+### What you get
+
+* Prompt routing engine
+* Workflow detection (analysis, architecture, strategy)
+* Pipeline visualization
+* Structured prompt library
+* ChatGPT-ready output
+
+---
+
+This is not another prompt tool.
+It’s a **system for thinking and execution.**
+
 
 ---
 
