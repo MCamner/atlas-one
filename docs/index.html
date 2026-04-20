@@ -1,92 +1,564 @@
 <!doctype html>
-<html lang="sv">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Atlas Studio v12 Mac</title>
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --panel: #fffdf8;
+      --ink: #1f2a2e;
+      --muted: #68777d;
+      --line: #d8d0c4;
+      --accent: #174c5a;
+      --accent-soft: rgba(23, 76, 90, 0.08);
+      --ok: #236443;
+      --ok-bg: #e7f4ec;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    .hero {
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0 28px;
+    }
+
+    .studio-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(320px, 0.95fr) minmax(420px, 1.2fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .panel h2 {
+      margin: 0 0 6px;
+      font-size: 1.1rem;
+      line-height: 1.2;
+    }
+
+    .panel-subtitle {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .library-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .library-item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .library-item strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .library-item span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    input,
+    select,
+    textarea,
+    button {
+      font: inherit;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .parsed-command {
+      display: grid;
+      gap: 8px;
+      margin: 10px 0 16px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(23, 76, 90, 0.16);
+      font-size: 0.95rem;
+    }
+
+    .button-row,
+    .quick-actions,
+    .output-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .panel-output-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .panel-output-header p {
+      margin: 4px 0 0;
+      color: var(--muted);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      background: var(--ok-bg);
+      color: var(--ok);
+      border: 1px solid rgba(35, 100, 67, 0.18);
+      white-space: nowrap;
+    }
+
+    .final-prompt-wrap {
+      border: 1px solid rgba(23, 76, 90, 0.18);
+      border-radius: 18px;
+      padding: 14px;
+      background: linear-gradient(to bottom, rgba(23, 76, 90, 0.05), rgba(23, 76, 90, 0.02));
+      margin-bottom: 16px;
+    }
+
+    .final-prompt {
+      min-height: 420px;
+      border: 1px solid rgba(23, 76, 90, 0.18);
+      border-radius: 14px;
+      background: #fff;
+      line-height: 1.5;
+    }
+
+    details {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 14px 16px;
+      font-weight: 700;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .details-content {
+      padding: 0 16px 16px;
+    }
+
+    .reasoning-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .reasoning-grid div {
+      display: grid;
+      gap: 4px;
+    }
+
+    .reasoning-grid strong {
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--muted);
+    }
+
+    .reasoning-grid span {
+      font-size: 0.98rem;
+    }
+
+    @media (max-width: 1100px) {
+      .studio-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .final-prompt {
+        min-height: 320px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div id="bg-overlay"></div>
-  <div class="app shell">
-    <header class="topbar card">
-      <div>
-        <h1>Atlas Studio v12 Mac</h1>
-        <p>Prompt-OS aware routing, workflow detection, pipeline preview och sparade promptar.</p>
-      </div>
-      <div class="actions">
-        <button id="copyOutputBtn">Copy Output</button>
-        <button id="copyChatBtn">Copy for ChatGPT</button>
-        <button id="openChatBtn">Open ChatGPT</button>
-        <button id="sendChatBtn">Send to ChatGPT</button>
-        <button id="exportBtn">Export JSON</button>
-      </div>
+  <div class="container">
+    <header class="hero">
+      <h1>Atlas Studio v12 Mac</h1>
+      <p>Prompt-OS aware routing, workflow detection, pipeline preview, and saved prompts.</p>
     </header>
 
-    <section class="grid main-grid">
-      <aside class="card sidebar">
+    <div class="topbar">
+      <button id="copyPromptTopBtn">Copy Prompt</button>
+      <button id="openChatgptBtn">Open ChatGPT</button>
+      <button id="sendToChatgptBtn">Send to ChatGPT</button>
+      <button id="exportJsonBtn">Export JSON</button>
+    </div>
+
+    <main class="studio-layout">
+      <aside class="panel">
         <h2>Prompt Library</h2>
-        <label>Prompt type</label>
-        <select id="promptType"></select>
-        <label>Command Palette</label>
-        <input id="commandInput" value="/atlas citrix migration strategy @architect @strategist" />
-        <div class="chip-row" id="commandChips"></div>
+        <p class="panel-subtitle">Pre-built engines and workflows.</p>
 
-        <h3>Background</h3>
-        <input id="bgPicker" type="file" accept="image/*" />
-        <button id="clearBgBtn">Clear Background</button>
-
-        <h3>Projects</h3>
-        <input id="projectName" placeholder="Project name" />
-        <div class="inline-actions">
-          <button id="saveProjectBtn">Save Project</button>
-          <button id="loadProjectBtn">Load Last</button>
+        <div class="field">
+          <label for="promptType">Prompt type</label>
+          <select id="promptType">
+            <option value="analysis">Analysis</option>
+            <option value="architecture" selected>Architecture</option>
+            <option value="strategy">Strategy</option>
+            <option value="research">Research</option>
+            <option value="decision">Decision</option>
+            <option value="problem solving">Problem Solving</option>
+            <option value="execution">Execution</option>
+            <option value="writing">Writing</option>
+          </select>
         </div>
 
-        <h3>Saved Prompts</h3>
-        <input id="promptSearch" placeholder="Sök sparad prompt" />
-        <div id="savedPromptsList" class="list"></div>
+        <div class="library-list">
+          <div class="library-item"><strong>02.01 Requirements Discovery</strong><span>Architecture</span></div>
+          <div class="library-item"><strong>02.02 High-Level Architecture Design</strong><span>Architecture</span></div>
+          <div class="library-item"><strong>02.10 Architecture Review</strong><span>Architecture</span></div>
+          <div class="library-item"><strong>09.03 Architecture → Risk → Recommendation</strong><span>Workflow</span></div>
+        </div>
       </aside>
 
-      <main class="stack">
-        <section class="card">
-          <h2>Goal / Question</h2>
-          <textarea id="goalInput">Inställningar för OS12 för citrix profilen i UMS Igel web consolen</textarea>
-          <div class="inline-actions">
-            <button id="generateBtn">Generate Prompt</button>
-            <button id="diagramBtn">Auto Diagram</button>
-          </div>
-        </section>
+      <section class="panel">
+        <h2>Input</h2>
+        <p class="panel-subtitle">Define the task, route intent, and generate a ready-to-run prompt.</p>
 
-        <section class="card two-col">
+        <div class="field">
+          <label for="commandPalette">Command palette</label>
+          <input id="commandPalette" value="/atlas citrix migration strategy @architect @strategist">
+        </div>
+
+        <div class="parsed-command" id="parsedCommand">
+          <div><strong>Mode:</strong> atlas</div>
+          <div><strong>Intent:</strong> strategy</div>
+          <div><strong>Personas:</strong> architect, strategist</div>
+        </div>
+
+        <div class="quick-actions">
+          <button type="button">/atlas</button>
+          <button type="button">/analyze</button>
+          <button type="button">/research</button>
+          <button type="button">/architect</button>
+          <button type="button">/decide</button>
+          <button type="button">/solve</button>
+          <button type="button">/strategy</button>
+          <button type="button">/write</button>
+        </div>
+
+        <div class="field" style="margin-top:16px;">
+          <label for="goalQuestion">Goal</label>
+          <textarea id="goalQuestion" rows="8">Define optimal IGEL OS12 Citrix profile configuration in UMS for secure, automated smartcard-based sessions</textarea>
+        </div>
+
+        <div class="button-row">
+          <button class="btn-primary" id="generatePromptBtn" type="button">Generate</button>
+          <button id="autoDiagramBtn" type="button">Auto Diagram</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-output-header">
           <div>
-            <h2>Route Preview</h2>
-            <div id="routePreview" class="preview"></div>
+            <h2>Final Prompt</h2>
+            <p>Ready to execute</p>
           </div>
-          <div>
-            <h2>Workflow Suggestion</h2>
-            <div id="workflowPreview" class="preview"></div>
+          <span class="status-badge">Ready</span>
+        </div>
+
+        <div class="final-prompt-wrap">
+          <textarea id="chatgptHandoff" class="final-prompt">Command
+/atlas
+
+Topic
+Define optimal IGEL OS12 Citrix profile configuration in UMS for secure, automated smartcard-based sessions
+
+Personas
+@architect @strategist
+
+Problem type
+technical architecture
+
+Selection mode
+Pre-built workflow
+
+Selected pipeline
+1. Requirements Discovery
+2. High-Level Architecture Design
+3. Architecture Review
+
+Reason for selection
+Requires structured design and explicit risk evaluation typical for infrastructure architecture decisions.
+
+---
+
+Use the selected route exactly as shown.
+
+Keep the sequence explicit and show why each stage is needed.
+
+Include:
+- explicit assumptions
+- risk evaluation
+- final recommendation</textarea>
+        </div>
+
+        <div class="output-actions">
+          <button class="btn-primary" id="copyForChatgptBtn" type="button">Copy Prompt</button>
+          <button id="openChatgptBtnBottom" type="button">Open ChatGPT</button>
+          <button id="sendToChatgptBtnBottom" type="button">Send to ChatGPT</button>
+          <button id="exportJsonBtnBottom" type="button">Export JSON</button>
+        </div>
+
+        <details open>
+          <summary>System reasoning</summary>
+          <div class="details-content">
+            <div class="reasoning-grid">
+              <div><strong>Problem type</strong><span>technical architecture</span></div>
+              <div><strong>Selection mode</strong><span>Pre-built workflow</span></div>
+              <div><strong>Selected route</strong><span>09.03 Architecture → Risk → Recommendation</span></div>
+              <div><strong>Pipeline</strong><span>1. Requirements Discovery → 2. High-Level Architecture Design → 3. Architecture Review</span></div>
+              <div><strong>Why this route</strong><span>Requires structured design and explicit risk evaluation typical for infrastructure architecture decisions.</span></div>
+            </div>
           </div>
-        </section>
+        </details>
 
-        <section class="card">
-          <h2>Editor</h2>
-          <textarea id="editor"></textarea>
-        </section>
+        <details>
+          <summary>Advanced config</summary>
+          <div class="details-content">
+            <textarea id="editorBox" rows="12">Problem type
+technical architecture
 
-        <section class="card">
-          <h2>ChatGPT Handoff</h2>
-          <textarea id="handoff"></textarea>
-        </section>
+Selection mode
+Pre-built workflow
 
-        <section class="card">
-          <h2>Diagram Workspace</h2>
-          <textarea id="diagramText"></textarea>
-          <pre id="diagramPreview" class="diagram-box"></pre>
-        </section>
-      </main>
-    </section>
+Selected pipeline
+1. Requirements Discovery
+2. High-Level Architecture Design
+3. Architecture Review
+
+Reason for selection
+Requires structured design and explicit risk evaluation typical for infrastructure architecture decisions.
+
+Step-by-step analysis
+1. Requirements Discovery
+2. High-Level Architecture Design
+3. Architecture Review
+
+Conclusion
+Prefer the simplest strong route. Escalate only when the task truly needs multiple reasoning stages.</textarea>
+          </div>
+        </details>
+
+        <details>
+          <summary>Diagram workspace</summary>
+          <div class="details-content">
+            <textarea id="diagramWorkspace" rows="10">flowchart LR
+  A[1. Requirements Discovery] --> B[2. High-Level Architecture Design]
+  B --> C[3. Architecture Review]</textarea>
+          </div>
+        </details>
+      </section>
+    </main>
   </div>
-  <script src="app.js"></script>
+
+  <script>
+    function parseCommandPalette(value) {
+      const raw = value.trim();
+      const parts = raw.split(/\s+/);
+
+      const mode = parts.find(p => p.startsWith('/'))?.replace('/', '') || 'atlas';
+      const personas = parts
+        .filter(p => p.startsWith('@'))
+        .map(p => p.replace('@', ''));
+
+      const nonTagged = parts.filter(p => !p.startsWith('/') && !p.startsWith('@'));
+      const intent = nonTagged.slice(-1)[0] || 'general';
+
+      return { mode, intent, personas };
+    }
+
+    function updateParsedCommand() {
+      const input = document.getElementById('commandPalette');
+      const target = document.getElementById('parsedCommand');
+      if (!input || !target) return;
+
+      const parsed = parseCommandPalette(input.value);
+
+      target.innerHTML = `
+        <div><strong>Mode:</strong> ${parsed.mode}</div>
+        <div><strong>Intent:</strong> ${parsed.intent}</div>
+        <div><strong>Personas:</strong> ${parsed.personas.length ? parsed.personas.join(', ') : 'none'}</div>
+      `;
+    }
+
+    function buildFinalPrompt() {
+      const goal = document.getElementById('goalQuestion')?.value.trim() || '';
+      const commandPalette = document.getElementById('commandPalette')?.value.trim() || '/atlas';
+      const parsed = parseCommandPalette(commandPalette);
+      const output = document.getElementById('chatgptHandoff');
+
+      const prompt = `Command
+/${parsed.mode}
+
+Topic
+${goal}
+
+Personas
+${parsed.personas.length ? parsed.personas.map(p => '@' + p).join(' ') : '@architect'}
+
+Problem type
+technical architecture
+
+Selection mode
+Pre-built workflow
+
+Selected pipeline
+1. Requirements Discovery
+2. High-Level Architecture Design
+3. Architecture Review
+
+Reason for selection
+Requires structured design and explicit risk evaluation typical for infrastructure architecture decisions.
+
+---
+
+Use the selected route exactly as shown.
+
+Keep the sequence explicit and show why each stage is needed.
+
+Include:
+- explicit assumptions
+- risk evaluation
+- final recommendation`;
+
+      if (output) output.value = prompt;
+    }
+
+    function copyTextFrom(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.select();
+      el.setSelectionRange(0, 99999);
+      document.execCommand('copy');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const commandPalette = document.getElementById('commandPalette');
+      const generateBtn = document.getElementById('generatePromptBtn');
+      const copyBtn = document.getElementById('copyForChatgptBtn');
+      const copyTopBtn = document.getElementById('copyPromptTopBtn');
+
+      updateParsedCommand();
+      buildFinalPrompt();
+
+      commandPalette?.addEventListener('input', updateParsedCommand);
+      generateBtn?.addEventListener('click', buildFinalPrompt);
+      copyBtn?.addEventListener('click', () => copyTextFrom('chatgptHandoff'));
+      copyTopBtn?.addEventListener('click', () => copyTextFrom('chatgptHandoff'));
+    });
+  </script>
 </body>
 </html>
