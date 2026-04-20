@@ -420,6 +420,35 @@ function renderPromptLibrary() {
   `).join('');
 }
 
+function updateQuickActionActiveState() {
+  const commandPalette = document.getElementById('commandPalette');
+  if (!commandPalette) return;
+
+  const current = parseCommandPalette(commandPalette.value);
+  const buttons = Array.from(document.querySelectorAll('.quick-actions button'));
+
+  const activeByMode = {
+    atlas: '/atlas',
+    analyze: '/analyze',
+    research: '/research',
+    decide: '/decide',
+    solve: '/solve',
+    strategy: '/strategy',
+    write: '/write'
+  };
+
+  let activeLabel = activeByMode[current.mode] || null;
+
+  const promptType = document.getElementById('promptType')?.value || '';
+  if (promptType === 'architecture') activeLabel = '/architect';
+  if (promptType === 'writing') activeLabel = '/write';
+
+  buttons.forEach(btn => {
+    const label = btn.textContent.trim();
+    btn.classList.toggle('is-active', label === activeLabel);
+  });
+}
+
 function updateSystemReasoning() {
   const { config } = getSelectedConfig();
   const reasoningGrid = document.querySelector('.reasoning-grid');
@@ -530,6 +559,7 @@ function refreshPromptTypeDrivenUI() {
   updateAdvancedConfig();
   updateDiagramWorkspace();
   buildFinalPrompt();
+  updateQuickActionActiveState();
 }
 
 function applyQuickAction(action) {
@@ -602,6 +632,7 @@ document.addEventListener('DOMContentLoaded', () => {
   commandPalette?.addEventListener('input', () => {
     updateParsedCommand();
     buildFinalPrompt();
+    updateQuickActionActiveState();
   });
 
   promptType?.addEventListener('change', refreshPromptTypeDrivenUI);

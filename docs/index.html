@@ -58,6 +58,23 @@
       margin: 20px 0 28px;
     }
 
+    .topbar-secondary {
+      opacity: 0.72;
+    }
+
+    .topbar-secondary button {
+      padding: 8px 12px;
+      font-size: 0.92rem;
+    }
+
+    .hero h1 {
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      max-width: 780px;
+    }
+
     .studio-layout {
       display: grid;
       grid-template-columns: 280px minmax(320px, 0.95fr) minmax(420px, 1.2fr);
@@ -184,6 +201,25 @@
       border-color: var(--accent);
     }
 
+    .quick-actions button.is-active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: 0 10px 24px rgba(23, 76, 90, 0.18);
+    }
+
+    .panel {
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.06);
+    }
+
+    .final-prompt-wrap {
+      margin-bottom: 18px;
+    }
+
+    .output-actions {
+      margin-bottom: 4px;
+    }
+
     .panel-output-header {
       display: flex;
       justify-content: space-between;
@@ -286,10 +322,10 @@
   <div class="container">
     <header class="hero">
       <h1>Atlas Studio v12 Mac</h1>
-      <p>Prompt-OS aware routing, workflow detection, pipeline preview, and saved prompts.</p>
+      <p>Adaptive prompt system for structured thinking and decision-making.</p>
     </header>
 
-    <div class="topbar">
+    <div class="topbar topbar-secondary">
       <button id="copyPromptTopBtn">Copy Prompt</button>
       <button id="openChatgptBtn">Open ChatGPT</button>
       <button id="sendToChatgptBtn">Send to ChatGPT</button>
