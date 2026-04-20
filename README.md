@@ -70,25 +70,6 @@ Live interface preview from the GitHub Pages build:
 
 ---
 
-## What this means
-
-Atlas Studio turns raw input into a **structured execution path**.
-
-Instead of improvising prompts, you move through:
-
-* **intent**
-* **route selection**
-* **workflow**
-* **execution handoff**
-
-This makes outputs:
-
-* more consistent
-* easier to review
-* reusable across tasks
-
----
-
 ### Why it matters
 
 Most AI usage today is:
@@ -123,7 +104,7 @@ It’s a **system for thinking and execution.**
 
 ## What it does
 
-Atlas Studio runs locally and provides:
+Atlas Studio provides a structured system for turning intent into executable AI workflows:
 
 - **Prompt routing engine**  
   Automatically selects the best prompt strategy based on intent
