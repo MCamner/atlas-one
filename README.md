@@ -39,11 +39,12 @@ Atlas Studio introduces:
 
 ### What you get
 
-* Prompt routing engine
-* Workflow detection (analysis, architecture, strategy)
-* Pipeline visualization
-* Structured prompt library
-* ChatGPT-ready output
+* **Prompt routing engine** — select the right reasoning path automatically
+* **Workflow detection** — map intent to structured execution patterns
+* **Pipeline visualization** — see how thinking flows step-by-step
+* **Structured prompt library** — reusable, versioned prompt systems
+* **ChatGPT-ready output** — clean handoff, no prompt guessing
+
 
 ---
 
@@ -53,18 +54,20 @@ It’s a **system for thinking and execution.**
 
 ---
 
-## Why this exists
-
-Most AI usage today is:
-
-- unstructured
-- inconsistent
-- hard to repeat
-- dependent on memory and improvisation
-
-Atlas Studio introduces a different model:
 
 > **One input → structured routing → repeatable workflow → controlled execution**
+
+```
+Input
+  ↓
+Route selection
+  ↓
+Workflow (analysis / architecture / strategy)
+  ↓
+Structured prompt pipeline
+  ↓
+ChatGPT execution
+```
 
 ---
 
