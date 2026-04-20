@@ -21,6 +21,70 @@ Instead of writing prompts ad-hoc, you:
 
 ---
 
+## Visual flow
+
+```text
+Input
+  ↓
+Route selection
+  ↓
+Workflow (analysis / architecture / strategy)
+  ↓
+Structured prompt pipeline
+  ↓
+ChatGPT execution
+```
+
+---
+
+## UI preview
+
+```text
+┌──────────────────────────────────────────────────────────────┐
+│ Atlas Studio                                                │
+│ Design, route, and execute structured AI workflows — locally│
+├──────────────────────────────────────────────────────────────┤
+│ Goal                                                        │
+│ Design a secure remote access architecture                  │
+│                                                              │
+│ Route preview                                               │
+│ - Problem type: technical architecture                      │
+│ - Selection mode: pre-built workflow                        │
+│ - Selected route: Architecture → Risk → Recommendation      │
+│                                                              │
+│ Workflow preview                                            │
+│ Requirements Discovery                                      │
+│   → High-Level Architecture Design                          │
+│   → Architecture Review                                     │
+│                                                              │
+│ Output                                                      │
+│ Structured prompt pipeline ready for execution              │
+│                                                              │
+│ [ Generate ] [ Copy output ] [ Open ChatGPT ]               │
+└──────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## What this means
+
+Atlas Studio turns raw input into a **structured execution path**.
+
+Instead of improvising prompts, you move through:
+
+* **intent**
+* **route selection**
+* **workflow**
+* **execution handoff**
+
+This makes outputs:
+
+* more consistent
+* easier to review
+* reusable across tasks
+
+---
+
 ### Why it matters
 
 Most AI usage today is:
