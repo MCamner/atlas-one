@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atlas Studio v12 Mac</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="bg-overlay"></div>
+  <div class="app shell">
+    <header class="topbar card">
+      <div>
+        <h1>Atlas Studio v12 Mac</h1>
+        <p>Prompt-OS aware routing, workflow detection, pipeline preview och sparade promptar.</p>
+      </div>
+      <div class="actions">
+        <button id="copyOutputBtn">Copy Output</button>
+        <button id="copyChatBtn">Copy for ChatGPT</button>
+        <button id="openChatBtn">Open ChatGPT</button>
+        <button id="sendChatBtn">Send to ChatGPT</button>
+        <button id="exportBtn">Export JSON</button>
+      </div>
+    </header>
+
+    <section class="grid main-grid">
+      <aside class="card sidebar">
+        <h2>Prompt Library</h2>
+        <label>Prompt type</label>
+        <select id="promptType"></select>
+        <label>Command Palette</label>
+        <input id="commandInput" value="/atlas citrix migration strategy @architect @strategist" />
+        <div class="chip-row" id="commandChips"></div>
+
+        <h3>Background</h3>
+        <input id="bgPicker" type="file" accept="image/*" />
+        <button id="clearBgBtn">Clear Background</button>
+
+        <h3>Projects</h3>
+        <input id="projectName" placeholder="Project name" />
+        <div class="inline-actions">
+          <button id="saveProjectBtn">Save Project</button>
+          <button id="loadProjectBtn">Load Last</button>
+        </div>
+
+        <h3>Saved Prompts</h3>
+        <input id="promptSearch" placeholder="Sök sparad prompt" />
+        <div id="savedPromptsList" class="list"></div>
+      </aside>
+
+      <main class="stack">
+        <section class="card">
+          <h2>Goal / Question</h2>
+          <textarea id="goalInput">Inställningar för OS12 för citrix profilen i UMS Igel web consolen</textarea>
+          <div class="inline-actions">
+            <button id="generateBtn">Generate Prompt</button>
+            <button id="diagramBtn">Auto Diagram</button>
+          </div>
+        </section>
+
+        <section class="card two-col">
+          <div>
+            <h2>Route Preview</h2>
+            <div id="routePreview" class="preview"></div>
+          </div>
+          <div>
+            <h2>Workflow Suggestion</h2>
+            <div id="workflowPreview" class="preview"></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Editor</h2>
+          <textarea id="editor"></textarea>
+        </section>
+
+        <section class="card">
+          <h2>ChatGPT Handoff</h2>
+          <textarea id="handoff"></textarea>
+        </section>
+
+        <section class="card">
+          <h2>Diagram Workspace</h2>
+          <textarea id="diagramText"></textarea>
+          <pre id="diagramPreview" class="diagram-box"></pre>
+        </section>
+      </main>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
