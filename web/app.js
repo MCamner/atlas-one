@@ -79,44 +79,59 @@ function bindEvents() {
 
 function autoRoute(goal) {
   const t = goal.toLowerCase();
+
   const result = {
-    goalUnderstanding: `Fokus ligger på: ${goal.trim()}`,
+    goalUnderstanding: `Focus: ${goal.trim()}`,
     problemType: 'analysis',
     selectionMode: 'Single-engine route',
     selected: '01.02 Analyze Engine',
-    reason: 'Ämnet kräver strukturerad analys men inte full pipeline.',
+    reason: 'The topic requires structured analysis but not a full pipeline.',
     workflow: null,
     pipeline: ['01.02 Analyze Engine']
   };
 
-  if (/(citrix|igel|architecture|arkitektur|migration|integration|ums|os12)/.test(t)) {
+  if (/(citrix|igel|architecture|migration|integration|ums|os12)/.test(t)) {
     result.problemType = 'technical architecture';
     result.workflow = '09.03 Architecture → Risk → Recommendation';
     result.selectionMode = 'Pre-built workflow';
     result.selected = result.workflow;
-    result.reason = 'Ämnet matchar arkitekturinitiativ med risk- och rekommendationssteg.';
-    result.pipeline = ['02.01 Requirements Discovery', '02.02 High-Level Architecture Design', '02.10 Architecture Review'];
-  } else if (/(research|market|industry|porter|competition|konkurrens)/.test(t)) {
+    result.reason = 'The topic aligns with architecture scenarios requiring structured design and risk evaluation.';
+    result.pipeline = [
+      '02.01 Requirements Discovery',
+      '02.02 High-Level Architecture Design',
+      '02.10 Architecture Review'
+    ];
+  } else if (/(research|market|industry|porter|competition)/.test(t)) {
     result.problemType = 'strategy';
     result.workflow = '09.02 Research → Strategy → Decision';
     result.selectionMode = 'Pre-built workflow';
     result.selected = result.workflow;
-    result.reason = 'Frågan kräver researchdriven strategi och beslut.';
-    result.pipeline = ['01.12 Research Synthesizer', '01.08 Voloditha Framework Analysis', '01.11 Decision & Trade-off Engine'];
-  } else if (/(problem|root cause|orsak|fel|issue|bug)/.test(t)) {
+    result.reason = 'The question requires research-driven strategy and decision support.';
+    result.pipeline = [
+      '01.12 Research Synthesizer',
+      '01.08 Voloditha Framework Analysis',
+      '01.11 Decision & Trade-off Engine'
+    ];
+  } else if (/(problem|root cause|issue|bug)/.test(t)) {
     result.problemType = 'problem solving';
     result.workflow = '09.01 Problem → Root Cause → Solution';
     result.selectionMode = 'Pre-built workflow';
     result.selected = result.workflow;
-    result.reason = 'Problembild passar bäst med rotorsak + lösningsflöde.';
-    result.pipeline = ['01.13 Root Cause Analyzer', '01.14 Problem Solving Engine'];
-  } else if (/(idea|idé|brainstorm|concept)/.test(t)) {
+    result.reason = 'The situation fits a root cause and solution-oriented workflow.';
+    result.pipeline = [
+      '01.13 Root Cause Analyzer',
+      '01.14 Problem Solving Engine'
+    ];
+  } else if (/(idea|brainstorm|concept)/.test(t)) {
     result.problemType = 'ideas';
     result.workflow = '09.04 Idea → Validation → Execution';
     result.selectionMode = 'Pre-built workflow';
     result.selected = result.workflow;
-    result.reason = 'Frågan handlar om idéutveckling och validering.';
-    result.pipeline = ['01.01 Ideas Engine', '01.11 Decision & Trade-off Engine'];
+    result.reason = 'The input is focused on idea generation and validation.';
+    result.pipeline = [
+      '01.01 Ideas Engine',
+      '01.11 Decision & Trade-off Engine'
+    ];
   }
 
   return result;
@@ -127,7 +142,7 @@ function generatePrompt() {
   const route = autoRoute(goal);
 
   els.routePreview.textContent = [
-    `Goal understanding\n${route.goalUnderstanding}`,
+    `Goal\n${route.goalUnderstanding}`,
     `\nProblem type\n${route.problemType}`,
     `\nSelection mode\n${route.selectionMode}`,
     `\nSelected route\n${route.selected}`,
@@ -136,7 +151,7 @@ function generatePrompt() {
 
   els.workflowPreview.textContent = route.workflow
     ? `${route.workflow}\n\nPipeline\n${route.pipeline.join('\n→ ')}`
-    : 'Ingen fördefinierad workflow behövs.';
+    : 'No predefined workflow required.';
 
   els.editor.value = [
     'Problem type', route.problemType, '',
@@ -145,7 +160,7 @@ function generatePrompt() {
     route.selectionMode === 'Single-engine route' ? route.selected : route.pipeline.join('\n→ '), '',
     'Reason for selection', route.reason, '',
     'Step-by-step analysis', route.pipeline.map((p, i) => `${i + 1}. ${p}`).join('\n'), '',
-    'Final insight',
+    'Conclusion',
     'Prefer the simplest strong route. Escalate only when the task truly needs multiple reasoning stages.'
   ].join('\n');
 
@@ -167,28 +182,33 @@ function generatePrompt() {
 }
 
 function generateDiagram() {
-  const route = els.editor.value.match(/Step-by-step analysis\n([\s\S]*?)\n\nFinal insight/);
+  const route = els.editor.value.match(/Step-by-step analysis\n([\s\S]*?)\n\nConclusion/);
   const lines = route ? route[1].split('\n').map(l => l.replace(/^\d+\.\s*/, '').trim()).filter(Boolean) : [];
   const nodes = lines.length ? lines : ['Goal', 'Analysis', 'Output'];
   const mermaid = ['flowchart LR'];
+
   nodes.forEach((n, i) => {
     const id = String.fromCharCode(65 + i);
     mermaid.push(`  ${id}[${n}]` + (i < nodes.length - 1 ? ` --> ${String.fromCharCode(66 + i)}` : ''));
   });
+
   els.diagramText.value = mermaid.join('\n');
   els.diagramPreview.textContent = nodes.join('  →  ');
 }
 
 function renderSavedPrompts(items) {
   els.savedPromptsList.innerHTML = '';
+
   items.forEach(item => {
     const div = document.createElement('div');
     div.className = 'list-item';
     div.innerHTML = `<strong>${item.id} ${item.title}</strong><small>${item.category}</small>`;
+
     div.addEventListener('click', () => {
       els.goalInput.value = `${item.id} ${item.title}`;
       generatePrompt();
     });
+
     els.savedPromptsList.appendChild(div);
   });
 }
@@ -201,22 +221,28 @@ function exportJson() {
     diagram: els.diagramText.value,
     exportedAt: new Date().toISOString()
   };
+
   const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = 'atlas-one-export.json';
   a.click();
+
   URL.revokeObjectURL(a.href);
 }
 
 function setBackgroundFromFile(event) {
   const file = event.target.files[0];
   if (!file) return;
+
   const reader = new FileReader();
+
   reader.onload = () => {
     localStorage.setItem('atlas-bg', reader.result);
     document.getElementById('bg-overlay').style.backgroundImage = `url(${reader.result})`;
   };
+
   reader.readAsDataURL(file);
 }
 
@@ -239,6 +265,7 @@ function saveProject() {
     handoff: els.handoff.value,
     savedAt: new Date().toISOString()
   };
+
   localStorage.setItem('atlas-last-project', JSON.stringify(project));
   alert('Project saved locally.');
 }
@@ -246,11 +273,14 @@ function saveProject() {
 function loadProject() {
   const raw = localStorage.getItem('atlas-last-project');
   if (!raw) return alert('No local project saved yet.');
+
   const project = JSON.parse(raw);
+
   els.projectName.value = project.name;
   els.goalInput.value = project.goal;
   els.editor.value = project.editor;
   els.handoff.value = project.handoff;
+
   generatePrompt();
 }
 
