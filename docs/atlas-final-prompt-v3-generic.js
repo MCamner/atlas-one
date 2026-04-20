@@ -571,6 +571,8 @@ function applyQuickAction(action) {
 function bindQuickActions() {
   const buttons = Array.from(document.querySelectorAll('.quick-actions button'));
   buttons.forEach(btn => {
+    if (btn.dataset.quickActionBound === 'true') return;
+    btn.dataset.quickActionBound = 'true';
     btn.addEventListener('click', () => {
       applyQuickAction(btn.textContent.trim());
     });
@@ -595,6 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateParsedCommand();
   refreshPromptTypeDrivenUI();
+  bindQuickActions();
 
   commandPalette?.addEventListener('input', () => {
     updateParsedCommand();
