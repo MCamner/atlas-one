@@ -60,6 +60,13 @@ ChatGPT execution
 └───────────────────────────────────────────────────────┘
 ```
 
+---
+
+## Screenshot
+
+Live interface preview from the GitHub Pages build:
+
+![Atlas Studio UI](docs/screenshot.png)
 
 ---
 
