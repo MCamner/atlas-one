@@ -40,29 +40,26 @@ ChatGPT execution
 ## UI preview
 
 ```text
-┌──────────────────────────────────────────────────────────────┐
-│ Atlas Studio                                                │
-│ Design, route, and execute structured AI workflows — locally│
-├──────────────────────────────────────────────────────────────┤
-│ Goal                                                        │
-│ Design a secure remote access architecture                  │
-│                                                              │
-│ Route preview                                               │
-│ - Problem type: technical architecture                      │
-│ - Selection mode: pre-built workflow                        │
-│ - Selected route: Architecture → Risk → Recommendation      │
-│                                                              │
-│ Workflow preview                                            │
-│ Requirements Discovery                                      │
-│   → High-Level Architecture Design                          │
-│   → Architecture Review                                     │
-│                                                              │
-│ Output                                                      │
-│ Structured prompt pipeline ready for execution              │
-│                                                              │
-│ [ Generate ] [ Copy output ] [ Open ChatGPT ]               │
-└──────────────────────────────────────────────────────────────┘
+┌───────────────────────────────────────────────────────┐
+│ Atlas Studio                                          │
+├───────────────────────────────────────────────────────┤
+│ Goal                                                  │
+│ Design a secure remote access architecture            │
+│                                                       │
+│ Route                                                 │
+│ Technical architecture                                │
+│ Architecture → Risk → Recommendation                  │
+│                                                       │
+│ Workflow                                              │
+│ Requirements → HLD → Review                           │
+│                                                       │
+│ Output                                                │
+│ Structured prompt pipeline ready                      │
+│                                                       │
+│ [ Generate ] [ Copy ] [ Open ChatGPT ]                │
+└───────────────────────────────────────────────────────┘
 ```
+
 
 ---
 
