@@ -1,27 +1,184 @@
 {
-  "promptTypes": ["Atlas", "Ideas", "Analyze", "Compare", "Plan", "Solve", "Critique", "Brain", "Council", "Grand"],
-  "commands": ["/atlas", "/brain", "/solve", "/voloditha", "/feynman", "/ideas", "/compare", "/council", "/grand"],
+  "promptTypes": [
+    "Analysis",
+    "Architecture",
+    "Strategy",
+    "Research",
+    "Decision",
+    "Problem Solving",
+    "Execution",
+    "Writing"
+  ],
+  "commands": [
+    "/atlas",
+    "/analyze",
+    "/research",
+    "/architect",
+    "/decide",
+    "/solve",
+    "/strategy",
+    "/write"
+  ],
   "savedPrompts": [
-    {"id":"01.00","title":"Atlas Analysis Engine","category":"engine"},
-    {"id":"01.01","title":"Ideas Engine","category":"engine"},
-    {"id":"01.02","title":"Analyze Engine","category":"engine"},
-    {"id":"01.08","title":"Voloditha Framework Analysis","category":"engine"},
-    {"id":"01.10","title":"Multi-Engine Pipeline","category":"pipeline"},
-    {"id":"01.11","title":"Decision & Trade-off Engine","category":"engine"},
-    {"id":"01.12","title":"Research Synthesizer","category":"engine"},
-    {"id":"01.13","title":"Root Cause Analyzer","category":"engine"},
-    {"id":"01.14","title":"Problem Solving Engine","category":"engine"},
-    {"id":"01.16","title":"Atlas Autopilot","category":"execution"},
-    {"id":"02.01","title":"Requirements Discovery","category":"architecture"},
-    {"id":"02.02","title":"High-Level Architecture Design","category":"architecture"},
-    {"id":"02.10","title":"Architecture Review","category":"architecture"},
-    {"id":"07.11","title":"Strategic Council Engine","category":"persona"},
-    {"id":"07.12","title":"Grand Strategy Council","category":"persona"},
-    {"id":"07.13","title":"Donella Meadows Systems Thinking Advisor","category":"persona"},
-    {"id":"07.14","title":"Michael Porter Competitive Strategy Advisor","category":"persona"},
-    {"id":"09.01","title":"Problem → Root Cause → Solution","category":"workflow"},
-    {"id":"09.02","title":"Research → Strategy → Decision","category":"workflow"},
-    {"id":"09.03","title":"Architecture → Risk → Recommendation","category":"workflow"},
-    {"id":"09.04","title":"Idea → Validation → Execution","category":"workflow"}
+    {
+      "id": "01.01",
+      "title": "Analyze Engine",
+      "category": "Analysis",
+      "level": "Core",
+      "useCase": "Break down a topic into clear parts, identify patterns, and explain the core issue.",
+      "summary": "Use when the user needs structured analysis without a full workflow."
+    },
+    {
+      "id": "01.08",
+      "title": "Voloditha Framework Analysis",
+      "category": "Analysis",
+      "level": "Advanced",
+      "useCase": "Analyze a problem through observation, structure, and transformation.",
+      "summary": "Useful when the user needs a more conceptual or system-level interpretation."
+    },
+    {
+      "id": "01.11",
+      "title": "Decision and Trade-off Engine",
+      "category": "Decision",
+      "level": "Core",
+      "useCase": "Compare alternatives, expose trade-offs, and recommend a direction.",
+      "summary": "Use for decision support with explicit trade-off logic."
+    },
+    {
+      "id": "01.12",
+      "title": "Research Synthesizer",
+      "category": "Research",
+      "level": "Core",
+      "useCase": "Combine multiple inputs into one clear synthesis with implications.",
+      "summary": "Use when the user wants research distilled into something practical."
+    },
+    {
+      "id": "01.13",
+      "title": "Root Cause Analyzer",
+      "category": "Problem Solving",
+      "level": "Core",
+      "useCase": "Move from symptoms to underlying cause.",
+      "summary": "Use when the user describes a recurring problem, issue, or failure."
+    },
+    {
+      "id": "01.14",
+      "title": "Problem Solving Engine",
+      "category": "Problem Solving",
+      "level": "Core",
+      "useCase": "Turn a problem into actions, solution paths, and next steps.",
+      "summary": "Use for practical troubleshooting and recovery planning."
+    },
+    {
+      "id": "02.01",
+      "title": "Requirements Discovery",
+      "category": "Architecture",
+      "level": "Core",
+      "useCase": "Identify business needs, constraints, assumptions, and non-functional requirements.",
+      "summary": "Use before proposing architecture or solution design."
+    },
+    {
+      "id": "02.02",
+      "title": "High-Level Architecture Design",
+      "category": "Architecture",
+      "level": "Core",
+      "useCase": "Create a structured high-level design with major components and flows.",
+      "summary": "Use when the user needs a clear architectural direction."
+    },
+    {
+      "id": "02.10",
+      "title": "Architecture Review",
+      "category": "Architecture",
+      "level": "Advanced",
+      "useCase": "Review architecture for risks, weaknesses, alignment, and operational fit.",
+      "summary": "Use when validating or stress-testing a proposed design."
+    },
+    {
+      "id": "03.01",
+      "title": "Strategy Framing",
+      "category": "Strategy",
+      "level": "Core",
+      "useCase": "Define the strategic problem, objective, and decision context.",
+      "summary": "Use before deeper market or decision work."
+    },
+    {
+      "id": "03.02",
+      "title": "Market and Positioning Analysis",
+      "category": "Strategy",
+      "level": "Advanced",
+      "useCase": "Assess a product, offering, or company in relation to competitors and market context.",
+      "summary": "Use for market research, differentiation, and positioning."
+    },
+    {
+      "id": "03.03",
+      "title": "Execution Strategy",
+      "category": "Strategy",
+      "level": "Core",
+      "useCase": "Turn a direction into execution phases, priorities, and sequencing.",
+      "summary": "Use when the user already knows what they want and needs a path forward."
+    },
+    {
+      "id": "04.01",
+      "title": "Prompt System Design",
+      "category": "Execution",
+      "level": "Advanced",
+      "useCase": "Design a structured prompt pattern, workflow, or reasoning route.",
+      "summary": "Use when building reusable prompt systems rather than one-off prompts."
+    },
+    {
+      "id": "04.02",
+      "title": "Workflow Builder",
+      "category": "Execution",
+      "level": "Core",
+      "useCase": "Turn a broad task into a repeatable workflow with distinct steps.",
+      "summary": "Use when consistency and repeatability matter."
+    },
+    {
+      "id": "05.01",
+      "title": "Executive Brief Writer",
+      "category": "Writing",
+      "level": "Core",
+      "useCase": "Convert analysis into concise executive-ready communication.",
+      "summary": "Use for leadership summaries, memos, and decision briefs."
+    },
+    {
+      "id": "05.02",
+      "title": "Technical Writing Builder",
+      "category": "Writing",
+      "level": "Core",
+      "useCase": "Draft structured technical documentation, architecture notes, or implementation guidance.",
+      "summary": "Use when clarity and technical precision matter."
+    },
+    {
+      "id": "09.01",
+      "title": "Problem to Root Cause to Solution",
+      "category": "Workflow",
+      "level": "Prebuilt",
+      "useCase": "Follow a predefined sequence from symptoms to diagnosis to action.",
+      "summary": "Best for troubleshooting, blockers, incidents, and persistent issues."
+    },
+    {
+      "id": "09.02",
+      "title": "Research to Strategy to Decision",
+      "category": "Workflow",
+      "level": "Prebuilt",
+      "useCase": "Move from research through strategic interpretation into decision support.",
+      "summary": "Best for strategic questions that need evidence and judgment."
+    },
+    {
+      "id": "09.03",
+      "title": "Architecture to Risk to Recommendation",
+      "category": "Workflow",
+      "level": "Prebuilt",
+      "useCase": "Use architecture design, review risk, then produce a recommendation.",
+      "summary": "Best for solution design, technical architecture, and platform decisions."
+    },
+    {
+      "id": "09.04",
+      "title": "Idea to Validation to Execution",
+      "category": "Workflow",
+      "level": "Prebuilt",
+      "useCase": "Take an idea from concept through validation toward practical execution.",
+      "summary": "Best for new product, concept, or initiative shaping."
+    }
   ]
 }
