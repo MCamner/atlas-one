@@ -119,24 +119,6 @@ Atlas Studio introduces:
 This is not another prompt tool.
 It’s a **system for thinking and execution.**
 
-
----
-
-
-> **One input → structured routing → repeatable workflow → controlled execution**
-
-```
-Input
-  ↓
-Route selection
-  ↓
-Workflow (analysis / architecture / strategy)
-  ↓
-Structured prompt pipeline
-  ↓
-ChatGPT execution
-```
-
 ---
 
 ## What it does
