@@ -532,6 +532,51 @@ function refreshPromptTypeDrivenUI() {
   buildFinalPrompt();
 }
 
+function applyQuickAction(action) {
+  const commandPalette = document.getElementById('commandPalette');
+  const promptType = document.getElementById('promptType');
+  if (!commandPalette || !promptType) return;
+
+  const actionMap = {
+    '/atlas': { mode: '/atlas', promptType: null },
+    '/analyze': { mode: '/analyze', promptType: 'analysis' },
+    '/research': { mode: '/research', promptType: 'research' },
+    '/architect': { mode: '/atlas', promptType: 'architecture' },
+    '/decide': { mode: '/decide', promptType: 'decision' },
+    '/solve': { mode: '/solve', promptType: 'problem solving' },
+    '/strategy': { mode: '/strategy', promptType: 'strategy' },
+    '/write': { mode: '/write', promptType: 'writing' }
+  };
+
+  const current = parseCommandPalette(commandPalette.value);
+  const cfg = actionMap[action];
+  if (!cfg) return;
+
+  const personas = current.personas.length
+    ? current.personas.map(p => '@' + p).join(' ')
+    : '@generalist';
+
+  const intentWord = cfg.promptType || current.intent || 'general';
+  commandPalette.value = `${cfg.mode} ${intentWord} ${personas}`.trim();
+
+  if (cfg.promptType) {
+    promptType.value = cfg.promptType;
+  }
+
+  updateParsedCommand();
+  refreshPromptTypeDrivenUI();
+  bindQuickActions();
+}
+
+function bindQuickActions() {
+  const buttons = Array.from(document.querySelectorAll('.quick-actions button'));
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyQuickAction(btn.textContent.trim());
+    });
+  });
+}
+
 function copyTextFrom(id) {
   const el = document.getElementById(id);
   if (!el) return;
