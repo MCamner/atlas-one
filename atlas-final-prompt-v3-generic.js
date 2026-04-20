@@ -50,7 +50,13 @@ Working style
 - end with a clear conclusion`,
     diagram: `flowchart LR
   A[1. Problem Definition] --> B[2. Key Factor Analysis]
-  B --> C[3. Insight and Conclusion]`
+  B --> C[3. Insight and Conclusion]`,
+    library: [
+      { title: '01.01 Problem Definition', tag: 'Analysis' },
+      { title: '01.02 Key Factor Analysis', tag: 'Analysis' },
+      { title: '01.03 Insight Extraction', tag: 'Analysis' },
+      { title: '01.10 Analysis → Insight', tag: 'Workflow' }
+    ]
   },
 
   architecture: {
@@ -91,7 +97,13 @@ Working style
 - recommend one architecture`,
     diagram: `flowchart LR
   A[1. Requirements and Constraints] --> B[2. Design Options]
-  B --> C[3. Review and Recommendation]`
+  B --> C[3. Review and Recommendation]`,
+    library: [
+      { title: '02.01 Requirements Discovery', tag: 'Architecture' },
+      { title: '02.02 High-Level Architecture Design', tag: 'Architecture' },
+      { title: '02.10 Architecture Review', tag: 'Architecture' },
+      { title: '09.03 Architecture → Risk → Recommendation', tag: 'Workflow' }
+    ]
   },
 
   strategy: {
@@ -132,7 +144,13 @@ Working style
 - recommend the strongest path`,
     diagram: `flowchart LR
   A[1. Objective and Context] --> B[2. Strategic Options]
-  B --> C[3. Recommendation and Next Moves]`
+  B --> C[3. Recommendation and Next Moves]`,
+    library: [
+      { title: '03.01 Objective Framing', tag: 'Strategy' },
+      { title: '03.02 Strategic Option Analysis', tag: 'Strategy' },
+      { title: '03.03 Sequencing and Positioning', tag: 'Strategy' },
+      { title: '03.10 Strategy → Recommendation', tag: 'Workflow' }
+    ]
   },
 
   research: {
@@ -172,7 +190,13 @@ Working style
 - state uncertainty clearly`,
     diagram: `flowchart LR
   A[1. Research Question] --> B[2. Findings and Evidence]
-  B --> C[3. Synthesis and Conclusion]`
+  B --> C[3. Synthesis and Conclusion]`,
+    library: [
+      { title: '04.01 Research Question Framing', tag: 'Research' },
+      { title: '04.02 Evidence Collection', tag: 'Research' },
+      { title: '04.03 Comparison and Synthesis', tag: 'Research' },
+      { title: '04.10 Research → Conclusion', tag: 'Workflow' }
+    ]
   },
 
   decision: {
@@ -213,7 +237,13 @@ Working style
 - recommend one option`,
     diagram: `flowchart LR
   A[1. Decision Context] --> B[2. Alternative Evaluation]
-  B --> C[3. Recommendation]`
+  B --> C[3. Recommendation]`,
+    library: [
+      { title: '05.01 Decision Context', tag: 'Decision' },
+      { title: '05.02 Criteria and Alternatives', tag: 'Decision' },
+      { title: '05.03 Comparison and Recommendation', tag: 'Decision' },
+      { title: '05.10 Decision → Recommendation', tag: 'Workflow' }
+    ]
   },
 
   "problem solving": {
@@ -254,7 +284,13 @@ Working style
 - end with an action plan`,
     diagram: `flowchart LR
   A[1. Problem Definition] --> B[2. Root Cause and Options]
-  B --> C[3. Recommended Action Plan]`
+  B --> C[3. Recommended Action Plan]`,
+    library: [
+      { title: '06.01 Problem Definition', tag: 'Problem Solving' },
+      { title: '06.02 Root Cause Analysis', tag: 'Problem Solving' },
+      { title: '06.03 Solution Path', tag: 'Problem Solving' },
+      { title: '06.10 Root Cause → Action Plan', tag: 'Workflow' }
+    ]
   },
 
   execution: {
@@ -295,7 +331,13 @@ Working style
 - end with immediate next steps`,
     diagram: `flowchart LR
   A[1. Objective and Scope] --> B[2. Execution Plan]
-  B --> C[3. Validation and Next Steps]`
+  B --> C[3. Validation and Next Steps]`,
+    library: [
+      { title: '07.01 Scope Definition', tag: 'Execution' },
+      { title: '07.02 Sequenced Execution Plan', tag: 'Execution' },
+      { title: '07.03 Validation and Handover', tag: 'Execution' },
+      { title: '07.10 Scope → Delivery', tag: 'Workflow' }
+    ]
   },
 
   writing: {
@@ -333,7 +375,13 @@ Working style
 - keep the message sharp`,
     diagram: `flowchart LR
   A[1. Audience and Purpose] --> B[2. Draft Content]
-  B --> C[3. Refinement]`
+  B --> C[3. Refinement]`,
+    library: [
+      { title: '08.01 Audience and Purpose', tag: 'Writing' },
+      { title: '08.02 Draft Structure', tag: 'Writing' },
+      { title: '08.03 Tone and Refinement', tag: 'Writing' },
+      { title: '08.10 Audience → Draft → Polish', tag: 'Workflow' }
+    ]
   }
 };
 
@@ -359,9 +407,21 @@ function updateParsedCommand() {
   `;
 }
 
+function renderPromptLibrary() {
+  const { config } = getSelectedConfig();
+  const list = document.getElementById('promptLibraryList');
+  if (!list) return;
+
+  list.innerHTML = config.library.map(item => `
+    <div class="library-item">
+      <strong>${item.title}</strong>
+      <span>${item.tag}</span>
+    </div>
+  `).join('');
+}
+
 function updateSystemReasoning() {
   const { config } = getSelectedConfig();
-
   const reasoningGrid = document.querySelector('.reasoning-grid');
   if (!reasoningGrid) return;
 
@@ -465,10 +525,58 @@ Deliver a complete, high-quality answer adapted to the selected prompt type.
 }
 
 function refreshPromptTypeDrivenUI() {
+  renderPromptLibrary();
   updateSystemReasoning();
   updateAdvancedConfig();
   updateDiagramWorkspace();
   buildFinalPrompt();
+}
+
+function applyQuickAction(action) {
+  const commandPalette = document.getElementById('commandPalette');
+  const promptType = document.getElementById('promptType');
+  if (!commandPalette || !promptType) return;
+
+  const actionMap = {
+    '/atlas': { mode: '/atlas', promptType: null },
+    '/analyze': { mode: '/analyze', promptType: 'analysis' },
+    '/research': { mode: '/research', promptType: 'research' },
+    '/architect': { mode: '/atlas', promptType: 'architecture' },
+    '/decide': { mode: '/decide', promptType: 'decision' },
+    '/solve': { mode: '/solve', promptType: 'problem solving' },
+    '/strategy': { mode: '/strategy', promptType: 'strategy' },
+    '/write': { mode: '/write', promptType: 'writing' }
+  };
+
+  const current = parseCommandPalette(commandPalette.value);
+  const cfg = actionMap[action];
+  if (!cfg) return;
+
+  const personas = current.personas.length
+    ? current.personas.map(p => '@' + p).join(' ')
+    : '@generalist';
+
+  const intentWord = cfg.promptType || current.intent || 'general';
+  commandPalette.value = `${cfg.mode} ${intentWord} ${personas}`.trim();
+
+  if (cfg.promptType) {
+    promptType.value = cfg.promptType;
+  }
+
+  updateParsedCommand();
+  refreshPromptTypeDrivenUI();
+  bindQuickActions();
+}
+
+function bindQuickActions() {
+  const buttons = Array.from(document.querySelectorAll('.quick-actions button'));
+  buttons.forEach(btn => {
+    if (btn.dataset.quickActionBound === 'true') return;
+    btn.dataset.quickActionBound = 'true';
+    btn.addEventListener('click', () => {
+      applyQuickAction(btn.textContent.trim());
+    });
+  });
 }
 
 function copyTextFrom(id) {
@@ -489,6 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateParsedCommand();
   refreshPromptTypeDrivenUI();
+  bindQuickActions();
 
   commandPalette?.addEventListener('input', () => {
     updateParsedCommand();
