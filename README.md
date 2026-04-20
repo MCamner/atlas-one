@@ -68,6 +68,12 @@ Live interface preview from the GitHub Pages build:
 
 ![Atlas Studio UI](docs/screenshot.png)
 
+## Try it
+
+👉 https://mcamner.github.io/atlas-one/
+
+No install. Runs in your browser.
+
 ---
 
 ### Why it matters
@@ -104,7 +110,7 @@ It’s a **system for thinking and execution.**
 
 ## What it does
 
-Atlas Studio provides a structured system for turning intent into executable AI workflows:
+Atlas Studio turns intent into executable AI workflows:
 
 - **Prompt routing engine**  
   Automatically selects the best prompt strategy based on intent
