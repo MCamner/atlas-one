@@ -1,0 +1,35 @@
+:root{
+  --bg:#0f172a;
+  --panel:rgba(15,23,42,.72);
+  --panel-2:rgba(30,41,59,.82);
+  --text:#e5eefc;
+  --muted:#a8b6d8;
+  --line:rgba(255,255,255,.12);
+  --accent:#7dd3fc;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,sans-serif;background:linear-gradient(180deg,#0b1120,#172554);color:var(--text);min-height:100vh}
+#bg-overlay{position:fixed;inset:0;background-size:cover;background-position:center;opacity:.38;pointer-events:none}
+.shell{position:relative;z-index:1;padding:20px}
+.card{background:var(--panel);border:1px solid var(--line);backdrop-filter: blur(18px);border-radius:18px;padding:16px;box-shadow:0 14px 40px rgba(0,0,0,.25)}
+.topbar{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:18px}
+.topbar h1{margin:0 0 6px 0;font-size:28px}
+.topbar p{margin:0;color:var(--muted)}
+.actions,.inline-actions,.chip-row{display:flex;flex-wrap:wrap;gap:10px}
+button,select,input,textarea{font:inherit}
+button{background:var(--panel-2);color:var(--text);border:1px solid var(--line);padding:10px 14px;border-radius:12px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+input,select,textarea{width:100%;background:rgba(15,23,42,.72);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+textarea{min-height:150px;resize:vertical}
+label,h2,h3{display:block;margin:0 0 8px 0}
+h2{font-size:18px}
+h3{font-size:16px;margin-top:18px}
+.main-grid{display:grid;grid-template-columns:320px 1fr;gap:18px}
+.stack{display:grid;gap:18px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.preview,.list,.diagram-box{background:rgba(2,6,23,.55);border:1px dashed var(--line);border-radius:14px;padding:12px;min-height:120px;white-space:pre-wrap}
+.list{max-height:300px;overflow:auto}
+.list-item{padding:10px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.list-item:last-child{border-bottom:none}
+.list-item small{display:block;color:var(--muted)}
+@media (max-width: 980px){.main-grid,.two-col,.topbar{grid-template-columns:1fr;display:grid}.actions{margin-top:8px}}

@@ -1,0 +1,27 @@
+{
+  "promptTypes": ["Atlas", "Ideas", "Analyze", "Compare", "Plan", "Solve", "Critique", "Brain", "Council", "Grand"],
+  "commands": ["/atlas", "/brain", "/solve", "/voloditha", "/feynman", "/ideas", "/compare", "/council", "/grand"],
+  "savedPrompts": [
+    {"id":"01.00","title":"Atlas Analysis Engine","category":"engine"},
+    {"id":"01.01","title":"Ideas Engine","category":"engine"},
+    {"id":"01.02","title":"Analyze Engine","category":"engine"},
+    {"id":"01.08","title":"Voloditha Framework Analysis","category":"engine"},
+    {"id":"01.10","title":"Multi-Engine Pipeline","category":"pipeline"},
+    {"id":"01.11","title":"Decision & Trade-off Engine","category":"engine"},
+    {"id":"01.12","title":"Research Synthesizer","category":"engine"},
+    {"id":"01.13","title":"Root Cause Analyzer","category":"engine"},
+    {"id":"01.14","title":"Problem Solving Engine","category":"engine"},
+    {"id":"01.16","title":"Atlas Autopilot","category":"execution"},
+    {"id":"02.01","title":"Requirements Discovery","category":"architecture"},
+    {"id":"02.02","title":"High-Level Architecture Design","category":"architecture"},
+    {"id":"02.10","title":"Architecture Review","category":"architecture"},
+    {"id":"07.11","title":"Strategic Council Engine","category":"persona"},
+    {"id":"07.12","title":"Grand Strategy Council","category":"persona"},
+    {"id":"07.13","title":"Donella Meadows Systems Thinking Advisor","category":"persona"},
+    {"id":"07.14","title":"Michael Porter Competitive Strategy Advisor","category":"persona"},
+    {"id":"09.01","title":"Problem → Root Cause → Solution","category":"workflow"},
+    {"id":"09.02","title":"Research → Strategy → Decision","category":"workflow"},
+    {"id":"09.03","title":"Architecture → Risk → Recommendation","category":"workflow"},
+    {"id":"09.04","title":"Idea → Validation → Execution","category":"workflow"}
+  ]
+}
