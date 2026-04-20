@@ -1,0 +1,160 @@
+<section class="studio-main">
+  <div class="studio-grid">
+    <!-- LEFT: INPUT -->
+    <section class="panel panel-input">
+      <div class="panel-header">
+        <h2>Input</h2>
+        <p>Define the task, route intent, and generate a ready-to-run prompt.</p>
+      </div>
+
+      <div class="field">
+        <label for="promptType">Prompt type</label>
+        <select id="promptType">
+          <option value="analysis">Analysis</option>
+          <option value="architecture" selected>Architecture</option>
+          <option value="strategy">Strategy</option>
+          <option value="research">Research</option>
+          <option value="decision">Decision</option>
+          <option value="problem solving">Problem Solving</option>
+          <option value="execution">Execution</option>
+          <option value="writing">Writing</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="commandPalette">Command palette</label>
+        <input id="commandPalette" value="/atlas citrix migration strategy @architect @strategist" />
+      </div>
+
+      <div class="parsed-command" id="parsedCommand">
+        <div><strong>Mode:</strong> atlas</div>
+        <div><strong>Intent:</strong> strategy</div>
+        <div><strong>Personas:</strong> architect, strategist</div>
+      </div>
+
+      <div class="quick-actions">
+        <button type="button">/atlas</button>
+        <button type="button">/analyze</button>
+        <button type="button">/research</button>
+        <button type="button">/architect</button>
+        <button type="button">/decide</button>
+        <button type="button">/solve</button>
+        <button type="button">/strategy</button>
+        <button type="button">/write</button>
+      </div>
+
+      <div class="field">
+        <label for="goalQuestion">Goal</label>
+        <textarea id="goalQuestion" rows="6">Define optimal IGEL OS12 Citrix profile configuration in UMS for secure, automated smartcard-based sessions</textarea>
+      </div>
+
+      <div class="primary-actions">
+        <button class="btn btn-primary" id="generatePromptBtn" type="button">Generate</button>
+        <button class="btn" id="autoDiagramBtn" type="button">Auto Diagram</button>
+      </div>
+    </section>
+
+    <!-- RIGHT: OUTPUT -->
+    <section class="panel panel-output">
+      <div class="panel-header panel-header-strong">
+        <div>
+          <h2>Final Prompt</h2>
+          <p>Ready to execute</p>
+        </div>
+        <span class="status-badge">Ready</span>
+      </div>
+
+      <div class="final-prompt-wrap">
+        <textarea id="chatgptHandoff" class="final-prompt" rows="20">Command
+/atlas
+
+Topic
+Define optimal IGEL OS12 Citrix profile configuration in UMS for secure, automated smartcard-based sessions
+
+Personas
+@architect @strategist
+
+Problem type
+technical architecture
+
+Selection mode
+Pre-built workflow
+
+Selected pipeline
+1. Requirements Discovery
+2. High-Level Architecture Design
+3. Architecture Review
+
+Reason for selection
+Requires structured design and explicit risk evaluation typical for infrastructure architecture decisions.
+
+---
+
+Use the selected route exactly as shown.
+
+Keep the sequence explicit and show why each stage is needed.
+
+Include:
+- explicit assumptions
+- risk evaluation
+- final recommendation</textarea>
+      </div>
+
+      <div class="output-actions">
+        <button class="btn btn-primary" id="copyForChatgptBtn" type="button">Copy Prompt</button>
+        <button class="btn" id="openChatgptBtn" type="button">Open ChatGPT</button>
+        <button class="btn" id="sendToChatgptBtn" type="button">Send to ChatGPT</button>
+        <button class="btn" id="exportJsonBtn" type="button">Export JSON</button>
+      </div>
+
+      <details class="details-panel" open>
+        <summary>System reasoning</summary>
+        <div class="details-content">
+          <div class="reasoning-grid">
+            <div><strong>Problem type</strong><span>technical architecture</span></div>
+            <div><strong>Selection mode</strong><span>Pre-built workflow</span></div>
+            <div><strong>Selected route</strong><span>09.03 Architecture → Risk → Recommendation</span></div>
+            <div><strong>Pipeline</strong><span>1. Requirements Discovery → 2. High-Level Architecture Design → 3. Architecture Review</span></div>
+            <div><strong>Why this route</strong><span>Requires structured design and explicit risk evaluation typical for infrastructure architecture decisions.</span></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="details-panel">
+        <summary>Advanced config</summary>
+        <div class="details-content">
+          <textarea id="editorBox" rows="12">Problem type
+technical architecture
+
+Selection mode
+Pre-built workflow
+
+Selected pipeline
+1. Requirements Discovery
+2. High-Level Architecture Design
+3. Architecture Review
+
+Reason for selection
+Requires structured design and explicit risk evaluation typical for infrastructure architecture decisions.
+
+Step-by-step analysis
+1. Requirements Discovery
+2. High-Level Architecture Design
+3. Architecture Review
+
+Conclusion
+Prefer the simplest strong route. Escalate only when the task truly needs multiple reasoning stages.</textarea>
+        </div>
+      </details>
+
+      <details class="details-panel">
+        <summary>Diagram workspace</summary>
+        <div class="details-content">
+          <textarea id="diagramWorkspace" rows="10">flowchart LR
+  A[1. Requirements Discovery] --> B[2. High-Level Architecture Design]
+  B --> C[3. Architecture Review]</textarea>
+        </div>
+      </details>
+    </section>
+  </div>
+</section>
