@@ -609,12 +609,104 @@ function bindQuickActions() {
   });
 }
 
-function copyTextFrom(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
+const CHATGPT_URL = 'https://chatgpt.com/';
+
+function showToast(message) {
+  let toast = document.getElementById('atlasToast');
+
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'atlasToast';
+    toast.className = 'toast';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    document.body.appendChild(toast);
+  }
+
+  toast.textContent = message;
+  toast.classList.add('is-visible');
+  window.clearTimeout(showToast.timeoutId);
+  showToast.timeoutId = window.setTimeout(() => {
+    toast.classList.remove('is-visible');
+  }, 2600);
+}
+
+function fallbackCopyTextFrom(el) {
+  el.focus();
   el.select();
   el.setSelectionRange(0, 99999);
-  document.execCommand('copy');
+  return document.execCommand('copy');
+}
+
+async function copyTextFrom(id, message = 'Prompt copied.') {
+  const el = document.getElementById(id);
+  if (!el) return false;
+
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(el.value);
+    } else {
+      fallbackCopyTextFrom(el);
+    }
+    showToast(message);
+    return true;
+  } catch (err) {
+    const copied = fallbackCopyTextFrom(el);
+    showToast(copied ? message : 'Could not copy automatically.');
+    return copied;
+  }
+}
+
+function openChatGPT() {
+  const opened = window.open(CHATGPT_URL, '_blank', 'noopener');
+  if (!opened) showToast('Popup blocked. Allow popups and try again.');
+}
+
+function sendToChatGPT() {
+  const prompt = document.getElementById('chatgptHandoff')?.value.trim();
+  if (!prompt) {
+    showToast('No prompt to send yet.');
+    return;
+  }
+
+  openChatGPT();
+  copyTextFrom('chatgptHandoff', 'Prompt copied. Paste it into ChatGPT.');
+}
+
+function exportJson() {
+  const payload = {
+    command: document.getElementById('commandPalette')?.value || '',
+    promptType: document.getElementById('promptType')?.value || '',
+    goal: document.getElementById('goalQuestion')?.value || '',
+    finalPrompt: document.getElementById('chatgptHandoff')?.value || '',
+    advancedConfig: document.getElementById('editorBox')?.value || '',
+    diagram: document.getElementById('diagramWorkspace')?.value || '',
+    exportedAt: new Date().toISOString()
+  };
+
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'atlas-studio-export.json';
+  link.click();
+  URL.revokeObjectURL(link.href);
+  showToast('JSON exported.');
+}
+
+function refreshDiagramWorkspace() {
+  updateDiagramWorkspace();
+  const diagram = document.getElementById('diagramWorkspace');
+  const details = diagram?.closest('details');
+  if (details) details.open = true;
+  diagram?.focus();
+  showToast('Diagram refreshed.');
+}
+
+function bindButtons(ids, handler) {
+  ids.forEach(id => {
+    const button = document.getElementById(id);
+    button?.addEventListener('click', handler);
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -622,8 +714,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const promptType = document.getElementById('promptType');
   const goalQuestion = document.getElementById('goalQuestion');
   const generateBtn = document.getElementById('generatePromptBtn');
-  const copyBtn = document.getElementById('copyForChatgptBtn');
-  const copyTopBtn = document.getElementById('copyPromptTopBtn');
 
   updateParsedCommand();
   refreshPromptTypeDrivenUI();
@@ -638,6 +728,10 @@ document.addEventListener('DOMContentLoaded', () => {
   promptType?.addEventListener('change', refreshPromptTypeDrivenUI);
   goalQuestion?.addEventListener('input', buildFinalPrompt);
   generateBtn?.addEventListener('click', buildFinalPrompt);
-  copyBtn?.addEventListener('click', () => copyTextFrom('chatgptHandoff'));
-  copyTopBtn?.addEventListener('click', () => copyTextFrom('chatgptHandoff'));
+
+  bindButtons(['copyForChatgptBtn', 'copyPromptTopBtn'], () => copyTextFrom('chatgptHandoff'));
+  bindButtons(['openChatgptBtn', 'openChatgptBtnBottom'], openChatGPT);
+  bindButtons(['sendToChatgptBtn', 'sendToChatgptBtnBottom'], sendToChatGPT);
+  bindButtons(['exportJsonBtn', 'exportJsonBtnBottom'], exportJson);
+  bindButtons(['autoDiagramBtn'], refreshDiagramWorkspace);
 });

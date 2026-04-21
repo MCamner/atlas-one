@@ -184,6 +184,13 @@
       border-color: var(--accent);
     }
 
+    .quick-actions button.is-active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: 0 10px 24px rgba(23, 76, 90, 0.18);
+    }
+
     .panel-output-header {
       display: flex;
       justify-content: space-between;
@@ -209,6 +216,30 @@
       color: var(--ok);
       border: 1px solid rgba(35, 100, 67, 0.18);
       white-space: nowrap;
+    }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 20;
+      max-width: min(360px, calc(100vw - 40px));
+      padding: 12px 14px;
+      border: 1px solid rgba(23, 76, 90, 0.18);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.14);
+      font-weight: 700;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 140ms ease, transform 140ms ease;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .final-prompt-wrap {
@@ -458,6 +489,6 @@ Prefer the simplest strong route. Escalate only when the task truly needs multip
       </section>
     </main>
   </div>
-  <script src="./atlas-final-prompt-v3-generic.js?v=3"></script>
+  <script src="./atlas-final-prompt-v3-generic.js?v=4"></script>
 </body>
 </html>
