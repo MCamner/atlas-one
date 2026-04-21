@@ -1,6 +1,6 @@
 # Atlas Studio
 
-**Design, route, and execute structured AI workflows — locally.**
+**Adaptive prompt system for structured thinking and decision-making.**
 
 👉 **Live demo:** https://mcamner.github.io/atlas-one/
 

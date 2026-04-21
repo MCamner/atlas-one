@@ -23,13 +23,13 @@ public class AtlasServer {
     public static void main(String[] args) throws Exception {
         HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", PORT), 0);
         server.createContext("/api/prompts", new JsonHandler("web/prompts.json"));
-        server.createContext("/api/health", exchange -> sendJson(exchange, "{\"status\":\"ok\",\"app\":\"Atlas Studio v12 Mac\"}"));
+        server.createContext("/api/health", exchange -> sendJson(exchange, "{\"status\":\"ok\",\"app\":\"Atlas Studio\"}"));
         server.createContext("/", new StaticHandler());
         server.setExecutor(null);
         server.start();
 
         String url = "http://127.0.0.1:" + PORT + "/";
-        System.out.println("Atlas Studio v12 Mac running on " + url);
+        System.out.println("Atlas Studio running on " + url);
         try {
             if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().browse(new URI(url));
