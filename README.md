@@ -1,4 +1,4 @@
-# Atlas Studio
+# [A] Atlas Studio
 
 **Adaptive prompt system for structured thinking and decision-making.**
 
