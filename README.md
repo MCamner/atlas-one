@@ -6,18 +6,18 @@
 
 ---
 
-Atlas Studio is a **local-first prompt routing system** that turns raw input into structured workflows.
+Atlas Studio is a **local-first adaptive prompt system** that turns raw intent into structured thinking workflows.
 
 Instead of writing prompts ad-hoc, you:
 
 * define intent
-* select the right reasoning route
-* generate a structured execution pipeline
-* hand off cleanly to ChatGPT
+* select a reasoning mode
+* generate a structured prompt
+* copy or hand off cleanly to ChatGPT
 
 ---
 
-**One input → structured routing → repeatable workflow → controlled execution**
+**One input → adaptive prompt type → structured workflow → clean execution**
 
 ---
 
@@ -41,22 +41,26 @@ ChatGPT execution
 
 ```text
 ┌───────────────────────────────────────────────────────┐
-│ Atlas Studio                                          │
+│ [A] Atlas Studio                                      │
+│ Adaptive prompt system for structured thinking        │
+│ and decision-making.                                  │
 ├───────────────────────────────────────────────────────┤
+│ Prompt type                                           │
+│ Architecture                                          │
+│                                                       │
+│ Quick actions                                         │
+│ [ /atlas ] [ /research ] [ /write ] [ /strategy ]     │
+│                                                       │
 │ Goal                                                  │
 │ Design a secure remote access architecture            │
 │                                                       │
-│ Route                                                 │
-│ Technical architecture                                │
-│ Architecture → Risk → Recommendation                  │
+│ System reasoning                                      │
+│ Requirements → Design Options → Recommendation        │
 │                                                       │
-│ Workflow                                              │
-│ Requirements → HLD → Review                           │
+│ Final Prompt                                          │
+│ ChatGPT-ready structured prompt                       │
 │                                                       │
-│ Output                                                │
-│ Structured prompt pipeline ready                      │
-│                                                       │
-│ [ Generate ] [ Copy ] [ Open ChatGPT ]                │
+│ [ Generate ] [ Copy Prompt ] [ Send to ChatGPT ]      │
 └───────────────────────────────────────────────────────┘
 ```
 
@@ -64,7 +68,7 @@ ChatGPT execution
 
 ## Screenshot
 
-Live interface preview from the GitHub Pages build:
+Interface preview from the GitHub Pages build:
 
 ![Atlas Studio UI](docs/screenshot.png)
 
@@ -94,11 +98,11 @@ Atlas Studio introduces:
 
 ### What you get
 
-* **Prompt routing engine** — select the right reasoning path automatically
-* **Workflow detection** — map intent to structured execution patterns
-* **Pipeline visualization** — see how thinking flows step-by-step
-* **Structured prompt library** — reusable, versioned prompt systems
-* **ChatGPT-ready output** — clean handoff, no prompt guessing
+* **Adaptive prompt modes** — switch between analysis, architecture, research, strategy, decision, problem solving, execution, and writing
+* **Quick actions** — choose `/atlas`, `/research`, `/write`, `/strategy`, and other modes from the interface
+* **System reasoning preview** — see the selected problem type, route, pipeline, and rationale
+* **Structured prompt library** — reusable prompt patterns for repeatable work
+* **ChatGPT-ready handoff** — copy the final prompt and open ChatGPT in one action
 
 
 ---
@@ -110,15 +114,15 @@ It’s a **system for thinking and execution.**
 
 ## What it does
 
-Atlas Studio turns intent into executable AI workflows:
+Atlas Studio turns intent into structured AI workflows:
 
-- **Prompt routing engine**  
-  Automatically selects the best prompt strategy based on intent
+- **Adaptive prompt modes**  
+  Maps the task to a useful reasoning style
 
-- **Workflow detection**  
-  Maps inputs to structured patterns (analysis, architecture, decision-making, etc.)
+- **Quick action controls**  
+  Let you switch modes without rewriting the prompt manually
 
-- **Pipeline visualization**  
+- **System reasoning preview**  
   Shows how a request flows through reasoning steps
 
 - **Prompt library system**  
@@ -128,7 +132,7 @@ Atlas Studio turns intent into executable AI workflows:
   Runs entirely on `127.0.0.1` — no external dependencies
 
 - **ChatGPT handoff**  
-  Sends structured prompts into ChatGPT for execution
+  Copies the final prompt and opens ChatGPT for execution
 
 ---
 
@@ -140,13 +144,16 @@ User input:
 
 ↓
 
-Route selected:
-Architecture → Requirements → HLD → Review
+Prompt type selected:
+Architecture
+
+Route:
+Requirements and Constraints → Design Options → Review and Recommendation
 
 ↓
 
 Generated output:
-Structured prompt pipeline ready for execution
+ChatGPT-ready structured prompt
 ```
 
 ---
@@ -220,12 +227,12 @@ Creates a local macOS app bundle.
 ## How it works
 
 1. User enters intent
-2. System applies routing heuristics
-3. Matching workflow is selected
-4. Prompt pipeline is generated
+2. User selects or confirms the prompt type
+3. System updates reasoning, route, and workflow structure
+4. Final prompt is generated
 5. Output can be:
    - reviewed locally
-   - sent to ChatGPT
+   - copied and opened in ChatGPT
 
 ---
 
