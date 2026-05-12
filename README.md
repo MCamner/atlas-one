@@ -291,6 +291,14 @@ Early-stage, actively evolving.
 
 ---
 
+## Security
+
+Atlas Studio runs locally. No data is sent anywhere unless you configure an external AI provider.
+
+Do not commit API keys or credentials. Use environment variables or ignored local files for sensitive values.
+
+---
+
 ## License
 
 MIT
