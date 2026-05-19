@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Atlas Studio v12 Mac</title>
+  <title>[A] Atlas Studio</title>
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <style>
     :root {
       --bg: #f4f1ea;
@@ -56,6 +57,23 @@
       flex-wrap: wrap;
       gap: 10px;
       margin: 20px 0 28px;
+    }
+
+    .topbar-secondary {
+      opacity: 0.72;
+    }
+
+    .topbar-secondary button {
+      padding: 8px 12px;
+      font-size: 0.92rem;
+    }
+
+    .hero h1 {
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      max-width: 780px;
     }
 
     .studio-layout {
@@ -184,6 +202,25 @@
       border-color: var(--accent);
     }
 
+    .quick-actions button.is-active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: 0 10px 24px rgba(23, 76, 90, 0.18);
+    }
+
+    .panel {
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.06);
+    }
+
+    .final-prompt-wrap {
+      margin-bottom: 18px;
+    }
+
+    .output-actions {
+      margin-bottom: 4px;
+    }
+
     .panel-output-header {
       display: flex;
       justify-content: space-between;
@@ -209,6 +246,30 @@
       color: var(--ok);
       border: 1px solid rgba(35, 100, 67, 0.18);
       white-space: nowrap;
+    }
+
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 20;
+      max-width: min(360px, calc(100vw - 40px));
+      padding: 12px 14px;
+      border: 1px solid rgba(23, 76, 90, 0.18);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.14);
+      font-weight: 700;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 140ms ease, transform 140ms ease;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .final-prompt-wrap {
@@ -285,11 +346,11 @@
 <body>
   <div class="container">
     <header class="hero">
-      <h1>Atlas Studio v12 Mac</h1>
-      <p>Prompt-OS aware routing, workflow detection, pipeline preview, and saved prompts.</p>
+      <h1>[A] Atlas Studio</h1>
+      <p>Adaptive prompt system for structured thinking and decision-making.</p>
     </header>
 
-    <div class="topbar">
+    <div class="topbar topbar-secondary">
       <button id="copyPromptTopBtn">Copy Prompt</button>
       <button id="openChatgptBtn">Open ChatGPT</button>
       <button id="sendToChatgptBtn">Send to ChatGPT</button>
@@ -315,12 +376,7 @@
           </select>
         </div>
 
-        <div class="library-list">
-          <div class="library-item"><strong>02.01 Requirements Discovery</strong><span>Architecture</span></div>
-          <div class="library-item"><strong>02.02 High-Level Architecture Design</strong><span>Architecture</span></div>
-          <div class="library-item"><strong>02.10 Architecture Review</strong><span>Architecture</span></div>
-          <div class="library-item"><strong>09.03 Architecture → Risk → Recommendation</strong><span>Workflow</span></div>
-        </div>
+        <div class="library-list" id="promptLibraryList"></div>
       </aside>
 
       <section class="panel">
@@ -463,102 +519,6 @@ Prefer the simplest strong route. Escalate only when the task truly needs multip
       </section>
     </main>
   </div>
-
-  <script>
-    function parseCommandPalette(value) {
-      const raw = value.trim();
-      const parts = raw.split(/\s+/);
-
-      const mode = parts.find(p => p.startsWith('/'))?.replace('/', '') || 'atlas';
-      const personas = parts
-        .filter(p => p.startsWith('@'))
-        .map(p => p.replace('@', ''));
-
-      const nonTagged = parts.filter(p => !p.startsWith('/') && !p.startsWith('@'));
-      const intent = nonTagged.slice(-1)[0] || 'general';
-
-      return { mode, intent, personas };
-    }
-
-    function updateParsedCommand() {
-      const input = document.getElementById('commandPalette');
-      const target = document.getElementById('parsedCommand');
-      if (!input || !target) return;
-
-      const parsed = parseCommandPalette(input.value);
-
-      target.innerHTML = `
-        <div><strong>Mode:</strong> ${parsed.mode}</div>
-        <div><strong>Intent:</strong> ${parsed.intent}</div>
-        <div><strong>Personas:</strong> ${parsed.personas.length ? parsed.personas.join(', ') : 'none'}</div>
-      `;
-    }
-
-    function buildFinalPrompt() {
-      const goal = document.getElementById('goalQuestion')?.value.trim() || '';
-      const commandPalette = document.getElementById('commandPalette')?.value.trim() || '/atlas';
-      const parsed = parseCommandPalette(commandPalette);
-      const output = document.getElementById('chatgptHandoff');
-
-      const prompt = `Command
-/${parsed.mode}
-
-Topic
-${goal}
-
-Personas
-${parsed.personas.length ? parsed.personas.map(p => '@' + p).join(' ') : '@architect'}
-
-Problem type
-technical architecture
-
-Selection mode
-Pre-built workflow
-
-Selected pipeline
-1. Requirements Discovery
-2. High-Level Architecture Design
-3. Architecture Review
-
-Reason for selection
-Requires structured design and explicit risk evaluation typical for infrastructure architecture decisions.
-
----
-
-Use the selected route exactly as shown.
-
-Keep the sequence explicit and show why each stage is needed.
-
-Include:
-- explicit assumptions
-- risk evaluation
-- final recommendation`;
-
-      if (output) output.value = prompt;
-    }
-
-    function copyTextFrom(id) {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.select();
-      el.setSelectionRange(0, 99999);
-      document.execCommand('copy');
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const commandPalette = document.getElementById('commandPalette');
-      const generateBtn = document.getElementById('generatePromptBtn');
-      const copyBtn = document.getElementById('copyForChatgptBtn');
-      const copyTopBtn = document.getElementById('copyPromptTopBtn');
-
-      updateParsedCommand();
-      buildFinalPrompt();
-
-      commandPalette?.addEventListener('input', updateParsedCommand);
-      generateBtn?.addEventListener('click', buildFinalPrompt);
-      copyBtn?.addEventListener('click', () => copyTextFrom('chatgptHandoff'));
-      copyTopBtn?.addEventListener('click', () => copyTextFrom('chatgptHandoff'));
-    });
-  </script>
+  <script src="./atlas-final-prompt-v3-generic.js?v=4"></script>
 </body>
 </html>
