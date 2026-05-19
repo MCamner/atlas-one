@@ -7,7 +7,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <style>
     :root {
-      --bg: #f4f1ea;
+      --bg: #edeae2;
       --panel: #fffdf8;
       --ink: #1f2a2e;
       --muted: #68777d;
@@ -16,150 +16,326 @@
       --accent-soft: rgba(23, 76, 90, 0.08);
       --ok: #236443;
       --ok-bg: #e7f4ec;
+      /* dark theme */
+      --hdr: #0c1620;
+      --side: #111b27;
+      --side-border: rgba(255,255,255,0.05);
+      --side-text: #7a99aa;
+      --side-muted: #3a546a;
+      --side-active-text: #f0ece3;
+      --side-active-bg: rgba(240,236,227,0.06);
+      --side-accent: #3fb59a;
+      --term-bg: #0c1620;
+      --term-text: #aecfda;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--ink);
       line-height: 1.5;
-    }
-
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 32px 20px 48px;
-    }
-
-    .hero {
-      margin-bottom: 24px;
-    }
-
-    .hero h1 {
-      margin: 0 0 8px;
-      font-size: 2rem;
-      line-height: 1.1;
-    }
-
-    .hero p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    .topbar {
+      min-height: 100vh;
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 20px 0 28px;
+      flex-direction: column;
     }
 
-    .studio-layout {
-      display: grid;
-      grid-template-columns: 280px minmax(320px, 0.95fr) minmax(420px, 1.2fr);
-      gap: 24px;
-      align-items: start;
+    /* ───────────────────────────────── HEADER */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 52px;
+      background: var(--hdr);
+      border-bottom: 1px solid var(--side-border);
+      display: flex;
+      align-items: center;
+      padding: 0 20px 0 16px;
+      gap: 16px;
     }
 
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      flex-shrink: 0;
     }
 
-    .panel h2 {
-      margin: 0 0 6px;
-      font-size: 1.1rem;
-      line-height: 1.2;
+    .logo-mark {
+      font-family: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--side-accent);
+      letter-spacing: -0.01em;
     }
 
-    .panel-subtitle {
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: 0.95rem;
+    .logo-name {
+      font-family: ui-monospace, "Cascadia Code", monospace;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--side-text);
     }
 
-    .library-list {
-      display: grid;
-      gap: 10px;
+    .header-div {
+      width: 1px;
+      height: 20px;
+      background: var(--side-border);
+      flex-shrink: 0;
     }
+
+    /* Lumon ASCII — upper right */
+    .lumon-ascii {
+      margin-left: auto;
+      font-family: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+      font-size: 0.58rem;
+      line-height: 1.5;
+      white-space: pre;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: 0.1em;
+      color: #1e3347;
+      flex-shrink: 0;
+    }
+
+    .lumon-ascii .lumon-bar {
+      color: #263d52;
+      letter-spacing: 0.06em;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+      margin-left: 18px;
+    }
+
+    .header-actions button {
+      font: inherit;
+      font-size: 0.75rem;
+      font-weight: 600;
+      appearance: none;
+      cursor: pointer;
+      border-radius: 7px;
+      padding: 5px 11px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: var(--side-text);
+      transition: background 100ms, color 100ms, border-color 100ms;
+      white-space: nowrap;
+    }
+
+    .header-actions button:hover {
+      background: rgba(255,255,255,0.09);
+      color: var(--side-active-text);
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    /* ───────────────────────────────── SHELL */
+    .studio-shell {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* ───────────────────────────────── SIDEBAR */
+    .sidebar {
+      width: 210px;
+      flex-shrink: 0;
+      background: var(--side);
+      border-right: 1px solid var(--side-border);
+      padding: 16px 10px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      overflow-y: auto;
+    }
+
+    .sidebar-label {
+      font-family: ui-monospace, monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--side-muted);
+      padding: 14px 8px 5px;
+    }
+
+    .sidebar select {
+      width: 100%;
+      font: inherit;
+      font-size: 0.8rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      color: var(--side-text);
+      padding: 7px 10px;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%234a6a7a'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 28px;
+      margin-bottom: 6px;
+    }
+
+    .sidebar select option { background: #1a2d3e; }
+
+    .library-list { display: flex; flex-direction: column; gap: 1px; }
 
     .library-item {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 12px;
-      background: #fff;
+      border-radius: 8px;
+      padding: 8px 10px;
+      cursor: pointer;
+      border-left: 2px solid transparent;
+      transition: background 90ms;
+    }
+
+    .library-item:hover { background: rgba(255,255,255,0.04); }
+
+    .library-item.is-active {
+      background: var(--side-active-bg);
+      border-left-color: var(--side-accent);
     }
 
     .library-item strong {
       display: block;
-      font-size: 0.95rem;
-      margin-bottom: 4px;
+      font-size: 0.82rem;
+      color: var(--side-active-text);
+      margin-bottom: 1px;
+      font-weight: 600;
     }
 
     .library-item span {
+      font-size: 0.72rem;
+      color: var(--side-muted);
+    }
+
+    /* ───────────────────────────────── MAIN */
+    .main-area {
+      flex: 1;
+      display: grid;
+      grid-template-columns: minmax(300px, 1fr) minmax(360px, 1.35fr);
+      gap: 18px;
+      padding: 22px 18px;
+      align-items: start;
+      overflow: auto;
+    }
+
+    /* ───────────────────────────────── PANELS */
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.045);
+    }
+
+    .panel-eyebrow {
+      font-family: ui-monospace, monospace;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       color: var(--muted);
-      font-size: 0.88rem;
+      margin-bottom: 16px;
     }
 
     .field {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-bottom: 16px;
+      gap: 5px;
+      margin-bottom: 14px;
     }
 
     .field label {
+      font-family: ui-monospace, monospace;
+      font-size: 0.62rem;
       font-weight: 700;
-      font-size: 0.92rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
 
-    input,
-    select,
-    textarea,
-    button {
-      font: inherit;
-    }
+    input, select, textarea, button { font: inherit; }
 
-    input,
-    select,
-    textarea {
+    input, textarea {
       width: 100%;
       border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 12px 14px;
+      border-radius: 10px;
+      padding: 10px 12px;
       background: #fff;
       color: var(--ink);
     }
 
-    textarea {
-      resize: vertical;
+    /* terminal-style command input */
+    #commandPalette {
+      font-family: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+      font-size: 0.88rem;
+      background: var(--term-bg);
+      color: var(--side-accent);
+      border: 1px solid rgba(63,181,154,0.22);
+      border-radius: 10px;
     }
+
+    #commandPalette::placeholder { color: #1e3347; }
+
+    textarea { resize: vertical; }
 
     .parsed-command {
-      display: grid;
-      gap: 8px;
-      margin: 10px 0 16px;
-      padding: 12px 14px;
-      border-radius: 12px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+      padding: 9px 12px;
+      border-radius: 10px;
       background: var(--accent-soft);
-      border: 1px solid rgba(23, 76, 90, 0.16);
-      font-size: 0.95rem;
+      border: 1px solid rgba(23,76,90,0.14);
+      font-family: ui-monospace, monospace;
+      font-size: 0.78rem;
     }
 
-    .button-row,
-    .quick-actions,
-    .output-actions {
+    .parsed-command div { display: flex; gap: 5px; }
+
+    .parsed-command strong {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .quick-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 5px;
+      margin-bottom: 14px;
+    }
+
+    .quick-actions button {
+      font-family: ui-monospace, monospace;
+      font-size: 0.74rem;
+      font-weight: 600;
+      appearance: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      border-radius: 7px;
+      padding: 4px 9px;
+      cursor: pointer;
+      transition: all 90ms;
+    }
+
+    .quick-actions button:hover,
+    .quick-actions button.is-active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .button-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
     }
 
     button {
@@ -167,16 +343,16 @@
       border: 1px solid var(--line);
       background: #fff;
       color: var(--ink);
-      border-radius: 12px;
-      padding: 10px 14px;
+      border-radius: 10px;
+      padding: 8px 14px;
       font-weight: 600;
       cursor: pointer;
-      transition: transform 120ms ease, box-shadow 120ms ease;
+      transition: transform 100ms, box-shadow 100ms;
     }
 
     button:hover {
       transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 5px 14px rgba(0,0,0,0.07);
     }
 
     .btn-primary {
@@ -185,184 +361,211 @@
       border-color: var(--accent);
     }
 
-    .quick-actions button.is-active {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
-      box-shadow: 0 10px 24px rgba(23, 76, 90, 0.18);
-    }
-
-    .panel-output-header {
+    /* ───────────────────────────────── OUTPUT */
+    .output-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .panel-output-header p {
-      margin: 4px 0 0;
-      color: var(--muted);
+      margin-bottom: 14px;
     }
 
     .status-badge {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
+      gap: 5px;
       border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 0.85rem;
+      padding: 3px 10px;
+      font-size: 0.7rem;
       font-weight: 700;
+      font-family: ui-monospace, monospace;
+      letter-spacing: 0.06em;
       background: var(--ok-bg);
       color: var(--ok);
-      border: 1px solid rgba(35, 100, 67, 0.18);
-      white-space: nowrap;
+      border: 1px solid rgba(35,100,67,0.18);
     }
 
-    .toast {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      z-index: 20;
-      max-width: min(360px, calc(100vw - 40px));
-      padding: 12px 14px;
-      border: 1px solid rgba(23, 76, 90, 0.18);
-      border-radius: 12px;
-      background: #fff;
-      color: var(--ink);
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.14);
-      font-weight: 700;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(8px);
-      transition: opacity 140ms ease, transform 140ms ease;
-    }
-
-    .toast.is-visible {
-      opacity: 1;
-      transform: translateY(0);
+    .status-badge::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--ok);
     }
 
     .final-prompt-wrap {
-      border: 1px solid rgba(23, 76, 90, 0.18);
-      border-radius: 18px;
-      padding: 14px;
-      background: linear-gradient(to bottom, rgba(23, 76, 90, 0.05), rgba(23, 76, 90, 0.02));
-      margin-bottom: 16px;
+      border: 1px solid rgba(63,181,154,0.18);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 14px;
+      background: var(--term-bg);
     }
 
     .final-prompt {
-      min-height: 420px;
-      border: 1px solid rgba(23, 76, 90, 0.18);
-      border-radius: 14px;
-      background: #fff;
-      line-height: 1.5;
+      min-height: 360px;
+      border: none;
+      border-radius: 0;
+      background: var(--term-bg);
+      color: var(--term-text);
+      font-family: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+      font-size: 0.82rem;
+      line-height: 1.65;
+      width: 100%;
+      padding: 16px;
+    }
+
+    .output-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 14px;
     }
 
     details {
-      margin-top: 16px;
+      margin-top: 8px;
       border: 1px solid var(--line);
-      border-radius: 14px;
+      border-radius: 11px;
       background: #fff;
       overflow: hidden;
     }
 
     summary {
       cursor: pointer;
-      padding: 14px 16px;
+      padding: 11px 14px;
+      font-family: ui-monospace, monospace;
+      font-size: 0.72rem;
       font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       list-style: none;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    summary::-webkit-details-marker {
-      display: none;
+    summary::before {
+      content: '▸';
+      font-size: 0.65rem;
+      transition: transform 150ms;
     }
 
-    .details-content {
-      padding: 0 16px 16px;
-    }
+    details[open] summary::before { transform: rotate(90deg); }
 
-    .reasoning-grid {
-      display: grid;
-      gap: 12px;
-    }
+    summary::-webkit-details-marker { display: none; }
 
-    .reasoning-grid div {
-      display: grid;
-      gap: 4px;
-    }
+    .details-content { padding: 0 14px 14px; }
+
+    .reasoning-grid { display: grid; gap: 9px; }
+    .reasoning-grid div { display: grid; gap: 2px; }
 
     .reasoning-grid strong {
-      font-size: 0.86rem;
+      font-family: ui-monospace, monospace;
+      font-size: 0.62rem;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.1em;
       color: var(--muted);
     }
 
-    .reasoning-grid span {
-      font-size: 0.98rem;
+    .reasoning-grid span { font-size: 0.88rem; }
+
+    /* ───────────────────────────────── TOAST */
+    .toast {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 200;
+      max-width: min(360px, calc(100vw - 40px));
+      padding: 11px 14px;
+      border: 1px solid rgba(23,76,90,0.18);
+      border-radius: 11px;
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+      font-weight: 700;
+      font-size: 0.88rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 140ms ease, transform 140ms ease;
     }
 
-    @media (max-width: 1100px) {
-      .studio-layout {
-        grid-template-columns: 1fr;
-      }
+    .toast.is-visible { opacity: 1; transform: translateY(0); }
 
-      .final-prompt {
-        min-height: 320px;
+    /* ───────────────────────────────── RESPONSIVE */
+    @media (max-width: 960px) {
+      .main-area { grid-template-columns: 1fr; }
+      .final-prompt { min-height: 260px; }
+      .lumon-ascii { display: none; }
+    }
+
+    @media (max-width: 700px) {
+      .studio-shell { flex-direction: column; }
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--side-border);
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 12px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header class="hero">
-      <h1>[A] Atlas Studio</h1>
-      <p>Adaptive prompt system for structured thinking and decision-making.</p>
-    </header>
 
-    <div class="topbar">
-      <button id="copyPromptTopBtn">Copy Prompt</button>
-      <button id="openChatgptBtn">Open ChatGPT</button>
-      <button id="sendToChatgptBtn">Send to ChatGPT</button>
-      <button id="exportJsonBtn">Export JSON</button>
+  <header class="site-header">
+    <div class="header-brand">
+      <span class="logo-mark">[A]</span>
+      <div class="header-div"></div>
+      <span class="logo-name">Atlas Studio</span>
     </div>
 
-    <main class="studio-layout">
-      <aside class="panel">
-        <h2>Prompt Library</h2>
-        <p class="panel-subtitle">Pre-built engines and workflows.</p>
+    <pre class="lumon-ascii" aria-hidden="true"><span>4 · 9 · 2 · 7 · 1 · 8</span>
+<span>· 3 · 6 · · 5 · 2 · 9</span>
+<span>8 · 1 · 4 · · 7 · 3 ·</span>
+<span class="lumon-bar">── PROMPT ENGINE ─────</span></pre>
 
-        <div class="field">
-          <label for="promptType">Prompt type</label>
-          <select id="promptType">
-            <option value="analysis">Analysis</option>
-            <option value="architecture" selected>Architecture</option>
-            <option value="strategy">Strategy</option>
-            <option value="research">Research</option>
-            <option value="decision">Decision</option>
-            <option value="problem solving">Problem Solving</option>
-            <option value="execution">Execution</option>
-            <option value="writing">Writing</option>
-          </select>
-        </div>
+    <div class="header-actions">
+      <button id="copyPromptTopBtn">Copy</button>
+      <button id="openChatgptBtn">ChatGPT ↗</button>
+      <button id="sendToChatgptBtn">Send →</button>
+      <button id="exportJsonBtn">JSON</button>
+    </div>
+  </header>
 
-        <div class="library-list" id="promptLibraryList"></div>
-      </aside>
+  <div class="studio-shell">
+
+    <aside class="sidebar">
+      <div class="sidebar-label">Type</div>
+      <select id="promptType">
+        <option value="analysis">Analysis</option>
+        <option value="architecture" selected>Architecture</option>
+        <option value="strategy">Strategy</option>
+        <option value="research">Research</option>
+        <option value="decision">Decision</option>
+        <option value="problem solving">Problem Solving</option>
+        <option value="execution">Execution</option>
+        <option value="writing">Writing</option>
+      </select>
+
+      <div class="sidebar-label">Library</div>
+      <div class="library-list" id="promptLibraryList"></div>
+    </aside>
+
+    <div class="main-area">
 
       <section class="panel">
-        <h2>Input</h2>
-        <p class="panel-subtitle">Define the task, route intent, and generate a ready-to-run prompt.</p>
+        <div class="panel-eyebrow">Input</div>
 
         <div class="field">
-          <label for="commandPalette">Command palette</label>
+          <label for="commandPalette">Command</label>
           <input id="commandPalette" value="/atlas citrix migration strategy @architect @strategist">
         </div>
 
         <div class="parsed-command" id="parsedCommand">
-          <div><strong>Mode:</strong> atlas</div>
-          <div><strong>Intent:</strong> strategy</div>
-          <div><strong>Personas:</strong> architect, strategist</div>
+          <div><strong>mode</strong> atlas</div>
+          <div><strong>intent</strong> strategy</div>
+          <div><strong>personas</strong> architect, strategist</div>
         </div>
 
         <div class="quick-actions">
@@ -376,9 +579,9 @@
           <button type="button">/write</button>
         </div>
 
-        <div class="field" style="margin-top:16px;">
+        <div class="field">
           <label for="goalQuestion">Goal</label>
-          <textarea id="goalQuestion" rows="8">Define optimal IGEL OS12 Citrix profile configuration in UMS for secure, automated smartcard-based sessions</textarea>
+          <textarea id="goalQuestion" rows="9">Define optimal IGEL OS12 Citrix profile configuration in UMS for secure, automated smartcard-based sessions</textarea>
         </div>
 
         <div class="button-row">
@@ -388,11 +591,8 @@
       </section>
 
       <section class="panel">
-        <div class="panel-output-header">
-          <div>
-            <h2>Final Prompt</h2>
-            <p>Ready to execute</p>
-          </div>
+        <div class="output-header">
+          <div class="panel-eyebrow" style="margin-bottom:0">Final Prompt</div>
           <span class="status-badge">Ready</span>
         </div>
 
@@ -434,8 +634,8 @@ Include:
 
         <div class="output-actions">
           <button class="btn-primary" id="copyForChatgptBtn" type="button">Copy Prompt</button>
-          <button id="openChatgptBtnBottom" type="button">Open ChatGPT</button>
-          <button id="sendToChatgptBtnBottom" type="button">Send to ChatGPT</button>
+          <button id="openChatgptBtnBottom" type="button">ChatGPT ↗</button>
+          <button id="sendToChatgptBtnBottom" type="button">Send →</button>
           <button id="exportJsonBtnBottom" type="button">Export JSON</button>
         </div>
 
@@ -488,8 +688,11 @@ Prefer the simplest strong route. Escalate only when the task truly needs multip
           </div>
         </details>
       </section>
-    </main>
+
+    </div>
   </div>
+
+  <div id="toast" class="toast"></div>
   <script src="./atlas-final-prompt-v3-generic.js?v=4"></script>
 </body>
 </html>
