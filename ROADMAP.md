@@ -85,7 +85,7 @@ version, test and expand.
 | ------- | ------------------------------------------ | ------------- |
 | v0.1.0  | Public prompt foundation                   | Done / verify |
 | v0.1.1  | GitHub Pages and README polish             | Done / verify |
-| v0.2.0  | Prompt library and mode routing foundation | In progress  |
+| v0.2.0  | Prompt library and mode routing foundation | Done          |
 | v0.3.0  | Export formats and reusable prompt packs   | Planned       |
 | v0.4.0  | Interactive web interface polish           | Planned       |
 | v0.5.0  | Prompt quality checks and examples         | Planned       |
@@ -215,7 +215,7 @@ prompts/
 - [x] README links to prompt library
 - [x] GitHub Pages shows prompt library
 - [x] CHANGELOG includes v0.2.0
-- [ ] GitHub release `v0.2.0` exists
+- [x] GitHub release `v0.2.0` exists
 
 ---
 
@@ -555,8 +555,8 @@ Every public prompt should have:
 Work on:
 
 ```text
-v0.2.0 — prompt library and mode routing foundation
+v0.3.0 — export formats and reusable prompt packs
 ```
 
-This release should turn Atlas One from a useful single prompt into a reusable
-prompt operating system with a clear library, modes and examples.
+This release should make Atlas One prompts easier to copy, save, reuse and
+adapt across tools.
