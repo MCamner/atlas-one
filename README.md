@@ -2,6 +2,8 @@
 
 **Adaptive prompt system for structured thinking and decision-making.**
 
+Status: `v0.2.0 — prompt library and mode routing foundation`
+
 👉 **Live demo:** https://mcamner.github.io/atlas-one/
 
 ---
@@ -126,7 +128,8 @@ Atlas Studio turns intent into structured AI workflows:
   Shows how a request flows through reasoning steps
 
 - **Prompt library system**  
-  Loads reusable prompts from `web/prompts.json`
+  Loads reusable prompts from `web/prompts.json` and keeps source prompts in
+  `prompts/`
 
 - **Local-first execution**  
   Runs entirely on `127.0.0.1` — no external dependencies
@@ -162,6 +165,8 @@ ChatGPT-ready structured prompt
 
 ```
 atlas-one/
+├── prompts/          # Core prompt, modes, and seed prompt packs
+├── docs/             # GitHub Pages and prompt library docs
 ├── src/              # Java server (API + static hosting)
 ├── web/              # UI (routing, prompts, visualization)
 ├── dist/             # Compiled artifacts
@@ -185,6 +190,44 @@ atlas-one/
   - prompt generation
   - UI state
   - local storage
+
+---
+
+## Prompt library
+
+Atlas One v0.2.0 adds a file-based prompt library:
+
+```text
+prompts/
+├── atlas-one.md
+├── modes/
+└── packs/
+```
+
+Core docs:
+
+- [Prompt Library](docs/PROMPT_LIBRARY.md)
+- [Modes](docs/MODES.md)
+- [Routing](docs/ROUTING.md)
+- [Examples](docs/EXAMPLES.md)
+
+Canonical modes:
+
+```text
+Analyze
+Decide
+Architect
+Research
+Explain
+Teach
+Edit
+Coach
+Plan
+Debug
+Review
+Summarize
+Create
+```
 
 ---
 
