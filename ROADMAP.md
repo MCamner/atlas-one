@@ -133,7 +133,7 @@ site.
 
 ---
 
-## Next: v0.2.0 — Prompt library and mode routing foundation
+## Completed: v0.2.0 — Prompt library and mode routing foundation
 
 Goal:
 
