@@ -82,56 +82,36 @@ function autoRoute(goal) {
 
   const result = {
     goalUnderstanding: `Focus: ${goal.trim()}`,
-    problemType: 'analysis',
-    selectionMode: 'Single-engine route',
-    selected: '01.02 Analyze Engine',
-    reason: 'The topic requires structured analysis but not a full pipeline.',
+    problemType: 'analyze',
+    selectionMode: 'Mode route',
+    selected: 'Analyze',
+    reason: 'The request needs structure and interpretation before a more specific mode is justified.',
     workflow: null,
-    pipeline: ['01.02 Analyze Engine']
+    pipeline: ['Analyze']
   };
 
-  if (/(citrix|igel|architecture|migration|integration|ums|os12)/.test(t)) {
-    result.problemType = 'technical architecture';
-    result.workflow = '09.03 Architecture → Risk → Recommendation';
-    result.selectionMode = 'Pre-built workflow';
-    result.selected = result.workflow;
-    result.reason = 'The topic aligns with architecture scenarios requiring structured design and risk evaluation.';
-    result.pipeline = [
-      '02.01 Requirements Discovery',
-      '02.02 High-Level Architecture Design',
-      '02.10 Architecture Review'
-    ];
-  } else if (/(research|market|industry|porter|competition)/.test(t)) {
-    result.problemType = 'strategy';
-    result.workflow = '09.02 Research → Strategy → Decision';
-    result.selectionMode = 'Pre-built workflow';
-    result.selected = result.workflow;
-    result.reason = 'The question requires research-driven strategy and decision support.';
-    result.pipeline = [
-      '01.12 Research Synthesizer',
-      '01.08 Voloditha Framework Analysis',
-      '01.11 Decision & Trade-off Engine'
-    ];
-  } else if (/(problem|root cause|issue|bug)/.test(t)) {
-    result.problemType = 'problem solving';
-    result.workflow = '09.01 Problem → Root Cause → Solution';
-    result.selectionMode = 'Pre-built workflow';
-    result.selected = result.workflow;
-    result.reason = 'The situation fits a root cause and solution-oriented workflow.';
-    result.pipeline = [
-      '01.13 Root Cause Analyzer',
-      '01.14 Problem Solving Engine'
-    ];
-  } else if (/(idea|brainstorm|concept)/.test(t)) {
-    result.problemType = 'ideas';
-    result.workflow = '09.04 Idea → Validation → Execution';
-    result.selectionMode = 'Pre-built workflow';
-    result.selected = result.workflow;
-    result.reason = 'The input is focused on idea generation and validation.';
-    result.pipeline = [
-      '01.01 Ideas Engine',
-      '01.11 Decision & Trade-off Engine'
-    ];
+  const routes = [
+    ['architect', /(architecture|architect|design|system|integration|platform|citrix|igel|ums|os12)/, 'Architect', 'The request needs boundaries, components, constraints and risk evaluation.'],
+    ['decide', /(decide|choose|trade.?off|option|recommend|versus|vs)/, 'Decide', 'The request asks for judgment between options.'],
+    ['research', /(research|market|source|evidence|investigate|competition|porter)/, 'Research', 'The request needs evidence, synthesis and uncertainty tracking.'],
+    ['debug', /(debug|bug|failure|broken|error|issue|root cause)/, 'Debug', 'The request describes a failure that needs isolation and verification.'],
+    ['review', /(review|audit|critique|readiness|check|evaluate)/, 'Review', 'The request needs findings, evidence and prioritized fixes.'],
+    ['teach', /(teach|learn|lesson|practice|train)/, 'Teach', 'The request asks for learning progression and practice.'],
+    ['explain', /(explain|what is|why does|how does|clarify)/, 'Explain', 'The request needs a clear explanation and example.'],
+    ['plan', /(plan|roadmap|steps|sequence|milestone)/, 'Plan', 'The request needs phased work and definition of done.'],
+    ['summarize', /(summarize|summary|brief|digest|recap)/, 'Summarize', 'The request needs compression into key points and actions.'],
+    ['create', /(create|draft|generate|write|make)/, 'Create', 'The request asks for a new artifact.'],
+    ['edit', /(edit|rewrite|improve|polish|reformat)/, 'Edit', 'The request starts from an existing artifact that should be improved.'],
+    ['coach', /(coach|habit|reflect|motivate|routine)/, 'Coach', 'The request needs guidance, reflection and a small next action.']
+  ];
+
+  const match = routes.find(([, pattern]) => pattern.test(t));
+  if (match) {
+    const [problemType, , selected, reason] = match;
+    result.problemType = problemType;
+    result.selected = selected;
+    result.reason = reason;
+    result.pipeline = [selected];
   }
 
   return result;
@@ -156,8 +136,7 @@ function generatePrompt() {
   els.editor.value = [
     'Problem type', route.problemType, '',
     'Selection mode', route.selectionMode, '',
-    route.selectionMode === 'Single-engine route' ? 'Selected engine' : 'Selected pipeline',
-    route.selectionMode === 'Single-engine route' ? route.selected : route.pipeline.join('\n→ '), '',
+    'Selected mode', route.selected, '',
     'Reason for selection', route.reason, '',
     'Step-by-step analysis', route.pipeline.map((p, i) => `${i + 1}. ${p}`).join('\n'), '',
     'Conclusion',
@@ -170,8 +149,7 @@ function generatePrompt() {
     'Personas', '@architect @strategist', '',
     'Problem type', route.problemType, '',
     'Selection mode', route.selectionMode, '',
-    route.selectionMode === 'Single-engine route' ? 'Selected engine' : 'Selected pipeline',
-    route.selectionMode === 'Single-engine route' ? route.selected : route.pipeline.join('\n→ '), '',
+    'Selected mode', route.selected, '',
     'Reason for selection', route.reason, '',
     '---', '',
     'Use the selected route exactly as shown.', '',
