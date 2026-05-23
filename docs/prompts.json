@@ -1,184 +1,260 @@
 {
+  "version": "0.2.0",
+  "corePrompt": "prompts/atlas-one.md",
   "promptTypes": [
-    "Analysis",
-    "Architecture",
-    "Strategy",
+    "Analyze",
+    "Decide",
+    "Architect",
     "Research",
-    "Decision",
-    "Problem Solving",
-    "Execution",
-    "Writing"
+    "Explain",
+    "Teach",
+    "Edit",
+    "Coach",
+    "Plan",
+    "Debug",
+    "Review",
+    "Summarize",
+    "Create"
   ],
   "commands": [
     "/atlas",
     "/analyze",
-    "/research",
-    "/architect",
     "/decide",
-    "/solve",
-    "/strategy",
-    "/write"
+    "/architect",
+    "/research",
+    "/explain",
+    "/teach",
+    "/edit",
+    "/coach",
+    "/plan",
+    "/debug",
+    "/review",
+    "/summarize",
+    "/create"
+  ],
+  "modes": [
+    {
+      "id": "analyze",
+      "title": "Analyze",
+      "path": "prompts/modes/analyze.md",
+      "useCase": "Understand a situation, system, idea or problem.",
+      "outputShape": "Summary, key parts, patterns, risks or gaps, insight, next step."
+    },
+    {
+      "id": "decide",
+      "title": "Decide",
+      "path": "prompts/modes/decide.md",
+      "useCase": "Choose between options and expose trade-offs.",
+      "outputShape": "Context, options, trade-offs, recommendation, why, next action."
+    },
+    {
+      "id": "architect",
+      "title": "Architect",
+      "path": "prompts/modes/architect.md",
+      "useCase": "Design a technical, product or workflow system.",
+      "outputShape": "Goal, constraints, architecture, responsibilities, risks, recommendation."
+    },
+    {
+      "id": "research",
+      "title": "Research",
+      "path": "prompts/modes/research.md",
+      "useCase": "Synthesize evidence and identify uncertainty.",
+      "outputShape": "Question, known facts, evidence, uncertainty, implications, follow-up."
+    },
+    {
+      "id": "explain",
+      "title": "Explain",
+      "path": "prompts/modes/explain.md",
+      "useCase": "Make a concept easier to understand.",
+      "outputShape": "Short answer, plain explanation, example, confusion, takeaway."
+    },
+    {
+      "id": "teach",
+      "title": "Teach",
+      "path": "prompts/modes/teach.md",
+      "useCase": "Teach a subject or skill step by step.",
+      "outputShape": "Goal, prerequisites, lesson, practice, understanding check, next lesson."
+    },
+    {
+      "id": "edit",
+      "title": "Edit",
+      "path": "prompts/modes/edit.md",
+      "useCase": "Improve existing text, docs or prompts.",
+      "outputShape": "What changed, edited version, rationale, alternatives."
+    },
+    {
+      "id": "coach",
+      "title": "Coach",
+      "path": "prompts/modes/coach.md",
+      "useCase": "Support reflection, guidance or behavior change.",
+      "outputShape": "Current state, goal, blockers, coaching frame, small action, question."
+    },
+    {
+      "id": "plan",
+      "title": "Plan",
+      "path": "prompts/modes/plan.md",
+      "useCase": "Turn a goal into sequenced work.",
+      "outputShape": "Goal, assumptions, phases, task list, risks, definition of done."
+    },
+    {
+      "id": "debug",
+      "title": "Debug",
+      "path": "prompts/modes/debug.md",
+      "useCase": "Isolate and fix a failure.",
+      "outputShape": "Observed problem, likely causes, checks, fix path, verification, risk."
+    },
+    {
+      "id": "review",
+      "title": "Review",
+      "path": "prompts/modes/review.md",
+      "useCase": "Critically assess code, docs, plans or releases.",
+      "outputShape": "Findings, severity, evidence, fixes, open questions, summary."
+    },
+    {
+      "id": "summarize",
+      "title": "Summarize",
+      "path": "prompts/modes/summarize.md",
+      "useCase": "Compress longer material into a useful summary.",
+      "outputShape": "Short summary, key points, decisions, action items, missing context."
+    },
+    {
+      "id": "create",
+      "title": "Create",
+      "path": "prompts/modes/create.md",
+      "useCase": "Create a new artifact, draft or template.",
+      "outputShape": "Intent, draft, design choices, adaptation notes, next iteration."
+    }
+  ],
+  "promptPacks": [
+    {
+      "id": "repo-review",
+      "title": "Repo Review",
+      "path": "prompts/packs/repo-review.md",
+      "modes": ["review", "analyze", "plan"]
+    },
+    {
+      "id": "systems-thinking",
+      "title": "Systems Thinking",
+      "path": "prompts/packs/systems-thinking.md",
+      "modes": ["analyze", "architect", "decide"]
+    },
+    {
+      "id": "product-strategy",
+      "title": "Product Strategy",
+      "path": "prompts/packs/product-strategy.md",
+      "modes": ["research", "decide", "plan"]
+    },
+    {
+      "id": "learning-coach",
+      "title": "Learning Coach",
+      "path": "prompts/packs/learning-coach.md",
+      "modes": ["teach", "explain", "coach"]
+    }
   ],
   "savedPrompts": [
     {
-      "id": "01.01",
-      "title": "Analyze Engine",
-      "category": "Analysis",
+      "id": "mode.analyze",
+      "title": "Analyze Mode",
+      "category": "Analyze",
       "level": "Core",
-      "useCase": "Break down a topic into clear parts, identify patterns, and explain the core issue.",
-      "summary": "Use when the user needs structured analysis without a full workflow."
+      "useCase": "Break down a situation into parts, patterns, gaps and next steps.",
+      "summary": "Use when the user needs understanding before action."
     },
     {
-      "id": "01.08",
-      "title": "Voloditha Framework Analysis",
-      "category": "Analysis",
-      "level": "Advanced",
-      "useCase": "Analyze a problem through observation, structure, and transformation.",
-      "summary": "Useful when the user needs a more conceptual or system-level interpretation."
-    },
-    {
-      "id": "01.11",
-      "title": "Decision and Trade-off Engine",
-      "category": "Decision",
+      "id": "mode.decide",
+      "title": "Decide Mode",
+      "category": "Decide",
       "level": "Core",
-      "useCase": "Compare alternatives, expose trade-offs, and recommend a direction.",
-      "summary": "Use for decision support with explicit trade-off logic."
+      "useCase": "Compare options, expose trade-offs and recommend one path.",
+      "summary": "Use when the user needs judgment."
     },
     {
-      "id": "01.12",
-      "title": "Research Synthesizer",
+      "id": "mode.architect",
+      "title": "Architect Mode",
+      "category": "Architect",
+      "level": "Core",
+      "useCase": "Design a system, workflow, product structure or technical architecture.",
+      "summary": "Use when boundaries, components and risks matter."
+    },
+    {
+      "id": "mode.research",
+      "title": "Research Mode",
       "category": "Research",
       "level": "Core",
-      "useCase": "Combine multiple inputs into one clear synthesis with implications.",
-      "summary": "Use when the user wants research distilled into something practical."
+      "useCase": "Synthesize evidence, uncertainty and implications.",
+      "summary": "Use when facts and source quality matter."
     },
     {
-      "id": "01.13",
-      "title": "Root Cause Analyzer",
-      "category": "Problem Solving",
+      "id": "mode.explain",
+      "title": "Explain Mode",
+      "category": "Explain",
       "level": "Core",
-      "useCase": "Move from symptoms to underlying cause.",
-      "summary": "Use when the user describes a recurring problem, issue, or failure."
+      "useCase": "Make a concept clear with examples and takeaways.",
+      "summary": "Use when the user needs clarity."
     },
     {
-      "id": "01.14",
-      "title": "Problem Solving Engine",
-      "category": "Problem Solving",
+      "id": "mode.teach",
+      "title": "Teach Mode",
+      "category": "Teach",
       "level": "Core",
-      "useCase": "Turn a problem into actions, solution paths, and next steps.",
-      "summary": "Use for practical troubleshooting and recovery planning."
+      "useCase": "Teach a subject with practice and checks for understanding.",
+      "summary": "Use when the user wants to learn."
     },
     {
-      "id": "02.01",
-      "title": "Requirements Discovery",
-      "category": "Architecture",
+      "id": "mode.edit",
+      "title": "Edit Mode",
+      "category": "Edit",
       "level": "Core",
-      "useCase": "Identify business needs, constraints, assumptions, and non-functional requirements.",
-      "summary": "Use before proposing architecture or solution design."
+      "useCase": "Improve existing writing, docs or prompt text.",
+      "summary": "Use when the artifact already exists."
     },
     {
-      "id": "02.02",
-      "title": "High-Level Architecture Design",
-      "category": "Architecture",
+      "id": "mode.coach",
+      "title": "Coach Mode",
+      "category": "Coach",
       "level": "Core",
-      "useCase": "Create a structured high-level design with major components and flows.",
-      "summary": "Use when the user needs a clear architectural direction."
+      "useCase": "Guide reflection, habits or personal workflow decisions.",
+      "summary": "Use when the user needs a supportive thinking partner."
     },
     {
-      "id": "02.10",
-      "title": "Architecture Review",
-      "category": "Architecture",
-      "level": "Advanced",
-      "useCase": "Review architecture for risks, weaknesses, alignment, and operational fit.",
-      "summary": "Use when validating or stress-testing a proposed design."
-    },
-    {
-      "id": "03.01",
-      "title": "Strategy Framing",
-      "category": "Strategy",
+      "id": "mode.plan",
+      "title": "Plan Mode",
+      "category": "Plan",
       "level": "Core",
-      "useCase": "Define the strategic problem, objective, and decision context.",
-      "summary": "Use before deeper market or decision work."
+      "useCase": "Turn a goal into phases, tasks and definition of done.",
+      "summary": "Use when sequencing matters."
     },
     {
-      "id": "03.02",
-      "title": "Market and Positioning Analysis",
-      "category": "Strategy",
-      "level": "Advanced",
-      "useCase": "Assess a product, offering, or company in relation to competitors and market context.",
-      "summary": "Use for market research, differentiation, and positioning."
-    },
-    {
-      "id": "03.03",
-      "title": "Execution Strategy",
-      "category": "Strategy",
+      "id": "mode.debug",
+      "title": "Debug Mode",
+      "category": "Debug",
       "level": "Core",
-      "useCase": "Turn a direction into execution phases, priorities, and sequencing.",
-      "summary": "Use when the user already knows what they want and needs a path forward."
+      "useCase": "Diagnose a failure with likely causes, checks and verification.",
+      "summary": "Use when something is broken."
     },
     {
-      "id": "04.01",
-      "title": "Prompt System Design",
-      "category": "Execution",
-      "level": "Advanced",
-      "useCase": "Design a structured prompt pattern, workflow, or reasoning route.",
-      "summary": "Use when building reusable prompt systems rather than one-off prompts."
-    },
-    {
-      "id": "04.02",
-      "title": "Workflow Builder",
-      "category": "Execution",
+      "id": "mode.review",
+      "title": "Review Mode",
+      "category": "Review",
       "level": "Core",
-      "useCase": "Turn a broad task into a repeatable workflow with distinct steps.",
-      "summary": "Use when consistency and repeatability matter."
+      "useCase": "Assess code, docs, plans or release readiness.",
+      "summary": "Use when critique and evidence matter."
     },
     {
-      "id": "05.01",
-      "title": "Executive Brief Writer",
-      "category": "Writing",
+      "id": "mode.summarize",
+      "title": "Summarize Mode",
+      "category": "Summarize",
       "level": "Core",
-      "useCase": "Convert analysis into concise executive-ready communication.",
-      "summary": "Use for leadership summaries, memos, and decision briefs."
+      "useCase": "Condense longer material into key points and action items.",
+      "summary": "Use when the user needs compression."
     },
     {
-      "id": "05.02",
-      "title": "Technical Writing Builder",
-      "category": "Writing",
+      "id": "mode.create",
+      "title": "Create Mode",
+      "category": "Create",
       "level": "Core",
-      "useCase": "Draft structured technical documentation, architecture notes, or implementation guidance.",
-      "summary": "Use when clarity and technical precision matter."
-    },
-    {
-      "id": "09.01",
-      "title": "Problem to Root Cause to Solution",
-      "category": "Workflow",
-      "level": "Prebuilt",
-      "useCase": "Follow a predefined sequence from symptoms to diagnosis to action.",
-      "summary": "Best for troubleshooting, blockers, incidents, and persistent issues."
-    },
-    {
-      "id": "09.02",
-      "title": "Research to Strategy to Decision",
-      "category": "Workflow",
-      "level": "Prebuilt",
-      "useCase": "Move from research through strategic interpretation into decision support.",
-      "summary": "Best for strategic questions that need evidence and judgment."
-    },
-    {
-      "id": "09.03",
-      "title": "Architecture to Risk to Recommendation",
-      "category": "Workflow",
-      "level": "Prebuilt",
-      "useCase": "Use architecture design, review risk, then produce a recommendation.",
-      "summary": "Best for solution design, technical architecture, and platform decisions."
-    },
-    {
-      "id": "09.04",
-      "title": "Idea to Validation to Execution",
-      "category": "Workflow",
-      "level": "Prebuilt",
-      "useCase": "Take an idea from concept through validation toward practical execution.",
-      "summary": "Best for new product, concept, or initiative shaping."
+      "useCase": "Draft a new artifact, template or example.",
+      "summary": "Use when the output should be a new thing."
     }
   ]
 }

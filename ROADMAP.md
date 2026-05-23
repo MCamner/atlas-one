@@ -85,7 +85,7 @@ version, test and expand.
 | ------- | ------------------------------------------ | ------------- |
 | v0.1.0  | Public prompt foundation                   | Done / verify |
 | v0.1.1  | GitHub Pages and README polish             | Done / verify |
-| v0.2.0  | Prompt library and mode routing foundation | Next          |
+| v0.2.0  | Prompt library and mode routing foundation | In progress  |
 | v0.3.0  | Export formats and reusable prompt packs   | Planned       |
 | v0.4.0  | Interactive web interface polish           | Planned       |
 | v0.5.0  | Prompt quality checks and examples         | Planned       |
@@ -145,22 +145,22 @@ messy prompt dump.
 
 ### Scope
 
-- [ ] Create `prompts/` directory
-- [ ] Create `prompts/atlas-one.md`
-- [ ] Create `prompts/modes/`
-- [ ] Add prompt modes as separate markdown files
-- [ ] Add `docs/PROMPT_LIBRARY.md`
-- [ ] Add `docs/MODES.md`
-- [ ] Add `docs/ROUTING.md`
-- [ ] Add `docs/EXAMPLES.md`
-- [ ] Add canonical mode list
-- [ ] Add mode descriptions
-- [ ] Add recommended output format per mode
-- [ ] Add examples for each mode
-- [ ] Add GitHub Pages prompt library section
-- [ ] Add README links to prompt library
-- [ ] Add version badge or status line
-- [ ] Add changelog entry
+- [x] Create `prompts/` directory
+- [x] Create `prompts/atlas-one.md`
+- [x] Create `prompts/modes/`
+- [x] Add prompt modes as separate markdown files
+- [x] Add `docs/PROMPT_LIBRARY.md`
+- [x] Add `docs/MODES.md`
+- [x] Add `docs/ROUTING.md`
+- [x] Add `docs/EXAMPLES.md`
+- [x] Add canonical mode list
+- [x] Add mode descriptions
+- [x] Add recommended output format per mode
+- [x] Add examples for each mode
+- [x] Add GitHub Pages prompt library section
+- [x] Add README links to prompt library
+- [x] Add version badge or status line
+- [x] Add changelog entry
 
 ### Proposed mode categories
 
@@ -208,13 +208,13 @@ prompts/
 
 ### Definition of done
 
-- [ ] Atlas One base prompt is stored as a standalone file
-- [ ] Modes are documented
-- [ ] Each mode has a clear use case
-- [ ] Each mode has a recommended output shape
-- [ ] README links to prompt library
-- [ ] GitHub Pages shows prompt library
-- [ ] CHANGELOG includes v0.2.0
+- [x] Atlas One base prompt is stored as a standalone file
+- [x] Modes are documented
+- [x] Each mode has a clear use case
+- [x] Each mode has a recommended output shape
+- [x] README links to prompt library
+- [x] GitHub Pages shows prompt library
+- [x] CHANGELOG includes v0.2.0
 - [ ] GitHub release `v0.2.0` exists
 
 ---
