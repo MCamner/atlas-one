@@ -310,6 +310,7 @@ This allows:
 - Modular routing engine
 - Advanced workflow editor
 - Plugin system for prompt packs
+- mq-mcp review, risk and architecture prompt packs
 - Multi-model support
 - CLI integration
 - Export/import of workflows

@@ -66,6 +66,10 @@ Completed foundation:
 - Release and security structure
 - Structured reasoning modes
 
+Future mq ecosystem work should build on this foundation with reusable prompt
+packs. Atlas One should package prompts and interaction patterns; mq-mcp remains
+the review/risk/architecture runtime.
+
 Reason:
 
 Atlas One needs a clearer information architecture before more features are
@@ -388,6 +392,7 @@ macos-scripts
 - [ ] Add macos-scripts terminal workflow prompt pack
 - [ ] Add local assistant prompt bundle
 - [ ] Add prompt pack for release readiness
+- [ ] Keep prompt packs export-oriented; do not duplicate mq-mcp review logic
 - [ ] Add prompt pack for systems thinking
 
 ### Example target flow
