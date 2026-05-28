@@ -383,6 +383,10 @@ macos-scripts
 - [ ] Add mq-hal reasoning-mode examples
 - [ ] Add repo-signal review prompt pack
 - [ ] Add mq-mcp safety-review prompt pack
+- [ ] Add mq ecosystem boundary prompt pack covering central cognition in
+  mq-mcp, orchestration in mq-agent, preprocessing in repo-signal, UX in
+  macos-scripts, visual cognition in mq-image-analyze and observability in
+  mq-hal
 - [ ] Add macos-scripts terminal workflow prompt pack
 - [ ] Add local assistant prompt bundle
 - [ ] Add prompt pack for release readiness
