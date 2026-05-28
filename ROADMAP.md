@@ -53,23 +53,18 @@ What should I do next?
 Current project phase:
 
 ```text
-v0.1.x — public prompt and GitHub Pages foundation
+v0.2.0 — prompt library and mode routing foundation (done)
+Next:    v0.3.0 — export formats and reusable prompt packs
 ```
 
-Current repo state:
+Completed foundation:
 
-- GitHub Pages prompt interface exists
-- Base Atlas One prompt exists
-- Prompt/routing concept exists
-- Quick-action style prompt UX exists
-- Release/security structure has started
-- Roadmap exists but is currently too small
-
-Current recommended next step:
-
-```text
-v0.2.0 — prompt library and mode routing foundation
-```
+- GitHub Pages prompt interface
+- Base Atlas One prompt
+- Prompt library and mode routing
+- Quick-action style prompt UX
+- Release and security structure
+- Structured reasoning modes
 
 Reason:
 
@@ -84,7 +79,7 @@ version, test and expand.
 | Version | Theme                                      | Status        |
 | ------- | ------------------------------------------ | ------------- |
 | v0.1.0  | Public prompt foundation                   | Done / verify |
-| v0.1.1  | GitHub Pages and README polish             | Done / verify |
+| v0.1.1  | GitHub Pages and README polish             | Done          |
 | v0.2.0  | Prompt library and mode routing foundation | Done          |
 | v0.3.0  | Export formats and reusable prompt packs   | Planned       |
 | v0.4.0  | Interactive web interface polish           | Planned       |
@@ -382,7 +377,10 @@ macos-scripts
 - [ ] Add mq-agent prompt workflow examples
 - [ ] Add mq-hal reasoning-mode examples
 - [ ] Add repo-signal review prompt pack
-- [ ] Add mq-mcp safety-review prompt pack
+- [ ] Add mq-mcp safety-review prompt pack (maps to mq-mcp review contracts:
+  comment, architecture, risk, security modes — mq-mcp v1.3.0+)
+- [ ] Add mq-mcp architecture-memory prompt pack — prompts that surface ADRs,
+  boundaries, and philosophy entries from mq-mcp architecture_memory/
 - [ ] Add mq ecosystem boundary prompt pack covering central cognition in
   mq-mcp, orchestration in mq-agent, preprocessing in repo-signal, UX in
   macos-scripts, visual cognition in mq-image-analyze and observability in
