@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "corePrompt": "prompts/atlas-one.md",
   "promptTypes": [
     "Analyze",
@@ -37,6 +37,8 @@
       "id": "analyze",
       "title": "Analyze",
       "path": "prompts/modes/analyze.md",
+      "version": "0.3.0",
+      "tags": ["mode", "analysis", "patterns", "understanding", "diagnosis"],
       "useCase": "Understand a situation, system, idea or problem.",
       "outputShape": "Summary, key parts, patterns, risks or gaps, insight, next step."
     },
@@ -44,6 +46,8 @@
       "id": "decide",
       "title": "Decide",
       "path": "prompts/modes/decide.md",
+      "version": "0.3.0",
+      "tags": ["mode", "decision", "trade-offs", "judgment", "options"],
       "useCase": "Choose between options and expose trade-offs.",
       "outputShape": "Context, options, trade-offs, recommendation, why, next action."
     },
@@ -51,6 +55,8 @@
       "id": "architect",
       "title": "Architect",
       "path": "prompts/modes/architect.md",
+      "version": "0.3.0",
+      "tags": ["mode", "architecture", "design", "systems", "boundaries"],
       "useCase": "Design a technical, product or workflow system.",
       "outputShape": "Goal, constraints, architecture, responsibilities, risks, recommendation."
     },
@@ -58,6 +64,8 @@
       "id": "research",
       "title": "Research",
       "path": "prompts/modes/research.md",
+      "version": "0.3.0",
+      "tags": ["mode", "research", "evidence", "uncertainty", "synthesis"],
       "useCase": "Synthesize evidence and identify uncertainty.",
       "outputShape": "Question, known facts, evidence, uncertainty, implications, follow-up."
     },
@@ -65,6 +73,8 @@
       "id": "explain",
       "title": "Explain",
       "path": "prompts/modes/explain.md",
+      "version": "0.3.0",
+      "tags": ["mode", "explanation", "clarity", "concepts", "simplification"],
       "useCase": "Make a concept easier to understand.",
       "outputShape": "Short answer, plain explanation, example, confusion, takeaway."
     },
@@ -72,6 +82,8 @@
       "id": "teach",
       "title": "Teach",
       "path": "prompts/modes/teach.md",
+      "version": "0.3.0",
+      "tags": ["mode", "teaching", "learning", "step-by-step", "practice"],
       "useCase": "Teach a subject or skill step by step.",
       "outputShape": "Goal, prerequisites, lesson, practice, understanding check, next lesson."
     },
@@ -79,6 +91,8 @@
       "id": "edit",
       "title": "Edit",
       "path": "prompts/modes/edit.md",
+      "version": "0.3.0",
+      "tags": ["mode", "editing", "writing", "docs", "improvement"],
       "useCase": "Improve existing text, docs or prompts.",
       "outputShape": "What changed, edited version, rationale, alternatives."
     },
@@ -86,6 +100,8 @@
       "id": "coach",
       "title": "Coach",
       "path": "prompts/modes/coach.md",
+      "version": "0.3.0",
+      "tags": ["mode", "coaching", "reflection", "habits", "guidance"],
       "useCase": "Support reflection, guidance or behavior change.",
       "outputShape": "Current state, goal, blockers, coaching frame, small action, question."
     },
@@ -93,6 +109,8 @@
       "id": "plan",
       "title": "Plan",
       "path": "prompts/modes/plan.md",
+      "version": "0.3.0",
+      "tags": ["mode", "planning", "tasks", "sequencing", "milestones"],
       "useCase": "Turn a goal into sequenced work.",
       "outputShape": "Goal, assumptions, phases, task list, risks, definition of done."
     },
@@ -100,6 +118,8 @@
       "id": "debug",
       "title": "Debug",
       "path": "prompts/modes/debug.md",
+      "version": "0.3.0",
+      "tags": ["mode", "debugging", "diagnosis", "failure", "root-cause"],
       "useCase": "Isolate and fix a failure.",
       "outputShape": "Observed problem, likely causes, checks, fix path, verification, risk."
     },
@@ -107,6 +127,8 @@
       "id": "review",
       "title": "Review",
       "path": "prompts/modes/review.md",
+      "version": "0.3.0",
+      "tags": ["mode", "review", "critique", "assessment", "findings"],
       "useCase": "Critically assess code, docs, plans or releases.",
       "outputShape": "Findings, severity, evidence, fixes, open questions, summary."
     },
@@ -114,6 +136,8 @@
       "id": "summarize",
       "title": "Summarize",
       "path": "prompts/modes/summarize.md",
+      "version": "0.3.0",
+      "tags": ["mode", "summary", "compression", "key-points", "action-items"],
       "useCase": "Compress longer material into a useful summary.",
       "outputShape": "Short summary, key points, decisions, action items, missing context."
     },
@@ -121,6 +145,8 @@
       "id": "create",
       "title": "Create",
       "path": "prompts/modes/create.md",
+      "version": "0.3.0",
+      "tags": ["mode", "creation", "drafting", "artifacts", "templates"],
       "useCase": "Create a new artifact, draft or template.",
       "outputShape": "Intent, draft, design choices, adaptation notes, next iteration."
     }
@@ -130,24 +156,36 @@
       "id": "repo-review",
       "title": "Repo Review",
       "path": "prompts/packs/repo-review.md",
+      "version": "0.3.0",
+      "tags": ["pack", "repo", "review", "release", "documentation"],
+      "exportPath": "exports/prompt-packs/repo-review.txt",
       "modes": ["review", "analyze", "plan"]
     },
     {
       "id": "systems-thinking",
       "title": "Systems Thinking",
       "path": "prompts/packs/systems-thinking.md",
+      "version": "0.3.0",
+      "tags": ["pack", "systems", "feedback-loops", "architecture", "leverage"],
+      "exportPath": "exports/prompt-packs/systems-thinking.txt",
       "modes": ["analyze", "architect", "decide"]
     },
     {
       "id": "product-strategy",
       "title": "Product Strategy",
       "path": "prompts/packs/product-strategy.md",
+      "version": "0.3.0",
+      "tags": ["pack", "product", "strategy", "roadmap", "decisions"],
+      "exportPath": "exports/prompt-packs/product-strategy.txt",
       "modes": ["research", "decide", "plan"]
     },
     {
       "id": "learning-coach",
       "title": "Learning Coach",
       "path": "prompts/packs/learning-coach.md",
+      "version": "0.3.0",
+      "tags": ["pack", "learning", "coaching", "teaching", "practice"],
+      "exportPath": "exports/prompt-packs/learning-coach.txt",
       "modes": ["teach", "explain", "coach"]
     }
   ],

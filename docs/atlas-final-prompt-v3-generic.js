@@ -718,6 +718,8 @@ document.addEventListener('DOMContentLoaded', () => {
   updateParsedCommand();
   refreshPromptTypeDrivenUI();
   bindQuickActions();
+  loadAndRenderSidebar();
+  bindKeyboardShortcuts();
 
   commandPalette?.addEventListener('input', () => {
     updateParsedCommand();
@@ -735,3 +737,134 @@ document.addEventListener('DOMContentLoaded', () => {
   bindButtons(['exportJsonBtn', 'exportJsonBtnBottom'], exportJson);
   bindButtons(['autoDiagramBtn'], refreshDiagramWorkspace);
 });
+
+// v0.4.0 — sidebar modes/packs, search, keyboard shortcuts
+
+async function loadAndRenderSidebar() {
+  let data;
+  try {
+    const res = await fetch('prompts.json');
+    if (!res.ok) throw new Error('fetch failed');
+    data = await res.json();
+  } catch {
+    return;
+  }
+
+  renderModes(data.modes || []);
+  renderPacks(data.promptPacks || []);
+
+  const searchInput = document.getElementById('modeSearch');
+  if (searchInput) {
+    searchInput.addEventListener('input', e => {
+      const q = e.target.value.toLowerCase().trim();
+      filterModes(data.modes || [], q);
+    });
+    searchInput.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        searchInput.value = '';
+        renderModes(data.modes || []);
+        searchInput.blur();
+      }
+    });
+  }
+}
+
+function renderModes(modes) {
+  const list = document.getElementById('modesList');
+  if (!list) return;
+
+  if (!modes.length) {
+    list.innerHTML = '<div class="sidebar-empty">No modes found.</div>';
+    return;
+  }
+
+  list.innerHTML = modes.map(m => `
+    <div class="library-item" data-mode-id="${m.id}" role="button" tabindex="0"
+         aria-label="Select ${m.title} mode">
+      <strong>${m.title}</strong>
+      <span>${m.useCase}</span>
+    </div>
+  `).join('');
+
+  list.querySelectorAll('.library-item[data-mode-id]').forEach(item => {
+    item.addEventListener('click', () => selectMode(item.dataset.modeId, item.querySelector('strong').textContent));
+    item.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectMode(item.dataset.modeId, item.querySelector('strong').textContent);
+      }
+    });
+  });
+}
+
+function filterModes(modes, q) {
+  const filtered = q
+    ? modes.filter(m =>
+        `${m.id} ${m.title} ${m.useCase} ${(m.tags || []).join(' ')}`.toLowerCase().includes(q)
+      )
+    : modes;
+  renderModes(filtered);
+}
+
+function renderPacks(packs) {
+  const list = document.getElementById('packsList');
+  if (!list) return;
+
+  list.innerHTML = packs.map(p => {
+    const tags = (p.tags || []).filter(t => t !== 'pack').join(', ');
+    const href = p.exportPath ? `../${p.exportPath}` : `../${p.path}`;
+    return `
+      <a class="library-item" href="${href}" target="_blank" rel="noopener"
+         aria-label="Open ${p.title} prompt pack">
+        <strong>${p.title}</strong>
+        <span>${tags}</span>
+      </a>
+    `;
+  }).join('');
+}
+
+function selectMode(modeId, modeTitle) {
+  const commandPalette = document.getElementById('commandPalette');
+  const goalQuestion = document.getElementById('goalQuestion');
+  if (!commandPalette) return;
+
+  const goal = goalQuestion?.value.trim() || '';
+  commandPalette.value = goal ? `/${modeId} ${goal}` : `/${modeId}`;
+  updateParsedCommand();
+  buildFinalPrompt();
+  updateQuickActionActiveState();
+  showToast(`Mode: ${modeTitle}`);
+  goalQuestion?.focus();
+}
+
+function bindKeyboardShortcuts() {
+  document.addEventListener('keydown', e => {
+    const tag = document.activeElement?.tagName;
+    const inInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(tag);
+
+    // Ctrl/Cmd+Enter: generate prompt from anywhere
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault();
+      buildFinalPrompt();
+      showToast('Prompt generated.');
+      return;
+    }
+
+    // / when not typing: focus command palette
+    if (e.key === '/' && !inInput) {
+      e.preventDefault();
+      const cp = document.getElementById('commandPalette');
+      cp?.focus();
+      cp?.select();
+      return;
+    }
+
+    // s when not typing: focus search
+    if (e.key === 's' && !inInput) {
+      e.preventDefault();
+      const search = document.getElementById('modeSearch');
+      search?.focus();
+      return;
+    }
+  });
+}

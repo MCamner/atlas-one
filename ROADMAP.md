@@ -53,8 +53,8 @@ What should I do next?
 Current project phase:
 
 ```text
-v0.3.0 — export formats and reusable prompt packs (done)
-Next:    v0.4.0 — interactive web interface polish
+v0.4.0 — interactive web interface polish (done)
+Next:    v0.5.0 — prompt quality checks and examples
 ```
 
 Completed foundation:
@@ -86,7 +86,7 @@ version, test and expand.
 | v0.1.1  | GitHub Pages and README polish             | Done          |
 | v0.2.0  | Prompt library and mode routing foundation | Done          |
 | v0.3.0  | Export formats and reusable prompt packs   | Done          |
-| v0.4.0  | Interactive web interface polish           | Planned       |
+| v0.4.0  | Interactive web interface polish           | Done          |
 | v0.5.0  | Prompt quality checks and examples         | Planned       |
 | v0.6.0  | mq ecosystem integration                   | Planned       |
 | v0.7.0  | Personal workflow packs                    | Planned       |
@@ -277,19 +277,19 @@ static docs page.
 
 ### v0.4.0 planned scope
 
-- [ ] Improve landing page hierarchy
-- [ ] Add prompt search
-- [ ] Add mode filter
-- [ ] Add copy buttons
-- [ ] Add prompt preview panel
-- [ ] Add examples panel
-- [ ] Add version/status panel
-- [ ] Add keyboard-friendly navigation
-- [ ] Add mobile-friendly layout
-- [ ] Add dark terminal-inspired theme
-- [ ] Add quick-start section
-- [ ] Add links to raw prompt files
-- [ ] Add no-build static JS architecture
+- [x] Improve landing page hierarchy
+- [x] Add prompt search
+- [x] Add mode filter
+- [x] Add copy buttons
+- [x] Add prompt preview panel
+- [x] Add examples panel
+- [x] Add version/status panel
+- [x] Add keyboard-friendly navigation
+- [x] Add mobile-friendly layout
+- [x] Add dark terminal-inspired theme
+- [x] Add quick-start section
+- [x] Add links to raw prompt files
+- [x] Add no-build static JS architecture
 
 ### UI sections
 
@@ -306,13 +306,13 @@ Changelog
 
 ### v0.4.0 definition of done
 
-- [ ] Pages site clearly explains Atlas One
-- [ ] User can copy the core prompt quickly
-- [ ] User can browse modes
-- [ ] User can view examples
-- [ ] User can find export formats
-- [ ] Site works without a backend
-- [ ] Site works on mobile
+- [x] Pages site clearly explains Atlas One
+- [x] User can copy the core prompt quickly
+- [x] User can browse modes
+- [x] User can view examples
+- [x] User can find export formats
+- [x] Site works without a backend
+- [x] Site works on mobile
 
 ---
 

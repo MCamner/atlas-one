@@ -183,6 +183,65 @@
 
     .sidebar select option { background: #1a2d3e; }
 
+    .sidebar-search {
+      width: 100%;
+      font-family: ui-monospace, monospace;
+      font-size: 0.75rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      color: var(--side-text);
+      padding: 6px 10px;
+      margin-bottom: 6px;
+      outline: none;
+    }
+
+    .sidebar-search::placeholder { color: var(--side-muted); }
+    .sidebar-search:focus { border-color: rgba(63,181,154,0.35); color: var(--side-active-text); }
+
+    .sidebar-empty {
+      font-size: 0.72rem;
+      color: var(--side-muted);
+      padding: 6px 10px;
+      font-style: italic;
+    }
+
+    .library-item a.raw-link {
+      display: inline-block;
+      margin-top: 3px;
+      font-size: 0.66rem;
+      color: var(--side-accent);
+      opacity: 0.7;
+      text-decoration: none;
+    }
+
+    .library-item a.raw-link:hover { opacity: 1; }
+
+    .kbd-hint {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 8px 10px;
+      margin-top: 4px;
+      border-top: 1px solid var(--side-border);
+    }
+
+    .kbd-hint span {
+      font-family: ui-monospace, monospace;
+      font-size: 0.62rem;
+      color: var(--side-muted);
+    }
+
+    .kbd-hint kbd {
+      font-family: ui-monospace, monospace;
+      font-size: 0.62rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      padding: 1px 5px;
+      color: var(--side-text);
+    }
+
     .library-list { display: flex; flex-direction: column; gap: 1px; }
 
     .library-item {
@@ -519,7 +578,7 @@
       <div class="header-div"></div>
       <span class="logo-name">Atlas Studio</span>
     </div>
-    <span class="status-badge">v0.2.0</span>
+    <span class="status-badge">v0.3.0</span>
 
     <pre class="lumon-ascii" aria-hidden="true"><span>4 · 9 · 2 · 7 · 1 · 8</span>
 <span>· 3 · 6 · · 5 · 2 · 9</span>
@@ -550,9 +609,16 @@
       </select>
 
       <div class="sidebar-label">Library</div>
+      <input id="modeSearch" class="sidebar-search" type="search" placeholder="Search modes…" autocomplete="off" aria-label="Search modes">
       <div class="library-list" id="promptLibraryList"></div>
 
-      <div class="sidebar-label">v0.2.0</div>
+      <div class="sidebar-label">Modes</div>
+      <div class="library-list" id="modesList"></div>
+
+      <div class="sidebar-label">Packs</div>
+      <div class="library-list" id="packsList"></div>
+
+      <div class="sidebar-label">v0.3.0</div>
       <div class="library-list">
         <a class="library-item" href="PROMPT_LIBRARY.md">
           <strong>Prompt Library</strong>
@@ -571,12 +637,48 @@
           <span>Mode usage examples</span>
         </a>
       </div>
+
+      <div class="sidebar-label">Exports</div>
+      <div class="library-list">
+        <a class="library-item" href="../exports/atlas-one-core.txt" target="_blank" rel="noopener">
+          <strong>Core Prompt</strong>
+          <span>Plain-text — paste anywhere</span>
+        </a>
+        <a class="library-item" href="../exports/atlas-one-chatgpt-instructions.txt" target="_blank" rel="noopener">
+          <strong>ChatGPT Instructions</strong>
+          <span>Custom instructions format</span>
+        </a>
+        <a class="library-item" href="../exports/atlas-one-claude-instructions.md" target="_blank" rel="noopener">
+          <strong>Claude Instructions</strong>
+          <span>Project instructions format</span>
+        </a>
+        <a class="library-item" href="../exports/atlas-one-manifest.json" target="_blank" rel="noopener">
+          <strong>Manifest JSON</strong>
+          <span>Versioned prompt index</span>
+        </a>
+      </div>
+
+      <div class="kbd-hint" aria-label="Keyboard shortcuts">
+        <span><kbd>Ctrl</kbd><kbd>↵</kbd> generate</span>
+        <span><kbd>/</kbd> command</span>
+        <span><kbd>Esc</kbd> clear search</span>
+      </div>
     </aside>
 
     <div class="main-area">
 
       <section class="panel">
         <div class="panel-eyebrow">Input</div>
+
+        <details id="quickStartTip" style="margin-bottom:14px">
+          <summary>Quick start</summary>
+          <div class="details-content" style="font-size:0.82rem;line-height:1.6;color:var(--muted)">
+            <p style="margin:0 0 8px">1. Type a goal — what you want to think through.</p>
+            <p style="margin:0 0 8px">2. Pick a quick action or type <code style="font-family:monospace;background:var(--accent-soft);padding:1px 5px;border-radius:4px">/mode</code> in the command.</p>
+            <p style="margin:0 0 8px">3. Hit <strong>Generate</strong> to build the structured prompt.</p>
+            <p style="margin:0">4. <strong>Copy Prompt</strong> → paste into ChatGPT or Claude.</p>
+          </div>
+        </details>
 
         <div class="field">
           <label for="commandPalette">Command</label>
