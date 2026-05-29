@@ -4,7 +4,7 @@
 
 Status: `v0.2.0 — prompt library and mode routing foundation`
 
-👉 **Live demo:** https://mcamner.github.io/atlas-one/
+👉 **Live demo:** <https://mcamner.github.io/atlas-one/>
 
 ---
 
@@ -19,7 +19,7 @@ Instead of writing prompts ad-hoc, you:
 
 ---
 
-**One input → adaptive prompt type → structured workflow → clean execution**
+One input → adaptive prompt type → structured workflow → clean execution
 
 ---
 
@@ -76,7 +76,7 @@ Interface preview from the GitHub Pages build:
 
 ## Try it
 
-👉 https://mcamner.github.io/atlas-one/
+👉 <https://mcamner.github.io/atlas-one/>
 
 No install. Runs in your browser.
 
@@ -106,11 +106,10 @@ Atlas Studio introduces:
 * **Structured prompt library** — reusable prompt patterns for repeatable work
 * **ChatGPT-ready handoff** — copy the final prompt and open ChatGPT in one action
 
-
 ---
 
 This is not another prompt tool.
-It’s a **system for thinking and execution.**
+It's a **system for thinking and execution.**
 
 ---
 
@@ -118,30 +117,30 @@ It’s a **system for thinking and execution.**
 
 Atlas Studio turns intent into structured AI workflows:
 
-- **Adaptive prompt modes**  
+* **Adaptive prompt modes**
   Maps the task to a useful reasoning style
 
-- **Quick action controls**  
+* **Quick action controls**
   Let you switch modes without rewriting the prompt manually
 
-- **System reasoning preview**  
+* **System reasoning preview**
   Shows how a request flows through reasoning steps
 
-- **Prompt library system**  
+* **Prompt library system**
   Loads reusable prompts from `web/prompts.json` and keeps source prompts in
   `prompts/`
 
-- **Local-first execution**  
+* **Local-first execution**
   Runs entirely on `127.0.0.1` — no external dependencies
 
-- **ChatGPT handoff**  
+* **ChatGPT handoff**
   Copies the final prompt and opens ChatGPT for execution
 
 ---
 
 ## Example flow
 
-```
+```text
 User input:
 "Design a secure remote access architecture"
 
@@ -163,7 +162,7 @@ ChatGPT-ready structured prompt
 
 ## Architecture
 
-```
+```text
 atlas-one/
 ├── prompts/          # Core prompt, modes, and seed prompt packs
 ├── docs/             # GitHub Pages and prompt library docs
@@ -177,19 +176,19 @@ atlas-one/
 
 ### Backend
 
-- Java HTTP server
-- Serves UI + API endpoints:
-  - `/api/prompts`
-  - `/api/health`
+* Java HTTP server
+* Serves UI + API endpoints:
+  * `/api/prompts`
+  * `/api/health`
 
 ### Frontend
 
-- Vanilla JS application
-- Handles:
-  - routing logic
-  - prompt generation
-  - UI state
-  - local storage
+* Vanilla JS application
+* Handles:
+  * routing logic
+  * prompt generation
+  * UI state
+  * local storage
 
 ---
 
@@ -206,10 +205,10 @@ prompts/
 
 Core docs:
 
-- [Prompt Library](docs/PROMPT_LIBRARY.md)
-- [Modes](docs/MODES.md)
-- [Routing](docs/ROUTING.md)
-- [Examples](docs/EXAMPLES.md)
+* [Prompt Library](docs/PROMPT_LIBRARY.md)
+* [Modes](docs/MODES.md)
+* [Routing](docs/ROUTING.md)
+* [Examples](docs/EXAMPLES.md)
 
 Canonical modes:
 
@@ -235,7 +234,7 @@ Create
 
 ### Requirements
 
-- Java 17+
+* Java 17+
 
 ### Run locally
 
@@ -251,7 +250,7 @@ or:
 
 Open:
 
-```
+```text
 http://127.0.0.1:8765
 ```
 
@@ -274,8 +273,8 @@ Creates a local macOS app bundle.
 3. System updates reasoning, route, and workflow structure
 4. Final prompt is generated
 5. Output can be:
-   - reviewed locally
-   - copied and opened in ChatGPT
+   * reviewed locally
+   * copied and opened in ChatGPT
 
 ---
 
@@ -283,49 +282,49 @@ Creates a local macOS app bundle.
 
 Prompts are defined in:
 
-```
+```text
 web/prompts.json
 ```
 
 This allows:
 
-- versioned prompt strategies
-- reusable workflows
-- structured execution patterns
+* versioned prompt strategies
+* reusable workflows
+* structured execution patterns
 
 ---
 
 ## Design principles
 
-- **Local-first** — no cloud dependency
-- **Structured thinking over raw prompting**
-- **Repeatability over improvisation**
-- **Separation of intent and execution**
-- **Composable workflows**
+* **Local-first** — no cloud dependency
+* **Structured thinking over raw prompting**
+* **Repeatability over improvisation**
+* **Separation of intent and execution**
+* **Composable workflows**
 
 ---
 
 ## Roadmap
 
-- Modular routing engine
-- Advanced workflow editor
-- Plugin system for prompt packs
-- mq-mcp review, risk and architecture prompt packs
-- Multi-model support
-- CLI integration
-- Export/import of workflows
-- Integration with external tools
+* Modular routing engine
+* Advanced workflow editor
+* Plugin system for prompt packs
+* mq-mcp review, risk and architecture prompt packs
+* Multi-model support
+* CLI integration
+* Export/import of workflows
+* Integration with external tools
 
 ---
 
 ## Use cases
 
-- Architecture design
-- Technical decision-making
-- Problem analysis
-- Structured research
-- Workflow standardization
-- Prompt engineering at scale
+* Architecture design
+* Technical decision-making
+* Problem analysis
+* Structured research
+* Workflow standardization
+* Prompt engineering at scale
 
 ---
 
@@ -351,7 +350,7 @@ MIT
 
 ## Author
 
-Mattias Camner  
+Mattias Camner
 IT Architect — building practical systems where infrastructure, automation, and usability work together
 
 ---
@@ -360,4 +359,4 @@ IT Architect — building practical systems where infrastructure, automation, an
 
 Atlas Studio is not another prompt tool.
 
-It’s an attempt to bring **structure, repeatability, and system thinking** into how we use AI.
+It's an attempt to bring **structure, repeatability, and system thinking** into how we use AI.
