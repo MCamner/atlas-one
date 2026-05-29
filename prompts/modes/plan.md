@@ -1,5 +1,8 @@
 # Plan Mode
 
+Version: 0.3.0
+Tags: mode, planning, tasks, sequencing, milestones
+
 Use when the user needs a sequence of work.
 
 ## Best For

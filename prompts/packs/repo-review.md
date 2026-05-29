@@ -1,6 +1,7 @@
 # Repo Review Prompt Pack
 
-Status: v0.2.0 seed pack
+Version: 0.3.0
+Tags: pack, repo, review, release, documentation
 
 Use this pack for repository review, release readiness and documentation polish.
 

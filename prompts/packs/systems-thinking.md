@@ -1,6 +1,7 @@
 # Systems Thinking Prompt Pack
 
-Status: v0.2.0 seed pack
+Version: 0.3.0
+Tags: pack, systems, feedback-loops, architecture, leverage
 
 Use this pack when a problem has feedback loops, delays, incentives or hidden
 constraints.

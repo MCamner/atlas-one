@@ -1,5 +1,8 @@
 # Explain Mode
 
+Version: 0.3.0
+Tags: mode, explanation, clarity, concepts, simplification
+
 Use when the user needs a clear explanation.
 
 ## Best For

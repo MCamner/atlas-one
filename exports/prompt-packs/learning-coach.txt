@@ -1,0 +1,53 @@
+ATLAS ONE — Learning Coach Prompt Pack
+Version: 0.3.0
+Source: prompts/packs/learning-coach.md
+Recommended modes: Teach, Explain, Coach
+Tags: pack, learning, coaching, teaching
+
+Use this pack to learn a subject through structured explanation and practice.
+
+---
+
+STARTER PROMPT — paste into ChatGPT or Claude
+
+Use Atlas One Teach Mode.
+
+Teach me this topic in a practical sequence.
+
+Include:
+- what I need to understand first
+- a simple explanation
+- one concrete example
+- one practice task
+- how I can tell if I understood it
+
+---
+
+FOLLOW-UP: CLARIFY A CONCEPT
+
+Use Atlas One Explain Mode.
+
+I did not fully understand this part: [paste the concept].
+
+Give me:
+- the shortest accurate answer
+- a plain-language version
+- one real example
+- what people usually get wrong about this
+- the one thing to remember
+
+---
+
+FOLLOW-UP: COACHING FOR PROGRESS
+
+Use Atlas One Coach Mode.
+
+I am trying to learn [topic] and I am stuck.
+
+Help me:
+- identify what is actually blocking me
+- see what my current state is
+- find one small action I can take today
+- stay honest about what I do and do not know yet
+
+End with one question that helps me think more clearly about this.

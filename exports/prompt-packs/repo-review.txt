@@ -1,0 +1,55 @@
+ATLAS ONE — Repo Review Prompt Pack
+Version: 0.3.0
+Source: prompts/packs/repo-review.md
+Recommended modes: Review, Analyze, Plan
+Tags: pack, repo, review, release
+
+Use this pack for repository review, release readiness and documentation polish.
+
+---
+
+STARTER PROMPT — paste into ChatGPT or Claude
+
+Use Atlas One Review Mode.
+
+Review this repository as a product and engineering artifact.
+
+Focus on:
+- README clarity
+- release readiness
+- docs consistency
+- command surface truth
+- source readability
+- obvious missing checks
+
+Return findings first, ordered by severity, then a short improvement plan.
+
+---
+
+FOLLOW-UP: RELEASE READINESS CHECK
+
+Use Atlas One Review Mode.
+
+Check this repository for release readiness.
+
+Assess:
+- Is the README accurate and complete?
+- Are version numbers consistent?
+- Is the changelog up to date?
+- Are there open TODOs that block the release?
+- Are any docs missing or out of sync?
+
+Return: pass / warn / block for each item, then a go/no-go recommendation.
+
+---
+
+FOLLOW-UP: IMPROVEMENT PLAN
+
+Use Atlas One Plan Mode.
+
+Based on the review findings, create a sequenced improvement plan.
+
+Include:
+- what to fix before the next release
+- what can wait
+- definition of done for each item

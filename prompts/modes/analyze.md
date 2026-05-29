@@ -1,5 +1,8 @@
 # Analyze Mode
 
+Version: 0.3.0
+Tags: mode, analysis, patterns, understanding, diagnosis
+
 Use when the user needs to understand a situation, system, idea or problem.
 
 ## Best For

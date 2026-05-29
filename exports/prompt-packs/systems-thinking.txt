@@ -1,0 +1,54 @@
+ATLAS ONE — Systems Thinking Prompt Pack
+Version: 0.3.0
+Source: prompts/packs/systems-thinking.md
+Recommended modes: Analyze, Architect, Decide
+Tags: pack, systems, feedback-loops, architecture
+
+Use this pack when a problem has feedback loops, delays, incentives or hidden constraints.
+
+---
+
+STARTER PROMPT — paste into ChatGPT or Claude
+
+Use Atlas One Analyze Mode with a systems-thinking lens.
+
+Map:
+- visible symptoms
+- underlying structure
+- reinforcing loops
+- balancing loops
+- delays
+- constraints
+- leverage points
+
+End with the smallest high-leverage intervention.
+
+---
+
+FOLLOW-UP: ARCHITECTURE DESIGN
+
+Use Atlas One Architect Mode.
+
+Given the system map above, design a structure that addresses the root cause.
+
+Include:
+- what components exist and their responsibilities
+- what flows between them
+- where the highest-leverage boundary is
+- what the risks are if you get it wrong
+
+---
+
+FOLLOW-UP: DECISION BETWEEN INTERVENTIONS
+
+Use Atlas One Decide Mode.
+
+Compare the leverage points identified in the analysis.
+
+For each option show:
+- expected effect
+- time to result
+- cost or resistance
+- risk of unintended consequences
+
+Recommend the one with the best leverage-to-risk ratio.

@@ -1,0 +1,56 @@
+ATLAS ONE — Product Strategy Prompt Pack
+Version: 0.3.0
+Source: prompts/packs/product-strategy.md
+Recommended modes: Research, Decide, Plan
+Tags: pack, product, strategy, decisions
+
+Use this pack to shape positioning, offers, roadmaps and product direction.
+
+---
+
+STARTER PROMPT — paste into ChatGPT or Claude
+
+Use Atlas One Decide Mode.
+
+Help choose the strongest product direction.
+
+Compare:
+- audience
+- problem urgency
+- differentiation
+- proof
+- implementation cost
+- risk
+
+Recommend one direction and explain the trade-offs.
+
+---
+
+FOLLOW-UP: MARKET AND CONTEXT RESEARCH
+
+Use Atlas One Research Mode.
+
+Synthesize what is known about this product space.
+
+Cover:
+- who has this problem and how urgently
+- what exists already and how it compares
+- what evidence points to real demand
+- what is still uncertain
+- what assumptions need testing first
+
+---
+
+FOLLOW-UP: ROADMAP PLANNING
+
+Use Atlas One Plan Mode.
+
+Given the chosen direction, build a sequenced roadmap.
+
+Include:
+- goal
+- assumptions
+- phases with outcomes
+- first three concrete tasks
+- definition of done for the first milestone
+- key risks and how to detect them early

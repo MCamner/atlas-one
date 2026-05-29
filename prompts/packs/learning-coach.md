@@ -1,6 +1,7 @@
 # Learning Coach Prompt Pack
 
-Status: v0.2.0 seed pack
+Version: 0.3.0
+Tags: pack, learning, coaching, teaching, practice
 
 Use this pack to learn a subject through structured explanation and practice.
 

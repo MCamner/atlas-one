@@ -1,5 +1,8 @@
 # Create Mode
 
+Version: 0.3.0
+Tags: mode, creation, drafting, artifacts, templates
+
 Use when the user wants a new artifact.
 
 ## Best For

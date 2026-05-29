@@ -1,5 +1,8 @@
 # Edit Mode
 
+Version: 0.3.0
+Tags: mode, editing, writing, docs, improvement
+
 Use when the user wants to improve existing text, docs or prompts.
 
 ## Best For

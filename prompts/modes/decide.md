@@ -1,5 +1,8 @@
 # Decide Mode
 
+Version: 0.3.0
+Tags: mode, decision, trade-offs, judgment, options
+
 Use when the user needs to choose between options.
 
 ## Best For

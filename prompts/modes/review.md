@@ -1,5 +1,8 @@
 # Review Mode
 
+Version: 0.3.0
+Tags: mode, review, critique, assessment, findings
+
 Use when the user needs a critical assessment.
 
 ## Best For

@@ -53,8 +53,8 @@ What should I do next?
 Current project phase:
 
 ```text
-v0.2.0 — prompt library and mode routing foundation (done)
-Next:    v0.3.0 — export formats and reusable prompt packs
+v0.3.0 — export formats and reusable prompt packs (done)
+Next:    v0.4.0 — interactive web interface polish
 ```
 
 Completed foundation:
@@ -85,7 +85,7 @@ version, test and expand.
 | v0.1.0  | Public prompt foundation                   | Done / verify |
 | v0.1.1  | GitHub Pages and README polish             | Done          |
 | v0.2.0  | Prompt library and mode routing foundation | Done          |
-| v0.3.0  | Export formats and reusable prompt packs   | Planned       |
+| v0.3.0  | Export formats and reusable prompt packs   | Done          |
 | v0.4.0  | Interactive web interface polish           | Planned       |
 | v0.5.0  | Prompt quality checks and examples         | Planned       |
 | v0.6.0  | mq ecosystem integration                   | Planned       |
@@ -205,7 +205,7 @@ prompts/
     └── learning-coach.md
 ```
 
-### Definition of done
+### v0.2.0 definition of done
 
 - [x] Atlas One base prompt is stored as a standalone file
 - [x] Modes are documented
@@ -224,20 +224,20 @@ Goal:
 
 Make Atlas One prompts easier to copy, save, reuse and adapt.
 
-### Planned scope
+### v0.3.0 planned scope
 
-- [ ] Add copy-friendly prompt blocks
-- [ ] Add raw markdown links
-- [ ] Add JSON prompt manifest
-- [ ] Add plain-text export format
-- [ ] Add ChatGPT custom-instructions format
-- [ ] Add Claude project-instructions format
-- [ ] Add local markdown pack format
-- [ ] Add prompt pack index
-- [ ] Add prompt metadata
-- [ ] Add prompt version field
-- [ ] Add prompt tags
-- [ ] Add prompt use-case examples
+- [x] Add copy-friendly prompt blocks
+- [x] Add raw markdown links
+- [x] Add JSON prompt manifest
+- [x] Add plain-text export format
+- [x] Add ChatGPT custom-instructions format
+- [x] Add Claude project-instructions format
+- [x] Add local markdown pack format
+- [x] Add prompt pack index
+- [x] Add prompt metadata
+- [x] Add prompt version field
+- [x] Add prompt tags
+- [x] Add prompt use-case examples
 
 ### Proposed manifest
 
@@ -275,7 +275,7 @@ Goal:
 Make the GitHub Pages interface feel like a small usable product, not just a
 static docs page.
 
-### Planned scope
+### v0.4.0 planned scope
 
 - [ ] Improve landing page hierarchy
 - [ ] Add prompt search
@@ -304,7 +304,7 @@ Roadmap
 Changelog
 ```
 
-### Definition of done
+### v0.4.0 definition of done
 
 - [ ] Pages site clearly explains Atlas One
 - [ ] User can copy the core prompt quickly
@@ -322,7 +322,7 @@ Goal:
 
 Make the prompt library easier to maintain as it grows.
 
-### Planned scope
+### v0.5.0 planned scope
 
 - [ ] Add prompt linting script
 - [ ] Add markdown link check
@@ -345,7 +345,7 @@ scripts/check-docs.sh
 scripts/release-check.sh
 ```
 
-### Definition of done
+### v0.5.0 definition of done
 
 - [ ] Every prompt has metadata
 - [ ] Every mode has an example
@@ -363,7 +363,7 @@ Goal:
 Connect Atlas One to the wider mq ecosystem as a reusable reasoning and prompt
 layer.
 
-### Target integrations
+### v0.6.0 target integrations
 
 ```text
 mqlaunch
@@ -374,7 +374,7 @@ mq-mcp
 macos-scripts
 ```
 
-### Planned scope
+### v0.6.0 planned scope
 
 - [ ] Add `docs/MQ_ECOSYSTEM.md`
 - [ ] Add mqlaunch command examples
@@ -395,7 +395,7 @@ macos-scripts
 - [ ] Keep prompt packs export-oriented; do not duplicate mq-mcp review logic
 - [ ] Add prompt pack for systems thinking
 
-### Example target flow
+### v0.6.0 example target flow
 
 ```text
 mqlaunch
@@ -453,7 +453,7 @@ prompt-packs/
 └── guitar-practice/
 ```
 
-### Definition of done
+### v0.7.0 definition of done
 
 - [ ] Each pack has a clear purpose
 - [ ] Each pack has at least three prompts
@@ -562,7 +562,7 @@ Every public prompt should have:
 Work on:
 
 ```text
-v0.3.0 — export formats and reusable prompt packs
+v0.3.0 — export formats and reusable prompt packs (done)
 ```
 
 This release should make Atlas One prompts easier to copy, save, reuse and

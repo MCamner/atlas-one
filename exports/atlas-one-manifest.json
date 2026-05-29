@@ -1,0 +1,181 @@
+{
+  "name": "atlas-one",
+  "version": "0.3.0",
+  "description": "Prompt operating system for structured reasoning.",
+  "homepage": "https://mcamner.github.io/atlas-one/",
+  "license": "MIT",
+  "prompts": [
+    {
+      "id": "atlas-one-core",
+      "title": "Atlas One Core",
+      "path": "prompts/atlas-one.md",
+      "version": "0.3.0",
+      "tags": ["reasoning", "router", "prompt-os", "core"],
+      "useCase": "Route any request to the right reasoning mode and output structure.",
+      "exportPath": "exports/atlas-one-core.txt"
+    },
+    {
+      "id": "mode.analyze",
+      "title": "Analyze Mode",
+      "path": "prompts/modes/analyze.md",
+      "version": "0.3.0",
+      "tags": ["mode", "analysis", "patterns", "understanding"],
+      "useCase": "Understand a situation, system, idea or problem.",
+      "outputShape": "Summary, key parts, patterns, risks or gaps, insight, next step."
+    },
+    {
+      "id": "mode.decide",
+      "title": "Decide Mode",
+      "path": "prompts/modes/decide.md",
+      "version": "0.3.0",
+      "tags": ["mode", "decision", "trade-offs", "judgment"],
+      "useCase": "Choose between options and expose trade-offs.",
+      "outputShape": "Context, options, trade-offs, recommendation, why, next action."
+    },
+    {
+      "id": "mode.architect",
+      "title": "Architect Mode",
+      "path": "prompts/modes/architect.md",
+      "version": "0.3.0",
+      "tags": ["mode", "architecture", "design", "systems"],
+      "useCase": "Design a technical, product or workflow system.",
+      "outputShape": "Goal, constraints, architecture, responsibilities, risks, recommendation."
+    },
+    {
+      "id": "mode.research",
+      "title": "Research Mode",
+      "path": "prompts/modes/research.md",
+      "version": "0.3.0",
+      "tags": ["mode", "research", "evidence", "uncertainty"],
+      "useCase": "Synthesize evidence and identify uncertainty.",
+      "outputShape": "Question, known facts, evidence, uncertainty, implications, follow-up."
+    },
+    {
+      "id": "mode.explain",
+      "title": "Explain Mode",
+      "path": "prompts/modes/explain.md",
+      "version": "0.3.0",
+      "tags": ["mode", "explanation", "clarity", "concepts"],
+      "useCase": "Make a concept easier to understand.",
+      "outputShape": "Short answer, plain explanation, example, confusion, takeaway."
+    },
+    {
+      "id": "mode.teach",
+      "title": "Teach Mode",
+      "path": "prompts/modes/teach.md",
+      "version": "0.3.0",
+      "tags": ["mode", "teaching", "learning", "step-by-step"],
+      "useCase": "Teach a subject or skill step by step.",
+      "outputShape": "Goal, prerequisites, lesson, practice, understanding check, next lesson."
+    },
+    {
+      "id": "mode.edit",
+      "title": "Edit Mode",
+      "path": "prompts/modes/edit.md",
+      "version": "0.3.0",
+      "tags": ["mode", "editing", "writing", "docs"],
+      "useCase": "Improve existing text, docs or prompts.",
+      "outputShape": "What changed, edited version, rationale, alternatives."
+    },
+    {
+      "id": "mode.coach",
+      "title": "Coach Mode",
+      "path": "prompts/modes/coach.md",
+      "version": "0.3.0",
+      "tags": ["mode", "coaching", "reflection", "habits"],
+      "useCase": "Support reflection, guidance or behavior change.",
+      "outputShape": "Current state, goal, blockers, coaching frame, small action, question."
+    },
+    {
+      "id": "mode.plan",
+      "title": "Plan Mode",
+      "path": "prompts/modes/plan.md",
+      "version": "0.3.0",
+      "tags": ["mode", "planning", "tasks", "sequencing"],
+      "useCase": "Turn a goal into sequenced work.",
+      "outputShape": "Goal, assumptions, phases, task list, risks, definition of done."
+    },
+    {
+      "id": "mode.debug",
+      "title": "Debug Mode",
+      "path": "prompts/modes/debug.md",
+      "version": "0.3.0",
+      "tags": ["mode", "debugging", "diagnosis", "failure"],
+      "useCase": "Isolate and fix a failure.",
+      "outputShape": "Observed problem, likely causes, checks, fix path, verification, risk."
+    },
+    {
+      "id": "mode.review",
+      "title": "Review Mode",
+      "path": "prompts/modes/review.md",
+      "version": "0.3.0",
+      "tags": ["mode", "review", "critique", "assessment"],
+      "useCase": "Critically assess code, docs, plans or releases.",
+      "outputShape": "Findings, severity, evidence, fixes, open questions, summary."
+    },
+    {
+      "id": "mode.summarize",
+      "title": "Summarize Mode",
+      "path": "prompts/modes/summarize.md",
+      "version": "0.3.0",
+      "tags": ["mode", "summary", "compression", "key-points"],
+      "useCase": "Compress longer material into a useful summary.",
+      "outputShape": "Short summary, key points, decisions, action items, missing context."
+    },
+    {
+      "id": "mode.create",
+      "title": "Create Mode",
+      "path": "prompts/modes/create.md",
+      "version": "0.3.0",
+      "tags": ["mode", "creation", "drafting", "artifacts"],
+      "useCase": "Create a new artifact, draft or template.",
+      "outputShape": "Intent, draft, design choices, adaptation notes, next iteration."
+    }
+  ],
+  "promptPacks": [
+    {
+      "id": "pack.repo-review",
+      "title": "Repo Review",
+      "path": "prompts/packs/repo-review.md",
+      "version": "0.3.0",
+      "tags": ["pack", "repo", "review", "release"],
+      "modes": ["review", "analyze", "plan"],
+      "exportPath": "exports/prompt-packs/repo-review.txt"
+    },
+    {
+      "id": "pack.systems-thinking",
+      "title": "Systems Thinking",
+      "path": "prompts/packs/systems-thinking.md",
+      "version": "0.3.0",
+      "tags": ["pack", "systems", "feedback-loops", "architecture"],
+      "modes": ["analyze", "architect", "decide"],
+      "exportPath": "exports/prompt-packs/systems-thinking.txt"
+    },
+    {
+      "id": "pack.product-strategy",
+      "title": "Product Strategy",
+      "path": "prompts/packs/product-strategy.md",
+      "version": "0.3.0",
+      "tags": ["pack", "product", "strategy", "decisions"],
+      "modes": ["research", "decide", "plan"],
+      "exportPath": "exports/prompt-packs/product-strategy.txt"
+    },
+    {
+      "id": "pack.learning-coach",
+      "title": "Learning Coach",
+      "path": "prompts/packs/learning-coach.md",
+      "version": "0.3.0",
+      "tags": ["pack", "learning", "coaching", "teaching"],
+      "modes": ["teach", "explain", "coach"],
+      "exportPath": "exports/prompt-packs/learning-coach.txt"
+    }
+  ],
+  "exports": {
+    "core-txt": "exports/atlas-one-core.txt",
+    "core-md": "exports/atlas-one-core.md",
+    "manifest-json": "exports/atlas-one-manifest.json",
+    "chatgpt-instructions": "exports/atlas-one-chatgpt-instructions.txt",
+    "claude-instructions": "exports/atlas-one-claude-instructions.md",
+    "prompt-packs-dir": "exports/prompt-packs/"
+  }
+}

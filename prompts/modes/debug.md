@@ -1,5 +1,8 @@
 # Debug Mode
 
+Version: 0.3.0
+Tags: mode, debugging, diagnosis, failure, root-cause
+
 Use when something is failing and the user needs a path to isolate the cause.
 
 ## Best For

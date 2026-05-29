@@ -1,6 +1,7 @@
 # Product Strategy Prompt Pack
 
-Status: v0.2.0 seed pack
+Version: 0.3.0
+Tags: pack, product, strategy, roadmap, decisions
 
 Use this pack to shape positioning, offers, roadmaps and product direction.
 
