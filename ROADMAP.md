@@ -53,8 +53,8 @@ What should I do next?
 Current project phase:
 
 ```text
-v0.5.0 — prompt quality checks and examples (done)
-Next:    v0.6.0 — mq ecosystem integration
+v0.6.0 — mq ecosystem integration (done)
+Next:    v0.7.0 — personal workflow packs
 ```
 
 Completed foundation:
@@ -88,7 +88,7 @@ version, test and expand.
 | v0.3.0  | Export formats and reusable prompt packs   | Done          |
 | v0.4.0  | Interactive web interface polish           | Done          |
 | v0.5.0  | Prompt quality checks and examples         | Done          |
-| v0.6.0  | mq ecosystem integration                   | Planned       |
+| v0.6.0  | mq ecosystem integration                   | Done          |
 | v0.7.0  | Personal workflow packs                    | Planned       |
 | v1.0.0  | Stable prompt operating system             | Future        |
 
@@ -376,24 +376,24 @@ macos-scripts
 
 ### v0.6.0 planned scope
 
-- [ ] Add `docs/MQ_ECOSYSTEM.md`
-- [ ] Add mqlaunch command examples
-- [ ] Add mq-agent prompt workflow examples
-- [ ] Add mq-hal reasoning-mode examples
-- [ ] Add repo-signal review prompt pack
-- [ ] Add mq-mcp safety-review prompt pack (maps to mq-mcp review contracts:
+- [x] Add `docs/MQ_ECOSYSTEM.md`
+- [x] Add mqlaunch command examples
+- [x] Add mq-agent prompt workflow examples
+- [x] Add mq-hal reasoning-mode examples
+- [x] Add repo-signal review prompt pack
+- [x] Add mq-mcp safety-review prompt pack (maps to mq-mcp review contracts:
   comment, architecture, risk, security modes — mq-mcp v1.3.0+)
-- [ ] Add mq-mcp architecture-memory prompt pack — prompts that surface ADRs,
+- [x] Add mq-mcp architecture-memory prompt pack — prompts that surface ADRs,
   boundaries, and philosophy entries from mq-mcp architecture_memory/
-- [ ] Add mq ecosystem boundary prompt pack covering central cognition in
+- [x] Add mq ecosystem boundary prompt pack covering central cognition in
   mq-mcp, orchestration in mq-agent, preprocessing in repo-signal, UX in
   macos-scripts, visual cognition in mq-image-analyze and observability in
   mq-hal
-- [ ] Add macos-scripts terminal workflow prompt pack
-- [ ] Add local assistant prompt bundle
-- [ ] Add prompt pack for release readiness
-- [ ] Keep prompt packs export-oriented; do not duplicate mq-mcp review logic
-- [ ] Add prompt pack for systems thinking
+- [x] Add macos-scripts terminal workflow prompt pack
+- [x] Add local assistant prompt bundle
+- [x] Add prompt pack for release readiness
+- [x] Keep prompt packs export-oriented; do not duplicate mq-mcp review logic
+- [x] Add prompt pack for systems thinking
 
 ### v0.6.0 example target flow
 

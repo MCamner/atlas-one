@@ -2,6 +2,25 @@
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-05-29
+
+### Added
+
+- Added `docs/MQ_ECOSYSTEM.md` — ecosystem map, boundary table, example flows, and mqlaunch command surface.
+- Added `prompts/packs/mq-mcp-safety-review.md` — structures safety review thinking before invoking mq-mcp review contracts.
+- Added `prompts/packs/mq-mcp-architecture-memory.md` — reasons about ADRs and boundaries from mq-mcp architecture_memory/.
+- Added `prompts/packs/mq-ecosystem-boundaries.md` — maps responsibilities across mq tools for cross-tool workflow design.
+- Added `prompts/packs/release-readiness.md` — wraps release-check.sh and repo-signal output in Atlas One Review mode.
+- Added `prompts/packs/macos-scripts-terminal.md` — designs and debugs terminal workflows in macos-scripts.
+- Added `.txt` exports for all new packs in `exports/prompt-packs/`.
+- Registered all new packs in `web/prompts.json` and `docs/prompts.json`.
+
+### Changed
+
+- Updated `docs/PROMPT_INDEX.md` — now covers 13 modes and 9 packs.
+
+---
+
 ## [0.5.0] - 2026-05-29
 
 ### Added
@@ -83,6 +102,6 @@
 
 - Documented prompt safety rules for hidden chain-of-thought, tool execution and approval boundaries.
 
-### Added
+### Initial setup
 
 - Initial release setup

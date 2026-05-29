@@ -1,0 +1,82 @@
+ATLAS ONE — macos-scripts Terminal Workflow Prompt Pack
+Version: 0.6.0
+Source: prompts/packs/macos-scripts-terminal.md
+Tags: pack, macos-scripts, terminal, workflow, automation, mqlaunch
+
+---
+
+Tags: pack, macos-scripts, terminal, workflow, automation, mqlaunch
+
+Use this pack to design, debug, or improve terminal workflows in macos-scripts.
+Covers mqlaunch command surface, automation scripts, and workflow structure.
+
+## Recommended Modes
+
+- Plan
+- Debug
+- Architect
+
+## When to Use
+
+- When adding a new command to mqlaunch
+- When a terminal workflow breaks or behaves unexpectedly
+- When designing a new automation or login flow
+- When deciding how a new feature fits the macos-scripts command surface
+
+## Starter Prompt
+
+```text
+Use Atlas One Plan Mode.
+
+I want to add or improve this terminal workflow in macos-scripts:
+
+[describe the workflow or command]
+
+Plan the implementation:
+- What does this workflow do and when is it triggered?
+- What existing commands or scripts does it touch?
+- What inputs does it take and what outputs does it produce?
+- What can go wrong and how should it fail gracefully?
+- What is the definition of done?
+```
+
+## Follow-up: Debug a Broken Workflow
+
+```text
+Use Atlas One Debug Mode.
+
+This mqlaunch command or workflow is not working as expected:
+
+Command: [paste command]
+Expected: [what should happen]
+Observed: [what actually happens]
+Context: [OS version, shell, relevant env vars]
+
+Isolate the failure:
+- What are the most likely causes?
+- What checks should I run to narrow it down?
+- What is the fix path for each cause?
+- How do I verify the fix without breaking other commands?
+```
+
+## Follow-up: Command Surface Design
+
+```text
+Use Atlas One Architect Mode.
+
+I need to decide how to expose this feature in the mqlaunch command surface:
+
+[describe the feature]
+
+Design the command surface:
+- What should the primary command be?
+- What subcommands or flags are needed?
+- How does this fit the existing mqlaunch command style?
+- What happens if the user runs it without arguments?
+- What is the help text?
+
+Constraints:
+- Keep commands short and memorable
+- Match the existing mqlaunch naming conventions
+- One command should do one clear thing
+```

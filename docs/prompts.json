@@ -187,6 +187,51 @@
       "tags": ["pack", "learning", "coaching", "teaching", "practice"],
       "exportPath": "exports/prompt-packs/learning-coach.txt",
       "modes": ["teach", "explain", "coach"]
+    },
+    {
+      "id": "mq-mcp-safety-review",
+      "title": "mq-mcp Safety Review",
+      "path": "prompts/packs/mq-mcp-safety-review.md",
+      "version": "0.6.0",
+      "tags": ["pack", "mq-mcp", "safety", "review", "security", "risk"],
+      "exportPath": "exports/prompt-packs/mq-mcp-safety-review.txt",
+      "modes": ["review", "analyze", "decide"]
+    },
+    {
+      "id": "mq-mcp-architecture-memory",
+      "title": "mq-mcp Architecture Memory",
+      "path": "prompts/packs/mq-mcp-architecture-memory.md",
+      "version": "0.6.0",
+      "tags": ["pack", "mq-mcp", "architecture", "ADR", "memory", "boundaries"],
+      "exportPath": "exports/prompt-packs/mq-mcp-architecture-memory.txt",
+      "modes": ["architect", "analyze", "decide"]
+    },
+    {
+      "id": "mq-ecosystem-boundaries",
+      "title": "mq Ecosystem Boundaries",
+      "path": "prompts/packs/mq-ecosystem-boundaries.md",
+      "version": "0.6.0",
+      "tags": ["pack", "mq-ecosystem", "boundaries", "architecture", "systems"],
+      "exportPath": "exports/prompt-packs/mq-ecosystem-boundaries.txt",
+      "modes": ["analyze", "architect", "decide"]
+    },
+    {
+      "id": "release-readiness",
+      "title": "Release Readiness",
+      "path": "prompts/packs/release-readiness.md",
+      "version": "0.6.0",
+      "tags": ["pack", "release", "readiness", "review", "mq-ecosystem"],
+      "exportPath": "exports/prompt-packs/release-readiness.txt",
+      "modes": ["review", "decide", "plan"]
+    },
+    {
+      "id": "macos-scripts-terminal",
+      "title": "macos-scripts Terminal Workflow",
+      "path": "prompts/packs/macos-scripts-terminal.md",
+      "version": "0.6.0",
+      "tags": ["pack", "macos-scripts", "terminal", "workflow", "automation", "mqlaunch"],
+      "exportPath": "exports/prompt-packs/macos-scripts-terminal.txt",
+      "modes": ["plan", "debug", "architect"]
     }
   ],
   "savedPrompts": [

@@ -1,0 +1,81 @@
+# mq Ecosystem Boundaries Prompt Pack
+
+Version: 0.6.0
+Tags: pack, mq-ecosystem, boundaries, architecture, systems
+
+Use this pack to map responsibilities across mq tools before designing a
+cross-tool workflow. Helps you understand where each tool's authority ends and
+another's begins.
+
+## Recommended Modes
+
+- Analyze
+- Architect
+- Decide
+
+## Ecosystem Boundary Map
+
+```text
+mq-mcp          — central cognition: review, risk, architecture, security contracts
+mq-agent        — orchestration: Planner, Executor, Verifier, Memory, Safety
+repo-signal     — preprocessing: repo readiness signals and JSON contracts
+macos-scripts   — UX and terminal surface: workflows, automation, CLI
+mq-hal          — observability and reasoning: reasoning layer for mq-agent
+```
+
+## Starter Prompt
+
+```text
+Use Atlas One Analyze Mode.
+
+Map the mq ecosystem boundaries for this workflow:
+
+[describe the workflow or change you are designing]
+
+For each mq tool involved, identify:
+- What is this tool responsible for in this workflow?
+- What is it NOT responsible for?
+- What does it hand off and to what?
+- What breaks if this tool is removed or fails?
+
+End with: the critical boundary that my design must respect.
+```
+
+## Follow-up: Cross-Tool Workflow Design
+
+```text
+Use Atlas One Architect Mode.
+
+Design a cross-tool workflow using the mq ecosystem.
+
+Goal: [describe the goal]
+
+For each stage, specify:
+- Which tool owns this stage
+- What input it receives
+- What output it produces
+- What Atlas One prompt structure, if any, helps at this stage
+
+Constraints:
+- Atlas One provides reasoning structure, not execution
+- mq-mcp handles review logic — do not re-implement it
+- mq-agent orchestrates — do not bypass its safety layer
+```
+
+## Follow-up: Responsibility Decision
+
+```text
+Use Atlas One Decide Mode.
+
+I need to decide which mq tool should own this responsibility:
+
+[describe the responsibility or feature]
+
+Compare the candidate tools on:
+- Fit with existing tool purpose
+- Impact on other tools if added here
+- Maintenance cost
+- Risk of boundary confusion
+
+Recommend one owner and explain the boundary clearly.
+```
