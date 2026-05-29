@@ -53,8 +53,8 @@ What should I do next?
 Current project phase:
 
 ```text
-v0.4.0 — interactive web interface polish (done)
-Next:    v0.5.0 — prompt quality checks and examples
+v0.5.0 — prompt quality checks and examples (done)
+Next:    v0.6.0 — mq ecosystem integration
 ```
 
 Completed foundation:
@@ -87,7 +87,7 @@ version, test and expand.
 | v0.2.0  | Prompt library and mode routing foundation | Done          |
 | v0.3.0  | Export formats and reusable prompt packs   | Done          |
 | v0.4.0  | Interactive web interface polish           | Done          |
-| v0.5.0  | Prompt quality checks and examples         | Planned       |
+| v0.5.0  | Prompt quality checks and examples         | Done          |
 | v0.6.0  | mq ecosystem integration                   | Planned       |
 | v0.7.0  | Personal workflow packs                    | Planned       |
 | v1.0.0  | Stable prompt operating system             | Future        |
@@ -324,17 +324,17 @@ Make the prompt library easier to maintain as it grows.
 
 ### v0.5.0 planned scope
 
-- [ ] Add prompt linting script
-- [ ] Add markdown link check
-- [ ] Add prompt metadata check
-- [ ] Add mode coverage check
-- [ ] Add examples coverage check
-- [ ] Add duplicate heading check
-- [ ] Add release checklist
-- [ ] Add GitHub Actions validation
-- [ ] Add generated prompt index
-- [ ] Add proof section to README
-- [ ] Add docs consistency check
+- [x] Add prompt linting script
+- [x] Add markdown link check
+- [x] Add prompt metadata check
+- [x] Add mode coverage check
+- [x] Add examples coverage check
+- [x] Add duplicate heading check
+- [x] Add release checklist
+- [x] Add GitHub Actions validation
+- [x] Add generated prompt index
+- [x] Add proof section to README
+- [x] Add docs consistency check
 
 ### Possible scripts
 

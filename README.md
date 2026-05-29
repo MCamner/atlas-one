@@ -2,7 +2,7 @@
 
 **Adaptive prompt system for structured thinking and decision-making.**
 
-Status: `v0.2.0 — prompt library and mode routing foundation`
+Status: `v0.5.0 — prompt quality checks and CI`
 
 👉 **Live demo:** <https://mcamner.github.io/atlas-one/>
 

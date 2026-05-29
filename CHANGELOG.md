@@ -2,6 +2,63 @@
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-05-29
+
+### Added
+
+- Added `scripts/check-prompts.sh` — validates Version: Tags: metadata and Output Shape on all prompt files.
+- Added `scripts/check-docs.sh` — checks VERSION/CHANGELOG/README/ROADMAP/docs consistency.
+- Added `scripts/generate-prompt-index.sh` — parses all prompt files and writes `docs/PROMPT_INDEX.md`.
+- Added `scripts/release-check.sh` — orchestrates all checks plus gitleaks secrets scan and manual release checklist.
+- Added `.github/workflows/check-prompts.yml` — GitHub Actions CI for prompt and docs validation.
+- Added `docs/PROMPT_INDEX.md` — auto-generated index of all modes, packs, and exports.
+
+### Changed
+
+- Bumped `VERSION` to `0.5.0`.
+
+---
+
+## [0.4.0] - 2026-05-29
+
+### Added
+
+- Added search input in sidebar (`#modeSearch`) — filters modes live by title, use case and tags.
+- Added Modes section in sidebar — all 13 canonical modes rendered from `prompts.json`, clickable.
+- Added Packs section in sidebar — 4 prompt packs with export links.
+- Added Exports section in sidebar — direct links to `.txt`, `.md`, `.json` export files.
+- Added keyboard shortcuts: `Ctrl+Enter` generate, `/` focus command, `s` focus search, `Esc` clear search.
+- Added Quick Start collapsible panel in input section.
+- Added `loadAndRenderSidebar()`, `renderModes()`, `filterModes()`, `renderPacks()`, `selectMode()`, `bindKeyboardShortcuts()` to `docs/atlas-final-prompt-v3-generic.js`.
+
+### Changed
+
+- Updated version badge in `docs/index.html` to `v0.3.0`.
+- Synced `docs/prompts.json` from `web/prompts.json` (v0.3.0).
+
+---
+
+## [0.3.0] - 2026-05-29
+
+### Added
+
+- Added `exports/` directory with full export structure.
+- Added `exports/atlas-one-manifest.json` — JSON manifest with metadata, tags and version for all 13 modes and 4 packs.
+- Added `exports/atlas-one-core.txt` — plain-text export of core prompt.
+- Added `exports/atlas-one-core.md` — markdown copy of core prompt.
+- Added `exports/atlas-one-chatgpt-instructions.txt` — ChatGPT Custom Instructions format.
+- Added `exports/atlas-one-claude-instructions.md` — Claude Project Instructions format.
+- Added `exports/prompt-packs/` — 4 bundled packs with starter and follow-up prompts.
+- Added `version` and `tags` metadata to all 13 `prompts/modes/*.md` files.
+- Added `version` and `tags` metadata to all 4 `prompts/packs/*.md` files.
+
+### Changed
+
+- Updated `web/prompts.json` and `docs/prompts.json` to v0.3.0 with `version`, `tags`, and `exportPath` fields.
+- Updated `ROADMAP.md` current status to v0.3.0.
+
+---
+
 ## [0.2.0] - 2026-05-24
 
 ### Added

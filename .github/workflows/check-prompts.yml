@@ -1,0 +1,75 @@
+name: Check Prompts
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "prompts/**"
+      - "exports/**"
+      - "web/prompts.json"
+      - "docs/prompts.json"
+      - "scripts/**"
+      - "VERSION"
+      - "CHANGELOG.md"
+  pull_request:
+    branches: [main]
+    paths:
+      - "prompts/**"
+      - "exports/**"
+      - "web/prompts.json"
+      - "docs/prompts.json"
+      - "scripts/**"
+      - "VERSION"
+      - "CHANGELOG.md"
+
+jobs:
+  check-prompts:
+    name: Prompt metadata check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Make scripts executable
+        run: chmod +x scripts/*.sh
+
+      - name: Run prompt check
+        run: bash scripts/check-prompts.sh
+
+  check-docs:
+    name: Docs consistency check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Make scripts executable
+        run: chmod +x scripts/*.sh
+
+      - name: Run docs check
+        run: bash scripts/check-docs.sh
+
+  generate-index:
+    name: Verify prompt index
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Make scripts executable
+        run: chmod +x scripts/*.sh
+
+      - name: Generate prompt index
+        run: bash scripts/generate-prompt-index.sh
+
+      - name: Check index was generated
+        run: |
+          if [[ ! -f docs/PROMPT_INDEX.md ]]; then
+            echo "ERROR: docs/PROMPT_INDEX.md was not generated"
+            exit 1
+          fi
+          echo "docs/PROMPT_INDEX.md generated successfully"
+          head -5 docs/PROMPT_INDEX.md
