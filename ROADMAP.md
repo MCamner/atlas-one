@@ -562,8 +562,7 @@ Every public prompt should have:
 Work on:
 
 ```text
-v0.3.0 — export formats and reusable prompt packs (done)
+v0.7.0 — personal workflow packs
 ```
 
-This release should make Atlas One prompts easier to copy, save, reuse and
-adapt across tools.
+This release should create curated prompt packs for recurring workflows.
