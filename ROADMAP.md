@@ -70,12 +70,6 @@ Future mq ecosystem work should build on this foundation with reusable prompt
 packs. Atlas One should package prompts and interaction patterns; mq-mcp remains
 the review/risk/architecture runtime.
 
-Reason:
-
-Atlas One needs a clearer information architecture before more features are
-added. The next release should make the prompt system easier to navigate,
-version, test and expand.
-
 ---
 
 ## Release map
