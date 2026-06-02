@@ -422,35 +422,34 @@ mqlaunch prompt systems-thinking
 
 Goal:
 
-Create curated prompt packs for recurring workflows.
+Create curated prompt packs for recurring personal and professional workflows
+not already covered by existing packs.
 
-### Planned packs
+Already shipped (not in scope for v0.7.0):
+- repo-review, release-readiness, systems-thinking, product-strategy,
+  learning-coach — shipped in v0.3.0–v0.6.0
 
-- [ ] Repo review pack
-- [ ] Release readiness pack
-- [ ] Architecture review pack
-- [ ] Systems thinking pack
-- [ ] Product strategy pack
-- [ ] Learning coach pack
-- [ ] Writing/editor pack
+### New packs planned for v0.7.0
+
+Professional workflows:
+- [ ] Architecture review pack (deeper than mq-mcp-architecture-memory)
+- [ ] Writing / editor pack
 - [ ] Interview prep pack
+
+Personal workflows (separate subfolder):
 - [ ] BJJ training reflection pack
 - [ ] Guitar practice pack
 
 ### Pack structure
 
 ```text
-prompt-packs/
-├── repo-review/
-├── release-readiness/
-├── systems-thinking/
-├── architecture-review/
-├── product-strategy/
-├── learning-coach/
-├── writing-editor/
-├── interview-prep/
-├── bjj-coach/
-└── guitar-practice/
+prompts/packs/
+├── architecture-review.md    (professional)
+├── writing-editor.md         (professional)
+├── interview-prep.md         (professional)
+└── personal/
+    ├── bjj-coach.md
+    └── guitar-practice.md
 ```
 
 ### v0.7.0 definition of done

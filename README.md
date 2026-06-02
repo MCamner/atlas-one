@@ -2,7 +2,7 @@
 
 **Adaptive prompt system for structured thinking and decision-making.**
 
-Status: `v0.5.0 — prompt quality checks and CI`
+Status: `v0.6.0 — mq ecosystem integration`
 
 👉 **Live demo:** <https://mcamner.github.io/atlas-one/>
 
@@ -39,32 +39,37 @@ ChatGPT execution
 
 ---
 
-## UI preview
+## UI overview
+
+The interface runs entirely in the browser — no install required.
 
 ```text
-┌───────────────────────────────────────────────────────┐
-│ [A] Atlas Studio                                      │
-│ Adaptive prompt system for structured thinking        │
-│ and decision-making.                                  │
-├───────────────────────────────────────────────────────┤
-│ Prompt type                                           │
-│ Architecture                                          │
-│                                                       │
-│ Quick actions                                         │
-│ [ /atlas ] [ /research ] [ /write ] [ /strategy ]     │
-│                                                       │
-│ Goal                                                  │
-│ Design a secure remote access architecture            │
-│                                                       │
-│ System reasoning                                      │
-│ Requirements → Design Options → Recommendation        │
-│                                                       │
-│ Final Prompt                                          │
-│ ChatGPT-ready structured prompt                       │
-│                                                       │
-│ [ Generate ] [ Copy Prompt ] [ Send to ChatGPT ]      │
-└───────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│ [A] Atlas Studio                              v0.6.0    │
+│ ─────────────────────────────────────────────────────── │
+│  SIDEBAR              │  MAIN PANEL                     │
+│  ─────────────────    │  ─────────────────────────────  │
+│  Type: Architecture   │  Goal input                     │
+│  Search modes…        │  > Design a secure remote       │
+│                       │    access architecture          │
+│  Library              │                                 │
+│  > Atlas One Core     │  Prompt type + reasoning route  │
+│                       │  Requirements → Options → Rec.  │
+│  Modes (13)           │                                 │
+│  > Analyze            │  Final prompt output            │
+│  > Architect          │  ChatGPT-ready structured text  │
+│  > Debug              │                                 │
+│  > …                  │  [ Generate ] [ Copy ] [ → ]    │
+│                       │                                 │
+│  Packs (9)            │                                 │
+│  > mq-mcp Safety      │                                 │
+│  > Release Readiness  │                                 │
+│  > Systems Thinking   │                                 │
+│  > …                  │                                 │
+└─────────────────────────────────────────────────────────┘
 ```
+
+Keyboard shortcuts: `Ctrl+Enter` generate · `/` focus command · `s` focus search · `Esc` clear
 
 ---
 
@@ -78,7 +83,7 @@ Interface preview from the GitHub Pages build:
 
 👉 <https://mcamner.github.io/atlas-one/>
 
-No install. Runs in your browser.
+No install. Runs in your browser — no Java required.
 
 ---
 
@@ -230,42 +235,6 @@ Create
 
 ---
 
-## Getting started
-
-### Requirements
-
-* Java 17+
-
-### Run locally
-
-```bash
-./build_and_run.sh
-```
-
-or:
-
-```bash
-./run_mac.command
-```
-
-Open:
-
-```text
-http://127.0.0.1:8765
-```
-
----
-
-## Packaging (macOS)
-
-```bash
-./package_mac_app.sh
-```
-
-Creates a local macOS app bundle.
-
----
-
 ## How it works
 
 1. User enters intent
@@ -291,6 +260,22 @@ This allows:
 * versioned prompt strategies
 * reusable workflows
 * structured execution patterns
+
+---
+
+## Run locally (Java backend)
+
+Requires Java 17+. Runs the full server version at `http://127.0.0.1:8765`.
+
+```bash
+./build_and_run.sh
+```
+
+Or as a macOS app bundle:
+
+```bash
+./package_mac_app.sh
+```
 
 ---
 
