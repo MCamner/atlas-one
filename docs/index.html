@@ -772,6 +772,84 @@
       text-overflow: ellipsis;
     }
 
+    /* ───────────────────────────────── MODE EXAMPLE TIP */
+    .mode-example-tip {
+      display: none;
+      font-size: 0.71rem;
+      color: var(--side-muted);
+      font-style: italic;
+      margin-top: 4px;
+      line-height: 1.45;
+      border-left: 2px solid rgba(63,181,154,0.35);
+      padding-left: 7px;
+      pointer-events: none;
+    }
+    .library-item:hover .mode-example-tip,
+    .library-item:focus .mode-example-tip { display: block; }
+
+    /* ───────────────────────────────── ROUTING STRIP */
+    .routing-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0;
+      padding: 7px 12px;
+      background: var(--ok-bg);
+      border-radius: 8px;
+      margin: 10px 0 0;
+      font-size: 0.73rem;
+    }
+    .routing-strip:empty { display: none; }
+    .routing-strip .route-step {
+      background: none;
+      border: none;
+      padding: 2px 4px;
+      color: var(--ok);
+      font-size: 0.73rem;
+      font-weight: 600;
+    }
+    .routing-strip .route-arrow {
+      color: var(--ok);
+      opacity: 0.45;
+      font-size: 0.68rem;
+      padding: 0 4px;
+    }
+
+    /* ───────────────────────────────── EXPORTS STRIP */
+    .exports-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 0 2px;
+      margin-top: 6px;
+      border-top: 1px solid var(--line);
+    }
+    .exports-strip:empty { display: none; }
+    .exports-strip-label {
+      font-family: ui-monospace, monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-right: 2px;
+    }
+    .export-link {
+      font-size: 0.72rem;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 3px 9px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--panel);
+      transition: background 120ms, border-color 120ms;
+      font-family: ui-monospace, monospace;
+    }
+    .export-link:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+    }
+
     /* ───────────────────────────────── RESPONSIVE */
     @media (max-width: 960px) {
       .main-area { grid-template-columns: 1fr; }
@@ -973,6 +1051,9 @@
           <button id="exportJsonBtnBottom" type="button">Export JSON</button>
         </div>
 
+        <div class="routing-strip" id="routingStrip" aria-label="Active reasoning route"></div>
+        <div class="exports-strip" id="exportsStrip" aria-label="Export active mode"></div>
+
         <details open>
           <summary>System reasoning</summary>
           <div class="details-content">
@@ -1033,6 +1114,6 @@ Prefer the simplest strong route. Escalate only when the task truly needs multip
   </div>
 
   <div id="toast" class="toast"></div>
-  <script src="./atlas-final-prompt-v3-generic.js?v=4"></script>
+  <script src="./atlas-final-prompt-v3-generic.js?v=5"></script>
 </body>
 </html>

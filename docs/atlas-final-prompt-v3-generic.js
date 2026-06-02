@@ -385,6 +385,33 @@ Working style
   }
 };
 
+const MODE_EXAMPLES = {
+  analyze:   'Why are Citrix sessions failing on IGEL OS12 after the latest update?',
+  architect: 'Design a secure remote access architecture for 500 hybrid workers.',
+  research:  'Compare IGEL OS12 vs Windows IoT for Citrix VDI deployments.',
+  decide:    'Choose between Intune and SCCM for endpoint management at 2000 seats.',
+  explain:   'Explain Zero Trust network access to a non-technical manager.',
+  teach:     'Teach certificate lifecycle management step by step.',
+  edit:      'Improve clarity of this architecture decision document.',
+  coach:     'Help me build better habits around security review processes.',
+  plan:      'Create a migration plan from Citrix XenApp 7.6 to CVAD 2024.',
+  debug:     'Debug why mq-agent fails to start after a config change.',
+  review:    'Review this Terraform config for security and compliance issues.',
+  summarize: 'Summarize this 30-page compliance audit report into key actions.',
+  create:    'Create a deployment runbook for IGEL OS12 Citrix profile setup.'
+};
+
+const MODE_FILE_MAP = {
+  analysis:          'analyze',
+  architecture:      'architect',
+  research:          'research',
+  decision:          'decide',
+  'problem solving': 'debug',
+  execution:         'plan',
+  writing:           'edit',
+  strategy:          null
+};
+
 function getSelectedConfig() {
   const promptType = document.getElementById('promptType')?.value || 'analysis';
   return {
@@ -565,6 +592,8 @@ function refreshPromptTypeDrivenUI() {
   updateQuickActionActiveState();
   updateModeBadge();
   renderRoutingFlow();
+  renderRoutingStrip();
+  renderExportsStrip();
 }
 
 function applyQuickAction(action) {
@@ -850,6 +879,36 @@ function renderRoutingFlow() {
   ).join('');
 }
 
+function renderRoutingStrip() {
+  const strip = document.getElementById('routingStrip');
+  if (!strip) return;
+  const { config } = getSelectedConfig();
+  const steps = (config.pipeline || []).map(s => s.replace(/^\d+\.\s*/, ''));
+  strip.innerHTML = steps.map((step, i) =>
+    (i > 0 ? '<span class="route-arrow">→</span>' : '') +
+    `<span class="route-step">${step}</span>`
+  ).join('');
+}
+
+function renderExportsStrip() {
+  const strip = document.getElementById('exportsStrip');
+  if (!strip) return;
+  const { promptType } = getSelectedConfig();
+  const modeFile = MODE_FILE_MAP[promptType];
+
+  const links = [];
+  if (modeFile) {
+    links.push(`<a class="export-link" href="../prompts/modes/${modeFile}.md" target="_blank" rel="noopener">${modeFile}.md</a>`);
+  } else if (promptType === 'strategy') {
+    links.push(`<a class="export-link" href="../exports/product-strategy.md" target="_blank" rel="noopener">strategy.md</a>`);
+  }
+  links.push(`<a class="export-link" href="../exports/atlas-one-core.txt" target="_blank" rel="noopener">core.txt</a>`);
+  links.push(`<a class="export-link" href="../exports/atlas-one-claude-instructions.md" target="_blank" rel="noopener">claude.md</a>`);
+  links.push(`<a class="export-link" href="../exports/atlas-one-chatgpt-instructions.txt" target="_blank" rel="noopener">chatgpt.txt</a>`);
+
+  strip.innerHTML = `<span class="exports-strip-label">Export</span>${links.join('')}`;
+}
+
 const _promptHistory = [];
 
 function saveToHistory() {
@@ -960,13 +1019,17 @@ function renderModes(modes) {
     return;
   }
 
-  list.innerHTML = modes.map(m => `
-    <div class="library-item" data-mode-id="${m.id}" role="button" tabindex="0"
-         aria-label="Select ${m.title} mode">
-      <strong>${m.title}</strong>
-      <span>${m.useCase}</span>
-    </div>
-  `).join('');
+  list.innerHTML = modes.map(m => {
+    const example = MODE_EXAMPLES[m.id] ? `<em class="mode-example-tip">${MODE_EXAMPLES[m.id]}</em>` : '';
+    return `
+      <div class="library-item" data-mode-id="${m.id}" role="button" tabindex="0"
+           aria-label="Select ${m.title} mode">
+        <strong>${m.title}</strong>
+        <span>${m.useCase}</span>
+        ${example}
+      </div>
+    `;
+  }).join('');
 
   list.querySelectorAll('.library-item[data-mode-id]').forEach(item => {
     item.addEventListener('click', () => selectMode(item.dataset.modeId, item.querySelector('strong').textContent));
