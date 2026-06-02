@@ -14,14 +14,12 @@ VERSION_FILE="$REPO_ROOT/VERSION"
 VERSION=$(cat "$VERSION_FILE" 2>/dev/null | tr -d '[:space:]' || echo "unknown")
 GENERATED_AT=$(date -u +"%Y-%m-%d")
 
-# Handles extract field.
 extract_field() {
   local file="$1"
   local field="$2"
   grep "^${field}:" "$file" 2>/dev/null | head -1 | sed "s/^${field}:[[:space:]]*//" | xargs
 }
 
-# Handles extract first use case.
 extract_first_use_case() {
   local file="$1"
   grep "^Use when" "$file" 2>/dev/null | head -1 | sed 's/^Use when //' | sed 's/\.$//'

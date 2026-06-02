@@ -13,14 +13,10 @@ PASS=0
 FAIL=0
 WARN=0
 
-# Handles ok.
 ok()   { echo "  ✓ $1"; ((PASS++)) || true; }
-# Marks a failing check.
 fail() { echo "  ✗ $1"; ((FAIL++)) || true; }
-# Handles warn.
 warn() { echo "  ~ $1"; ((WARN++)) || true; }
 
-# Handles check file.
 check_file() {
   local file="$1"
   local label
