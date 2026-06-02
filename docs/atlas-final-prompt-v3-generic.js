@@ -746,6 +746,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('sidebarToggle')?.addEventListener('click', toggleSidebar);
 
+  document.getElementById('atlasHeroClose')?.addEventListener('click', () => {
+    const hero = document.getElementById('atlasHero');
+    if (hero) hero.style.display = 'none';
+  });
+
   commandPalette?.addEventListener('input', () => {
     updateParsedCommand();
     buildFinalPrompt();

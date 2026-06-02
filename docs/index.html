@@ -608,14 +608,31 @@
       background: var(--term-bg);
       border: 1px solid rgba(63,181,154,0.14);
       border-radius: 12px;
-      padding: 12px 18px 10px;
+      padding: 10px 18px 8px;
       text-align: center;
       overflow-x: auto;
+      position: relative;
     }
+
+    .atlas-hero-close {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      font-size: 0.7rem;
+      background: none;
+      border: none;
+      color: var(--side-muted);
+      cursor: pointer;
+      opacity: 0.5;
+      font: inherit;
+      line-height: 1;
+      padding: 2px 5px;
+    }
+    .atlas-hero-close:hover { opacity: 1; color: var(--side-text); }
 
     .atlas-logo {
       font-family: ui-monospace, "Cascadia Code", "Fira Code", "Consolas", monospace;
-      font-size: 0.42rem;
+      font-size: 8px;
       line-height: 1.18;
       color: var(--side-accent);
       white-space: pre;
@@ -878,7 +895,8 @@
 
     <div class="main-area">
 
-      <div class="atlas-hero">
+      <div class="atlas-hero" id="atlasHero">
+        <button class="atlas-hero-close" id="atlasHeroClose" title="Dismiss" aria-label="Dismiss logo">✕</button>
         <pre class="atlas-logo" aria-label="Atlas One"> █████╗ ████████╗██╗      █████╗ ███████╗      ██████╗ ███╗   ██╗███████╗
 ██╔══██╗╚══██╔══╝██║     ██╔══██╗██╔════╝     ██╔═══██╗████╗  ██║██╔════╝
 ███████║   ██║   ██║     ███████║███████╗     ██║   ██║██╔██╗ ██║█████╗
