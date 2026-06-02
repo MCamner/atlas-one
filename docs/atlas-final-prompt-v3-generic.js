@@ -550,7 +550,10 @@ Your output must:
 Deliver a complete, high-quality answer adapted to the selected prompt type.
 `;
 
-  if (output) output.value = prompt;
+  if (output) {
+    output.value = prompt;
+    updateEmptyState();
+  }
 }
 
 function refreshPromptTypeDrivenUI() {
@@ -638,23 +641,35 @@ function fallbackCopyTextFrom(el) {
   return document.execCommand('copy');
 }
 
-async function copyTextFrom(id, message = 'Prompt copied.') {
+async function copyTextFrom(id, message = 'Prompt copied.', btn = null) {
   const el = document.getElementById(id);
   if (!el) return false;
 
+  let copied = false;
   try {
     if (navigator.clipboard?.writeText) {
       await navigator.clipboard.writeText(el.value);
+      copied = true;
     } else {
-      fallbackCopyTextFrom(el);
+      copied = fallbackCopyTextFrom(el);
     }
-    showToast(message);
-    return true;
-  } catch (err) {
-    const copied = fallbackCopyTextFrom(el);
-    showToast(copied ? message : 'Could not copy automatically.');
-    return copied;
+  } catch {
+    copied = fallbackCopyTextFrom(el);
   }
+
+  showToast(copied ? message : 'Could not copy automatically.');
+
+  if (btn && copied) {
+    const orig = btn.textContent;
+    btn.textContent = '✓';
+    btn.classList.add('btn-copied');
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.classList.remove('btn-copied');
+    }, 1400);
+  }
+
+  return copied;
 }
 
 function openChatGPT() {
@@ -720,6 +735,7 @@ document.addEventListener('DOMContentLoaded', () => {
   bindQuickActions();
   loadAndRenderSidebar();
   bindKeyboardShortcuts();
+  animateLumon();
 
   commandPalette?.addEventListener('input', () => {
     updateParsedCommand();
@@ -729,9 +745,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   promptType?.addEventListener('change', refreshPromptTypeDrivenUI);
   goalQuestion?.addEventListener('input', buildFinalPrompt);
-  generateBtn?.addEventListener('click', buildFinalPrompt);
+  generateBtn?.addEventListener('click', generateWithAnimation);
 
-  bindButtons(['copyForChatgptBtn', 'copyPromptTopBtn'], () => copyTextFrom('chatgptHandoff'));
+  ['copyForChatgptBtn', 'copyPromptTopBtn'].forEach(id => {
+    document.getElementById(id)?.addEventListener('click', e => copyTextFrom('chatgptHandoff', 'Prompt copied.', e.currentTarget));
+  });
   bindButtons(['openChatgptBtn', 'openChatgptBtnBottom'], openChatGPT);
   bindButtons(['sendToChatgptBtn', 'sendToChatgptBtnBottom'], sendToChatGPT);
   bindButtons(['exportJsonBtn', 'exportJsonBtnBottom'], exportJson);
@@ -739,6 +757,65 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // v0.4.0 — sidebar modes/packs, search, keyboard shortcuts
+// v0.7.0 — visual effects: typewriter, idle cursor, mode flash, copy feedback, lumon animation
+
+let _typewriterTimer = null;
+
+function typewriterSet(el, text, speed = 2) {
+  clearTimeout(_typewriterTimer);
+  let i = 0;
+  el.value = '';
+  updateEmptyState();
+
+  function tick() {
+    if (i < text.length) {
+      el.value += text[i++];
+      el.scrollTop = el.scrollHeight;
+      _typewriterTimer = setTimeout(tick, speed);
+    } else {
+      updateEmptyState();
+    }
+  }
+
+  tick();
+}
+
+function updateEmptyState() {
+  const output = document.getElementById('chatgptHandoff');
+  const wrap = document.querySelector('.final-prompt-wrap');
+  if (!output || !wrap) return;
+  wrap.classList.toggle('is-empty', output.value.length === 0);
+}
+
+function generateWithAnimation() {
+  buildFinalPrompt();
+  const output = document.getElementById('chatgptHandoff');
+  if (!output || !output.value) return;
+  const text = output.value;
+  typewriterSet(output, text);
+}
+
+function animateLumon() {
+  const spans = Array.from(document.querySelectorAll('.lumon-ascii span:not(.lumon-bar)'));
+  if (!spans.length) return;
+
+  setInterval(() => {
+    const span = spans[Math.floor(Math.random() * spans.length)];
+    const text = span.textContent;
+    const positions = [];
+    for (let i = 0; i < text.length; i++) {
+      if (/\d/.test(text[i])) positions.push(i);
+    }
+    if (!positions.length) return;
+    const pos = positions[Math.floor(Math.random() * positions.length)];
+    let newDigit;
+    do { newDigit = String(Math.floor(Math.random() * 10)); } while (newDigit === text[pos]);
+    span.textContent = text.slice(0, pos) + newDigit + text.slice(pos + 1);
+    const prevColor = span.style.color;
+    span.style.color = '#2d5a70';
+    setTimeout(() => { span.style.color = prevColor; }, 350);
+  }, 1600);
+}
 
 async function loadAndRenderSidebar() {
   let data;
@@ -834,6 +911,15 @@ function selectMode(modeId, modeTitle) {
   buildFinalPrompt();
   updateQuickActionActiveState();
   showToast(`Mode: ${modeTitle}`);
+
+  const item = document.querySelector(`[data-mode-id="${modeId}"]`);
+  if (item) {
+    item.classList.remove('is-flashing');
+    void item.offsetWidth;
+    item.classList.add('is-flashing');
+    item.addEventListener('animationend', () => item.classList.remove('is-flashing'), { once: true });
+  }
+
   goalQuestion?.focus();
 }
 
@@ -845,7 +931,7 @@ function bindKeyboardShortcuts() {
     // Ctrl/Cmd+Enter: generate prompt from anywhere
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
       e.preventDefault();
-      buildFinalPrompt();
+      generateWithAnimation();
       showToast('Prompt generated.');
       return;
     }

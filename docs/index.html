@@ -550,6 +550,58 @@
 
     .toast.is-visible { opacity: 1; transform: translateY(0); }
 
+    /* ───────────────────────────────── VISUAL EFFECTS */
+
+    /* idle cursor blink in empty output panel */
+    @keyframes cursor-blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .final-prompt-wrap { position: relative; }
+
+    .idle-cursor {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      color: var(--side-accent);
+      font-family: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+      font-size: 0.82rem;
+      line-height: 1.65;
+      pointer-events: none;
+      display: none;
+      user-select: none;
+    }
+
+    .final-prompt-wrap.is-empty .idle-cursor {
+      display: block;
+      animation: cursor-blink 1.1s step-end infinite;
+    }
+
+    /* mode flash on sidebar selection */
+    @keyframes mode-flash {
+      from { background: rgba(63,181,154,0.28); border-left-color: var(--side-accent); }
+      to   { background: var(--side-active-bg); }
+    }
+
+    .library-item.is-flashing {
+      animation: mode-flash 550ms ease-out forwards;
+      border-left-color: var(--side-accent);
+    }
+
+    /* copy button copied state */
+    button.btn-copied {
+      background: var(--ok-bg) !important;
+      color: var(--ok) !important;
+      border-color: rgba(35,100,67,0.3) !important;
+    }
+
+    .header-actions button.btn-copied {
+      background: rgba(63,181,154,0.2) !important;
+      color: var(--side-accent) !important;
+      border-color: rgba(63,181,154,0.45) !important;
+    }
+
     /* ───────────────────────────────── RESPONSIVE */
     @media (max-width: 960px) {
       .main-area { grid-template-columns: 1fr; }
@@ -720,39 +772,8 @@
         </div>
 
         <div class="final-prompt-wrap">
-          <textarea id="chatgptHandoff" class="final-prompt">Command
-/atlas
-
-Topic
-Define optimal IGEL OS12 Citrix profile configuration in UMS for secure, automated smartcard-based sessions
-
-Personas
-@architect @strategist
-
-Problem type
-technical architecture
-
-Selection mode
-Pre-built workflow
-
-Selected pipeline
-1. Requirements Discovery
-2. High-Level Architecture Design
-3. Architecture Review
-
-Reason for selection
-Requires structured design and explicit risk evaluation typical for infrastructure architecture decisions.
-
----
-
-Use the selected route exactly as shown.
-
-Keep the sequence explicit and show why each stage is needed.
-
-Include:
-- explicit assumptions
-- risk evaluation
-- final recommendation</textarea>
+          <span class="idle-cursor" aria-hidden="true">▋</span>
+          <textarea id="chatgptHandoff" class="final-prompt"></textarea>
         </div>
 
         <div class="output-actions">
