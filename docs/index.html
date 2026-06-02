@@ -7,15 +7,15 @@
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <style>
     :root {
-      --bg: #edeae2;
-      --panel: #fffdf8;
+      --bg: #eef1f5;
+      --panel: #f8fafd;
       --ink: #1f2a2e;
-      --muted: #68777d;
-      --line: #d8d0c4;
-      --accent: #174c5a;
-      --accent-soft: rgba(23, 76, 90, 0.08);
-      --ok: #236443;
-      --ok-bg: #e7f4ec;
+      --muted: #6b7fa8;
+      --line: #d4dbe8;
+      --accent: #1b5c7a;
+      --accent-soft: rgba(27, 92, 122, 0.08);
+      --ok: #2a7a66;
+      --ok-bg: #e3f4f0;
       /* dark theme */
       --hdr: #0c1620;
       --side: #111b27;
@@ -26,7 +26,7 @@
       --side-active-bg: rgba(240,236,227,0.06);
       --side-accent: #3fb59a;
       --term-bg: #0c1620;
-      --term-text: #aecfda;
+      --term-text: #b2e0d6;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -602,6 +602,44 @@
       border-color: rgba(63,181,154,0.45) !important;
     }
 
+    /* ───────────────────────────────── ATLAS LOGO HERO */
+    .atlas-hero {
+      grid-column: 1 / -1;
+      background: var(--term-bg);
+      border: 1px solid rgba(63,181,154,0.14);
+      border-radius: 16px;
+      padding: 28px 24px 20px;
+      text-align: center;
+      overflow-x: auto;
+    }
+
+    .atlas-logo {
+      font-family: ui-monospace, "Cascadia Code", "Fira Code", "Consolas", monospace;
+      font-size: 0.68rem;
+      line-height: 1.22;
+      color: var(--side-accent);
+      white-space: pre;
+      display: inline-block;
+      text-align: left;
+      margin: 0;
+      text-shadow: 0 0 22px rgba(63,181,154,0.4), 0 0 6px rgba(63,181,154,0.2);
+      letter-spacing: 0;
+    }
+
+    .atlas-hero-sub {
+      font-family: ui-monospace, monospace;
+      font-size: 0.62rem;
+      color: var(--side-muted);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-top: 14px;
+    }
+
+    .atlas-hero-sub span {
+      color: var(--side-accent);
+      opacity: 0.6;
+    }
+
     /* ───────────────────────────────── SIDEBAR COLLAPSE */
     .sidebar { transition: width 220ms ease, padding 220ms ease, border-color 220ms ease; }
     .sidebar.is-collapsed {
@@ -721,6 +759,12 @@
       .main-area { grid-template-columns: 1fr; }
       .final-prompt { min-height: 260px; }
       .lumon-ascii { display: none; }
+      .atlas-logo { font-size: 0.48rem; }
+    }
+
+    @media (max-width: 700px) {
+      .atlas-logo { font-size: 0.36rem; line-height: 1.18; }
+      .atlas-hero { padding: 16px 12px 14px; }
     }
 
     @media (max-width: 700px) {
@@ -833,6 +877,17 @@
     </aside>
 
     <div class="main-area">
+
+      <div class="atlas-hero">
+        <pre class="atlas-logo" aria-label="Atlas One">
+ █████╗ ████████╗██╗      █████╗ ███████╗      ██████╗ ███╗   ██╗███████╗
+██╔══██╗╚══██╔══╝██║     ██╔══██╗██╔════╝     ██╔═══██╗████╗  ██║██╔════╝
+███████║   ██║   ██║     ███████║███████╗     ██║   ██║██╔██╗ ██║█████╗
+██╔══██║   ██║   ██║     ██╔══██║╚════██║     ██║   ██║██║╚██╗██║██╔══╝
+██║  ██║   ██║   ███████╗██║  ██║███████║     ╚██████╔╝██║ ╚████║███████╗
+╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚══════╝      ╚═════╝ ╚═╝  ╚═══╝╚══════╝</pre>
+        <div class="atlas-hero-sub">── <span>Prompt Operating System</span> · v0.6.0 ──</div>
+      </div>
 
       <section class="panel">
         <div class="panel-eyebrow">Input</div>
