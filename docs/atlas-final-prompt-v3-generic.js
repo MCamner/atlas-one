@@ -563,6 +563,8 @@ function refreshPromptTypeDrivenUI() {
   updateDiagramWorkspace();
   buildFinalPrompt();
   updateQuickActionActiveState();
+  updateModeBadge();
+  renderRoutingFlow();
 }
 
 function applyQuickAction(action) {
@@ -732,10 +734,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateParsedCommand();
   refreshPromptTypeDrivenUI();
+  updateCharCounter();
   bindQuickActions();
   loadAndRenderSidebar();
   bindKeyboardShortcuts();
   animateLumon();
+
+  try {
+    if (localStorage.getItem('atlas-sidebar-collapsed') === '1') toggleSidebar();
+  } catch {}
+
+  document.getElementById('sidebarToggle')?.addEventListener('click', toggleSidebar);
 
   commandPalette?.addEventListener('input', () => {
     updateParsedCommand();
@@ -744,7 +753,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   promptType?.addEventListener('change', refreshPromptTypeDrivenUI);
-  goalQuestion?.addEventListener('input', buildFinalPrompt);
+  goalQuestion?.addEventListener('input', () => { buildFinalPrompt(); updateCharCounter(); });
   generateBtn?.addEventListener('click', generateWithAnimation);
 
   ['copyForChatgptBtn', 'copyPromptTopBtn'].forEach(id => {
@@ -792,7 +801,98 @@ function generateWithAnimation() {
   const output = document.getElementById('chatgptHandoff');
   if (!output || !output.value) return;
   const text = output.value;
+  saveToHistory();
   typewriterSet(output, text);
+}
+
+function toggleSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  const btn = document.getElementById('sidebarToggle');
+  if (!sidebar || !btn) return;
+  const collapsed = sidebar.classList.toggle('is-collapsed');
+  btn.textContent = collapsed ? '⟩' : '⟨';
+  try { localStorage.setItem('atlas-sidebar-collapsed', collapsed ? '1' : '0'); } catch {}
+}
+
+function updateCharCounter() {
+  const goal = document.getElementById('goalQuestion');
+  const counter = document.getElementById('charCounter');
+  if (!goal || !counter) return;
+  const n = goal.value.length;
+  counter.textContent = `${n} char${n !== 1 ? 's' : ''}`;
+}
+
+function updateModeBadge() {
+  const badge = document.getElementById('modeBadge');
+  if (!badge) return;
+  const { promptType } = getSelectedConfig();
+  const labels = {
+    analysis: 'Analyze', architecture: 'Architect', strategy: 'Strategy',
+    research: 'Research', decision: 'Decide', 'problem solving': 'Solve',
+    execution: 'Execute', writing: 'Write'
+  };
+  badge.textContent = labels[promptType] || promptType;
+}
+
+function renderRoutingFlow() {
+  const flow = document.getElementById('routingFlow');
+  if (!flow) return;
+  const { config } = getSelectedConfig();
+  const steps = config.pipeline || [];
+  flow.innerHTML = steps.map((step, i) =>
+    (i > 0 ? '<span class="route-arrow">→</span>' : '') +
+    `<span class="route-step">${step.replace(/^\d+\.\s*/, '')}</span>`
+  ).join('');
+}
+
+const _promptHistory = [];
+
+function saveToHistory() {
+  const output = document.getElementById('chatgptHandoff');
+  const goal = document.getElementById('goalQuestion');
+  const { promptType } = getSelectedConfig();
+  if (!output?.value) return;
+
+  const entry = {
+    promptType,
+    goal: (goal?.value || '').slice(0, 80),
+    prompt: output.value,
+    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  };
+
+  _promptHistory.unshift(entry);
+  if (_promptHistory.length > 3) _promptHistory.pop();
+  renderHistory();
+}
+
+function renderHistory() {
+  const wrap = document.getElementById('promptHistory');
+  const list = document.getElementById('historyList');
+  if (!wrap || !list) return;
+
+  if (!_promptHistory.length) { wrap.style.display = 'none'; return; }
+
+  wrap.style.display = '';
+  list.innerHTML = _promptHistory.map((entry, i) => `
+    <div class="history-item" data-history-index="${i}" role="button" tabindex="0"
+         aria-label="Restore prompt from ${entry.time}">
+      <div class="history-meta">${entry.time} · ${entry.promptType}</div>
+      <div class="history-preview">${entry.goal || '(no goal)'}</div>
+    </div>
+  `).join('');
+
+  list.querySelectorAll('.history-item').forEach(item => {
+    const restore = () => {
+      const idx = Number(item.dataset.historyIndex);
+      const entry = _promptHistory[idx];
+      if (!entry) return;
+      const output = document.getElementById('chatgptHandoff');
+      if (output) { output.value = entry.prompt; updateEmptyState(); }
+      showToast('Prompt restored from history.');
+    };
+    item.addEventListener('click', restore);
+    item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); restore(); }});
+  });
 }
 
 function animateLumon() {
