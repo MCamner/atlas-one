@@ -2,7 +2,7 @@
 
 **Adaptive prompt system for structured thinking and decision-making.**
 
-Status: `v0.6.0 — mq ecosystem integration`
+Status: `v0.7.0 — personal workflow packs`
 
 👉 **Live demo:** <https://mcamner.github.io/atlas-one/>
 
@@ -45,7 +45,7 @@ The interface runs entirely in the browser — no install required.
 
 ```text
 ┌─────────────────────────────────────────────────────────┐
-│ [A] Atlas Studio                              v0.6.0    │
+│ [A] Atlas Studio                              v0.7.0    │
 │ ─────────────────────────────────────────────────────── │
 │  SIDEBAR              │  MAIN PANEL                     │
 │  ─────────────────    │  ─────────────────────────────  │
