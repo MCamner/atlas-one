@@ -53,8 +53,8 @@ What should I do next?
 Current project phase:
 
 ```text
-v0.6.0 — mq ecosystem integration (done)
-Next:    v0.7.0 — personal workflow packs
+v0.7.0 — personal workflow packs (done)
+Next:    v1.0.0 — stable prompt operating system
 ```
 
 Completed foundation:
@@ -83,7 +83,7 @@ the review/risk/architecture runtime.
 | v0.4.0  | Interactive web interface polish           | Done          |
 | v0.5.0  | Prompt quality checks and examples         | Done          |
 | v0.6.0  | mq ecosystem integration                   | Done          |
-| v0.7.0  | Personal workflow packs                    | Planned       |
+| v0.7.0  | Personal workflow packs                    | Done          |
 | v1.0.0  | Stable prompt operating system             | Future        |
 
 ---
@@ -341,12 +341,12 @@ scripts/release-check.sh
 
 ### v0.5.0 definition of done
 
-- [ ] Every prompt has metadata
-- [ ] Every mode has an example
-- [ ] Prompt index is generated or validated
-- [ ] README is synced with prompt library
-- [ ] GitHub Actions pass
-- [ ] GitHub release exists
+- [x] Every prompt has metadata
+- [x] Every mode has an example
+- [x] Prompt index is generated or validated
+- [x] README is synced with prompt library
+- [x] GitHub Actions pass
+- [x] GitHub release exists
 
 ---
 
@@ -419,20 +419,20 @@ Goal:
 Create curated prompt packs for recurring personal and professional workflows
 not already covered by existing packs.
 
-Already shipped (not in scope for v0.7.0):
-- repo-review, release-readiness, systems-thinking, product-strategy,
-  learning-coach — shipped in v0.3.0–v0.6.0
+Already shipped (not in scope for v0.7.0): repo-review, release-readiness, systems-thinking, product-strategy, learning-coach — shipped in v0.3.0–v0.6.0.
 
 ### New packs planned for v0.7.0
 
 Professional workflows:
-- [ ] Architecture review pack (deeper than mq-mcp-architecture-memory)
-- [ ] Writing / editor pack
-- [ ] Interview prep pack
+
+- [x] Architecture review pack (deeper than mq-mcp-architecture-memory)
+- [x] Writing / editor pack
+- [x] Interview prep pack
 
 Personal workflows (separate subfolder):
-- [ ] BJJ training reflection pack
-- [ ] Guitar practice pack
+
+- [x] BJJ training reflection pack
+- [x] Guitar practice pack
 
 ### Pack structure
 
@@ -448,9 +448,9 @@ prompts/packs/
 
 ### v0.7.0 definition of done
 
-- [ ] Each pack has a clear purpose
-- [ ] Each pack has at least three prompts
-- [ ] Each pack has examples
+- [x] Each pack has a clear purpose
+- [x] Each pack has at least three prompts
+- [x] Each pack has examples
 - [ ] Each pack has export format
 - [ ] Pages site can browse packs
 
@@ -555,7 +555,8 @@ Every public prompt should have:
 Work on:
 
 ```text
-v0.7.0 — personal workflow packs
+v1.0.0 — stable prompt operating system
 ```
 
-This release should create curated prompt packs for recurring workflows.
+This release should stabilize the core prompt, mode taxonomy, and file structure
+as a reliable baseline for personal and professional use.

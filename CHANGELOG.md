@@ -2,6 +2,17 @@
 
 ## [Unreleased]
 
+## [0.7.0] - 2026-06-03
+
+### Added
+
+- Added `prompts/packs/architecture-review.md` — structured architecture review pack with prompts for full review, decision critique, component responsibility, and risk surface analysis.
+- Added `prompts/packs/writing-editor.md` — editing and writing pack with prompts for document editing, structure review, summary generation, and tone/clarity checks.
+- Added `prompts/packs/interview-prep.md` — interview preparation pack covering interview strategy, behavioral question prep, technical concept review, and system design.
+- Added `prompts/packs/personal/bjj-coach.md` — BJJ training reflection pack with prompts for session reflection, game plan development, pre-competition focus, and technique breakdown.
+- Added `prompts/packs/personal/guitar-practice.md` — guitar practice pack with prompts for session planning, stuck point diagnosis, repertoire development, and ear training.
+- Added 8 missing mode examples to `docs/EXAMPLES.md` — Research, Explain, Teach, Edit, Coach, Plan, Summarize, Create now all have worked examples.
+
 ## [0.6.0] - 2026-05-29
 
 ### Added
