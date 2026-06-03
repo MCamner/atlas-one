@@ -53,8 +53,8 @@ What should I do next?
 Current project phase:
 
 ```text
-v0.7.0 — personal workflow packs (done)
-Next:    v1.0.0 — stable prompt operating system
+v1.0.0 — stable prompt operating system (done)
+Next:    long-term ideas / maintenance
 ```
 
 Completed foundation:
@@ -84,7 +84,7 @@ the review/risk/architecture runtime.
 | v0.5.0  | Prompt quality checks and examples         | Done          |
 | v0.6.0  | mq ecosystem integration                   | Done          |
 | v0.7.0  | Personal workflow packs                    | Done          |
-| v1.0.0  | Stable prompt operating system             | Future        |
+| v1.0.0  | Stable prompt operating system             | Done          |
 
 ---
 
@@ -465,20 +465,20 @@ personal work, repo review and local AI-assisted workflows.
 
 ### v1.0.0 requirements
 
-- [ ] Stable core prompt
-- [ ] Stable mode taxonomy
-- [ ] Stable prompt file structure
-- [ ] Stable prompt metadata format
-- [ ] Stable export formats
-- [ ] Complete prompt library docs
-- [ ] Complete examples
-- [ ] Complete GitHub Pages interface
-- [ ] Complete changelog
-- [ ] Complete release checklist
-- [ ] GitHub Actions validation
-- [ ] GitHub release
+- [x] Stable core prompt
+- [x] Stable mode taxonomy
+- [x] Stable prompt file structure
+- [x] Stable prompt metadata format
+- [x] Stable export formats
+- [x] Complete prompt library docs
+- [x] Complete examples
+- [x] Complete GitHub Pages interface
+- [x] Complete changelog
+- [x] Complete release checklist
+- [x] GitHub Actions validation
+- [x] GitHub release
 - [ ] Protected main branch
-- [ ] No known prompt-injection or unsafe-instruction issues in packaged prompts
+- [x] No known prompt-injection or unsafe-instruction issues in packaged prompts
 
 ---
 

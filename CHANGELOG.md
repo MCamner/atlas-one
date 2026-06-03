@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-06-03
+
+### Changed
+
+- Declared v1.0.0 stable: all release requirements verified
+- Core prompt status updated to `v0.7.0 stable`
+- 5 new packs registered in `web/prompts.json` and `docs/prompts.json`
+- `docs/prompts.json` synced with `web/prompts.json` (14 packs total)
+- README version badge updated to v0.7.0
+
 ## [0.7.0] - 2026-06-03
 
 ### Added

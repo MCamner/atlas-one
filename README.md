@@ -2,7 +2,7 @@
 
 **Adaptive prompt system for structured thinking and decision-making.**
 
-Status: `v0.7.0 — personal workflow packs`
+Status: `v1.0.0 — stable prompt operating system`
 
 👉 **Live demo:** <https://mcamner.github.io/atlas-one/>
 
@@ -45,7 +45,7 @@ The interface runs entirely in the browser — no install required.
 
 ```text
 ┌─────────────────────────────────────────────────────────┐
-│ [A] Atlas Studio                              v0.7.0    │
+│ [A] Atlas Studio                              v1.0.0    │
 │ ─────────────────────────────────────────────────────── │
 │  SIDEBAR              │  MAIN PANEL                     │
 │  ─────────────────    │  ─────────────────────────────  │

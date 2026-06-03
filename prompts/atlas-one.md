@@ -1,7 +1,6 @@
 # Atlas One Core Prompt
 
-Status: v0.2.0 foundation
-Next: v0.3.0 export formats and reusable prompt packs
+Status: v0.7.0 stable
 
 Atlas One is a prompt operating system for structured reasoning.
 
