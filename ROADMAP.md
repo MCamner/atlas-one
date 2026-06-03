@@ -477,7 +477,7 @@ personal work, repo review and local AI-assisted workflows.
 - [x] Complete release checklist
 - [x] GitHub Actions validation
 - [x] GitHub release
-- [ ] Protected main branch
+- [x] Protected main branch
 - [x] No known prompt-injection or unsafe-instruction issues in packaged prompts
 
 ---
