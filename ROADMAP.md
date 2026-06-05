@@ -451,8 +451,8 @@ prompts/packs/
 - [x] Each pack has a clear purpose
 - [x] Each pack has at least three prompts
 - [x] Each pack has examples
-- [ ] Each pack has export format
-- [ ] Pages site can browse packs
+- [x] Export format coverage completed under the v1.0.0 stable prompt system
+- [x] Pages browsing completed under the v1.0.0 stable prompt system
 
 ---
 
@@ -555,8 +555,8 @@ Every public prompt should have:
 Work on:
 
 ```text
-v1.0.0 — stable prompt operating system
+maintenance / long-term ideas
 ```
 
-This release should stabilize the core prompt, mode taxonomy, and file structure
-as a reliable baseline for personal and professional use.
+The scheduled roadmap is complete through v1.0.0. New work should start as a
+small named release only when it has a concrete scope.
