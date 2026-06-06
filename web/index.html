@@ -21,6 +21,7 @@
         <button id="openChatBtn">Open ChatGPT</button>
         <button id="sendChatBtn">Send to ChatGPT</button>
         <button id="exportBtn">Export JSON</button>
+        <button id="runMqBtn" class="btn-mq">▶ Run via mq-agent</button>
       </div>
     </header>
 
@@ -85,6 +86,12 @@
           <h2>Diagram Workspace</h2>
           <textarea id="diagramText"></textarea>
           <pre id="diagramPreview" class="diagram-box"></pre>
+        </section>
+
+        <section class="card" id="mqOutputSection" style="display:none">
+          <h2>mq-agent Output</h2>
+          <div id="mqCommand" class="mq-command"></div>
+          <pre id="mqOutput" class="mq-output"></pre>
         </section>
       </main>
     </section>

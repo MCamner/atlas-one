@@ -13,7 +13,8 @@ function mapEls() {
   ["promptType","commandInput","bgPicker","clearBgBtn","projectName","saveProjectBtn","loadProjectBtn",
    "promptSearch","savedPromptsList","goalInput","generateBtn","diagramBtn","editor","handoff",
    "routePreview","workflowPreview","diagramText","diagramPreview","copyOutputBtn","copyChatBtn",
-   "openChatBtn","sendChatBtn","exportBtn","commandChips"].forEach(id => els[id] = document.getElementById(id));
+   "openChatBtn","sendChatBtn","exportBtn","commandChips",
+   "runMqBtn","mqOutputSection","mqCommand","mqOutput"].forEach(id => els[id] = document.getElementById(id));
 }
 
 async function loadPrompts() {
@@ -55,6 +56,7 @@ async function loadPrompts() {
 function bindEvents() {
   els.generateBtn.addEventListener('click', generatePrompt);
   els.diagramBtn.addEventListener('click', generateDiagram);
+  els.runMqBtn.addEventListener('click', runMqAgent);
   els.copyOutputBtn.addEventListener('click', () => navigator.clipboard.writeText(els.editor.value));
   els.copyChatBtn.addEventListener('click', () => navigator.clipboard.writeText(els.handoff.value));
   els.openChatBtn.addEventListener('click', () => window.open('https://chatgpt.com/', '_blank'));
@@ -260,6 +262,51 @@ function loadProject() {
   els.handoff.value = project.handoff;
 
   generatePrompt();
+}
+
+async function runMqAgent() {
+  const goal = els.goalInput.value.trim();
+  if (!goal) return;
+
+  const route = autoRoute(goal);
+  const mode = route.problemType;
+
+  els.runMqBtn.disabled = true;
+  els.runMqBtn.textContent = '⏳ Running…';
+  els.mqOutputSection.style.display = 'block';
+  els.mqCommand.textContent = '';
+  els.mqOutput.textContent = 'Waiting for mq-agent…';
+
+  try {
+    const res = await fetch('/api/execute', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ goal, mode, path: '.' })
+    });
+
+    if (!res.ok) {
+      els.mqOutput.textContent = `HTTP ${res.status}: ${await res.text()}`;
+      return;
+    }
+
+    const data = await res.json();
+    els.mqCommand.textContent = '$ ' + (data.command || '');
+
+    const result = data.result;
+    if (typeof result === 'object' && result !== null) {
+      els.mqOutput.textContent = JSON.stringify(result, null, 2);
+    } else {
+      els.mqOutput.textContent = result || data.error || JSON.stringify(data);
+    }
+
+    els.mqOutput.className = 'mq-output ' + (data.ok ? 'mq-ok' : 'mq-err');
+  } catch (err) {
+    els.mqOutput.textContent = `Could not reach mq-agent.\n\nMake sure AtlasServer is running (not just the static page).\n\n${err.message}`;
+    els.mqOutput.className = 'mq-output mq-err';
+  } finally {
+    els.runMqBtn.disabled = false;
+    els.runMqBtn.textContent = '▶ Run via mq-agent';
+  }
 }
 
 document.addEventListener('DOMContentLoaded', init);
