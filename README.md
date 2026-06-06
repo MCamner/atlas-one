@@ -28,13 +28,13 @@ One input → adaptive prompt type → structured workflow → clean execution
 ```text
 Input
   ↓
-Route selection
+Route selection (auto-classify mode)
   ↓
 Workflow (analysis / architecture / strategy)
   ↓
 Structured prompt pipeline
   ↓
-ChatGPT execution
+ChatGPT execution   OR   mq-agent execution (plan / review / audit / signal)
 ```
 
 ---
@@ -141,6 +141,10 @@ Atlas Studio turns intent into structured AI workflows:
 * **ChatGPT handoff**
   Copies the final prompt and opens ChatGPT for execution
 
+* **mq-agent execution**
+  Runs the routed goal directly via mq-agent (`plan`, `review`, `audit`, `signal`)
+  when the Java backend is running — result appears inline in the UI
+
 ---
 
 ## Example flow
@@ -181,10 +185,11 @@ atlas-one/
 
 ### Backend
 
-* Java HTTP server
+* Java HTTP server on `127.0.0.1:8766`
 * Serves UI + API endpoints:
   * `/api/prompts`
   * `/api/health`
+  * `/api/execute` — routes goal → mq-agent CLI command
 
 ### Frontend
 
@@ -238,12 +243,12 @@ Create
 ## How it works
 
 1. User enters intent
-2. User selects or confirms the prompt type
-3. System updates reasoning, route, and workflow structure
-4. Final prompt is generated
+2. System auto-routes to a reasoning mode (architect, debug, review, plan…)
+3. Reasoning, route, and workflow structure are generated
+4. Final prompt is produced
 5. Output can be:
-   * reviewed locally
    * copied and opened in ChatGPT
+   * executed directly via `▶ Run via mq-agent` (requires Java backend + mq-agent)
 
 ---
 
@@ -265,7 +270,7 @@ This allows:
 
 ## Run locally (Java backend)
 
-Requires Java 17+. Runs the full server version at `http://127.0.0.1:8765`.
+Requires Java 17+. Runs the full server version at `http://127.0.0.1:8766`.
 
 ```bash
 ./build_and_run.sh
