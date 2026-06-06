@@ -7,6 +7,18 @@ description: Use when adding, editing, validating, or exporting Atlas One prompt
 
 Use this skill when Atlas One's prompt library or reasoning modes change.
 
+## When to use
+
+- Adding, editing, or exporting prompt modes, prompt packs, or reasoning templates
+- Updating mq ecosystem boundary prompts or prompt metadata
+- Keeping `docs/PROMPT_LIBRARY.md`, `MODES.md`, or `ROUTING.md` consistent with prompts
+
+## When not to use
+
+- Runtime reasoning or review logic — those belong in mq-mcp
+- Repo indexing, orchestration, or workflow execution — those belong in mq-agent and repo-signal
+- Visual perception prompts — those belong in mq-image-analyze
+
 ## Boundary
 
 Atlas One owns prompts, reasoning templates, personas, interaction styles, prompt packs and command abstractions.
