@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class AtlasServer {
-    private static final int PORT = 8765;
+    private static final int PORT = 8766;
     private static final Path WEB_ROOT = Paths.get("web");
 
     public static void main(String[] args) throws Exception {
