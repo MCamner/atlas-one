@@ -56,6 +56,7 @@ Current project phase:
 v1.0.0 — stable prompt operating system (done)
 v1.1.0 — mq-agent execution bridge polish (done)
 v1.2.0 — Ollama runtime policy for MQ (done)
+v1.3.0 — public surface sync (next)
 ```
 
 Completed foundation:
@@ -88,6 +89,7 @@ interaction patterns; mq-mcp remains the review/risk/architecture runtime.
 | v1.0.0  | Stable prompt operating system             | Done          |
 | v1.1.0  | mq-agent execution bridge                  | Done          |
 | v1.2.0  | Ollama runtime policy for MQ               | Done          |
+| v1.3.0  | Public status and release clarity          | Next          |
 
 ---
 
@@ -618,6 +620,50 @@ Treat these as local defaults, not permanent product choices:
 
 ---
 
+## v1.3.0 — Public status and release clarity
+
+Goal:
+
+Make the public Atlas One surfaces tell the same story after v1.0.0, v1.1.0
+and v1.2.0 shipped. This release should not add major features. It should make
+the repo easier to understand from README, GitHub Pages, roadmap and release
+metadata.
+
+### v1.3.0 planned scope
+
+- [ ] Update README status from `v1.0.0` to the current shipped version
+- [ ] Align README, ROADMAP, VERSION and CHANGELOG around the same public
+      project phase
+- [ ] Update GitHub Pages copy where it still presents Atlas One as only the
+      v1.0.0 prompt operating system
+- [ ] Add a short "current architecture" note that explains:
+  - Atlas One packages prompts and interaction patterns
+  - mq-agent orchestrates execution
+  - mq-mcp owns review, risk, validation and memory contracts
+  - Ollama is an optional local provider, not a decision authority
+- [ ] Keep v1.3.0 docs-only unless a broken link or stale generated prompt
+      index requires regeneration
+- [ ] Run the local release/check scripts before tagging
+
+### v1.3.0 definition of done
+
+- [ ] README, ROADMAP, VERSION and CHANGELOG are consistent
+- [ ] GitHub Pages presents the current Atlas One role clearly
+- [ ] No prompt pack encourages direct unsafe model execution, approval bypass
+      or unvalidated memory writes
+- [ ] Release check passes locally
+- [ ] GitHub release notes can be generated from the updated docs
+
+### Out of scope
+
+- New execution features
+- Direct Ollama calls from Atlas One
+- Duplicating mq-mcp review or risk logic
+- New prompt-pack categories beyond documentation polish
+- Changing mq-agent or mq-mcp behavior from this repo
+
+---
+
 ## Long-term ideas
 
 These are intentionally not scheduled yet.
@@ -689,9 +735,13 @@ Every public prompt should have:
 ## Current recommended next step
 
 ```text
-v1.3.0 — not yet defined
+v1.3.0 — public status and release clarity
 ```
 
 All items through v1.2.0 are complete. The Ollama structured-output provider
 (`mq-mcp/providers/ollama_provider.py`) was implemented and tested as part of
-v1.2.0. No next release is scheduled.
+v1.2.0.
+
+The next concrete update is a small documentation/release-alignment pass:
+README, ROADMAP, VERSION, CHANGELOG and GitHub Pages should all describe the
+same current Atlas One role before any new feature work starts.
