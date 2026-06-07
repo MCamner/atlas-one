@@ -35,6 +35,9 @@ h3{font-size:16px;margin-top:18px}
 .btn-mq{background:rgba(56,189,248,.15);border-color:rgba(56,189,248,.45);color:#7dd3fc;font-weight:600}
 .btn-mq:hover{background:rgba(56,189,248,.25);border-color:#7dd3fc}
 .btn-mq:disabled{opacity:.5;cursor:default}
+.mq-path-row{align-items:center;margin-bottom:12px}
+.mq-path-row label{white-space:nowrap;margin:0;color:var(--muted);font-size:13px}
+.mq-path-row input{flex:1;min-width:120px}
 .mq-command{font-family:monospace;font-size:13px;color:var(--muted);margin-bottom:10px}
 .mq-output{background:rgba(2,6,23,.72);border:1px solid var(--line);border-radius:14px;padding:14px;min-height:100px;white-space:pre-wrap;font-family:monospace;font-size:13px;overflow:auto;max-height:400px}
 .mq-ok{border-color:rgba(74,222,128,.35)}

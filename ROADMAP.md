@@ -482,6 +482,39 @@ personal work, repo review and local AI-assisted workflows.
 
 ---
 
+## v1.1.0 — mq-agent execution bridge
+
+Goal:
+
+Turn atlas-one from a prompt-UI into an execution layer — route the auto-classified
+goal directly to the mq-agent CLI and show the result inline.
+
+### v1.1.0 scope
+
+- [x] Add `POST /api/execute` to AtlasServer (port 8766, mq-mcp owns 8765)
+- [x] Mode → mq-agent command mapping:
+  - `architect` → `mq-agent review repo <path> --architecture`
+  - `review`    → `mq-agent review repo <path>`
+  - `debug`     → `mq-agent audit <path> --dry-run`
+  - `research`  → `mq-agent signal <path>`
+  - default     → `mq-agent plan <goal>`
+- [x] `▶ Run via mq-agent` button in UI
+- [x] Inline output panel (command shown, result rendered, ok/err styled)
+- [x] Binary resolved from `MQ_AGENT_BIN` env or `~/mq-agent/.venv/bin/mq-agent`
+- [x] 60s timeout with reader thread to avoid buffer deadlock
+- [ ] Repo path input — let user point execution at any local repo (not just `.`)
+- [ ] Visible mode fallback label — clarify when decide/explain/teach map to `plan`
+
+### v1.1.0 definition of done
+
+- [x] `GET /api/health` returns ok on port 8766
+- [x] plan + architect modes tested live and return structured results
+- [x] README updated with port, `/api/execute`, and mq-agent flow diagram
+- [x] Integration pattern stored in mq-mcp semantic memory (`atlas-mq-agent-bridge`)
+- [ ] Repo path is user-configurable in the UI
+
+---
+
 ## Long-term ideas
 
 These are intentionally not scheduled yet.
@@ -555,8 +588,8 @@ Every public prompt should have:
 Work on:
 
 ```text
-maintenance / long-term ideas
+v1.1.0 — complete the two remaining checklist items
 ```
 
-The scheduled roadmap is complete through v1.0.0. New work should start as a
-small named release only when it has a concrete scope.
+- Repo path input in the UI
+- Visible fallback label for unmapped modes

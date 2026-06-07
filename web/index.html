@@ -90,6 +90,11 @@
 
         <section class="card" id="mqOutputSection" style="display:none">
           <h2>mq-agent Output</h2>
+          <div class="inline-actions mq-path-row">
+            <label for="mqRepoPath">Repo path</label>
+            <input id="mqRepoPath" placeholder="." value="." />
+            <button id="runMqBtn2" class="btn-mq">▶ Run</button>
+          </div>
           <div id="mqCommand" class="mq-command"></div>
           <pre id="mqOutput" class="mq-output"></pre>
         </section>

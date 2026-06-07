@@ -14,7 +14,7 @@ function mapEls() {
    "promptSearch","savedPromptsList","goalInput","generateBtn","diagramBtn","editor","handoff",
    "routePreview","workflowPreview","diagramText","diagramPreview","copyOutputBtn","copyChatBtn",
    "openChatBtn","sendChatBtn","exportBtn","commandChips",
-   "runMqBtn","mqOutputSection","mqCommand","mqOutput"].forEach(id => els[id] = document.getElementById(id));
+   "runMqBtn","mqOutputSection","mqCommand","mqOutput","mqRepoPath","runMqBtn2"].forEach(id => els[id] = document.getElementById(id));
 }
 
 async function loadPrompts() {
@@ -56,7 +56,8 @@ async function loadPrompts() {
 function bindEvents() {
   els.generateBtn.addEventListener('click', generatePrompt);
   els.diagramBtn.addEventListener('click', generateDiagram);
-  els.runMqBtn.addEventListener('click', runMqAgent);
+  els.runMqBtn.addEventListener('click', () => { els.mqOutputSection.style.display = 'block'; runMqAgent(); });
+  els.runMqBtn2.addEventListener('click', runMqAgent);
   els.copyOutputBtn.addEventListener('click', () => navigator.clipboard.writeText(els.editor.value));
   els.copyChatBtn.addEventListener('click', () => navigator.clipboard.writeText(els.handoff.value));
   els.openChatBtn.addEventListener('click', () => window.open('https://chatgpt.com/', '_blank'));
@@ -264,24 +265,31 @@ function loadProject() {
   generatePrompt();
 }
 
+const MQ_MAPPED_MODES = new Set(['architect','review','debug','research','plan']);
+
 async function runMqAgent() {
   const goal = els.goalInput.value.trim();
   if (!goal) return;
 
   const route = autoRoute(goal);
   const mode = route.problemType;
+  const repoPath = (els.mqRepoPath.value.trim() || '.').replace(/\/+$/, '');
+
+  const fallback = !MQ_MAPPED_MODES.has(mode);
+  const modeLabel = fallback ? `${mode} → plan (fallback)` : mode;
 
   els.runMqBtn.disabled = true;
+  els.runMqBtn2.disabled = true;
   els.runMqBtn.textContent = '⏳ Running…';
   els.mqOutputSection.style.display = 'block';
   els.mqCommand.textContent = '';
-  els.mqOutput.textContent = 'Waiting for mq-agent…';
+  els.mqOutput.textContent = `Mode: ${modeLabel}\nWaiting for mq-agent…`;
 
   try {
     const res = await fetch('/api/execute', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ goal, mode, path: '.' })
+      body: JSON.stringify({ goal, mode, path: repoPath })
     });
 
     if (!res.ok) {
@@ -305,6 +313,7 @@ async function runMqAgent() {
     els.mqOutput.className = 'mq-output mq-err';
   } finally {
     els.runMqBtn.disabled = false;
+    els.runMqBtn2.disabled = false;
     els.runMqBtn.textContent = '▶ Run via mq-agent';
   }
 }
