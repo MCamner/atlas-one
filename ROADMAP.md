@@ -527,7 +527,8 @@ turning Ollama into a separate product or unconstrained chatbot.
 
 Atlas One should provide the reasoning brief, safety framing and prompt pack
 for this work. The actual local model calls, JSON validation and runtime
-contracts should remain in mq-mcp and mq-agent.
+contracts should remain in mq-mcp and mq-agent. `MCamner/ollama` should stay a
+clean upstream fork unless there is a specific upstream contribution to make.
 
 ### v1.2.0 target flow
 
@@ -565,14 +566,14 @@ mq-mcp schema validation and safety classification
   - security-critical changes without human review
   - secret handling
   - direct writes to memory without schema validation
-- [ ] Add a recommended first implementation plan for the Ollama repo:
-  - `README.md`
-  - `docs/OLLAMA_RUNTIME_POLICY.md`
-  - `docs/MQ_INTEGRATION.md`
-  - `config/models.yaml`
-  - `schemas/learn_extract.schema.json`
-  - `examples/learn-extract.md`
-  - `scripts/ollama-smoke-test.sh`
+- [ ] Add a recommended first implementation plan for the mq-mcp Ollama
+      provider:
+  - `mq-mcp/providers/ollama_provider.py`
+  - `schemas/learn_extraction.schema.json`
+  - `schemas/review_summary.schema.json`
+  - `docs/OLLAMA_PROVIDER.md`
+  - `examples/ollama_learn_extract.json`
+  - `tests/test_ollama_provider.py`
 - [ ] Add a small eval checklist for local model output quality:
   - valid JSON
   - schema compliance
@@ -598,8 +599,10 @@ Treat these as local defaults, not permanent product choices:
 - [ ] Atlas One has a prompt pack for designing and reviewing the Ollama policy
 - [ ] MQ ecosystem docs explain that Ollama is a local runtime provider, not a
       decision authority
-- [ ] The first Ollama repo scaffold is documented with policy, config, schema,
-      examples and smoke test
+- [ ] The Ollama upstream fork is explicitly kept clean of MQ-specific policy
+      files
+- [ ] The first mq-mcp provider scaffold is documented with provider code,
+      schemas, examples and tests
 - [ ] Learn extraction has a JSON schema and at least three example fixtures
 - [ ] mq-mcp remains the validation and contract boundary
 - [ ] No Atlas One prompt encourages direct unsafe model execution, hidden
@@ -608,7 +611,7 @@ Treat these as local defaults, not permanent product choices:
 ### Out of scope
 
 - Building a separate Ollama application
-- Forking or maintaining Ollama itself
+- Forking or maintaining MQ-specific changes inside Ollama itself
 - Making Atlas One call Ollama directly
 - Letting local models approve releases or destructive actions
 - Replacing mq-mcp contracts with prompt-only validation
