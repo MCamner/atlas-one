@@ -631,28 +631,28 @@ metadata.
 
 ### v1.3.0 planned scope
 
-- [ ] Update README status from `v1.0.0` to the current shipped version
-- [ ] Align README, ROADMAP, VERSION and CHANGELOG around the same public
+- [x] Update README status from `v1.0.0` to the current shipped version
+- [x] Align README, ROADMAP, VERSION and CHANGELOG around the same public
       project phase
-- [ ] Update GitHub Pages copy where it still presents Atlas One as only the
+- [x] Update GitHub Pages copy where it still presents Atlas One as only the
       v1.0.0 prompt operating system
-- [ ] Add a short "current architecture" note that explains:
+- [x] Add a short "current architecture" note that explains:
   - Atlas One packages prompts and interaction patterns
   - mq-agent orchestrates execution
   - mq-mcp owns review, risk, validation and memory contracts
   - Ollama is an optional local provider, not a decision authority
-- [ ] Keep v1.3.0 docs-only unless a broken link or stale generated prompt
+- [x] Keep v1.3.0 docs-only unless a broken link or stale generated prompt
       index requires regeneration
-- [ ] Run the local release/check scripts before tagging
+- [x] Run the local release/check scripts before tagging
 
 ### v1.3.0 definition of done
 
-- [ ] README, ROADMAP, VERSION and CHANGELOG are consistent
-- [ ] GitHub Pages presents the current Atlas One role clearly
-- [ ] No prompt pack encourages direct unsafe model execution, approval bypass
+- [x] README, ROADMAP, VERSION and CHANGELOG are consistent
+- [x] GitHub Pages presents the current Atlas One role clearly
+- [x] No prompt pack encourages direct unsafe model execution, approval bypass
       or unvalidated memory writes
-- [ ] Release check passes locally
-- [ ] GitHub release notes can be generated from the updated docs
+- [x] Release check passes locally
+- [x] GitHub release notes can be generated from the updated docs
 
 ### Out of scope
 

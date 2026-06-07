@@ -2,6 +2,23 @@
 
 ## [Unreleased]
 
+No unreleased changes yet.
+
+## [1.3.0] - 2026-06-07
+
+### Changed
+
+- Updated the public project status to `v1.3.0 — public status and release
+  clarity`.
+- Aligned `README.md`, `ROADMAP.md`, `VERSION`, `CHANGELOG.md`, and GitHub
+  Pages version copy around the same public project phase.
+- Added a current architecture note clarifying that Atlas One owns prompts and
+  interaction patterns, mq-agent orchestrates execution, mq-mcp owns review,
+  risk, validation and memory contracts, and Ollama is only an optional local
+  provider.
+
+## [1.2.0] - 2026-06-07
+
 ### Added
 
 - Added `prompts/packs/ollama-runtime-policy.md` and

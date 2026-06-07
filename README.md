@@ -2,7 +2,7 @@
 
 **Adaptive prompt system for structured thinking and decision-making.**
 
-Status: `v1.0.0 — stable prompt operating system`
+Status: `v1.3.0 — public status and release clarity`
 
 👉 **Live demo:** <https://mcamner.github.io/atlas-one/>
 
@@ -45,7 +45,7 @@ The interface runs entirely in the browser — no install required.
 
 ```text
 ┌─────────────────────────────────────────────────────────┐
-│ [A] Atlas Studio                              v1.0.0    │
+│ [A] Atlas Studio                              v1.3.0    │
 │ ─────────────────────────────────────────────────────── │
 │  SIDEBAR              │  MAIN PANEL                     │
 │  ─────────────────    │  ─────────────────────────────  │
@@ -172,6 +172,19 @@ ChatGPT-ready structured prompt
 ---
 
 ## Architecture
+
+Atlas One is the prompt and interaction layer in the local mq ecosystem. It
+packages reasoning modes, prompt packs and handoff patterns. It does not own
+runtime validation or review decisions.
+
+Current role split:
+
+```text
+Atlas One   — prompts, mode routing, interaction patterns and handoff text
+mq-agent    — orchestration and command execution flow
+mq-mcp      — review, risk, validation, safety classes and memory contracts
+Ollama      — optional local model provider, never a decision authority
+```
 
 ```text
 atlas-one/
@@ -324,7 +337,8 @@ Or as a macOS app bundle:
 
 ## Status
 
-Early-stage, actively evolving.
+Stable prompt operating system with mq ecosystem prompt packs and a documented
+execution boundary. Current public alignment target: `v1.3.0`.
 
 ---
 
