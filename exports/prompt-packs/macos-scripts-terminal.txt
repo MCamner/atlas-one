@@ -79,4 +79,8 @@ Constraints:
 - Keep commands short and memorable
 - Match the existing mqlaunch naming conventions
 - One command should do one clear thing
+
+Notes:
+- Local tools referenced in these prompts require local configuration.
+- Copy .claude/settings.local.example.json → .claude/settings.local.json and replace <MQ_ROOT> or set MQ_ROOT.
 ```

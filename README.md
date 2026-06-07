@@ -368,3 +368,24 @@ IT Architect — building practical systems where infrastructure, automation, an
 Atlas Studio is not another prompt tool.
 
 It's an attempt to bring **structure, repeatability, and system thinking** into how we use AI.
+
+## macOS helper scripts
+
+The repository supports helper scripts for macOS packaging and running. To keep these portable:
+
+* Prefer setting `MQ_ROOT` environment variable to your repo root:
+
+  ```bash
+  export MQ_ROOT="$(pwd)"
+  ```
+
+  Or rely on the scripts' autoprobe (they try `MQ_ROOT`, `git rev-parse`, then a script-relative fallback).
+
+* Create Claude local settings from the example:
+
+  ```bash
+  cp .claude/settings.local.example.json .claude/settings.local.json
+  # Edit .claude/settings.local.json and replace <MQ_ROOT> with your path (or set MQ_ROOT env var)
+  ```
+
+* Packaging requires `jpackage` (JDK 16+ or a JDK distribution with jpackage). If `jpackage` is missing, `package_mac_app.sh` will fail with a clear message.
