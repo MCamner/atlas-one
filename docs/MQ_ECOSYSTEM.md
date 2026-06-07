@@ -30,12 +30,13 @@ structured output
 ## Ecosystem map
 
 | Tool | Role | Atlas One touchpoint |
-|------|------|----------------------|
+| ---- | ---- | -------------------- |
 | **mqlaunch** | Terminal workflow hub and command surface | Entry point — `mqlaunch atlas-one` or copy-paste prompt |
 | **mq-agent** | AI agent orchestrator — Planner, Executor, Verifier, Memory, Safety | Atlas One Architect / Plan prompts frame agent task design |
 | **mq-hal** | Reasoning and observability layer for mq-agent | Atlas One Analyze prompts help interpret hal reasoning output |
 | **repo-signal** | Repo readiness signals and machine-readable JSON contracts | Atlas One Review prompts wrap repo-signal output in structured review |
 | **mq-mcp** | Local MCP server — review, risk, architecture, security contracts | Atlas One packs prepare review inputs; do not duplicate mq-mcp logic |
+| **Ollama** | Local model runtime for optional structured-output provider flows | Atlas One frames model policy; mq-mcp owns provider calls and validation |
 | **macos-scripts** | Terminal UX, workflows, and automation | Atlas One Plan / Debug prompts support terminal workflow design |
 
 ---
@@ -43,7 +44,7 @@ structured output
 ## Prompt packs for mq ecosystem work
 
 | Pack | When to use |
-|------|-------------|
+| ---- | ----------- |
 | [mq-mcp-safety-review](../prompts/packs/mq-mcp-safety-review.md) | Before invoking mq-mcp security or risk review — structure what to check |
 | [mq-mcp-architecture-memory](../prompts/packs/mq-mcp-architecture-memory.md) | Reason about ADRs, boundaries, and philosophy entries in architecture_memory/ |
 | [mq-ecosystem-boundaries](../prompts/packs/mq-ecosystem-boundaries.md) | Map responsibilities across mq tools before designing a cross-tool workflow |
@@ -90,6 +91,24 @@ mq-agent Planner / Executor
 Atlas One — Review mode (verify output)
 ```
 
+### Ollama structured-output provider
+
+```text
+Atlas One — ollama-runtime-policy pack
+  ↓
+mq-agent learn / review command
+  ↓
+mq-mcp Ollama provider
+  ↓
+local Ollama API
+  ↓
+validated JSON contract
+```
+
+Keep `MCamner/ollama` as a clean upstream fork. MQ-specific policy, schemas,
+examples and tests belong in `mq-mcp` provider work, with Atlas One supplying
+the prompt and policy framing only.
+
 ---
 
 ## mqlaunch command surface
@@ -117,5 +136,7 @@ cat exports/prompt-packs/release-readiness.txt | pbcopy
 * Atlas One packs are **export-oriented** — plain text, clipboard-ready, model-agnostic.
 * Atlas One does **not** duplicate mq-mcp review logic.
 * Atlas One does **not** execute commands — it structures the thinking that precedes execution.
+* Atlas One does **not** modify or maintain the Ollama runtime fork; mq-mcp owns
+  Ollama provider integration and schema validation.
 * Prompts must comply with Atlas One safety principles: no hidden chain-of-thought,
   no tool execution bypass, no approval gate circumvention.
