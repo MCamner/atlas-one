@@ -9,13 +9,13 @@ The goal is not to collect random prompts.
 
 The goal is to create a practical reasoning surface that can:
 
-- classify the user's real goal
-- choose the right thinking mode
-- structure the output
-- keep prompts reusable
-- make expert-style reasoning easier to access
-- work well as a GitHub Pages prompt library
-- later connect to local mq ecosystem tools
+* classify the user's real goal
+* choose the right thinking mode
+* structure the output
+* keep prompts reusable
+* make expert-style reasoning easier to access
+* work well as a GitHub Pages prompt library
+* later connect to local mq ecosystem tools
 
 ---
 
@@ -61,12 +61,12 @@ v1.3.0 — public surface sync (next)
 
 Completed foundation:
 
-- GitHub Pages prompt interface
-- Base Atlas One prompt
-- Prompt library and mode routing
-- Quick-action style prompt UX
-- Release and security structure
-- Structured reasoning modes
+* GitHub Pages prompt interface
+* Base Atlas One prompt
+* Prompt library and mode routing
+* Quick-action style prompt UX
+* Release and security structure
+* Structured reasoning modes
 
 Future mq ecosystem work should build on this foundation with reusable prompt
 packs and clear runtime boundaries. Atlas One should package prompts and
@@ -101,16 +101,16 @@ Goal:
 
 Create the first public Atlas One prompt system.
 
-- [x] Add Atlas One base prompt
-- [x] Define core operating principle
-- [x] Define command interface
-- [x] Add reasoning-mode concept
-- [x] Add structured output rules
-- [x] Add prompt reuse concept
-- [x] Add README
-- [x] Add ROADMAP
-- [x] Add security note
-- [x] Add release structure
+* [x] Add Atlas One base prompt
+* [x] Define core operating principle
+* [x] Define command interface
+* [x] Add reasoning-mode concept
+* [x] Add structured output rules
+* [x] Add prompt reuse concept
+* [x] Add README
+* [x] Add ROADMAP
+* [x] Add security note
+* [x] Add release structure
 
 ---
 
@@ -121,13 +121,13 @@ Goal:
 Make Atlas One usable and understandable from the GitHub front page and Pages
 site.
 
-- [x] Add GitHub Pages front door
-- [x] Add prompt UI concept
-- [x] Add quick-action buttons
-- [x] Add cache-busting for prompt library assets
-- [x] Add basic project positioning
-- [x] Add security/release notes
-- [x] Add first public documentation structure
+* [x] Add GitHub Pages front door
+* [x] Add prompt UI concept
+* [x] Add quick-action buttons
+* [x] Add cache-busting for prompt library assets
+* [x] Add basic project positioning
+* [x] Add security/release notes
+* [x] Add first public documentation structure
 
 ---
 
@@ -143,22 +143,22 @@ messy prompt dump.
 
 ### Scope
 
-- [x] Create `prompts/` directory
-- [x] Create `prompts/atlas-one.md`
-- [x] Create `prompts/modes/`
-- [x] Add prompt modes as separate markdown files
-- [x] Add `docs/PROMPT_LIBRARY.md`
-- [x] Add `docs/MODES.md`
-- [x] Add `docs/ROUTING.md`
-- [x] Add `docs/EXAMPLES.md`
-- [x] Add canonical mode list
-- [x] Add mode descriptions
-- [x] Add recommended output format per mode
-- [x] Add examples for each mode
-- [x] Add GitHub Pages prompt library section
-- [x] Add README links to prompt library
-- [x] Add version badge or status line
-- [x] Add changelog entry
+* [x] Create `prompts/` directory
+* [x] Create `prompts/atlas-one.md`
+* [x] Create `prompts/modes/`
+* [x] Add prompt modes as separate markdown files
+* [x] Add `docs/PROMPT_LIBRARY.md`
+* [x] Add `docs/MODES.md`
+* [x] Add `docs/ROUTING.md`
+* [x] Add `docs/EXAMPLES.md`
+* [x] Add canonical mode list
+* [x] Add mode descriptions
+* [x] Add recommended output format per mode
+* [x] Add examples for each mode
+* [x] Add GitHub Pages prompt library section
+* [x] Add README links to prompt library
+* [x] Add version badge or status line
+* [x] Add changelog entry
 
 ### Proposed mode categories
 
@@ -206,14 +206,14 @@ prompts/
 
 ### v0.2.0 definition of done
 
-- [x] Atlas One base prompt is stored as a standalone file
-- [x] Modes are documented
-- [x] Each mode has a clear use case
-- [x] Each mode has a recommended output shape
-- [x] README links to prompt library
-- [x] GitHub Pages shows prompt library
-- [x] CHANGELOG includes v0.2.0
-- [x] GitHub release `v0.2.0` exists
+* [x] Atlas One base prompt is stored as a standalone file
+* [x] Modes are documented
+* [x] Each mode has a clear use case
+* [x] Each mode has a recommended output shape
+* [x] README links to prompt library
+* [x] GitHub Pages shows prompt library
+* [x] CHANGELOG includes v0.2.0
+* [x] GitHub release `v0.2.0` exists
 
 ---
 
@@ -225,18 +225,18 @@ Make Atlas One prompts easier to copy, save, reuse and adapt.
 
 ### v0.3.0 planned scope
 
-- [x] Add copy-friendly prompt blocks
-- [x] Add raw markdown links
-- [x] Add JSON prompt manifest
-- [x] Add plain-text export format
-- [x] Add ChatGPT custom-instructions format
-- [x] Add Claude project-instructions format
-- [x] Add local markdown pack format
-- [x] Add prompt pack index
-- [x] Add prompt metadata
-- [x] Add prompt version field
-- [x] Add prompt tags
-- [x] Add prompt use-case examples
+* [x] Add copy-friendly prompt blocks
+* [x] Add raw markdown links
+* [x] Add JSON prompt manifest
+* [x] Add plain-text export format
+* [x] Add ChatGPT custom-instructions format
+* [x] Add Claude project-instructions format
+* [x] Add local markdown pack format
+* [x] Add prompt pack index
+* [x] Add prompt metadata
+* [x] Add prompt version field
+* [x] Add prompt tags
+* [x] Add prompt use-case examples
 
 ### Proposed manifest
 
@@ -276,19 +276,19 @@ static docs page.
 
 ### v0.4.0 planned scope
 
-- [x] Improve landing page hierarchy
-- [x] Add prompt search
-- [x] Add mode filter
-- [x] Add copy buttons
-- [x] Add prompt preview panel
-- [x] Add examples panel
-- [x] Add version/status panel
-- [x] Add keyboard-friendly navigation
-- [x] Add mobile-friendly layout
-- [x] Add dark terminal-inspired theme
-- [x] Add quick-start section
-- [x] Add links to raw prompt files
-- [x] Add no-build static JS architecture
+* [x] Improve landing page hierarchy
+* [x] Add prompt search
+* [x] Add mode filter
+* [x] Add copy buttons
+* [x] Add prompt preview panel
+* [x] Add examples panel
+* [x] Add version/status panel
+* [x] Add keyboard-friendly navigation
+* [x] Add mobile-friendly layout
+* [x] Add dark terminal-inspired theme
+* [x] Add quick-start section
+* [x] Add links to raw prompt files
+* [x] Add no-build static JS architecture
 
 ### UI sections
 
@@ -305,13 +305,13 @@ Changelog
 
 ### v0.4.0 definition of done
 
-- [x] Pages site clearly explains Atlas One
-- [x] User can copy the core prompt quickly
-- [x] User can browse modes
-- [x] User can view examples
-- [x] User can find export formats
-- [x] Site works without a backend
-- [x] Site works on mobile
+* [x] Pages site clearly explains Atlas One
+* [x] User can copy the core prompt quickly
+* [x] User can browse modes
+* [x] User can view examples
+* [x] User can find export formats
+* [x] Site works without a backend
+* [x] Site works on mobile
 
 ---
 
@@ -323,17 +323,17 @@ Make the prompt library easier to maintain as it grows.
 
 ### v0.5.0 planned scope
 
-- [x] Add prompt linting script
-- [x] Add markdown link check
-- [x] Add prompt metadata check
-- [x] Add mode coverage check
-- [x] Add examples coverage check
-- [x] Add duplicate heading check
-- [x] Add release checklist
-- [x] Add GitHub Actions validation
-- [x] Add generated prompt index
-- [x] Add proof section to README
-- [x] Add docs consistency check
+* [x] Add prompt linting script
+* [x] Add markdown link check
+* [x] Add prompt metadata check
+* [x] Add mode coverage check
+* [x] Add examples coverage check
+* [x] Add duplicate heading check
+* [x] Add release checklist
+* [x] Add GitHub Actions validation
+* [x] Add generated prompt index
+* [x] Add proof section to README
+* [x] Add docs consistency check
 
 ### Possible scripts
 
@@ -346,12 +346,12 @@ scripts/release-check.sh
 
 ### v0.5.0 definition of done
 
-- [x] Every prompt has metadata
-- [x] Every mode has an example
-- [x] Prompt index is generated or validated
-- [x] README is synced with prompt library
-- [x] GitHub Actions pass
-- [x] GitHub release exists
+* [x] Every prompt has metadata
+* [x] Every mode has an example
+* [x] Prompt index is generated or validated
+* [x] README is synced with prompt library
+* [x] GitHub Actions pass
+* [x] GitHub release exists
 
 ---
 
@@ -375,24 +375,24 @@ macos-scripts
 
 ### v0.6.0 planned scope
 
-- [x] Add `docs/MQ_ECOSYSTEM.md`
-- [x] Add mqlaunch command examples
-- [x] Add mq-agent prompt workflow examples
-- [x] Add mq-hal reasoning-mode examples
-- [x] Add repo-signal review prompt pack
-- [x] Add mq-mcp safety-review prompt pack (maps to mq-mcp review contracts:
+* [x] Add `docs/MQ_ECOSYSTEM.md`
+* [x] Add mqlaunch command examples
+* [x] Add mq-agent prompt workflow examples
+* [x] Add mq-hal reasoning-mode examples
+* [x] Add repo-signal review prompt pack
+* [x] Add mq-mcp safety-review prompt pack (maps to mq-mcp review contracts:
   comment, architecture, risk, security modes — mq-mcp v1.3.0+)
-- [x] Add mq-mcp architecture-memory prompt pack — prompts that surface ADRs,
+* [x] Add mq-mcp architecture-memory prompt pack — prompts that surface ADRs,
   boundaries, and philosophy entries from mq-mcp architecture_memory/
-- [x] Add mq ecosystem boundary prompt pack covering central cognition in
+* [x] Add mq ecosystem boundary prompt pack covering central cognition in
   mq-mcp, orchestration in mq-agent, preprocessing in repo-signal, UX in
   macos-scripts, visual cognition in mq-image-analyze and observability in
   mq-hal
-- [x] Add macos-scripts terminal workflow prompt pack
-- [x] Add local assistant prompt bundle
-- [x] Add prompt pack for release readiness
-- [x] Keep prompt packs export-oriented; do not duplicate mq-mcp review logic
-- [x] Add prompt pack for systems thinking
+* [x] Add macos-scripts terminal workflow prompt pack
+* [x] Add local assistant prompt bundle
+* [x] Add prompt pack for release readiness
+* [x] Keep prompt packs export-oriented; do not duplicate mq-mcp review logic
+* [x] Add prompt pack for systems thinking
 
 ### v0.6.0 example target flow
 
@@ -430,14 +430,14 @@ Already shipped (not in scope for v0.7.0): repo-review, release-readiness, syste
 
 Professional workflows:
 
-- [x] Architecture review pack (deeper than mq-mcp-architecture-memory)
-- [x] Writing / editor pack
-- [x] Interview prep pack
+* [x] Architecture review pack (deeper than mq-mcp-architecture-memory)
+* [x] Writing / editor pack
+* [x] Interview prep pack
 
 Personal workflows (separate subfolder):
 
-- [x] BJJ training reflection pack
-- [x] Guitar practice pack
+* [x] BJJ training reflection pack
+* [x] Guitar practice pack
 
 ### Pack structure
 
@@ -453,11 +453,11 @@ prompts/packs/
 
 ### v0.7.0 definition of done
 
-- [x] Each pack has a clear purpose
-- [x] Each pack has at least three prompts
-- [x] Each pack has examples
-- [x] Export format coverage completed under the v1.0.0 stable prompt system
-- [x] Pages browsing completed under the v1.0.0 stable prompt system
+* [x] Each pack has a clear purpose
+* [x] Each pack has at least three prompts
+* [x] Each pack has examples
+* [x] Export format coverage completed under the v1.0.0 stable prompt system
+* [x] Pages browsing completed under the v1.0.0 stable prompt system
 
 ---
 
@@ -470,20 +470,20 @@ personal work, repo review and local AI-assisted workflows.
 
 ### v1.0.0 requirements
 
-- [x] Stable core prompt
-- [x] Stable mode taxonomy
-- [x] Stable prompt file structure
-- [x] Stable prompt metadata format
-- [x] Stable export formats
-- [x] Complete prompt library docs
-- [x] Complete examples
-- [x] Complete GitHub Pages interface
-- [x] Complete changelog
-- [x] Complete release checklist
-- [x] GitHub Actions validation
-- [x] GitHub release
-- [x] Protected main branch
-- [x] No known prompt-injection or unsafe-instruction issues in packaged prompts
+* [x] Stable core prompt
+* [x] Stable mode taxonomy
+* [x] Stable prompt file structure
+* [x] Stable prompt metadata format
+* [x] Stable export formats
+* [x] Complete prompt library docs
+* [x] Complete examples
+* [x] Complete GitHub Pages interface
+* [x] Complete changelog
+* [x] Complete release checklist
+* [x] GitHub Actions validation
+* [x] GitHub release
+* [x] Protected main branch
+* [x] No known prompt-injection or unsafe-instruction issues in packaged prompts
 
 ---
 
@@ -496,27 +496,27 @@ goal directly to the mq-agent CLI and show the result inline.
 
 ### v1.1.0 scope
 
-- [x] Add `POST /api/execute` to AtlasServer (port 8766, mq-mcp owns 8765)
-- [x] Mode → mq-agent command mapping:
-  - `architect` → `mq-agent review repo <path> --architecture`
-  - `review`    → `mq-agent review repo <path>`
-  - `debug`     → `mq-agent audit <path> --dry-run`
-  - `research`  → `mq-agent signal <path>`
-  - default     → `mq-agent plan <goal>`
-- [x] `▶ Run via mq-agent` button in UI
-- [x] Inline output panel (command shown, result rendered, ok/err styled)
-- [x] Binary resolved from `MQ_AGENT_BIN` env or `~/mq-agent/.venv/bin/mq-agent`
-- [x] 60s timeout with reader thread to avoid buffer deadlock
-- [x] Repo path input — let user point execution at any local repo (not just `.`)
-- [x] Visible mode fallback label — clarify when decide/explain/teach map to `plan`
+* [x] Add `POST /api/execute` to AtlasServer (port 8766, mq-mcp owns 8765)
+* [x] Mode → mq-agent command mapping:
+  * `architect` → `mq-agent review repo <path> --architecture`
+  * `review`    → `mq-agent review repo <path>`
+  * `debug`     → `mq-agent audit <path> --dry-run`
+  * `research`  → `mq-agent signal <path>`
+  * default     → `mq-agent plan <goal>`
+* [x] `▶ Run via mq-agent` button in UI
+* [x] Inline output panel (command shown, result rendered, ok/err styled)
+* [x] Binary resolved from `MQ_AGENT_BIN` env or `~/mq-agent/.venv/bin/mq-agent`
+* [x] 60s timeout with reader thread to avoid buffer deadlock
+* [x] Repo path input — let user point execution at any local repo (not just `.`)
+* [x] Visible mode fallback label — clarify when decide/explain/teach map to `plan`
 
 ### v1.1.0 definition of done
 
-- [x] `GET /api/health` returns ok on port 8766
-- [x] plan + architect modes tested live and return structured results
-- [x] README updated with port, `/api/execute`, and mq-agent flow diagram
-- [x] Integration pattern stored in mq-mcp semantic memory (`atlas-mq-agent-bridge`)
-- [x] Repo path is user-configurable in the UI
+* [x] `GET /api/health` returns ok on port 8766
+* [x] plan + architect modes tested live and return structured results
+* [x] README updated with port, `/api/execute`, and mq-agent flow diagram
+* [x] Integration pattern stored in mq-mcp semantic memory (`atlas-mq-agent-bridge`)
+* [x] Repo path is user-configurable in the UI
 
 ---
 
@@ -550,39 +550,39 @@ mq-mcp schema validation and safety classification
 
 ### v1.2.0 planned scope
 
-- [x] Add an `ollama-runtime-policy` prompt pack that frames local model usage
+* [x] Add an `ollama-runtime-policy` prompt pack that frames local model usage
       for learn extraction, summarization and lightweight review
-- [x] Add an `ollama-learn-extract` prompt pattern that asks for schema-shaped
+* [x] Add an `ollama-learn-extract` prompt pattern that asks for schema-shaped
       output without bypassing mq-mcp validation
-- [x] Document the boundary between Atlas One, mq-agent, mq-mcp and Ollama in
+* [x] Document the boundary between Atlas One, mq-agent, mq-mcp and Ollama in
       `docs/MQ_ECOSYSTEM.md`
-- [x] Define allowed local model tasks:
-  - learn extraction
-  - summary generation
-  - structured notes
-  - lightweight code review suggestions
-  - repo signal enrichment
-- [x] Define disallowed local model tasks:
-  - release go/no-go decisions
-  - destructive command approval
-  - security-critical changes without human review
-  - secret handling
-  - direct writes to memory without schema validation
-- [x] Add a recommended first implementation plan for the mq-mcp Ollama
+* [x] Define allowed local model tasks:
+  * learn extraction
+  * summary generation
+  * structured notes
+  * lightweight code review suggestions
+  * repo signal enrichment
+* [x] Define disallowed local model tasks:
+  * release go/no-go decisions
+  * destructive command approval
+  * security-critical changes without human review
+  * secret handling
+  * direct writes to memory without schema validation
+* [x] Add a recommended first implementation plan for the mq-mcp Ollama
       provider:
-  - `mq-mcp/providers/ollama_provider.py`
-  - `schemas/learn_extraction.schema.json`
-  - `schemas/review_summary.schema.json`
-  - `docs/OLLAMA_PROVIDER.md`
-  - `examples/ollama_learn_extract.json`
-  - `tests/test_ollama_provider.py`
-- [x] Add a small eval checklist for local model output quality:
-  - valid JSON
-  - schema compliance
-  - confidence field present
-  - source/evidence field present
-  - no invented commands
-  - no release or safety decision masquerading as fact
+  * `mq-mcp/providers/ollama_provider.py`
+  * `schemas/learn_extraction.schema.json`
+  * `schemas/review_summary.schema.json`
+  * `docs/OLLAMA_PROVIDER.md`
+  * `examples/ollama_learn_extract.json`
+  * `tests/test_ollama_provider.py`
+* [x] Add a small eval checklist for local model output quality:
+  * valid JSON
+  * schema compliance
+  * confidence field present
+  * source/evidence field present
+  * no invented commands
+  * no release or safety decision masquerading as fact
 
 ### Initial model routing policy
 
@@ -598,25 +598,25 @@ Treat these as local defaults, not permanent product choices:
 
 ### v1.2.0 definition of done
 
-- [x] Atlas One has a prompt pack for designing and reviewing the Ollama policy
-- [x] MQ ecosystem docs explain that Ollama is a local runtime provider, not a
+* [x] Atlas One has a prompt pack for designing and reviewing the Ollama policy
+* [x] MQ ecosystem docs explain that Ollama is a local runtime provider, not a
       decision authority
-- [x] The Ollama upstream fork is explicitly kept clean of MQ-specific policy
+* [x] The Ollama upstream fork is explicitly kept clean of MQ-specific policy
       files
-- [x] The first mq-mcp provider scaffold is documented with provider code,
+* [x] The first mq-mcp provider scaffold is documented with provider code,
       schemas, examples and tests
-- [x] Learn extraction has a JSON schema and at least three example fixtures
-- [x] mq-mcp remains the validation and contract boundary
-- [x] No Atlas One prompt encourages direct unsafe model execution, hidden
+* [x] Learn extraction has a JSON schema and at least three example fixtures
+* [x] mq-mcp remains the validation and contract boundary
+* [x] No Atlas One prompt encourages direct unsafe model execution, hidden
       reasoning, approval bypass or unvalidated memory writes
 
 ### Out of scope
 
-- Building a separate Ollama application
-- Forking or maintaining MQ-specific changes inside Ollama itself
-- Making Atlas One call Ollama directly
-- Letting local models approve releases or destructive actions
-- Replacing mq-mcp contracts with prompt-only validation
+* Building a separate Ollama application
+* Forking or maintaining MQ-specific changes inside Ollama itself
+* Making Atlas One call Ollama directly
+* Letting local models approve releases or destructive actions
+* Replacing mq-mcp contracts with prompt-only validation
 
 ---
 
@@ -631,36 +631,36 @@ metadata.
 
 ### v1.3.0 planned scope
 
-- [x] Update README status from `v1.0.0` to the current shipped version
-- [x] Align README, ROADMAP, VERSION and CHANGELOG around the same public
+* [x] Update README status from `v1.0.0` to the current shipped version
+* [x] Align README, ROADMAP, VERSION and CHANGELOG around the same public
       project phase
-- [x] Update GitHub Pages copy where it still presents Atlas One as only the
+* [x] Update GitHub Pages copy where it still presents Atlas One as only the
       v1.0.0 prompt operating system
-- [x] Add a short "current architecture" note that explains:
-  - Atlas One packages prompts and interaction patterns
-  - mq-agent orchestrates execution
-  - mq-mcp owns review, risk, validation and memory contracts
-  - Ollama is an optional local provider, not a decision authority
-- [x] Keep v1.3.0 docs-only unless a broken link or stale generated prompt
+* [x] Add a short "current architecture" note that explains:
+  * Atlas One packages prompts and interaction patterns
+  * mq-agent orchestrates execution
+  * mq-mcp owns review, risk, validation and memory contracts
+  * Ollama is an optional local provider, not a decision authority
+* [x] Keep v1.3.0 docs-only unless a broken link or stale generated prompt
       index requires regeneration
-- [x] Run the local release/check scripts before tagging
+* [x] Run the local release/check scripts before tagging
 
 ### v1.3.0 definition of done
 
-- [x] README, ROADMAP, VERSION and CHANGELOG are consistent
-- [x] GitHub Pages presents the current Atlas One role clearly
-- [x] No prompt pack encourages direct unsafe model execution, approval bypass
+* [x] README, ROADMAP, VERSION and CHANGELOG are consistent
+* [x] GitHub Pages presents the current Atlas One role clearly
+* [x] No prompt pack encourages direct unsafe model execution, approval bypass
       or unvalidated memory writes
-- [x] Release check passes locally
-- [x] GitHub release notes can be generated from the updated docs
+* [x] Release check passes locally
+* [x] GitHub release notes can be generated from the updated docs
 
 ### Out of scope
 
-- New execution features
-- Direct Ollama calls from Atlas One
-- Duplicating mq-mcp review or risk logic
-- New prompt-pack categories beyond documentation polish
-- Changing mq-agent or mq-mcp behavior from this repo
+* New execution features
+* Direct Ollama calls from Atlas One
+* Duplicating mq-mcp review or risk logic
+* New prompt-pack categories beyond documentation polish
+* Changing mq-agent or mq-mcp behavior from this repo
 
 ---
 
@@ -668,23 +668,23 @@ metadata.
 
 These are intentionally not scheduled yet.
 
-- visual prompt builder
-- prompt comparison mode
-- prompt scoring
-- prompt version diff view
-- local prompt search
-- browser extension style export
-- OpenAI custom GPT export
-- Claude project export
-- Codex prompt pack
-- Obsidian vault export
-- markdown knowledge-base export
-- prompt cards
-- shareable prompt URLs
-- multi-language prompt packs
-- Swedish Atlas One edition
-- generated architecture diagrams
-- demo videos or GIFs
+* visual prompt builder
+* prompt comparison mode
+* prompt scoring
+* prompt version diff view
+* local prompt search
+* browser extension style export
+* OpenAI custom GPT export
+* Claude project export
+* Codex prompt pack
+* Obsidian vault export
+* markdown knowledge-base export
+* prompt cards
+* shareable prompt URLs
+* multi-language prompt packs
+* Swedish Atlas One edition
+* generated architecture diagrams
+* demo videos or GIFs
 
 ---
 
@@ -692,16 +692,16 @@ These are intentionally not scheduled yet.
 
 Atlas One should remain:
 
-- clear
-- structured
-- reusable
-- versioned
-- copy-friendly
-- model-agnostic
-- local-first when possible
-- safe to paste
-- easy to understand
-- useful without requiring an API
+* clear
+* structured
+* reusable
+* versioned
+* copy-friendly
+* model-agnostic
+* local-first when possible
+* safe to paste
+* easy to understand
+* useful without requiring an API
 
 It should improve thinking.
 
@@ -713,22 +713,22 @@ It should not become a vague prompt collection.
 
 Atlas One must not package prompts that:
 
-- ask models to ignore system or developer instructions
-- request hidden chain-of-thought
-- encourage unsafe automation
-- hide tool execution
-- ask for secrets
-- bypass approval gates
-- blur the line between suggestion and execution
+* ask models to ignore system or developer instructions
+* request hidden chain-of-thought
+* encourage unsafe automation
+* hide tool execution
+* ask for secrets
+* bypass approval gates
+* blur the line between suggestion and execution
 
 Every public prompt should have:
 
-- purpose
-- when to use it
-- expected output
-- constraints
-- version or status
-- example usage
+* purpose
+* when to use it
+* expected output
+* constraints
+* version or status
+* example usage
 
 ---
 
