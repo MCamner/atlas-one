@@ -68,6 +68,17 @@ git log --oneline -3 | sed 's/^/    /'
 
 # --- mqlaunch doctor ---
 section "Environment (mqlaunch doctor)"
+if [ -f "$SCRIPTS_DIR/ensure-deps.sh" ]; then
+  echo "Running $SCRIPTS_DIR/ensure-deps.sh"
+  if bash "$SCRIPTS_DIR/ensure-deps.sh"; then
+    ok "ensure-deps: all required tools present"
+  else
+    warn "ensure-deps: some required tools missing — see output above"
+  fi
+else
+  warn "ensure-deps.sh not found — skipping deps check"
+fi
+
 if command -v mqlaunch &>/dev/null && command -v jq &>/dev/null; then
   doctor_json=$(mqlaunch doctor --json 2>/dev/null) || doctor_json=""
   if [[ -n "$doctor_json" ]]; then
