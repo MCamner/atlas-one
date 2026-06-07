@@ -688,15 +688,10 @@ Every public prompt should have:
 
 ## Current recommended next step
 
-Work on:
-
 ```text
-mq-mcp — implement the Ollama structured-output provider
+v1.3.0 — not yet defined
 ```
 
-- `mq-mcp/providers/ollama_provider.py`
-- `schemas/learn_extraction.schema.json`
-- `schemas/review_summary.schema.json`
-- `docs/OLLAMA_PROVIDER.md`
-- `examples/ollama_learn_extract.json`
-- `tests/test_ollama_provider.py`
+All items through v1.2.0 are complete. The Ollama structured-output provider
+(`mq-mcp/providers/ollama_provider.py`) was implemented and tested as part of
+v1.2.0. No next release is scheduled.
