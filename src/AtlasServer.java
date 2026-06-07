@@ -141,6 +141,7 @@ public class AtlasServer {
             if (repoPath == null || repoPath.isEmpty()) repoPath = ".";
 
             List<String> cmd = buildCommand(goal, mode, repoPath);
+            int timeoutSecs = ("review".equals(mode) || "architect".equals(mode)) ? 180 : 60;
 
             try {
                 ProcessBuilder pb = new ProcessBuilder(cmd);
@@ -158,12 +159,12 @@ public class AtlasServer {
                 reader.setDaemon(true);
                 reader.start();
 
-                boolean done = proc.waitFor(60, TimeUnit.SECONDS);
+                boolean done = proc.waitFor(timeoutSecs, TimeUnit.SECONDS);
                 reader.join(2000);
 
                 if (!done) {
                     proc.destroyForcibly();
-                    sendJson(exchange, "{\"ok\":false,\"error\":\"mq-agent timed out after 60s\"}");
+                    sendJson(exchange, "{\"ok\":false,\"error\":\"mq-agent timed out after " + timeoutSecs + "s\"}");
                     return;
                 }
 
