@@ -8,7 +8,7 @@ burying the system in JavaScript or HTML.
 ## Structure
 
 ```text
-prompts/
+docs/prompts/
 ├── atlas-one.md
 ├── modes/
 └── packs/
@@ -19,7 +19,7 @@ prompts/
 The core prompt lives at:
 
 ```text
-prompts/atlas-one.md
+docs/prompts/atlas-one.md
 ```
 
 It defines the Atlas One routing behavior:
@@ -33,32 +33,32 @@ user goal → reasoning mode → output shape → final answer
 Modes live in:
 
 ```text
-prompts/modes/
+docs/prompts/modes/
 ```
 
 Each mode file includes:
 
-- when to use it
-- what it is best for
-- recommended output shape
+* when to use it
+* what it is best for
+* recommended output shape
 
 ## Packs
 
 Prompt packs live in:
 
 ```text
-prompts/packs/
+docs/prompts/packs/
 ```
 
 Packs combine modes into reusable workflows for recurring tasks.
 
 Current pack families:
 
-- repo review and release readiness
-- systems thinking and product strategy
-- learning coach and personal workflow packs
-- mq ecosystem boundary, safety and architecture packs
-- Ollama runtime policy for mq-mcp provider work
+* repo review and release readiness
+* systems thinking and product strategy
+* learning coach and personal workflow packs
+* mq ecosystem boundary, safety and architecture packs
+* Ollama runtime policy for mq-mcp provider work
 
 ## GitHub Pages
 

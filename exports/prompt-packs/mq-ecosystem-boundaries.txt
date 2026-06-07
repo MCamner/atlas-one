@@ -1,6 +1,6 @@
 ATLAS ONE — mq Ecosystem Boundaries Prompt Pack
 Version: 0.6.0
-Source: prompts/packs/mq-ecosystem-boundaries.md
+Source: docs/prompts/packs/mq-ecosystem-boundaries.md
 Tags: pack, mq-ecosystem, boundaries, architecture, systems
 
 ---

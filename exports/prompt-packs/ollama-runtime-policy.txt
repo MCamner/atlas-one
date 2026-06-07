@@ -1,6 +1,6 @@
 ATLAS ONE - Ollama Runtime Policy Prompt Pack
 Version: 1.2.0
-Source: prompts/packs/ollama-runtime-policy.md
+Source: docs/prompts/packs/ollama-runtime-policy.md
 Tags: pack, ollama, mq-mcp, local-ai, structured-output, policy
 
 ---

@@ -14,6 +14,6 @@ prompt metadata and prompt-library docs.
 skills/prompt-pack-maintainer/SKILL.md
 ```
 
-Use this when changing `prompts/`, `docs/PROMPT_LIBRARY.md`, `docs/MODES.md`,
+Use this when changing `docs/prompts/`, `docs/PROMPT_LIBRARY.md`, `docs/MODES.md`,
 `docs/ROUTING.md`, `docs/EXAMPLES.md`, `docs/prompts.json` or prompt-pack
 exports.

@@ -1,6 +1,6 @@
 ATLAS ONE — Product Strategy Prompt Pack
 Version: 0.3.0
-Source: prompts/packs/product-strategy.md
+Source: docs/prompts/packs/product-strategy.md
 Recommended modes: Research, Decide, Plan
 Tags: pack, product, strategy, decisions
 

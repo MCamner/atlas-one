@@ -133,7 +133,7 @@ Atlas Studio turns intent into structured AI workflows:
 
 * **Prompt library system**
   Loads reusable prompts from `web/prompts.json` and keeps source prompts in
-  `prompts/`
+  `docs/prompts/`
 
 * **Local-first execution**
   Runs entirely on `127.0.0.1` — no external dependencies
@@ -188,7 +188,7 @@ Ollama      — optional local model provider, never a decision authority
 
 ```text
 atlas-one/
-├── prompts/          # Core prompt, modes, and seed prompt packs
+├── docs/prompts/     # Core prompt, modes, and seed prompt packs
 ├── docs/             # GitHub Pages and prompt library docs
 ├── src/              # Java server (API + static hosting)
 ├── web/              # UI (routing, prompts, visualization)
@@ -222,7 +222,7 @@ atlas-one/
 Atlas One v0.2.0 adds a file-based prompt library:
 
 ```text
-prompts/
+docs/prompts/
 ├── atlas-one.md
 ├── modes/
 └── packs/

@@ -1,6 +1,6 @@
 ATLAS ONE — Learning Coach Prompt Pack
 Version: 0.3.0
-Source: prompts/packs/learning-coach.md
+Source: docs/prompts/packs/learning-coach.md
 Recommended modes: Teach, Explain, Coach
 Tags: pack, learning, coaching, teaching
 

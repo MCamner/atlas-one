@@ -9,15 +9,15 @@ Use this skill when Atlas One's prompt library or reasoning modes change.
 
 ## When to use
 
-- Adding, editing, or exporting prompt modes, prompt packs, or reasoning templates
-- Updating mq ecosystem boundary prompts or prompt metadata
-- Keeping `docs/PROMPT_LIBRARY.md`, `MODES.md`, or `ROUTING.md` consistent with prompts
+* Adding, editing, or exporting prompt modes, prompt packs, or reasoning templates
+* Updating mq ecosystem boundary prompts or prompt metadata
+* Keeping `docs/PROMPT_LIBRARY.md`, `MODES.md`, or `ROUTING.md` consistent with prompts
 
 ## When not to use
 
-- Runtime reasoning or review logic — those belong in mq-mcp
-- Repo indexing, orchestration, or workflow execution — those belong in mq-agent and repo-signal
-- Visual perception prompts — those belong in mq-image-analyze
+* Runtime reasoning or review logic — those belong in mq-mcp
+* Repo indexing, orchestration, or workflow execution — those belong in mq-agent and repo-signal
+* Visual perception prompts — those belong in mq-image-analyze
 
 ## Boundary
 
@@ -27,24 +27,24 @@ It must not own runtime reasoning, review pipelines, architecture analysis, inde
 
 ## Files To Inspect
 
-- `prompts/atlas-one.md`
-- `prompts/modes/`
-- `prompts/packs/`
-- `docs/PROMPT_LIBRARY.md`
-- `docs/MODES.md`
-- `docs/ROUTING.md`
-- `docs/EXAMPLES.md`
-- `docs/prompts.json`
-- `web/prompts.json`
-- `ROADMAP.md`
+* `docs/prompts/atlas-one.md`
+* `docs/prompts/modes/`
+* `docs/prompts/packs/`
+* `docs/PROMPT_LIBRARY.md`
+* `docs/MODES.md`
+* `docs/ROUTING.md`
+* `docs/EXAMPLES.md`
+* `docs/prompts.json`
+* `web/prompts.json`
+* `ROADMAP.md`
 
 ## Prompt Rules
 
-- Each prompt should have a clear purpose, use case, constraints and output shape.
-- Keep prompts safe to paste; never instruct models to ignore higher-priority instructions or reveal hidden chain-of-thought.
-- Keep mq ecosystem boundary prompts explicit about repo ownership:
+* Each prompt should have a clear purpose, use case, constraints and output shape.
+* Keep prompts safe to paste; never instruct models to ignore higher-priority instructions or reveal hidden chain-of-thought.
+* Keep mq ecosystem boundary prompts explicit about repo ownership:
   mq-mcp cognition, mq-agent orchestration, repo-signal preprocessing, macos-scripts UX, mq-image-analyze visual observation, mq-hal observability.
-- Prefer reusable prompt packs over one-off prompt fragments.
+* Prefer reusable prompt packs over one-off prompt fragments.
 
 ## Verification
 

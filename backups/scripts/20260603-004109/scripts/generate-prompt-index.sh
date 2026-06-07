@@ -5,9 +5,9 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-MODES_DIR="$REPO_ROOT/prompts/modes"
-PACKS_DIR="$REPO_ROOT/prompts/packs"
-CORE_FILE="$REPO_ROOT/prompts/atlas-one.md"
+MODES_DIR="$REPO_ROOT/docs/prompts/modes"
+PACKS_DIR="$REPO_ROOT/docs/prompts/packs"
+CORE_FILE="$REPO_ROOT/docs/prompts/atlas-one.md"
 OUTPUT="$REPO_ROOT/docs/PROMPT_INDEX.md"
 VERSION_FILE="$REPO_ROOT/VERSION"
 
@@ -48,7 +48,7 @@ HEADER
   if [[ -f "$CORE_FILE" ]]; then
     ver=$(extract_field "$CORE_FILE" "Version") || ver="—"
     tags=$(extract_field "$CORE_FILE" "Tags") || tags="—"
-    echo "| [atlas-one.md](../prompts/atlas-one.md) | ${ver:-—} | ${tags:-—} |"
+    echo "| [atlas-one.md](prompts/atlas-one.md) | ${ver:-—} | ${tags:-—} |"
   fi
 
   cat <<MODES_HEADER
@@ -68,7 +68,7 @@ MODES_HEADER
     ver=$(extract_field "$f" "Version") || ver="—"
     tags=$(extract_field "$f" "Tags") || tags="—"
     use_case=$(extract_first_use_case "$f") || use_case="—"
-    echo "| [${title:-$name}](../prompts/modes/$name.md) | ${use_case:-—} | ${ver:-—} | ${tags:-—} |"
+    echo "| [${title:-$name}](prompts/modes/$name.md) | ${use_case:-—} | ${ver:-—} | ${tags:-—} |"
   done
 
   cat <<PACKS_HEADER
@@ -89,7 +89,7 @@ PACKS_HEADER
     tags=$(extract_field "$f" "Tags") || tags="—"
     use_case=$(grep "^Use this pack" "$f" | head -1 | sed 's/^Use this pack //' | sed 's/\.$//' | xargs) || use_case="—"
     export_link="[.txt](../exports/prompt-packs/$name.txt)"
-    echo "| [${title:-$name}](../prompts/packs/$name.md) | ${use_case:-—} | ${ver:-—} | ${tags:-—} | $export_link |"
+    echo "| [${title:-$name}](prompts/packs/$name.md) | ${use_case:-—} | ${ver:-—} | ${tags:-—} | $export_link |"
   done
 
   cat <<EXPORTS_HEADER

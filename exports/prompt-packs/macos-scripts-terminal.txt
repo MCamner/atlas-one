@@ -1,6 +1,6 @@
 ATLAS ONE — macos-scripts Terminal Workflow Prompt Pack
 Version: 0.6.0
-Source: prompts/packs/macos-scripts-terminal.md
+Source: docs/prompts/packs/macos-scripts-terminal.md
 Tags: pack, macos-scripts, terminal, workflow, automation, mqlaunch
 
 ---

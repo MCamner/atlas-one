@@ -898,7 +898,7 @@ function renderExportsStrip() {
 
   const links = [];
   if (modeFile) {
-    links.push(`<a class="export-link" href="../prompts/modes/${modeFile}.md" target="_blank" rel="noopener">${modeFile}.md</a>`);
+    links.push(`<a class="export-link" href="prompts/modes/${modeFile}.md" target="_blank" rel="noopener">${modeFile}.md</a>`);
   } else if (promptType === 'strategy') {
     links.push(`<a class="export-link" href="../exports/product-strategy.md" target="_blank" rel="noopener">strategy.md</a>`);
   }

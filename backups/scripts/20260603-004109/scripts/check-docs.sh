@@ -60,10 +60,10 @@ if [[ -f "$README" ]]; then
   else
     warn "README does not mention v$VERSION (may be intentional)"
   fi
-  if grep -q "prompts/" "$README"; then
-    ok "README links to prompts/"
+  if grep -q "docs/prompts/" "$README"; then
+    ok "README links to docs/prompts/"
   else
-    warn "README has no links to prompts/"
+    warn "README has no links to docs/prompts/"
   fi
 else
   fail "README.md missing"
@@ -100,7 +100,7 @@ done
 echo ""
 echo "[ mode files vs docs/MODES.md ]"
 MODES_FILE="$DOCS_DIR/MODES.md"
-MODES_DIR="$REPO_ROOT/prompts/modes"
+MODES_DIR="$REPO_ROOT/docs/prompts/modes"
 if [[ -f "$MODES_FILE" ]]; then
   file_count=0
   for f in "$MODES_DIR"/*.md; do
@@ -135,7 +135,7 @@ echo ""
 echo "[ prompts.json sync ]"
 WEB_JSON="$REPO_ROOT/web/prompts.json"
 DOCS_JSON="$REPO_ROOT/docs/prompts.json"
-if [[ -f "$WEB_JSON" && -f "$DOCS_JSON" ]]; then
+  if [[ -f "$WEB_JSON" && -f "$DOCS_JSON" ]]; then
   web_ver=$(grep '"version"' "$WEB_JSON" | head -1 | grep -o '"[0-9.]*"' | tr -d '"')
   docs_ver=$(grep '"version"' "$DOCS_JSON" | head -1 | grep -o '"[0-9.]*"' | tr -d '"')
   if [[ "$web_ver" == "$docs_ver" ]]; then

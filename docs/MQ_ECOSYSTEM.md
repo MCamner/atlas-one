@@ -45,13 +45,13 @@ structured output
 
 | Pack | When to use |
 | ---- | ----------- |
-| [mq-mcp-safety-review](../prompts/packs/mq-mcp-safety-review.md) | Before invoking mq-mcp security or risk review — structure what to check |
-| [mq-mcp-architecture-memory](../prompts/packs/mq-mcp-architecture-memory.md) | Reason about ADRs, boundaries, and philosophy entries in architecture_memory/ |
-| [mq-ecosystem-boundaries](../prompts/packs/mq-ecosystem-boundaries.md) | Map responsibilities across mq tools before designing a cross-tool workflow |
-| [ollama-runtime-policy](../prompts/packs/ollama-runtime-policy.md) | Frame local Ollama model usage before implementing mq-mcp provider work |
-| [ollama-learn-extract](../prompts/packs/ollama-learn-extract.md) | Shape structured learn extraction prompts before mq-mcp validates output |
-| [release-readiness](../prompts/packs/release-readiness.md) | Structure release review for any mq repo using Atlas One Review mode |
-| [macos-scripts-terminal](../prompts/packs/macos-scripts-terminal.md) | Design or debug terminal workflows in macos-scripts |
+| [mq-mcp-safety-review](prompts/packs/mq-mcp-safety-review.md) | Before invoking mq-mcp security or risk review — structure what to check |
+| [mq-mcp-architecture-memory](prompts/packs/mq-mcp-architecture-memory.md) | Reason about ADRs, boundaries, and philosophy entries in architecture_memory/ |
+| [mq-ecosystem-boundaries](prompts/packs/mq-ecosystem-boundaries.md) | Map responsibilities across mq tools before designing a cross-tool workflow |
+| [ollama-runtime-policy](prompts/packs/ollama-runtime-policy.md) | Frame local Ollama model usage before implementing mq-mcp provider work |
+| [ollama-learn-extract](prompts/packs/ollama-learn-extract.md) | Shape structured learn extraction prompts before mq-mcp validates output |
+| [release-readiness](prompts/packs/release-readiness.md) | Structure release review for any mq repo using Atlas One Review mode |
+| [macos-scripts-terminal](prompts/packs/macos-scripts-terminal.md) | Design or debug terminal workflows in macos-scripts |
 
 ---
 

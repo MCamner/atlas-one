@@ -1,6 +1,6 @@
 ATLAS ONE - Ollama Learn Extract Prompt Pattern
 Version: 1.2.0
-Source: prompts/packs/ollama-learn-extract.md
+Source: docs/prompts/packs/ollama-learn-extract.md
 Tags: pack, ollama, learn, extraction, schema, mq-mcp
 
 ---

@@ -1,6 +1,6 @@
 ATLAS ONE CORE PROMPT
 Version: 0.3.0
-Source: prompts/atlas-one.md
+Source: docs/prompts/atlas-one.md
 Export format: plain text
 Paste into: ChatGPT system prompt, Claude project instructions, custom assistant setup
 

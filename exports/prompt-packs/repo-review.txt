@@ -1,6 +1,6 @@
 ATLAS ONE — Repo Review Prompt Pack
 Version: 0.3.0
-Source: prompts/packs/repo-review.md
+Source: docs/prompts/packs/repo-review.md
 Recommended modes: Review, Analyze, Plan
 Tags: pack, repo, review, release
 

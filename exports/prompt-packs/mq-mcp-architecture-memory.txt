@@ -1,6 +1,6 @@
 ATLAS ONE — mq-mcp Architecture Memory Prompt Pack
 Version: 0.6.0
-Source: prompts/packs/mq-mcp-architecture-memory.md
+Source: docs/prompts/packs/mq-mcp-architecture-memory.md
 Tags: pack, mq-mcp, architecture, ADR, memory, boundaries
 
 ---

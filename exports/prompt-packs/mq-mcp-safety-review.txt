@@ -1,6 +1,6 @@
 ATLAS ONE — mq-mcp Safety Review Prompt Pack
 Version: 0.6.0
-Source: prompts/packs/mq-mcp-safety-review.md
+Source: docs/prompts/packs/mq-mcp-safety-review.md
 Tags: pack, mq-mcp, safety, review, security, risk
 
 ---

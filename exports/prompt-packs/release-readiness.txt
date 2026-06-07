@@ -1,6 +1,6 @@
 ATLAS ONE — Release Readiness Prompt Pack
 Version: 0.6.0
-Source: prompts/packs/release-readiness.md
+Source: docs/prompts/packs/release-readiness.md
 Tags: pack, release, readiness, review, mq-ecosystem
 
 ---

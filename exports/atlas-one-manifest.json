@@ -8,7 +8,7 @@
     {
       "id": "atlas-one-core",
       "title": "Atlas One Core",
-      "path": "prompts/atlas-one.md",
+      "path": "docs/prompts/atlas-one.md",
       "version": "0.3.0",
       "tags": ["reasoning", "router", "prompt-os", "core"],
       "useCase": "Route any request to the right reasoning mode and output structure.",
@@ -17,7 +17,7 @@
     {
       "id": "mode.analyze",
       "title": "Analyze Mode",
-      "path": "prompts/modes/analyze.md",
+      "path": "docs/prompts/modes/analyze.md",
       "version": "0.3.0",
       "tags": ["mode", "analysis", "patterns", "understanding"],
       "useCase": "Understand a situation, system, idea or problem.",
@@ -26,7 +26,7 @@
     {
       "id": "mode.decide",
       "title": "Decide Mode",
-      "path": "prompts/modes/decide.md",
+      "path": "docs/prompts/modes/decide.md",
       "version": "0.3.0",
       "tags": ["mode", "decision", "trade-offs", "judgment"],
       "useCase": "Choose between options and expose trade-offs.",
@@ -35,7 +35,7 @@
     {
       "id": "mode.architect",
       "title": "Architect Mode",
-      "path": "prompts/modes/architect.md",
+      "path": "docs/prompts/modes/architect.md",
       "version": "0.3.0",
       "tags": ["mode", "architecture", "design", "systems"],
       "useCase": "Design a technical, product or workflow system.",
@@ -44,7 +44,7 @@
     {
       "id": "mode.research",
       "title": "Research Mode",
-      "path": "prompts/modes/research.md",
+      "path": "docs/prompts/modes/research.md",
       "version": "0.3.0",
       "tags": ["mode", "research", "evidence", "uncertainty"],
       "useCase": "Synthesize evidence and identify uncertainty.",
@@ -53,7 +53,7 @@
     {
       "id": "mode.explain",
       "title": "Explain Mode",
-      "path": "prompts/modes/explain.md",
+      "path": "docs/prompts/modes/explain.md",
       "version": "0.3.0",
       "tags": ["mode", "explanation", "clarity", "concepts"],
       "useCase": "Make a concept easier to understand.",
@@ -62,7 +62,7 @@
     {
       "id": "mode.teach",
       "title": "Teach Mode",
-      "path": "prompts/modes/teach.md",
+      "path": "docs/prompts/modes/teach.md",
       "version": "0.3.0",
       "tags": ["mode", "teaching", "learning", "step-by-step"],
       "useCase": "Teach a subject or skill step by step.",
@@ -71,7 +71,7 @@
     {
       "id": "mode.edit",
       "title": "Edit Mode",
-      "path": "prompts/modes/edit.md",
+      "path": "docs/prompts/modes/edit.md",
       "version": "0.3.0",
       "tags": ["mode", "editing", "writing", "docs"],
       "useCase": "Improve existing text, docs or prompts.",
@@ -80,7 +80,7 @@
     {
       "id": "mode.coach",
       "title": "Coach Mode",
-      "path": "prompts/modes/coach.md",
+      "path": "docs/prompts/modes/coach.md",
       "version": "0.3.0",
       "tags": ["mode", "coaching", "reflection", "habits"],
       "useCase": "Support reflection, guidance or behavior change.",
@@ -89,7 +89,7 @@
     {
       "id": "mode.plan",
       "title": "Plan Mode",
-      "path": "prompts/modes/plan.md",
+      "path": "docs/prompts/modes/plan.md",
       "version": "0.3.0",
       "tags": ["mode", "planning", "tasks", "sequencing"],
       "useCase": "Turn a goal into sequenced work.",
@@ -98,7 +98,7 @@
     {
       "id": "mode.debug",
       "title": "Debug Mode",
-      "path": "prompts/modes/debug.md",
+      "path": "docs/prompts/modes/debug.md",
       "version": "0.3.0",
       "tags": ["mode", "debugging", "diagnosis", "failure"],
       "useCase": "Isolate and fix a failure.",
@@ -107,7 +107,7 @@
     {
       "id": "mode.review",
       "title": "Review Mode",
-      "path": "prompts/modes/review.md",
+      "path": "docs/prompts/modes/review.md",
       "version": "0.3.0",
       "tags": ["mode", "review", "critique", "assessment"],
       "useCase": "Critically assess code, docs, plans or releases.",
@@ -116,7 +116,7 @@
     {
       "id": "mode.summarize",
       "title": "Summarize Mode",
-      "path": "prompts/modes/summarize.md",
+      "path": "docs/prompts/modes/summarize.md",
       "version": "0.3.0",
       "tags": ["mode", "summary", "compression", "key-points"],
       "useCase": "Compress longer material into a useful summary.",
@@ -125,7 +125,7 @@
     {
       "id": "mode.create",
       "title": "Create Mode",
-      "path": "prompts/modes/create.md",
+      "path": "docs/prompts/modes/create.md",
       "version": "0.3.0",
       "tags": ["mode", "creation", "drafting", "artifacts"],
       "useCase": "Create a new artifact, draft or template.",
@@ -136,7 +136,7 @@
     {
       "id": "pack.repo-review",
       "title": "Repo Review",
-      "path": "prompts/packs/repo-review.md",
+      "path": "docs/prompts/packs/repo-review.md",
       "version": "0.3.0",
       "tags": ["pack", "repo", "review", "release"],
       "modes": ["review", "analyze", "plan"],
@@ -145,7 +145,7 @@
     {
       "id": "pack.systems-thinking",
       "title": "Systems Thinking",
-      "path": "prompts/packs/systems-thinking.md",
+      "path": "docs/prompts/packs/systems-thinking.md",
       "version": "0.3.0",
       "tags": ["pack", "systems", "feedback-loops", "architecture"],
       "modes": ["analyze", "architect", "decide"],
@@ -154,7 +154,7 @@
     {
       "id": "pack.product-strategy",
       "title": "Product Strategy",
-      "path": "prompts/packs/product-strategy.md",
+      "path": "docs/prompts/packs/product-strategy.md",
       "version": "0.3.0",
       "tags": ["pack", "product", "strategy", "decisions"],
       "modes": ["research", "decide", "plan"],
@@ -163,7 +163,7 @@
     {
       "id": "pack.learning-coach",
       "title": "Learning Coach",
-      "path": "prompts/packs/learning-coach.md",
+      "path": "docs/prompts/packs/learning-coach.md",
       "version": "0.3.0",
       "tags": ["pack", "learning", "coaching", "teaching"],
       "modes": ["teach", "explain", "coach"],

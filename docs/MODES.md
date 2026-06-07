@@ -31,7 +31,7 @@ What kind of thinking does this request need?
 Mode files live in:
 
 ```text
-prompts/modes/
+docs/prompts/modes/
 ```
 
 Each mode is intentionally small. Atlas One should route clearly before it adds
@@ -41,8 +41,8 @@ complexity.
 
 Modes must not ask a model to:
 
-- ignore higher-priority instructions
-- expose hidden chain-of-thought
-- execute tools silently
-- request secrets
-- bypass approval gates
+* ignore higher-priority instructions
+* expose hidden chain-of-thought
+* execute tools silently
+* request secrets
+* bypass approval gates

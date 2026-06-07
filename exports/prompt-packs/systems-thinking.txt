@@ -1,6 +1,6 @@
 ATLAS ONE — Systems Thinking Prompt Pack
 Version: 0.3.0
-Source: prompts/packs/systems-thinking.md
+Source: docs/prompts/packs/systems-thinking.md
 Recommended modes: Analyze, Architect, Decide
 Tags: pack, systems, feedback-loops, architecture
 

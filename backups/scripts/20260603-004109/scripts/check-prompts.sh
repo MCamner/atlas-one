@@ -5,9 +5,9 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-MODES_DIR="$REPO_ROOT/prompts/modes"
-PACKS_DIR="$REPO_ROOT/prompts/packs"
-CORE_FILE="$REPO_ROOT/prompts/atlas-one.md"
+MODES_DIR="$REPO_ROOT/docs/prompts/modes"
+PACKS_DIR="$REPO_ROOT/docs/prompts/packs"
+CORE_FILE="$REPO_ROOT/docs/prompts/atlas-one.md"
 
 PASS=0
 FAIL=0
@@ -88,7 +88,7 @@ if [[ -f "$CORE_FILE" ]]; then
     fail "atlas-one.md — missing Modes section"
   fi
 else
-  fail "prompts/atlas-one.md — file missing"
+  fail "docs/prompts/atlas-one.md — file missing"
 fi
 
 echo ""
@@ -102,7 +102,7 @@ for f in "$MODES_DIR"/*.md; do
 done
 
 if [[ $mode_count -eq 0 ]]; then
-  fail "no mode files found in prompts/modes/"
+  fail "no mode files found in docs/prompts/modes/"
 else
   echo "  → $mode_count mode file(s) checked"
 fi
@@ -130,7 +130,7 @@ for f in "$PACKS_DIR"/*.md; do
 done
 
 if [[ $pack_count -eq 0 ]]; then
-  warn "no pack files found in prompts/packs/ (not required)"
+  warn "no pack files found in docs/prompts/packs/ (not required)"
 else
   echo "  → $pack_count pack file(s) checked"
 fi
