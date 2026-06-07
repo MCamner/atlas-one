@@ -54,7 +54,8 @@ Current project phase:
 
 ```text
 v1.0.0 — stable prompt operating system (done)
-Next:    long-term ideas / maintenance
+v1.1.0 — mq-agent execution bridge polish
+v1.2.0 — Ollama runtime policy for MQ
 ```
 
 Completed foundation:
@@ -67,8 +68,8 @@ Completed foundation:
 - Structured reasoning modes
 
 Future mq ecosystem work should build on this foundation with reusable prompt
-packs. Atlas One should package prompts and interaction patterns; mq-mcp remains
-the review/risk/architecture runtime.
+packs and clear runtime boundaries. Atlas One should package prompts and
+interaction patterns; mq-mcp remains the review/risk/architecture runtime.
 
 ---
 
@@ -85,6 +86,8 @@ the review/risk/architecture runtime.
 | v0.6.0  | mq ecosystem integration                   | Done          |
 | v0.7.0  | Personal workflow packs                    | Done          |
 | v1.0.0  | Stable prompt operating system             | Done          |
+| v1.1.0  | mq-agent execution bridge                  | In progress   |
+| v1.2.0  | Ollama runtime policy for MQ               | Planned       |
 
 ---
 
@@ -515,6 +518,103 @@ goal directly to the mq-agent CLI and show the result inline.
 
 ---
 
+## v1.2.0 — Ollama runtime policy for MQ
+
+Goal:
+
+Define how local Ollama models should be used by the mq ecosystem without
+turning Ollama into a separate product or unconstrained chatbot.
+
+Atlas One should provide the reasoning brief, safety framing and prompt pack
+for this work. The actual local model calls, JSON validation and runtime
+contracts should remain in mq-mcp and mq-agent.
+
+### v1.2.0 target flow
+
+```text
+Atlas One prompt pack
+  ↓
+mq-agent learn / review command
+  ↓
+mq-mcp Ollama provider
+  ↓
+local Ollama model
+  ↓
+structured JSON
+  ↓
+mq-mcp schema validation and safety classification
+```
+
+### v1.2.0 planned scope
+
+- [ ] Add an `ollama-runtime-policy` prompt pack that frames local model usage
+      for learn extraction, summarization and lightweight review
+- [ ] Add an `ollama-learn-extract` prompt pattern that asks for schema-shaped
+      output without bypassing mq-mcp validation
+- [ ] Document the boundary between Atlas One, mq-agent, mq-mcp and Ollama in
+      `docs/MQ_ECOSYSTEM.md`
+- [ ] Define allowed local model tasks:
+  - learn extraction
+  - summary generation
+  - structured notes
+  - lightweight code review suggestions
+  - repo signal enrichment
+- [ ] Define disallowed local model tasks:
+  - release go/no-go decisions
+  - destructive command approval
+  - security-critical changes without human review
+  - secret handling
+  - direct writes to memory without schema validation
+- [ ] Add a recommended first implementation plan for the Ollama repo:
+  - `README.md`
+  - `docs/OLLAMA_RUNTIME_POLICY.md`
+  - `docs/MQ_INTEGRATION.md`
+  - `config/models.yaml`
+  - `schemas/learn_extract.schema.json`
+  - `examples/learn-extract.md`
+  - `scripts/ollama-smoke-test.sh`
+- [ ] Add a small eval checklist for local model output quality:
+  - valid JSON
+  - schema compliance
+  - confidence field present
+  - source/evidence field present
+  - no invented commands
+  - no release or safety decision masquerading as fact
+
+### Initial model routing policy
+
+Treat these as local defaults, not permanent product choices:
+
+| Route | Intended task | Initial model class |
+| ----- | ------------- | ------------------- |
+| `fast` | smoke tests, short summaries, simple extraction | small general model |
+| `learn` | structured learn extraction and memory candidates | small/medium general model |
+| `code_light` | focused code explanation and lightweight review | small code model |
+| `code_heavy` | larger repo review drafts when hardware allows | larger code model |
+| `fallback` | safe degraded behavior when preferred model is missing | smallest installed capable model |
+
+### v1.2.0 definition of done
+
+- [ ] Atlas One has a prompt pack for designing and reviewing the Ollama policy
+- [ ] MQ ecosystem docs explain that Ollama is a local runtime provider, not a
+      decision authority
+- [ ] The first Ollama repo scaffold is documented with policy, config, schema,
+      examples and smoke test
+- [ ] Learn extraction has a JSON schema and at least three example fixtures
+- [ ] mq-mcp remains the validation and contract boundary
+- [ ] No Atlas One prompt encourages direct unsafe model execution, hidden
+      reasoning, approval bypass or unvalidated memory writes
+
+### Out of scope
+
+- Building a separate Ollama application
+- Forking or maintaining Ollama itself
+- Making Atlas One call Ollama directly
+- Letting local models approve releases or destructive actions
+- Replacing mq-mcp contracts with prompt-only validation
+
+---
+
 ## Long-term ideas
 
 These are intentionally not scheduled yet.
@@ -588,8 +688,12 @@ Every public prompt should have:
 Work on:
 
 ```text
-v1.1.0 — complete the two remaining checklist items
+1. v1.1.0 — complete the two remaining checklist items
+2. v1.2.0 — start the Ollama runtime policy scaffold
 ```
 
 - Repo path input in the UI
 - Visible fallback label for unmapped modes
+- Ollama runtime policy prompt pack
+- MQ integration boundary update
+- Learn extraction schema and examples
