@@ -366,6 +366,45 @@
       ]
     },
     {
+      "id": "ollama-runtime-policy",
+      "title": "Ollama Runtime Policy",
+      "path": "prompts/packs/ollama-runtime-policy.md",
+      "version": "1.2.0",
+      "tags": [
+        "pack",
+        "ollama",
+        "mq-mcp",
+        "local-ai",
+        "structured-output",
+        "policy"
+      ],
+      "exportPath": "exports/prompt-packs/ollama-runtime-policy.txt",
+      "modes": [
+        "architect",
+        "review",
+        "decide"
+      ]
+    },
+    {
+      "id": "ollama-learn-extract",
+      "title": "Ollama Learn Extract",
+      "path": "prompts/packs/ollama-learn-extract.md",
+      "version": "1.2.0",
+      "tags": [
+        "pack",
+        "ollama",
+        "learn",
+        "extraction",
+        "schema",
+        "mq-mcp"
+      ],
+      "exportPath": "exports/prompt-packs/ollama-learn-extract.txt",
+      "modes": [
+        "analyze",
+        "review"
+      ]
+    },
+    {
       "id": "release-readiness",
       "title": "Release Readiness",
       "path": "prompts/packs/release-readiness.md",

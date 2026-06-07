@@ -2,6 +2,20 @@
 
 ## [Unreleased]
 
+### Added
+
+- Added `prompts/packs/ollama-runtime-policy.md` and
+  `prompts/packs/ollama-learn-extract.md` with export text for framing local
+  Ollama model usage as mq-mcp provider work.
+- Added `docs/OLLAMA_PROVIDER_PLAN.md` with the recommended mq-mcp provider
+  scaffold, learn extraction schema shape, three fixtures, and eval checklist.
+
+### Changed
+
+- Marked v1.2.0 complete in `ROADMAP.md`.
+- Updated `docs/MQ_ECOSYSTEM.md` to keep `MCamner/ollama` as a clean upstream
+  fork and place MQ-specific provider work in mq-mcp.
+
 ## [1.0.0] - 2026-06-03
 
 ### Changed

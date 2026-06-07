@@ -1,0 +1,141 @@
+ATLAS ONE - Ollama Runtime Policy Prompt Pack
+Version: 1.2.0
+Source: prompts/packs/ollama-runtime-policy.md
+Tags: pack, ollama, mq-mcp, local-ai, structured-output, policy
+
+---
+
+Use this pack to design, review, and constrain local Ollama model usage in the
+mq ecosystem. It keeps MCamner/ollama as a clean upstream fork, frames Atlas One
+as the policy/prompt layer, and keeps provider calls plus JSON validation in
+mq-mcp.
+
+Recommended Modes:
+- Architect
+- Review
+- Decide
+
+Runtime Boundary Map:
+
+Atlas One      - policy framing, prompt structure, review brief
+mq-agent       - orchestration and user-facing command flow
+mq-mcp         - provider call, schema validation, contracts, safety class
+Ollama         - local model runtime behind http://localhost:11434/api
+MCamner/ollama - clean upstream fork; no MQ-specific policy files
+
+Allowed Local Model Tasks:
+- Learn extraction from review findings or diffs
+- Summary generation for bounded inputs
+- Structured notes with evidence fields
+- Lightweight code review suggestions
+- Repo signal enrichment that stays advisory
+
+Disallowed Local Model Tasks:
+- Release go/no-go decisions
+- Destructive command approval
+- Security-critical changes without human review
+- Secret handling or credential transformation
+- Direct memory writes without mq-mcp schema validation
+- Replacing mq-mcp contracts with prompt-only validation
+
+Starter Prompt:
+
+Use Atlas One Architect Mode.
+
+Design the mq-mcp Ollama provider boundary for this workflow:
+
+[describe the learn, review, summarize, or extraction workflow]
+
+Respect these boundaries:
+- Atlas One provides policy and prompt framing only
+- mq-agent orchestrates user-facing commands
+- mq-mcp owns provider calls, schemas, validation, safety classification, and storage gates
+- Ollama is only a local model runtime
+- MCamner/ollama remains a clean upstream fork
+
+Return:
+- Proposed owner for each responsibility
+- Provider inputs and outputs
+- Required JSON schema fields
+- Validation and fallback behavior
+- Risks and non-goals
+- Smallest safe first implementation
+
+Follow-up: Learn Extraction Contract
+
+Use Atlas One Review Mode.
+
+Review this proposed Ollama learn extraction contract:
+
+[paste schema, example output, or provider plan]
+
+Check:
+- Does every output field have a clear purpose?
+- Is evidence required for every learned item?
+- Is confidence bounded and meaningful?
+- Does the contract prevent direct memory writes?
+- Does mq-mcp remain the validation boundary?
+- Are release, security, and destructive-action decisions excluded?
+
+Return:
+- Findings ordered by severity
+- Required schema changes
+- Example fixtures still needed
+- Go / no-go for mq-mcp implementation
+
+Follow-up: Model Routing Policy
+
+Use Atlas One Decide Mode.
+
+Choose an initial local model routing policy for mq-mcp's Ollama provider.
+
+Use cases:
+- fast smoke tests
+- learn extraction
+- lightweight code review
+- larger repo review drafts
+- fallback when the preferred model is unavailable
+
+For each route, decide:
+- Intended task
+- Model class, not a hard dependency
+- Maximum authority the model gets
+- Required validation before output is trusted
+- Safe fallback behavior
+
+End with a minimal config/models.yaml shape.
+
+Follow-up: Provider Implementation Plan
+
+Use Atlas One Plan Mode.
+
+Create the first implementation plan for an mq-mcp Ollama structured-output
+provider.
+
+Target files:
+- mq-mcp/providers/ollama_provider.py
+- schemas/learn_extraction.schema.json
+- schemas/review_summary.schema.json
+- docs/OLLAMA_PROVIDER.md
+- examples/ollama_learn_extract.json
+- tests/test_ollama_provider.py
+
+Keep the implementation small:
+- health()
+- list_models()
+- chat_json()
+- extract_learn_items()
+- review_summary()
+
+Return:
+- Step-by-step implementation order
+- Test cases
+- Safety checks
+- What must remain out of scope
+
+Safety Constraints:
+- Do not add MQ-specific files to the Ollama upstream fork
+- Do not let local models approve releases or destructive actions
+- Do not bypass mq-mcp validation or approval gates
+- Do not ask for hidden chain-of-thought
+- Do not treat structured output as trusted without schema validation

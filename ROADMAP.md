@@ -54,8 +54,8 @@ Current project phase:
 
 ```text
 v1.0.0 — stable prompt operating system (done)
-v1.1.0 — mq-agent execution bridge polish
-v1.2.0 — Ollama runtime policy for MQ
+v1.1.0 — mq-agent execution bridge polish (done)
+v1.2.0 — Ollama runtime policy for MQ (done)
 ```
 
 Completed foundation:
@@ -87,7 +87,7 @@ interaction patterns; mq-mcp remains the review/risk/architecture runtime.
 | v0.7.0  | Personal workflow packs                    | Done          |
 | v1.0.0  | Stable prompt operating system             | Done          |
 | v1.1.0  | mq-agent execution bridge                  | Done          |
-| v1.2.0  | Ollama runtime policy for MQ               | Planned       |
+| v1.2.0  | Ollama runtime policy for MQ               | Done          |
 
 ---
 
@@ -548,25 +548,25 @@ mq-mcp schema validation and safety classification
 
 ### v1.2.0 planned scope
 
-- [ ] Add an `ollama-runtime-policy` prompt pack that frames local model usage
+- [x] Add an `ollama-runtime-policy` prompt pack that frames local model usage
       for learn extraction, summarization and lightweight review
-- [ ] Add an `ollama-learn-extract` prompt pattern that asks for schema-shaped
+- [x] Add an `ollama-learn-extract` prompt pattern that asks for schema-shaped
       output without bypassing mq-mcp validation
-- [ ] Document the boundary between Atlas One, mq-agent, mq-mcp and Ollama in
+- [x] Document the boundary between Atlas One, mq-agent, mq-mcp and Ollama in
       `docs/MQ_ECOSYSTEM.md`
-- [ ] Define allowed local model tasks:
+- [x] Define allowed local model tasks:
   - learn extraction
   - summary generation
   - structured notes
   - lightweight code review suggestions
   - repo signal enrichment
-- [ ] Define disallowed local model tasks:
+- [x] Define disallowed local model tasks:
   - release go/no-go decisions
   - destructive command approval
   - security-critical changes without human review
   - secret handling
   - direct writes to memory without schema validation
-- [ ] Add a recommended first implementation plan for the mq-mcp Ollama
+- [x] Add a recommended first implementation plan for the mq-mcp Ollama
       provider:
   - `mq-mcp/providers/ollama_provider.py`
   - `schemas/learn_extraction.schema.json`
@@ -574,7 +574,7 @@ mq-mcp schema validation and safety classification
   - `docs/OLLAMA_PROVIDER.md`
   - `examples/ollama_learn_extract.json`
   - `tests/test_ollama_provider.py`
-- [ ] Add a small eval checklist for local model output quality:
+- [x] Add a small eval checklist for local model output quality:
   - valid JSON
   - schema compliance
   - confidence field present
@@ -596,16 +596,16 @@ Treat these as local defaults, not permanent product choices:
 
 ### v1.2.0 definition of done
 
-- [ ] Atlas One has a prompt pack for designing and reviewing the Ollama policy
-- [ ] MQ ecosystem docs explain that Ollama is a local runtime provider, not a
+- [x] Atlas One has a prompt pack for designing and reviewing the Ollama policy
+- [x] MQ ecosystem docs explain that Ollama is a local runtime provider, not a
       decision authority
-- [ ] The Ollama upstream fork is explicitly kept clean of MQ-specific policy
+- [x] The Ollama upstream fork is explicitly kept clean of MQ-specific policy
       files
-- [ ] The first mq-mcp provider scaffold is documented with provider code,
+- [x] The first mq-mcp provider scaffold is documented with provider code,
       schemas, examples and tests
-- [ ] Learn extraction has a JSON schema and at least three example fixtures
-- [ ] mq-mcp remains the validation and contract boundary
-- [ ] No Atlas One prompt encourages direct unsafe model execution, hidden
+- [x] Learn extraction has a JSON schema and at least three example fixtures
+- [x] mq-mcp remains the validation and contract boundary
+- [x] No Atlas One prompt encourages direct unsafe model execution, hidden
       reasoning, approval bypass or unvalidated memory writes
 
 ### Out of scope
@@ -691,9 +691,12 @@ Every public prompt should have:
 Work on:
 
 ```text
-v1.2.0 — start the Ollama runtime policy scaffold
+mq-mcp — implement the Ollama structured-output provider
 ```
 
-- Ollama runtime policy prompt pack
-- MQ integration boundary update
-- Learn extraction schema and examples
+- `mq-mcp/providers/ollama_provider.py`
+- `schemas/learn_extraction.schema.json`
+- `schemas/review_summary.schema.json`
+- `docs/OLLAMA_PROVIDER.md`
+- `examples/ollama_learn_extract.json`
+- `tests/test_ollama_provider.py`

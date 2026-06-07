@@ -61,7 +61,7 @@ The interface runs entirely in the browser — no install required.
 │  > Debug              │                                 │
 │  > …                  │  [ Generate ] [ Copy ] [ → ]    │
 │                       │                                 │
-│  Packs (9)            │                                 │
+│  Packs                │                                 │
 │  > mq-mcp Safety      │                                 │
 │  > Release Readiness  │                                 │
 │  > Systems Thinking   │                                 │
@@ -303,6 +303,7 @@ Or as a macOS app bundle:
 * Advanced workflow editor
 * Plugin system for prompt packs
 * mq-mcp review, risk and architecture prompt packs
+* Ollama runtime policy prompt pack for mq-mcp provider work
 * Multi-model support
 * CLI integration
 * Export/import of workflows

@@ -52,12 +52,13 @@ prompts/packs/
 
 Packs combine modes into reusable workflows for recurring tasks.
 
-Current seed packs:
+Current pack families:
 
-- repo review
-- systems thinking
-- product strategy
-- learning coach
+- repo review and release readiness
+- systems thinking and product strategy
+- learning coach and personal workflow packs
+- mq ecosystem boundary, safety and architecture packs
+- Ollama runtime policy for mq-mcp provider work
 
 ## GitHub Pages
 
