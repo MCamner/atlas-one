@@ -75,4 +75,9 @@ Constraints:
 - Keep commands short and memorable
 - Match the existing mqlaunch naming conventions
 - One command should do one clear thing
+
+Notes:
+- External helper scripts referenced by these prompts live outside the model prompts and may require local configuration.
+- See .claude/settings.local.example.json for recommended placeholders and instructions to create your own `.claude/settings.local.json`.
+- Use `MQ_ROOT` or replace `<MQ_ROOT>` placeholders with your repository path.
 ```

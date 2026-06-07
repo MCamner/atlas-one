@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(<MQ_ROOT>/build_and_run.sh)",
+      "Bash(<MQ_ROOT>/package_mac_app.sh)",
+      "Bash(<MQ_ROOT>/run_mac.command)",
+      "Bash(<MQ_ROOT>/scripts/ensure-deps.sh)",
+      "Bash(<MQ_ROOT>/scripts/release-check.sh)",
+      "Bash(mqlaunch doctor --json)",
+      "Bash(mqlaunch mcp-status)"
+    ]
+  },
+  "notes": "Copy this file to .claude/settings.local.json and replace <MQ_ROOT> with your repo path, or keep MQ_ROOT exported in your shell before running local tools."
+}
