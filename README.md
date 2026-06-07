@@ -143,7 +143,9 @@ Atlas Studio turns intent into structured AI workflows:
 
 * **mq-agent execution**
   Runs the routed goal directly via mq-agent (`plan`, `review`, `audit`, `signal`)
-  when the Java backend is running — result appears inline in the UI
+  when the Java backend is running — result appears inline in the UI. The
+  execution panel includes a repo path input, and unmapped modes are shown as
+  `mode → plan (fallback)` before they are sent to mq-agent.
 
 ---
 
@@ -249,6 +251,7 @@ Create
 5. Output can be:
    * copied and opened in ChatGPT
    * executed directly via `▶ Run via mq-agent` (requires Java backend + mq-agent)
+     with an optional repo path for review, audit and signal workflows
 
 ---
 

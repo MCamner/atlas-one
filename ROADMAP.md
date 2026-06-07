@@ -86,7 +86,7 @@ interaction patterns; mq-mcp remains the review/risk/architecture runtime.
 | v0.6.0  | mq ecosystem integration                   | Done          |
 | v0.7.0  | Personal workflow packs                    | Done          |
 | v1.0.0  | Stable prompt operating system             | Done          |
-| v1.1.0  | mq-agent execution bridge                  | In progress   |
+| v1.1.0  | mq-agent execution bridge                  | Done          |
 | v1.2.0  | Ollama runtime policy for MQ               | Planned       |
 
 ---
@@ -505,8 +505,8 @@ goal directly to the mq-agent CLI and show the result inline.
 - [x] Inline output panel (command shown, result rendered, ok/err styled)
 - [x] Binary resolved from `MQ_AGENT_BIN` env or `~/mq-agent/.venv/bin/mq-agent`
 - [x] 60s timeout with reader thread to avoid buffer deadlock
-- [ ] Repo path input — let user point execution at any local repo (not just `.`)
-- [ ] Visible mode fallback label — clarify when decide/explain/teach map to `plan`
+- [x] Repo path input — let user point execution at any local repo (not just `.`)
+- [x] Visible mode fallback label — clarify when decide/explain/teach map to `plan`
 
 ### v1.1.0 definition of done
 
@@ -514,7 +514,7 @@ goal directly to the mq-agent CLI and show the result inline.
 - [x] plan + architect modes tested live and return structured results
 - [x] README updated with port, `/api/execute`, and mq-agent flow diagram
 - [x] Integration pattern stored in mq-mcp semantic memory (`atlas-mq-agent-bridge`)
-- [ ] Repo path is user-configurable in the UI
+- [x] Repo path is user-configurable in the UI
 
 ---
 
@@ -688,12 +688,9 @@ Every public prompt should have:
 Work on:
 
 ```text
-1. v1.1.0 — complete the two remaining checklist items
-2. v1.2.0 — start the Ollama runtime policy scaffold
+v1.2.0 — start the Ollama runtime policy scaffold
 ```
 
-- Repo path input in the UI
-- Visible fallback label for unmapped modes
 - Ollama runtime policy prompt pack
 - MQ integration boundary update
 - Learn extraction schema and examples
