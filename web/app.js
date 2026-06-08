@@ -14,7 +14,8 @@ function mapEls() {
    "promptSearch","savedPromptsList","goalInput","generateBtn","diagramBtn","editor","handoff",
    "routePreview","workflowPreview","diagramText","diagramPreview","copyOutputBtn","copyChatBtn",
    "openChatBtn","sendChatBtn","exportBtn","commandChips",
-   "runMqBtn","mqOutputSection","mqCommand","mqOutput","mqRepoPath","runMqBtn2"].forEach(id => els[id] = document.getElementById(id));
+   "runMqBtn","mqOutputSection","mqCommand","mqOutput","mqRepoPath","runMqBtn2",
+   "saveBrainBtn"].forEach(id => els[id] = document.getElementById(id));
 }
 
 async function loadPrompts() {
@@ -66,6 +67,7 @@ function bindEvents() {
     window.open('https://chatgpt.com/', '_blank');
   });
   els.exportBtn.addEventListener('click', exportJson);
+  els.saveBrainBtn.addEventListener('click', saveToBrain);
   els.bgPicker.addEventListener('change', setBackgroundFromFile);
   els.clearBgBtn.addEventListener('click', clearBackground);
   els.saveProjectBtn.addEventListener('click', saveProject);
@@ -315,6 +317,44 @@ async function runMqAgent() {
     els.runMqBtn.disabled = false;
     els.runMqBtn2.disabled = false;
     els.runMqBtn.textContent = '▶ Run via mq-agent';
+  }
+}
+
+async function saveToBrain() {
+  const goal = els.goalInput.value.trim();
+  if (!goal) { alert('Enter a goal first.'); return; }
+
+  const route = autoRoute(goal);
+
+  els.saveBrainBtn.disabled = true;
+  els.saveBrainBtn.textContent = 'Saving…';
+
+  try {
+    const res = await fetch('/api/decide', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title: goal.slice(0, 80),
+        context: route.goalUnderstanding,
+        decision: `Mode: ${route.selected}\nPipeline: ${route.pipeline.join(' → ')}`,
+        rationale: route.reason,
+        consequences: ''
+      })
+    });
+
+    if (!res.ok) {
+      alert(`Brain save failed: HTTP ${res.status}`);
+      return;
+    }
+
+    const data = await res.json();
+    els.saveBrainBtn.textContent = data.ok ? 'Saved to brain' : 'Save failed';
+    if (!data.ok) console.error('[brain]', data.error || data.result);
+  } catch (err) {
+    alert(`No backend — start AtlasServer first.\n\n${err.message}`);
+  } finally {
+    els.saveBrainBtn.disabled = false;
+    setTimeout(() => { els.saveBrainBtn.textContent = 'Save to brain'; }, 3000);
   }
 }
 

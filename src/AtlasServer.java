@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,7 @@ public class AtlasServer {
         server.createContext("/api/prompts", new JsonHandler("web/prompts.json"));
         server.createContext("/api/health", exchange -> sendJson(exchange, "{\"status\":\"ok\",\"app\":\"Atlas Studio\"}"));
         server.createContext("/api/execute", new ExecuteHandler());
+        server.createContext("/api/decide", new DecideHandler());
         server.createContext("/", new StaticHandler());
         server.setExecutor(null);
         server.start();
@@ -41,6 +43,43 @@ public class AtlasServer {
         } catch (Exception ignored) {
             System.out.println("Open this URL manually: " + url);
         }
+    }
+
+    static String resolveMqAgentBin() {
+        String env = System.getenv("MQ_AGENT_BIN");
+        if (env != null && !env.isEmpty()) return env;
+        String home = System.getProperty("user.home");
+        return home + "/mq-agent/.venv/bin/mq-agent";
+    }
+
+    static String extractJsonString(String json, String key) {
+        int keyIdx = json.indexOf("\"" + key + "\"");
+        if (keyIdx < 0) return "";
+        int colon = json.indexOf(':', keyIdx);
+        if (colon < 0) return "";
+        int quote = json.indexOf('"', colon + 1);
+        if (quote < 0) return "";
+        StringBuilder sb = new StringBuilder();
+        for (int i = quote + 1; i < json.length(); i++) {
+            char c = json.charAt(i);
+            if (c == '\\' && i + 1 < json.length()) {
+                sb.append(json.charAt(++i));
+            } else if (c == '"') {
+                break;
+            } else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+
+    static String escapeJson(String s) {
+        if (s == null) return "null";
+        return "\"" + s.replace("\\", "\\\\")
+                       .replace("\"", "\\\"")
+                       .replace("\n", "\\n")
+                       .replace("\r", "\\r")
+                       .replace("\t", "\\t") + "\"";
     }
 
     static class JsonHandler implements HttpHandler {
@@ -111,14 +150,7 @@ public class AtlasServer {
     }
 
     static class ExecuteHandler implements HttpHandler {
-        private static final String MQ_AGENT_BIN = resolveBin();
-
-        private static String resolveBin() {
-            String env = System.getenv("MQ_AGENT_BIN");
-            if (env != null && !env.isEmpty()) return env;
-            String home = System.getProperty("user.home");
-            return home + "/mq-agent/.venv/bin/mq-agent";
-        }
+        private static final String MQ_AGENT_BIN = resolveMqAgentBin();
 
         @Override
         public void handle(HttpExchange exchange) throws IOException {
@@ -196,35 +228,87 @@ public class AtlasServer {
                     return Arrays.asList(MQ_AGENT_BIN, "plan", goal, "--json");
             }
         }
+    }
 
-        private String extractJsonString(String json, String key) {
-            int keyIdx = json.indexOf("\"" + key + "\"");
-            if (keyIdx < 0) return "";
-            int colon = json.indexOf(':', keyIdx);
-            if (colon < 0) return "";
-            int quote = json.indexOf('"', colon + 1);
-            if (quote < 0) return "";
-            StringBuilder sb = new StringBuilder();
-            for (int i = quote + 1; i < json.length(); i++) {
-                char c = json.charAt(i);
-                if (c == '\\' && i + 1 < json.length()) {
-                    sb.append(json.charAt(++i));
-                } else if (c == '"') {
-                    break;
-                } else {
-                    sb.append(c);
-                }
+    static class DecideHandler implements HttpHandler {
+        private static final String MQ_AGENT_BIN = resolveMqAgentBin();
+
+        @Override
+        public void handle(HttpExchange exchange) throws IOException {
+            if ("OPTIONS".equals(exchange.getRequestMethod())) {
+                exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+                exchange.getResponseHeaders().set("Access-Control-Allow-Methods", "POST, OPTIONS");
+                exchange.getResponseHeaders().set("Access-Control-Allow-Headers", "Content-Type");
+                exchange.sendResponseHeaders(204, -1);
+                return;
             }
-            return sb.toString();
-        }
+            if (!"POST".equals(exchange.getRequestMethod())) {
+                exchange.sendResponseHeaders(405, -1);
+                return;
+            }
 
-        private String escapeJson(String s) {
-            if (s == null) return "null";
-            return "\"" + s.replace("\\", "\\\\")
-                           .replace("\"", "\\\"")
-                           .replace("\n", "\\n")
-                           .replace("\r", "\\r")
-                           .replace("\t", "\\t") + "\"";
+            String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
+            String title        = extractJsonString(body, "title");
+            String context      = extractJsonString(body, "context");
+            String decision     = extractJsonString(body, "decision");
+            String rationale    = extractJsonString(body, "rationale");
+            String consequences = extractJsonString(body, "consequences");
+
+            if (title == null || title.isEmpty()) {
+                sendJson(exchange, "{\"ok\":false,\"error\":\"title is required\"}");
+                return;
+            }
+
+            List<String> cmd = new ArrayList<>(Arrays.asList(
+                MQ_AGENT_BIN, "decide", title,
+                "--context",  context.isEmpty()   ? "No context provided" : context,
+                "--decision", decision.isEmpty()  ? "No decision recorded" : decision,
+                "--rationale", rationale.isEmpty() ? "No rationale provided" : rationale,
+                "--tag", "atlas-one",
+                "--json"
+            ));
+            if (!consequences.isEmpty()) {
+                cmd.add("--consequences");
+                cmd.add(consequences);
+            }
+
+            try {
+                ProcessBuilder pb = new ProcessBuilder(cmd);
+                pb.redirectErrorStream(true);
+                pb.environment().put("TERM", "dumb");
+                Process proc = pb.start();
+
+                final StringBuilder out = new StringBuilder();
+                final InputStream is = proc.getInputStream();
+                Thread reader = new Thread(() -> {
+                    try {
+                        out.append(new String(is.readAllBytes(), StandardCharsets.UTF_8));
+                    } catch (IOException ignored) {}
+                });
+                reader.setDaemon(true);
+                reader.start();
+
+                boolean done = proc.waitFor(30, TimeUnit.SECONDS);
+                reader.join(2000);
+
+                if (!done) {
+                    proc.destroyForcibly();
+                    sendJson(exchange, "{\"ok\":false,\"error\":\"mq-agent decide timed out\"}");
+                    return;
+                }
+
+                int exit = proc.exitValue();
+                String output = out.toString().trim();
+                String json;
+                if (output.startsWith("{") || output.startsWith("[")) {
+                    json = "{\"ok\":" + (exit == 0) + ",\"result\":" + output + "}";
+                } else {
+                    json = "{\"ok\":" + (exit == 0) + ",\"result\":" + escapeJson(output) + "}";
+                }
+                sendJson(exchange, json);
+            } catch (Exception e) {
+                sendJson(exchange, "{\"ok\":false,\"error\":" + escapeJson(e.getMessage()) + "}");
+            }
         }
     }
 }
