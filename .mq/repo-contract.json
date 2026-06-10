@@ -1,0 +1,10 @@
+{
+  "repo": "atlas-one",
+  "role": "prompt-studio",
+  "version": "1.4.0",
+  "status": "active",
+  "contracts": [
+    "prompt_pack.v1"
+  ],
+  "next_focus": ""
+}
