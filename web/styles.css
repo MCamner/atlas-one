@@ -35,6 +35,9 @@ h3{font-size:16px;margin-top:18px}
 .btn-mq{background:rgba(56,189,248,.15);border-color:rgba(56,189,248,.45);color:#7dd3fc;font-weight:600}
 .btn-mq:hover{background:rgba(56,189,248,.25);border-color:#7dd3fc}
 .btn-mq:disabled{opacity:.5;cursor:default}
+.btn-brain{background:rgba(167,139,250,.15);border-color:rgba(167,139,250,.45);color:#c4b5fd;font-weight:600}
+.btn-brain:hover{background:rgba(167,139,250,.25);border-color:#c4b5fd}
+.btn-brain:disabled{opacity:.5;cursor:default}
 .mq-path-row{align-items:center;margin-bottom:12px}
 .mq-path-row label{white-space:nowrap;margin:0;color:var(--muted);font-size:13px}
 .mq-path-row input{flex:1;min-width:120px}
