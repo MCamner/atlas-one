@@ -5,552 +5,544 @@
     "Analyze",
     "Decide",
     "Architect",
+    "Research",
+    "Explain",
+    "Teach",
+    "Edit",
+    "Coach",
+    "Plan",
+    "Debug",
+    "Review",
+    "Summarize",
+    "Create"
+  ],
+  "commands": [
+    "/atlas",
+    "/analyze",
+    "/decide",
+    "/architect",
+    "/research",
+    "/explain",
+    "/teach",
+    "/edit",
+    "/coach",
+    "/plan",
+    "/debug",
+    "/review",
+    "/summarize",
+    "/create"
+  ],
+  "modes": [
     {
+      "id": "analyze",
+      "title": "Analyze",
+      "path": "docs/prompts/modes/analyze.md",
       "version": "0.3.0",
-      "corePrompt": "docs/prompts/atlas-one.md",
-      "promptTypes": [
-        "Analyze",
-        "Decide",
-        "Architect",
-        "Research",
-        "Explain",
-        "Teach",
-        "Edit",
-        "Coach",
-        "Plan",
-        "Debug",
-        "Review",
-        "Summarize",
-        "Create"
+      "tags": [
+        "mode",
+        "analysis",
+        "patterns",
+        "understanding",
+        "diagnosis"
       ],
-      "commands": [
-        "/atlas",
-        "/analyze",
-        "/decide",
-        "/architect",
-        "/research",
-        "/explain",
-        "/teach",
-        "/edit",
-        "/coach",
-        "/plan",
-        "/debug",
-        "/review",
-        "/summarize",
-        "/create"
-      ],
-      "modes": [
-        {
-          "id": "analyze",
-          "title": "Analyze",
-          "path": "docs/prompts/modes/analyze.md",
-          "version": "0.3.0",
-          "tags": [
-            "mode",
-            "analysis",
-            "patterns",
-            "understanding",
-            "diagnosis"
-          ],
-          "useCase": "Understand a situation, system, idea or problem.",
-          "outputShape": "Summary, key parts, patterns, risks or gaps, insight, next step."
-        },
-        {
-          "id": "decide",
-          "title": "Decide",
-          "path": "docs/prompts/modes/decide.md",
-          "version": "0.3.0",
-          "tags": [
-            "mode",
-            "decision",
-            "trade-offs",
-            "judgment",
-            "options"
-          ],
-          "useCase": "Choose between options and expose trade-offs.",
-          "outputShape": "Context, options, trade-offs, recommendation, why, next action."
-        },
-        {
-          "id": "architect",
-          "title": "Architect",
-          "path": "docs/prompts/modes/architect.md",
-          "version": "0.3.0",
-          "tags": [
-            "mode",
-            "architecture",
-            "design",
-            "systems",
-            "boundaries"
-          ],
-          "useCase": "Design a technical, product or workflow system.",
-          "outputShape": "Goal, constraints, architecture, responsibilities, risks, recommendation."
-        },
-        {
-          "id": "research",
-          "title": "Research",
-          "path": "docs/prompts/modes/research.md",
-          "version": "0.3.0",
-          "tags": [
-            "mode",
-            "research",
-            "evidence",
-            "uncertainty",
-            "synthesis"
-          ],
-          "useCase": "Synthesize evidence and identify uncertainty.",
-          "outputShape": "Question, known facts, evidence, uncertainty, implications, follow-up."
-        },
-        {
-          "id": "explain",
-          "title": "Explain",
-          "path": "docs/prompts/modes/explain.md",
-          "version": "0.3.0",
-          "tags": [
-            "mode",
-            "explanation",
-            "clarity",
-            "concepts",
-            "simplification"
-          ],
-          "useCase": "Make a concept easier to understand.",
-          "outputShape": "Short answer, plain explanation, example, confusion, takeaway."
-        },
-        {
-          "id": "teach",
-          "title": "Teach",
-          "path": "docs/prompts/modes/teach.md",
-          "version": "0.3.0",
-          "tags": [
-            "mode",
-            "teaching",
-            "learning",
-            "step-by-step",
-            "practice"
-          ],
-          "useCase": "Teach a subject or skill step by step.",
-          "outputShape": "Goal, prerequisites, lesson, practice, understanding check, next lesson."
-        },
-        {
-          "id": "edit",
-          "title": "Edit",
-          "path": "docs/prompts/modes/edit.md",
-          "version": "0.3.0",
-          "tags": [
-            "mode",
-            "editing",
-            "writing",
-            "docs",
-            "improvement"
-          ],
-          "useCase": "Improve existing text, docs or prompts.",
-          "outputShape": "What changed, edited version, rationale, alternatives."
-        },
-        {
-          "id": "coach",
-          "title": "Coach",
-          "path": "docs/prompts/modes/coach.md",
-          "version": "0.3.0",
-          "tags": [
-            "mode",
-            "coaching",
-            "reflection",
-            "habits",
-            "guidance"
-          ],
-          "useCase": "Support reflection, guidance or behavior change.",
-          "outputShape": "Current state, goal, blockers, coaching frame, small action, question."
-        },
-        {
-          "id": "plan",
-          "title": "Plan",
-          "path": "docs/prompts/modes/plan.md",
-          "version": "0.3.0",
-          "tags": [
-            "mode",
-            "planning",
-            "tasks",
-            "sequencing",
-            "milestones"
-          ],
-          "useCase": "Turn a goal into sequenced work.",
-          "outputShape": "Goal, assumptions, phases, task list, risks, definition of done."
-        },
-        {
-          "id": "debug",
-          "title": "Debug",
-          "path": "docs/prompts/modes/debug.md",
-          "version": "0.3.0",
-          "tags": [
-            "mode",
-            "debugging",
-            "diagnosis",
-            "failure",
-            "root-cause"
-          ],
-          "useCase": "Isolate and fix a failure.",
-          "outputShape": "Observed problem, likely causes, checks, fix path, verification, risk."
-        },
-        {
-          "id": "review",
-          "title": "Review",
-          "path": "docs/prompts/modes/review.md",
-          "version": "0.3.0",
-          "tags": [
-            "mode",
-            "review",
-            "critique",
-            "assessment",
-            "findings"
-          ],
-          "useCase": "Critically assess code, docs, plans or releases.",
-          "outputShape": "Findings, severity, evidence, fixes, open questions, summary."
-        },
-        {
-          "id": "summarize",
-          "title": "Summarize",
-          "path": "docs/prompts/modes/summarize.md",
-          "version": "0.3.0",
-          "tags": [
-            "mode",
-            "summary",
-            "compression",
-            "key-points",
-            "action-items"
-          ],
-          "useCase": "Compress longer material into a useful summary.",
-          "outputShape": "Short summary, key points, decisions, action items, missing context."
-        },
-        {
-          "id": "create",
-          "title": "Create",
-          "path": "docs/prompts/modes/create.md",
-          "version": "0.3.0",
-          "tags": [
-            "mode",
-            "creation",
-            "drafting",
-            "artifacts",
-            "templates"
-          ],
-          "useCase": "Create a new artifact, draft or template.",
-          "outputShape": "Intent, draft, design choices, adaptation notes, next iteration."
-        }
-      ],
-      "promptPacks": [
-        {
-          "id": "repo-review",
-          "title": "Repo Review",
-          "path": "docs/prompts/packs/repo-review.md",
-          "version": "0.3.0",
-          "tags": [
-            "pack",
-            "repo",
-            "review",
-            "release",
-            "documentation"
-          ],
-          "exportPath": "exports/prompt-packs/repo-review.txt",
-          "modes": [
-            "review",
-            "analyze",
-            "plan"
-          ]
-        },
-        {
-          "id": "systems-thinking",
-          "title": "Systems Thinking",
-          "path": "docs/prompts/packs/systems-thinking.md",
-          "version": "0.3.0",
-          "tags": [
-            "pack",
-            "systems",
-            "feedback-loops",
-            "architecture",
-            "leverage"
-          ],
-          "exportPath": "exports/prompt-packs/systems-thinking.txt",
-          "modes": [
-            "analyze",
-            "architect",
-            "decide"
-          ]
-        },
-        {
-          "id": "product-strategy",
-          "title": "Product Strategy",
-          "path": "docs/prompts/packs/product-strategy.md",
-          "version": "0.3.0",
-          "tags": [
-            "pack",
-            "product",
-            "strategy",
-            "roadmap",
-            "decisions"
-          ],
-          "exportPath": "exports/prompt-packs/product-strategy.txt",
-          "modes": [
-            "research",
-            "decide",
-            "plan"
-          ]
-        },
-        {
-          "id": "learning-coach",
-          "title": "Learning Coach",
-          "path": "docs/prompts/packs/learning-coach.md",
-          "version": "0.3.0",
-          "tags": [
-            "pack",
-            "learning",
-            "coaching",
-            "teaching",
-            "practice"
-          ],
-          "exportPath": "exports/prompt-packs/learning-coach.txt",
-          "modes": [
-            "teach",
-            "explain",
-            "coach"
-          ]
-        },
-        {
-          "id": "mq-mcp-safety-review",
-          "title": "mq-mcp Safety Review",
-          "path": "docs/prompts/packs/mq-mcp-safety-review.md",
-          "version": "0.6.0",
-          "tags": [
-            "pack",
-            "mq-mcp",
-            "safety",
-            "review",
-            "security",
-            "risk"
-          ],
-          "exportPath": "exports/prompt-packs/mq-mcp-safety-review.txt",
-          "modes": [
-            "review",
-            "analyze",
-            "decide"
-          ]
-        },
-        {
-          "id": "mq-mcp-architecture-memory",
-          "title": "mq-mcp Architecture Memory",
-          "path": "docs/prompts/packs/mq-mcp-architecture-memory.md",
-          "version": "0.6.0",
-          "tags": [
-            "pack",
-            "mq-mcp",
-            "architecture",
-            "ADR",
-            "memory",
-            "boundaries"
-          ],
-          "exportPath": "exports/prompt-packs/mq-mcp-architecture-memory.txt",
-          "modes": [
-            "architect",
-            "analyze",
-            "decide"
-          ]
-        },
-        {
-          "id": "mq-ecosystem-boundaries",
-          "title": "mq Ecosystem Boundaries",
-          "path": "docs/prompts/packs/mq-ecosystem-boundaries.md",
-          "version": "0.6.0",
-          "tags": [
-            "pack",
-            "mq-ecosystem",
-            "boundaries",
-            "architecture",
-            "systems"
-          ],
-          "exportPath": "exports/prompt-packs/mq-ecosystem-boundaries.txt",
-          "modes": [
-            "analyze",
-            "architect",
-            "decide"
-          ]
-        },
-        {
-          "id": "ollama-runtime-policy",
-          "title": "Ollama Runtime Policy",
-          "path": "docs/prompts/packs/ollama-runtime-policy.md",
-          "version": "1.2.0",
-          "tags": [
-            "pack",
-            "ollama",
-            "mq-mcp",
-            "local-ai",
-            "structured-output",
-            "policy"
-          ],
-          "exportPath": "exports/prompt-packs/ollama-runtime-policy.txt",
-          "modes": [
-            "architect",
-            "review",
-            "decide"
-          ]
-        },
-        {
-          "id": "ollama-learn-extract",
-          "title": "Ollama Learn Extract",
-          "path": "docs/prompts/packs/ollama-learn-extract.md",
-          "version": "1.2.0",
-          "tags": [
-            "pack",
-            "ollama",
-            "learn",
-            "extraction",
-            "schema",
-            "mq-mcp"
-          ],
-          "exportPath": "exports/prompt-packs/ollama-learn-extract.txt",
-          "modes": [
-            "analyze",
-            "review"
-          ]
-        },
-        {
-          "id": "release-readiness",
-          "title": "Release Readiness",
-          "path": "docs/prompts/packs/release-readiness.md",
-          "version": "0.6.0",
-          "tags": [
-            "pack",
-            "release",
-            "readiness",
-            "review",
-            "mq-ecosystem"
-          ],
-          "exportPath": "exports/prompt-packs/release-readiness.txt",
-          "modes": [
-            "review",
-            "decide",
-            "plan"
-          ]
-        },
-        {
-          "id": "macos-scripts-terminal",
-          "title": "macOS Scripts Terminal",
-          "path": "docs/prompts/packs/macos-scripts-terminal.md",
-          "version": "0.6.0",
-          "tags": [
-            "pack",
-            "macos-scripts",
-            "terminal",
-            "workflow",
-            "automation",
-            "mqlaunch"
-          ],
-          "exportPath": "exports/prompt-packs/macos-scripts-terminal.txt",
-          "modes": [
-            "plan",
-            "debug",
-            "architect"
-          ]
-        },
-        {
-          "id": "architecture-review",
-          "title": "Architecture Review",
-          "path": "docs/prompts/packs/architecture-review.md",
-          "version": "0.7.0",
-          "tags": [
-            "pack",
-            "architecture",
-            "review",
-            "design",
-            "decisions",
-            "risk"
-          ],
-          "exportPath": "exports/prompt-packs/architecture-review.txt",
-          "modes": [
-            "architect",
-            "review",
-            "analyze"
-          ]
-        },
-        {
-          "id": "writing-editor",
-          "title": "Writing Editor",
-          "path": "docs/prompts/packs/writing-editor.md",
-          "version": "0.7.0",
-          "tags": [
-            "pack",
-            "writing",
-            "editing",
-            "clarity",
-            "structure",
-            "tone"
-          ],
-          "exportPath": "exports/prompt-packs/writing-editor.txt",
-          "modes": [
-            "edit",
-            "summarize",
-            "review"
-          ]
-        },
-        {
-          "id": "interview-prep",
-          "title": "Interview Prep",
-          "path": "docs/prompts/packs/interview-prep.md",
-          "version": "0.7.0",
-          "tags": [
-            "pack",
-            "interview",
-            "preparation",
-            "career",
-            "technical",
-            "behavioral"
-          ],
-          "exportPath": "exports/prompt-packs/interview-prep.txt",
-          "modes": [
-            "plan",
-            "coach",
-            "teach"
-          ]
-        },
-        {
-          "id": "bjj-coach",
-          "title": "BJJ Coach",
-          "path": "docs/prompts/packs/personal/bjj-coach.md",
-          "version": "0.7.0",
-          "tags": [
-            "pack",
-            "bjj",
-            "jiu-jitsu",
-            "training",
-            "reflection",
-            "personal"
-          ],
-          "exportPath": "exports/prompt-packs/personal/bjj-coach.txt",
-          "modes": [
-            "analyze",
-            "coach",
-            "plan"
-          ]
-        },
-        {
-          "id": "guitar-practice",
-          "title": "Guitar Practice",
-          "path": "docs/prompts/packs/personal/guitar-practice.md",
-          "version": "0.7.0",
-          "tags": [
-            "pack",
-            "guitar",
-            "practice",
-            "music",
-            "learning",
-            "personal"
-          ],
-          "exportPath": "exports/prompt-packs/personal/guitar-practice.txt",
-          "modes": [
-            "plan",
-            "coach",
-            "analyze"
-          ]
-        }
-      ],
-      "savedPrompts": []
-    }
+      "useCase": "Understand a situation, system, idea or problem.",
+      "outputShape": "Summary, key parts, patterns, risks or gaps, insight, next step."
+    },
     {
+      "id": "decide",
+      "title": "Decide",
+      "path": "docs/prompts/modes/decide.md",
+      "version": "0.3.0",
+      "tags": [
+        "mode",
+        "decision",
+        "trade-offs",
+        "judgment",
+        "options"
+      ],
+      "useCase": "Choose between options and expose trade-offs.",
+      "outputShape": "Context, options, trade-offs, recommendation, why, next action."
+    },
+    {
+      "id": "architect",
+      "title": "Architect",
+      "path": "docs/prompts/modes/architect.md",
+      "version": "0.3.0",
+      "tags": [
+        "mode",
+        "architecture",
+        "design",
+        "systems",
+        "boundaries"
+      ],
+      "useCase": "Design a technical, product or workflow system.",
+      "outputShape": "Goal, constraints, architecture, responsibilities, risks, recommendation."
+    },
+    {
+      "id": "research",
+      "title": "Research",
+      "path": "docs/prompts/modes/research.md",
+      "version": "0.3.0",
+      "tags": [
+        "mode",
+        "research",
+        "evidence",
+        "uncertainty",
+        "synthesis"
+      ],
+      "useCase": "Synthesize evidence and identify uncertainty.",
+      "outputShape": "Question, known facts, evidence, uncertainty, implications, follow-up."
+    },
+    {
+      "id": "explain",
+      "title": "Explain",
+      "path": "docs/prompts/modes/explain.md",
+      "version": "0.3.0",
+      "tags": [
+        "mode",
+        "explanation",
+        "clarity",
+        "concepts",
+        "simplification"
+      ],
+      "useCase": "Make a concept easier to understand.",
+      "outputShape": "Short answer, plain explanation, example, confusion, takeaway."
+    },
+    {
+      "id": "teach",
+      "title": "Teach",
+      "path": "docs/prompts/modes/teach.md",
+      "version": "0.3.0",
+      "tags": [
+        "mode",
+        "teaching",
+        "learning",
+        "step-by-step",
+        "practice"
+      ],
+      "useCase": "Teach a subject or skill step by step.",
+      "outputShape": "Goal, prerequisites, lesson, practice, understanding check, next lesson."
+    },
+    {
+      "id": "edit",
+      "title": "Edit",
+      "path": "docs/prompts/modes/edit.md",
+      "version": "0.3.0",
+      "tags": [
+        "mode",
+        "editing",
+        "writing",
+        "docs",
+        "improvement"
+      ],
+      "useCase": "Improve existing text, docs or prompts.",
+      "outputShape": "What changed, edited version, rationale, alternatives."
+    },
+    {
+      "id": "coach",
+      "title": "Coach",
+      "path": "docs/prompts/modes/coach.md",
+      "version": "0.3.0",
+      "tags": [
+        "mode",
+        "coaching",
+        "reflection",
+        "habits",
+        "guidance"
+      ],
+      "useCase": "Support reflection, guidance or behavior change.",
+      "outputShape": "Current state, goal, blockers, coaching frame, small action, question."
+    },
+    {
+      "id": "plan",
+      "title": "Plan",
+      "path": "docs/prompts/modes/plan.md",
+      "version": "0.3.0",
+      "tags": [
+        "mode",
+        "planning",
+        "tasks",
+        "sequencing",
+        "milestones"
+      ],
+      "useCase": "Turn a goal into sequenced work.",
+      "outputShape": "Goal, assumptions, phases, task list, risks, definition of done."
+    },
+    {
+      "id": "debug",
+      "title": "Debug",
+      "path": "docs/prompts/modes/debug.md",
+      "version": "0.3.0",
+      "tags": [
+        "mode",
+        "debugging",
+        "diagnosis",
+        "failure",
+        "root-cause"
+      ],
+      "useCase": "Isolate and fix a failure.",
+      "outputShape": "Observed problem, likely causes, checks, fix path, verification, risk."
+    },
+    {
+      "id": "review",
+      "title": "Review",
+      "path": "docs/prompts/modes/review.md",
+      "version": "0.3.0",
+      "tags": [
+        "mode",
+        "review",
+        "critique",
+        "assessment",
+        "findings"
+      ],
+      "useCase": "Critically assess code, docs, plans or releases.",
+      "outputShape": "Findings, severity, evidence, fixes, open questions, summary."
+    },
+    {
+      "id": "summarize",
+      "title": "Summarize",
+      "path": "docs/prompts/modes/summarize.md",
+      "version": "0.3.0",
+      "tags": [
+        "mode",
+        "summary",
+        "compression",
+        "key-points",
+        "action-items"
+      ],
+      "useCase": "Compress longer material into a useful summary.",
+      "outputShape": "Short summary, key points, decisions, action items, missing context."
+    },
+    {
+      "id": "create",
+      "title": "Create",
+      "path": "docs/prompts/modes/create.md",
+      "version": "0.3.0",
+      "tags": [
+        "mode",
+        "creation",
+        "drafting",
+        "artifacts",
+        "templates"
+      ],
+      "useCase": "Create a new artifact, draft or template.",
+      "outputShape": "Intent, draft, design choices, adaptation notes, next iteration."
+    }
+  ],
+  "promptPacks": [
+    {
+      "id": "repo-review",
+      "title": "Repo Review",
+      "path": "docs/prompts/packs/repo-review.md",
+      "version": "0.3.0",
+      "tags": [
+        "pack",
+        "repo",
+        "review",
+        "release",
+        "documentation"
+      ],
+      "exportPath": "exports/prompt-packs/repo-review.txt",
+      "modes": [
+        "review",
+        "analyze",
+        "plan"
+      ]
+    },
+    {
+      "id": "systems-thinking",
+      "title": "Systems Thinking",
+      "path": "docs/prompts/packs/systems-thinking.md",
+      "version": "0.3.0",
+      "tags": [
+        "pack",
+        "systems",
+        "feedback-loops",
+        "architecture",
+        "leverage"
+      ],
+      "exportPath": "exports/prompt-packs/systems-thinking.txt",
+      "modes": [
+        "analyze",
+        "architect",
+        "decide"
+      ]
+    },
+    {
+      "id": "product-strategy",
+      "title": "Product Strategy",
+      "path": "docs/prompts/packs/product-strategy.md",
+      "version": "0.3.0",
+      "tags": [
+        "pack",
+        "product",
+        "strategy",
+        "roadmap",
+        "decisions"
+      ],
+      "exportPath": "exports/prompt-packs/product-strategy.txt",
+      "modes": [
+        "research",
+        "decide",
+        "plan"
+      ]
+    },
+    {
+      "id": "learning-coach",
+      "title": "Learning Coach",
+      "path": "docs/prompts/packs/learning-coach.md",
+      "version": "0.3.0",
+      "tags": [
+        "pack",
+        "learning",
+        "coaching",
+        "teaching",
+        "practice"
+      ],
+      "exportPath": "exports/prompt-packs/learning-coach.txt",
+      "modes": [
+        "teach",
+        "explain",
+        "coach"
+      ]
+    },
+    {
+      "id": "mq-mcp-safety-review",
+      "title": "mq-mcp Safety Review",
+      "path": "docs/prompts/packs/mq-mcp-safety-review.md",
+      "version": "0.6.0",
+      "tags": [
+        "pack",
+        "mq-mcp",
+        "safety",
+        "review",
+        "security",
+        "risk"
+      ],
+      "exportPath": "exports/prompt-packs/mq-mcp-safety-review.txt",
+      "modes": [
+        "review",
+        "analyze",
+        "decide"
+      ]
+    },
+    {
+      "id": "mq-mcp-architecture-memory",
+      "title": "mq-mcp Architecture Memory",
+      "path": "docs/prompts/packs/mq-mcp-architecture-memory.md",
+      "version": "0.6.0",
+      "tags": [
+        "pack",
+        "mq-mcp",
+        "architecture",
+        "ADR",
+        "memory",
+        "boundaries"
+      ],
+      "exportPath": "exports/prompt-packs/mq-mcp-architecture-memory.txt",
+      "modes": [
+        "architect",
+        "analyze",
+        "decide"
+      ]
+    },
+    {
+      "id": "mq-ecosystem-boundaries",
+      "title": "mq Ecosystem Boundaries",
+      "path": "docs/prompts/packs/mq-ecosystem-boundaries.md",
+      "version": "0.6.0",
+      "tags": [
+        "pack",
+        "mq-ecosystem",
+        "boundaries",
+        "architecture",
+        "systems"
+      ],
+      "exportPath": "exports/prompt-packs/mq-ecosystem-boundaries.txt",
+      "modes": [
+        "analyze",
+        "architect",
+        "decide"
+      ]
+    },
+    {
+      "id": "ollama-runtime-policy",
+      "title": "Ollama Runtime Policy",
+      "path": "docs/prompts/packs/ollama-runtime-policy.md",
+      "version": "1.2.0",
+      "tags": [
+        "pack",
+        "ollama",
+        "mq-mcp",
+        "local-ai",
+        "structured-output",
+        "policy"
+      ],
+      "exportPath": "exports/prompt-packs/ollama-runtime-policy.txt",
+      "modes": [
+        "architect",
+        "review",
+        "decide"
+      ]
+    },
+    {
+      "id": "ollama-learn-extract",
+      "title": "Ollama Learn Extract",
+      "path": "docs/prompts/packs/ollama-learn-extract.md",
+      "version": "1.2.0",
+      "tags": [
+        "pack",
+        "ollama",
+        "learn",
+        "extraction",
+        "schema",
+        "mq-mcp"
+      ],
+      "exportPath": "exports/prompt-packs/ollama-learn-extract.txt",
+      "modes": [
+        "analyze",
+        "review"
+      ]
+    },
+    {
+      "id": "release-readiness",
+      "title": "Release Readiness",
+      "path": "docs/prompts/packs/release-readiness.md",
+      "version": "0.6.0",
+      "tags": [
+        "pack",
+        "release",
+        "readiness",
+        "review",
+        "mq-ecosystem"
+      ],
+      "exportPath": "exports/prompt-packs/release-readiness.txt",
+      "modes": [
+        "review",
+        "decide",
+        "plan"
+      ]
+    },
+    {
+      "id": "macos-scripts-terminal",
+      "title": "macOS Scripts Terminal",
+      "path": "docs/prompts/packs/macos-scripts-terminal.md",
+      "version": "0.6.0",
+      "tags": [
+        "pack",
+        "macos-scripts",
+        "terminal",
+        "workflow",
+        "automation",
+        "mqlaunch"
+      ],
+      "exportPath": "exports/prompt-packs/macos-scripts-terminal.txt",
+      "modes": [
+        "plan",
+        "debug",
+        "architect"
+      ]
+    },
+    {
+      "id": "architecture-review",
+      "title": "Architecture Review",
+      "path": "docs/prompts/packs/architecture-review.md",
+      "version": "0.7.0",
+      "tags": [
+        "pack",
+        "architecture",
+        "review",
+        "design",
+        "decisions",
+        "risk"
+      ],
+      "exportPath": "exports/prompt-packs/architecture-review.txt",
+      "modes": [
+        "architect",
+        "review",
+        "analyze"
+      ]
+    },
+    {
+      "id": "writing-editor",
+      "title": "Writing Editor",
+      "path": "docs/prompts/packs/writing-editor.md",
+      "version": "0.7.0",
+      "tags": [
+        "pack",
+        "writing",
+        "editing",
+        "clarity",
+        "structure",
+        "tone"
+      ],
+      "exportPath": "exports/prompt-packs/writing-editor.txt",
+      "modes": [
+        "edit",
+        "summarize",
+        "review"
+      ]
+    },
+    {
+      "id": "interview-prep",
+      "title": "Interview Prep",
+      "path": "docs/prompts/packs/interview-prep.md",
+      "version": "0.7.0",
+      "tags": [
+        "pack",
+        "interview",
+        "preparation",
+        "career",
+        "technical",
+        "behavioral"
+      ],
+      "exportPath": "exports/prompt-packs/interview-prep.txt",
+      "modes": [
+        "plan",
+        "coach",
+        "teach"
+      ]
+    },
+    {
+      "id": "bjj-coach",
+      "title": "BJJ Coach",
+      "path": "docs/prompts/packs/personal/bjj-coach.md",
+      "version": "0.7.0",
+      "tags": [
+        "pack",
+        "bjj",
+        "jiu-jitsu",
+        "training",
+        "reflection",
+        "personal"
+      ],
+      "exportPath": "exports/prompt-packs/personal/bjj-coach.txt",
+      "modes": [
+        "analyze",
+        "coach",
+        "plan"
+      ]
+    },
+    {
+      "id": "guitar-practice",
+      "title": "Guitar Practice",
+      "path": "docs/prompts/packs/personal/guitar-practice.md",
+      "version": "0.7.0",
+      "tags": [
+        "pack",
+        "guitar",
+        "practice",
+        "music",
+        "learning",
+        "personal"
+      ],
+      "exportPath": "exports/prompt-packs/personal/guitar-practice.txt",
+      "modes": [
+        "plan",
+        "coach",
+        "analyze"
+      ]
+    }
+  ],
+  "savedPrompts": []
+}
