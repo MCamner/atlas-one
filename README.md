@@ -2,7 +2,7 @@
 
 **Adaptive prompt system for structured thinking and decision-making.**
 
-Status: `v1.3.0 — public status and release clarity`
+Status: `v1.4.0 — Save to brain and portable MQ runtime`
 
 👉 **Live demo:** <https://mcamner.github.io/atlas-one/>
 
@@ -45,7 +45,7 @@ The interface runs entirely in the browser — no install required.
 
 ```text
 ┌─────────────────────────────────────────────────────────┐
-│ [A] Atlas Studio                              v1.3.0    │
+│ [A] Atlas Studio                              v1.4.0    │
 │ ─────────────────────────────────────────────────────── │
 │  SIDEBAR              │  MAIN PANEL                     │
 │  ─────────────────    │  ─────────────────────────────  │
@@ -338,7 +338,7 @@ Or as a macOS app bundle:
 ## Status
 
 Stable prompt operating system with mq ecosystem prompt packs and a documented
-execution boundary. Current public alignment target: `v1.3.0`.
+execution boundary. Current public alignment target: `v1.4.0`.
 
 ---
 
