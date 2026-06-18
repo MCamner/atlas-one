@@ -265,6 +265,7 @@ public class AtlasServer {
                 "--decision", decision.isEmpty()  ? "No decision recorded" : decision,
                 "--rationale", rationale.isEmpty() ? "No rationale provided" : rationale,
                 "--tag", "atlas-one",
+                "--approve",
                 "--json"
             ));
             if (!consequences.isEmpty()) {
