@@ -172,7 +172,7 @@ public class AtlasServer {
             String repoPath = extractJsonString(body, "path");
             if (repoPath == null || repoPath.isEmpty()) repoPath = ".";
 
-            List<String> cmd = buildCommand(goal, mode, repoPath);
+            List<String> cmd = buildCommand(groundGoal(goal, mode, repoPath), mode, repoPath);
             int timeoutSecs = ("review".equals(mode) || "architect".equals(mode)) ? 180 : 60;
 
             try {
@@ -226,6 +226,39 @@ public class AtlasServer {
                     return Arrays.asList(MQ_AGENT_BIN, "signal", path, "--json");
                 default:
                     return Arrays.asList(MQ_AGENT_BIN, "plan", goal, "--json");
+            }
+        }
+
+        // Hypothesis 1: ground the planner in mqobsidian durable memory. Only the
+        // plan path (default mode) sends a bare goal with no repo context;
+        // review/audit/signal already read the repo directly. Fail-safe: any miss
+        // returns the goal unchanged, so behavior never regresses.
+        private static String groundGoal(String goal, String mode, String repoPath) {
+            switch (mode) {
+                case "architect": case "review": case "debug": case "research":
+                    return goal;  // these read the repo directly; no grounding needed
+                default:
+                    String view = readAgentView(repoPath);
+                    if (view.isEmpty()) return goal;
+                    return "Repo memory (mqobsidian agent view — durable, may lag runtime):\n\n"
+                        + view + "\n\n---\n\nGoal: " + goal;
+            }
+        }
+
+        private static String readAgentView(String repoPath) {
+            try {
+                if (repoPath == null || repoPath.isEmpty() || repoPath.equals(".")) return "";
+                String repo = Paths.get(repoPath).getFileName().toString();
+                if (repo.isEmpty()) return "";
+                String vault = System.getenv("MQ_OBSIDIAN_DIR");
+                if (vault == null || vault.isEmpty()) {
+                    vault = System.getProperty("user.home") + "/mqobsidian";
+                }
+                Path view = Paths.get(vault, "memory", "learn", "agent", repo + ".md");
+                if (!Files.exists(view)) return "";
+                return new String(Files.readAllBytes(view), StandardCharsets.UTF_8).trim();
+            } catch (Exception e) {
+                return "";
             }
         }
     }
