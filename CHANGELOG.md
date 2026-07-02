@@ -8,13 +8,17 @@
   request template.
 * CI status badge for the prompt/docs checks in the README.
 * `archive/legacy/` for retired prototype source, with a provenance README.
+* MQ ecosystem architecture diagram (Mermaid) in the README.
+* Canonical prompt-pack template `docs/prompts/PACK_TEMPLATE.md`, with a
+  defined pack-maturity standard and scope in the ROADMAP.
 
 ### Changed
 
-* ROADMAP aligned with the v1.4.0 shipped state; v1.5.0 (public repo hygiene)
-  defined as next and a v2.0.0 direction added.
+* ROADMAP aligned with the v1.4.0 shipped state; v1.5.0 (public repo hygiene
+  and prompt-pack maturity) defined as next and a v2.0.0 direction added.
 * README slimmed — merged repeated product positioning and made mqobsidian
   explicit in the architecture boundary.
+* CONTRIBUTING documents the prompt-pack template and maturity bar.
 
 ### Removed
 

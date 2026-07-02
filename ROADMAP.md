@@ -697,28 +697,63 @@ mqobsidian — should be visible. This release adds no new execution features.
 
 ### v1.5.0 planned scope
 
-* [ ] Align ROADMAP with the v1.4.0 shipped state and define v1.5.0 / v2.0.0
-* [ ] Slim README and reduce repeated product positioning
-* [ ] Make mqobsidian explicit in the architecture (persist / source of truth)
-* [ ] Move dead prototype source to `archive/legacy/`; drop `.bak` and build
+Repo hygiene (shipped):
+
+* [x] Align ROADMAP with the v1.4.0 shipped state and define v1.5.0 / v2.0.0
+* [x] Slim README and reduce repeated product positioning
+* [x] Make mqobsidian explicit in the architecture (persist / source of truth)
+* [x] Move dead prototype source to `archive/legacy/`; drop `.bak` and build
       artifacts from the tracked tree
-* [ ] Add a CI status badge for the prompt/docs checks
-* [ ] Add `SECURITY.md` and `CONTRIBUTING.md`
-* [ ] Add issue and PR templates
-* [ ] File public issues for the next prompt-pack maturity work
+* [x] Add a CI status badge for the prompt/docs checks
+* [x] Add `SECURITY.md` and `CONTRIBUTING.md`
+* [x] Add issue and PR templates
+* [x] Add an MQ ecosystem architecture diagram to the README
+
+Prompt-pack maturity:
+
+* [x] Define a canonical pack template (`docs/prompts/PACK_TEMPLATE.md`)
+* [ ] Bring the thin packs up to the template — `learning-coach`,
+      `product-strategy`, `repo-review`, `systems-thinking` currently carry only
+      Recommended Modes + Starter Prompt
+* [ ] Add the missing maturity sections across packs — `When to Use`,
+      `Expected Output`, `Constraints`, `Example Usage`
+* [ ] Extend `check-prompts.sh` to enforce the maturity sections (today it only
+      checks `Version:`, `Tags:`, a heading and a `Starter Prompt`)
+* [ ] Bump `web/prompts.json` / `docs/prompts.json` and regenerate the index
+      once packs are updated
 
 ### v1.5.0 definition of done
 
-* [ ] README, ROADMAP, VERSION and CHANGELOG agree
-* [ ] Root directory looks intentional; no `.bak` or backup trees tracked
-* [ ] A new visitor can tell the static demo from the local Java backend
-* [ ] The MQ ecosystem boundary (including mqobsidian) is visible
-* [ ] The CI/check workflow is discoverable from the README
-* [ ] Remaining work exists as GitHub issues
+* [x] README, ROADMAP, VERSION and CHANGELOG agree
+* [x] Root directory looks intentional; no `.bak` or backup trees tracked
+* [x] A new visitor can tell the static demo from the local Java backend
+* [x] The MQ ecosystem boundary (including mqobsidian) is visible
+* [x] The CI/check workflow is discoverable from the README
+* [ ] Every public pack meets the `PACK_TEMPLATE.md` standard, verified by
+      `check-prompts.sh`
+
+### Prompt-pack maturity standard
+
+A pack is mature when it carries all of the elements the safety principles
+already require of every public prompt:
+
+```text
+Version + Tags        — metadata (enforced today)
+purpose / When to Use — when this pack is the right choice
+Recommended Modes     — which reasoning modes it drives
+Starter Prompt        — the reusable prompt body (enforced today)
+Expected Output       — what a good response looks like
+Constraints           — what it must not do; mq-agent / mq-mcp boundaries
+Example Usage         — a concrete input → output example
+```
+
+`docs/prompts/PACK_TEMPLATE.md` is the copy-paste source. The gap today is
+consistency: only some packs carry `When to Use`, `Example Usage` or explicit
+constraints, and `check-prompts.sh` does not yet verify them.
 
 ### Out of scope
 
-* New execution features or prompt-pack categories
+* New execution features or new prompt-pack categories
 * Direct Ollama calls from Atlas One
 * Duplicating mq-mcp review or risk logic
 
