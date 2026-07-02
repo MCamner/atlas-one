@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-07-02
+
 ### Added
 
 * `SECURITY.md`, `CONTRIBUTING.md`, a feature-request issue template and a pull
