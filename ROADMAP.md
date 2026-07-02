@@ -712,15 +712,14 @@ Repo hygiene (shipped):
 Prompt-pack maturity:
 
 * [x] Define a canonical pack template (`docs/prompts/PACK_TEMPLATE.md`)
-* [ ] Bring the thin packs up to the template — `learning-coach`,
-      `product-strategy`, `repo-review`, `systems-thinking` currently carry only
-      Recommended Modes + Starter Prompt
-* [ ] Add the missing maturity sections across packs — `When to Use`,
+* [x] Bring the thin packs up to the template — `learning-coach`,
+      `product-strategy`, `repo-review`, `systems-thinking`
+* [x] Add the missing maturity sections across packs — `When to Use`,
       `Expected Output`, `Constraints`, `Example Usage`
-* [ ] Extend `check-prompts.sh` to enforce the maturity sections (today it only
-      checks `Version:`, `Tags:`, a heading and a `Starter Prompt`)
-* [ ] Bump `web/prompts.json` / `docs/prompts.json` and regenerate the index
-      once packs are updated
+* [x] Extend `check-prompts.sh` to enforce the maturity sections (v0.6.0 —
+      179 checks pass)
+* [x] Regenerate the prompt index; bump `web/prompts.json` /
+      `docs/prompts.json` version at release tag
 
 ### v1.5.0 definition of done
 
@@ -729,7 +728,7 @@ Prompt-pack maturity:
 * [x] A new visitor can tell the static demo from the local Java backend
 * [x] The MQ ecosystem boundary (including mqobsidian) is visible
 * [x] The CI/check workflow is discoverable from the README
-* [ ] Every public pack meets the `PACK_TEMPLATE.md` standard, verified by
+* [x] Every public pack meets the `PACK_TEMPLATE.md` standard, verified by
       `check-prompts.sh`
 
 ### Prompt-pack maturity standard

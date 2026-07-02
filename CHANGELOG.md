@@ -19,6 +19,9 @@
 * README slimmed — merged repeated product positioning and made mqobsidian
   explicit in the architecture boundary.
 * CONTRIBUTING documents the prompt-pack template and maturity bar.
+* All 14 prompt packs brought up to the maturity standard (`When to Use`,
+  `Expected Output`, `Constraints`, `Example`); `check-prompts.sh` (v0.6.0)
+  now enforces it. Regenerated the prompt index.
 
 ### Removed
 
