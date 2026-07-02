@@ -59,7 +59,7 @@ v1.2.0 — Ollama runtime policy for MQ (done)
 v1.3.0 — public status and release clarity (done)
 v1.4.0 — Save to brain, portable MQ_ROOT, prompt reorg (done)
 v1.5.0 — public repo hygiene and prompt-pack maturity (done)
-v2.0.0 — Atlas as a full local prompt/workflow studio (next)
+v2.0.0 — Atlas as a local prompt/workflow studio (next)
 ```
 
 Completed foundation:
@@ -95,7 +95,7 @@ interaction patterns; mq-mcp remains the review/risk/architecture runtime.
 | v1.3.0  | Public status and release clarity          | Done          |
 | v1.4.0  | Save to brain, portable MQ_ROOT, prompt reorg | Done       |
 | v1.5.0  | Public repo hygiene and prompt-pack maturity | Done        |
-| v2.0.0  | Atlas as a full local prompt/workflow studio | Next        |
+| v2.0.0  | Atlas as a local prompt/workflow studio      | Next        |
 
 ---
 
