@@ -146,13 +146,28 @@ runtime validation or review decisions.
 
 Current role split:
 
-```text
-Atlas One   — prompts, mode routing, interaction patterns and handoff text
-mq-agent    — orchestration and command execution flow
-mq-mcp      — review, risk, validation, safety classes and memory contracts
-mqobsidian  — durable memory: persists decisions and curated context (Save to brain)
-Ollama      — optional local model provider, never a decision authority
+```mermaid
+flowchart TD
+    U([User goal]) --> AO
+
+    subgraph AO["Atlas One — think / prompt / route"]
+      R[Mode routing + prompt packs] --> HO[Handoff text]
+    end
+
+    HO -->|copy| EXT[ChatGPT / external LLM<br/>execute externally]
+    HO -->|run| AG[mq-agent<br/>execute / orchestrate]
+
+    AG --> MC[mq-mcp<br/>review / risk / validation / memory contracts]
+    AG -. optional provider .-> OL[Ollama<br/>local model, never a decision authority]
+    MC --> OB[(mqobsidian<br/>persist / source of truth)]
+    R -. Save to brain .-> OB
 ```
+
+* **Atlas One** — prompts, mode routing, interaction patterns and handoff text
+* **mq-agent** — orchestration and command execution flow
+* **mq-mcp** — review, risk, validation, safety classes and memory contracts
+* **mqobsidian** — durable memory: persists decisions and curated context (Save to brain)
+* **Ollama** — optional local model provider, never a decision authority
 
 ```text
 atlas-one/

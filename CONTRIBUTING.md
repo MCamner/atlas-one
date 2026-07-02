@@ -42,6 +42,14 @@ full server:
 * Markdown follows `.markdownlint.json` (dash lists are `*`, per MD004).
 * Do not commit secrets, tokens or machine-specific private paths.
 
+## Prompt packs
+
+New or updated packs should follow the canonical template at
+[`docs/prompts/PACK_TEMPLATE.md`](docs/prompts/PACK_TEMPLATE.md): purpose,
+when to use, recommended modes, starter prompt, expected output, constraints
+and an example. `check-prompts.sh` enforces the minimum (`Version:`, `Tags:`,
+a heading, a `Starter Prompt`); the rest of the template is the maturity bar.
+
 ## Prompt safety
 
 Every public prompt should state its purpose, when to use it, expected output
