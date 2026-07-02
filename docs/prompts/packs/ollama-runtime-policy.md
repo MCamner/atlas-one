@@ -10,9 +10,9 @@ validation in mq-mcp.
 
 ## Recommended Modes
 
-- Architect
-- Review
-- Decide
+* Architect
+* Review
+* Decide
 
 ## Runtime Boundary Map
 
@@ -26,20 +26,20 @@ MCamner/ollama — clean upstream fork; no MQ-specific policy files
 
 ## Allowed Local Model Tasks
 
-- Learn extraction from review findings or diffs
-- Summary generation for bounded inputs
-- Structured notes with evidence fields
-- Lightweight code review suggestions
-- Repo signal enrichment that stays advisory
+* Learn extraction from review findings or diffs
+* Summary generation for bounded inputs
+* Structured notes with evidence fields
+* Lightweight code review suggestions
+* Repo signal enrichment that stays advisory
 
 ## Disallowed Local Model Tasks
 
-- Release go/no-go decisions
-- Destructive command approval
-- Security-critical changes without human review
-- Secret handling or credential transformation
-- Direct memory writes without mq-mcp schema validation
-- Replacing mq-mcp contracts with prompt-only validation
+* Release go/no-go decisions
+* Destructive command approval
+* Security-critical changes without human review
+* Secret handling or credential transformation
+* Direct memory writes without mq-mcp schema validation
+* Replacing mq-mcp contracts with prompt-only validation
 
 ## Starter Prompt
 
@@ -147,8 +147,35 @@ Return:
 ## Safety Constraints
 
 Do not use this pack to:
-- Add MQ-specific files to the Ollama upstream fork
-- Let local models approve releases or destructive actions
-- Bypass mq-mcp validation or approval gates
-- Ask for hidden chain-of-thought
-- Treat structured output as trusted without schema validation
+* Add MQ-specific files to the Ollama upstream fork
+* Let local models approve releases or destructive actions
+* Bypass mq-mcp validation or approval gates
+* Ask for hidden chain-of-thought
+* Treat structured output as trusted without schema validation
+
+## When to Use
+
+* When designing or reviewing how mq-mcp calls a local Ollama model
+* When deciding what a local model is and is not allowed to do
+* When planning the provider, schemas or model-routing policy
+
+## Expected Output
+
+* A proposed owner for each responsibility across the boundary
+* Provider inputs/outputs and required JSON schema fields
+* Validation and fallback behavior, risks and non-goals
+* The smallest safe first implementation
+
+## Example Usage
+
+```text
+Goal:
+Define the mq-mcp Ollama provider boundary for learn extraction.
+
+Mode:
+Architect
+
+Output:
+Responsibility owners, provider I/O, required schema fields, validation and
+fallback, risks, and a minimal first implementation.
+```

@@ -9,9 +9,9 @@ another's begins.
 
 ## Recommended Modes
 
-- Analyze
-- Architect
-- Decide
+* Analyze
+* Architect
+* Decide
 
 ## Ecosystem Boundary Map
 
@@ -78,4 +78,36 @@ Compare the candidate tools on:
 - Risk of boundary confusion
 
 Recommend one owner and explain the boundary clearly.
+```
+
+## When to Use
+
+* Before designing a workflow that spans more than one mq tool
+* When it is unclear which tool should own a responsibility
+* When a change risks blurring the line between two tools
+
+## Expected Output
+
+* For each tool: what it owns, what it does not, and its handoffs
+* What breaks if a given tool is removed or fails
+* The one critical boundary the design must respect
+
+## Constraints
+
+* Atlas One provides reasoning structure, not execution
+* Do not re-implement mq-mcp review logic or bypass mq-agent's safety layer
+* Respect each tool's stated authority; flag ambiguous ownership
+
+## Example Usage
+
+```text
+Goal:
+Design where repo-signal ends and mq-mcp begins for a release-readiness flow.
+
+Mode:
+Analyze
+
+Output:
+Per-tool responsibilities and handoffs, failure impact, and the critical
+boundary to respect.
 ```

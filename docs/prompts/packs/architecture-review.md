@@ -11,9 +11,9 @@ This pack is for active design review and critique, not retrieval.
 
 ## Recommended Modes
 
-- Architect
-- Review
-- Analyze
+* Architect
+* Review
+* Analyze
 
 ## Starter Prompt — Full Architecture Review
 
@@ -98,3 +98,22 @@ Architect
 Output:
 Architecture summary, risks, open questions, one structural recommendation.
 ```
+
+## When to Use
+
+* Before a design hardens — when you can still change structure cheaply
+* When reviewing someone else's architecture, or your own with fresh eyes
+* When a decision feels risky but the risk is not yet named
+
+## Expected Output
+
+* A 2–3 sentence architecture summary
+* Risks ordered by severity, with the reasoning behind each
+* Unstated assumptions made explicit
+* One structural change that improves resilience, plus open questions
+
+## Constraints
+
+* Critique, do not just validate — surface what is missing or wrong
+* Ground findings in the design provided; mark inferences as inferences
+* Review only — implementation and risk gating belong to mq-agent / mq-mcp

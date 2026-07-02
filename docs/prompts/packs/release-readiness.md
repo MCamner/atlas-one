@@ -9,16 +9,16 @@ structured go / no-go assessment.
 
 ## Recommended Modes
 
-- Review
-- Decide
-- Plan
+* Review
+* Decide
+* Plan
 
 ## When to Use
 
-- After running `scripts/release-check.sh` and reading the output
-- After running `repo-signal` on a repo and reading its JSON contract
-- Before tagging a release
-- When deciding whether uncommitted changes, warnings or failures block a release
+* After running `scripts/release-check.sh` and reading the output
+* After running `repo-signal` on a repo and reading its JSON contract
+* Before tagging a release
+* When deciding whether uncommitted changes, warnings or failures block a release
 
 ## Starter Prompt
 
@@ -84,4 +84,30 @@ scripts/release-check.sh              # run automated checks
 repo-signal . --format json           # get machine-readable readiness report
 mqlaunch review                       # copy Atlas One review prompt
 mqlaunch ask "release vX.Y.Z ready?"  # ask mqlaunch for assessment
+```
+
+## Expected Output
+
+* A findings table: issue / severity / blocking?
+* A clear go / no-go recommendation with conditions
+* When fixing: a sequenced plan covering only the blocking issues
+
+## Constraints
+
+* Base the assessment on real check output (`release-check.sh` / repo-signal)
+* Recommend a decision; the human tags the release
+* Do not mark failures as non-blocking without stated justification
+
+## Example Usage
+
+```text
+Goal:
+Decide whether repo X is ready to tag v1.2.0 given release-check warnings.
+
+Mode:
+Review
+
+Output:
+A findings table with severity and blocking status, then a go / no-go
+recommendation with conditions.
 ```

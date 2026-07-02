@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # check-prompts.sh — validate metadata on all prompt files
-# v0.5.0
+# v0.6.0 — packs must meet the maturity standard (docs/prompts/PACK_TEMPLATE.md)
 
 set -euo pipefail
 
@@ -61,7 +61,7 @@ check_file() {
     fi
   fi
 
-  # Required: Starter Prompt (packs only)
+  # Required: Starter Prompt + maturity sections (packs only)
   if [[ "$file" == */packs/* ]]; then
     if grep -q "Starter Prompt" "$file"; then
       ok "$label — Starter Prompt present"
@@ -69,9 +69,27 @@ check_file() {
       fail "$label — missing Starter Prompt"
       ((errors++)) || true
     fi
+
+    # Pack maturity standard — see docs/prompts/PACK_TEMPLATE.md.
+    # Each concept is matched on a heading; sensible synonyms are accepted.
+    # check_section reports via ok()/fail(), which drive the PASS/FAIL summary.
+    check_section "$file" "$label" "When to Use"     'when to use'
+    check_section "$file" "$label" "Expected Output" 'expected output|output contract'
+    check_section "$file" "$label" "Constraints"     'constraints'
+    check_section "$file" "$label" "Example"         'example'
   fi
 
   return $errors
+}
+
+# Verifies a pack has a heading matching the given regex; reports via ok()/fail().
+check_section() {
+  local file="$1" label="$2" name="$3" pattern="$4"
+  if grep -qiE "^#+ .*($pattern)" "$file"; then
+    ok "$label — $name section present"
+  else
+    fail "$label — missing $name section"
+  fi
 }
 
 echo ""

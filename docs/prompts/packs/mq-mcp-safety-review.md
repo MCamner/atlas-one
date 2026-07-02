@@ -9,15 +9,15 @@ thinking that makes mq-mcp review more effective.
 
 ## Recommended Modes
 
-- Review
-- Analyze
-- Decide
+* Review
+* Analyze
+* Decide
 
 ## When to Use
 
-- Before running a mq-mcp security or risk review on a repo
-- When deciding whether a change is safe to approve
-- When assessing a new MCP tool or server for safety boundaries
+* Before running a mq-mcp security or risk review on a repo
+* When deciding whether a change is safe to approve
+* When assessing a new MCP tool or server for safety boundaries
 
 ## Starter Prompt
 
@@ -74,7 +74,27 @@ State:
 ## Safety Constraints
 
 Do not use this pack to:
-- Bypass mq-mcp approval gates
-- Approve changes that request hidden chain-of-thought
-- Approve tool execution that circumvents user confirmation
-- Substitute for a real mq-mcp security review where one is required
+* Bypass mq-mcp approval gates
+* Approve changes that request hidden chain-of-thought
+* Approve tool execution that circumvents user confirmation
+* Substitute for a real mq-mcp security review where one is required
+
+## Expected Output
+
+* Findings ordered by severity (critical / warn / info), each with evidence
+* Recommended fixes or constraints per finding
+* An explicit go / no-go recommendation with conditions
+
+## Example Usage
+
+```text
+Goal:
+Prepare a safety brief before running mq-mcp review on a new MCP server.
+
+Mode:
+Review
+
+Output:
+Severity-ordered findings with evidence, recommended constraints, and a
+go / no-go recommendation.
+```
