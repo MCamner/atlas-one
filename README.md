@@ -2,7 +2,7 @@
 
 **Adaptive prompt system for structured thinking and decision-making.**
 
-Status: `v1.4.0 — Save to brain and portable MQ runtime`
+Status: `v1.5.0 — public repo hygiene and prompt-pack maturity`
 
 [![Prompt & docs checks](https://github.com/MCamner/atlas-one/actions/workflows/check-prompts.yml/badge.svg)](https://github.com/MCamner/atlas-one/actions/workflows/check-prompts.yml)
 
@@ -43,7 +43,7 @@ The interface runs entirely in the browser — no install required.
 
 ```text
 ┌─────────────────────────────────────────────────────────┐
-│ [A] Atlas Studio                              v1.4.0    │
+│ [A] Atlas Studio                              v1.5.0    │
 │ ─────────────────────────────────────────────────────── │
 │  SIDEBAR              │  MAIN PANEL                     │
 │  ─────────────────    │  ─────────────────────────────  │
@@ -266,9 +266,9 @@ Or as a macOS app bundle:
 
 ## Roadmap
 
-Current: **v1.4.0** shipped. Next: **v1.5.0 — public repo hygiene and workflow
-maturity**. See [ROADMAP.md](ROADMAP.md) for the full release map and the
-v2.0.0 direction.
+Current: **v1.5.0** shipped. Next: **v2.0.0 — Atlas as a full local
+prompt/workflow studio** (direction; not yet scoped). See
+[ROADMAP.md](ROADMAP.md) for the full release map.
 
 ---
 
@@ -286,7 +286,7 @@ v2.0.0 direction.
 ## Status
 
 Stable prompt operating system with mq ecosystem prompt packs and a documented
-execution boundary. Current public alignment target: `v1.4.0`.
+execution boundary. Current public alignment target: `v1.5.0`.
 
 ---
 

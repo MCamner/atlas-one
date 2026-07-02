@@ -1,6 +1,6 @@
 {
   "version": "0.3.0",
-  "corePrompt": "prompts/atlas-one.md",
+  "corePrompt": "docs/prompts/atlas-one.md",
   "promptTypes": [
     "Analyze",
     "Decide",
@@ -36,7 +36,7 @@
     {
       "id": "analyze",
       "title": "Analyze",
-      "path": "prompts/modes/analyze.md",
+      "path": "docs/prompts/modes/analyze.md",
       "version": "0.3.0",
       "tags": [
         "mode",
@@ -51,7 +51,7 @@
     {
       "id": "decide",
       "title": "Decide",
-      "path": "prompts/modes/decide.md",
+      "path": "docs/prompts/modes/decide.md",
       "version": "0.3.0",
       "tags": [
         "mode",
@@ -66,7 +66,7 @@
     {
       "id": "architect",
       "title": "Architect",
-      "path": "prompts/modes/architect.md",
+      "path": "docs/prompts/modes/architect.md",
       "version": "0.3.0",
       "tags": [
         "mode",
@@ -81,7 +81,7 @@
     {
       "id": "research",
       "title": "Research",
-      "path": "prompts/modes/research.md",
+      "path": "docs/prompts/modes/research.md",
       "version": "0.3.0",
       "tags": [
         "mode",
@@ -96,7 +96,7 @@
     {
       "id": "explain",
       "title": "Explain",
-      "path": "prompts/modes/explain.md",
+      "path": "docs/prompts/modes/explain.md",
       "version": "0.3.0",
       "tags": [
         "mode",
@@ -111,7 +111,7 @@
     {
       "id": "teach",
       "title": "Teach",
-      "path": "prompts/modes/teach.md",
+      "path": "docs/prompts/modes/teach.md",
       "version": "0.3.0",
       "tags": [
         "mode",
@@ -126,7 +126,7 @@
     {
       "id": "edit",
       "title": "Edit",
-      "path": "prompts/modes/edit.md",
+      "path": "docs/prompts/modes/edit.md",
       "version": "0.3.0",
       "tags": [
         "mode",
@@ -141,7 +141,7 @@
     {
       "id": "coach",
       "title": "Coach",
-      "path": "prompts/modes/coach.md",
+      "path": "docs/prompts/modes/coach.md",
       "version": "0.3.0",
       "tags": [
         "mode",
@@ -156,7 +156,7 @@
     {
       "id": "plan",
       "title": "Plan",
-      "path": "prompts/modes/plan.md",
+      "path": "docs/prompts/modes/plan.md",
       "version": "0.3.0",
       "tags": [
         "mode",
@@ -171,7 +171,7 @@
     {
       "id": "debug",
       "title": "Debug",
-      "path": "prompts/modes/debug.md",
+      "path": "docs/prompts/modes/debug.md",
       "version": "0.3.0",
       "tags": [
         "mode",
@@ -186,7 +186,7 @@
     {
       "id": "review",
       "title": "Review",
-      "path": "prompts/modes/review.md",
+      "path": "docs/prompts/modes/review.md",
       "version": "0.3.0",
       "tags": [
         "mode",
@@ -201,7 +201,7 @@
     {
       "id": "summarize",
       "title": "Summarize",
-      "path": "prompts/modes/summarize.md",
+      "path": "docs/prompts/modes/summarize.md",
       "version": "0.3.0",
       "tags": [
         "mode",
@@ -216,7 +216,7 @@
     {
       "id": "create",
       "title": "Create",
-      "path": "prompts/modes/create.md",
+      "path": "docs/prompts/modes/create.md",
       "version": "0.3.0",
       "tags": [
         "mode",
@@ -233,7 +233,7 @@
     {
       "id": "repo-review",
       "title": "Repo Review",
-      "path": "prompts/packs/repo-review.md",
+      "path": "docs/prompts/packs/repo-review.md",
       "version": "0.3.0",
       "tags": [
         "pack",
@@ -252,7 +252,7 @@
     {
       "id": "systems-thinking",
       "title": "Systems Thinking",
-      "path": "prompts/packs/systems-thinking.md",
+      "path": "docs/prompts/packs/systems-thinking.md",
       "version": "0.3.0",
       "tags": [
         "pack",
@@ -271,7 +271,7 @@
     {
       "id": "product-strategy",
       "title": "Product Strategy",
-      "path": "prompts/packs/product-strategy.md",
+      "path": "docs/prompts/packs/product-strategy.md",
       "version": "0.3.0",
       "tags": [
         "pack",
@@ -290,7 +290,7 @@
     {
       "id": "learning-coach",
       "title": "Learning Coach",
-      "path": "prompts/packs/learning-coach.md",
+      "path": "docs/prompts/packs/learning-coach.md",
       "version": "0.3.0",
       "tags": [
         "pack",
@@ -309,7 +309,7 @@
     {
       "id": "mq-mcp-safety-review",
       "title": "mq-mcp Safety Review",
-      "path": "prompts/packs/mq-mcp-safety-review.md",
+      "path": "docs/prompts/packs/mq-mcp-safety-review.md",
       "version": "0.6.0",
       "tags": [
         "pack",
@@ -329,7 +329,7 @@
     {
       "id": "mq-mcp-architecture-memory",
       "title": "mq-mcp Architecture Memory",
-      "path": "prompts/packs/mq-mcp-architecture-memory.md",
+      "path": "docs/prompts/packs/mq-mcp-architecture-memory.md",
       "version": "0.6.0",
       "tags": [
         "pack",
@@ -349,7 +349,7 @@
     {
       "id": "mq-ecosystem-boundaries",
       "title": "mq Ecosystem Boundaries",
-      "path": "prompts/packs/mq-ecosystem-boundaries.md",
+      "path": "docs/prompts/packs/mq-ecosystem-boundaries.md",
       "version": "0.6.0",
       "tags": [
         "pack",
@@ -368,7 +368,7 @@
     {
       "id": "ollama-runtime-policy",
       "title": "Ollama Runtime Policy",
-      "path": "prompts/packs/ollama-runtime-policy.md",
+      "path": "docs/prompts/packs/ollama-runtime-policy.md",
       "version": "1.2.0",
       "tags": [
         "pack",
@@ -388,7 +388,7 @@
     {
       "id": "ollama-learn-extract",
       "title": "Ollama Learn Extract",
-      "path": "prompts/packs/ollama-learn-extract.md",
+      "path": "docs/prompts/packs/ollama-learn-extract.md",
       "version": "1.2.0",
       "tags": [
         "pack",
@@ -407,7 +407,7 @@
     {
       "id": "release-readiness",
       "title": "Release Readiness",
-      "path": "prompts/packs/release-readiness.md",
+      "path": "docs/prompts/packs/release-readiness.md",
       "version": "0.6.0",
       "tags": [
         "pack",
@@ -425,8 +425,8 @@
     },
     {
       "id": "macos-scripts-terminal",
-      "title": "macos-scripts Terminal Workflow",
-      "path": "prompts/packs/macos-scripts-terminal.md",
+      "title": "macOS Scripts Terminal",
+      "path": "docs/prompts/packs/macos-scripts-terminal.md",
       "version": "0.6.0",
       "tags": [
         "pack",
@@ -446,7 +446,7 @@
     {
       "id": "architecture-review",
       "title": "Architecture Review",
-      "path": "prompts/packs/architecture-review.md",
+      "path": "docs/prompts/packs/architecture-review.md",
       "version": "0.7.0",
       "tags": [
         "pack",
@@ -465,8 +465,8 @@
     },
     {
       "id": "writing-editor",
-      "title": "Writing and Editing",
-      "path": "prompts/packs/writing-editor.md",
+      "title": "Writing Editor",
+      "path": "docs/prompts/packs/writing-editor.md",
       "version": "0.7.0",
       "tags": [
         "pack",
@@ -486,7 +486,7 @@
     {
       "id": "interview-prep",
       "title": "Interview Prep",
-      "path": "prompts/packs/interview-prep.md",
+      "path": "docs/prompts/packs/interview-prep.md",
       "version": "0.7.0",
       "tags": [
         "pack",
@@ -505,8 +505,8 @@
     },
     {
       "id": "bjj-coach",
-      "title": "BJJ Training Reflection",
-      "path": "prompts/packs/personal/bjj-coach.md",
+      "title": "BJJ Coach",
+      "path": "docs/prompts/packs/personal/bjj-coach.md",
       "version": "0.7.0",
       "tags": [
         "pack",
@@ -526,7 +526,7 @@
     {
       "id": "guitar-practice",
       "title": "Guitar Practice",
-      "path": "prompts/packs/personal/guitar-practice.md",
+      "path": "docs/prompts/packs/personal/guitar-practice.md",
       "version": "0.7.0",
       "tags": [
         "pack",
@@ -544,110 +544,5 @@
       ]
     }
   ],
-  "savedPrompts": [
-    {
-      "id": "mode.analyze",
-      "title": "Analyze Mode",
-      "category": "Analyze",
-      "level": "Core",
-      "useCase": "Break down a situation into parts, patterns, gaps and next steps.",
-      "summary": "Use when the user needs understanding before action."
-    },
-    {
-      "id": "mode.decide",
-      "title": "Decide Mode",
-      "category": "Decide",
-      "level": "Core",
-      "useCase": "Compare options, expose trade-offs and recommend one path.",
-      "summary": "Use when the user needs judgment."
-    },
-    {
-      "id": "mode.architect",
-      "title": "Architect Mode",
-      "category": "Architect",
-      "level": "Core",
-      "useCase": "Design a system, workflow, product structure or technical architecture.",
-      "summary": "Use when boundaries, components and risks matter."
-    },
-    {
-      "id": "mode.research",
-      "title": "Research Mode",
-      "category": "Research",
-      "level": "Core",
-      "useCase": "Synthesize evidence, uncertainty and implications.",
-      "summary": "Use when facts and source quality matter."
-    },
-    {
-      "id": "mode.explain",
-      "title": "Explain Mode",
-      "category": "Explain",
-      "level": "Core",
-      "useCase": "Make a concept clear with examples and takeaways.",
-      "summary": "Use when the user needs clarity."
-    },
-    {
-      "id": "mode.teach",
-      "title": "Teach Mode",
-      "category": "Teach",
-      "level": "Core",
-      "useCase": "Teach a subject with practice and checks for understanding.",
-      "summary": "Use when the user wants to learn."
-    },
-    {
-      "id": "mode.edit",
-      "title": "Edit Mode",
-      "category": "Edit",
-      "level": "Core",
-      "useCase": "Improve existing writing, docs or prompt text.",
-      "summary": "Use when the artifact already exists."
-    },
-    {
-      "id": "mode.coach",
-      "title": "Coach Mode",
-      "category": "Coach",
-      "level": "Core",
-      "useCase": "Guide reflection, habits or personal workflow decisions.",
-      "summary": "Use when the user needs a supportive thinking partner."
-    },
-    {
-      "id": "mode.plan",
-      "title": "Plan Mode",
-      "category": "Plan",
-      "level": "Core",
-      "useCase": "Turn a goal into phases, tasks and definition of done.",
-      "summary": "Use when sequencing matters."
-    },
-    {
-      "id": "mode.debug",
-      "title": "Debug Mode",
-      "category": "Debug",
-      "level": "Core",
-      "useCase": "Diagnose a failure with likely causes, checks and verification.",
-      "summary": "Use when something is broken."
-    },
-    {
-      "id": "mode.review",
-      "title": "Review Mode",
-      "category": "Review",
-      "level": "Core",
-      "useCase": "Assess code, docs, plans or release readiness.",
-      "summary": "Use when critique and evidence matter."
-    },
-    {
-      "id": "mode.summarize",
-      "title": "Summarize Mode",
-      "category": "Summarize",
-      "level": "Core",
-      "useCase": "Condense longer material into key points and action items.",
-      "summary": "Use when the user needs compression."
-    },
-    {
-      "id": "mode.create",
-      "title": "Create Mode",
-      "category": "Create",
-      "level": "Core",
-      "useCase": "Draft a new artifact, template or example.",
-      "summary": "Use when the output should be a new thing."
-    }
-  ]
+  "savedPrompts": []
 }

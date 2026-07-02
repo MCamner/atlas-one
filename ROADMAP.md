@@ -58,8 +58,8 @@ v1.1.0 — mq-agent execution bridge polish (done)
 v1.2.0 — Ollama runtime policy for MQ (done)
 v1.3.0 — public status and release clarity (done)
 v1.4.0 — Save to brain, portable MQ_ROOT, prompt reorg (done)
-v1.5.0 — public repo hygiene and workflow maturity (next)
-v2.0.0 — Atlas as a full local prompt/workflow studio (later)
+v1.5.0 — public repo hygiene and prompt-pack maturity (done)
+v2.0.0 — Atlas as a full local prompt/workflow studio (next)
 ```
 
 Completed foundation:
@@ -94,8 +94,8 @@ interaction patterns; mq-mcp remains the review/risk/architecture runtime.
 | v1.2.0  | Ollama runtime policy for MQ               | Done          |
 | v1.3.0  | Public status and release clarity          | Done          |
 | v1.4.0  | Save to brain, portable MQ_ROOT, prompt reorg | Done       |
-| v1.5.0  | Public repo hygiene and workflow maturity  | Next          |
-| v2.0.0  | Atlas as a full local prompt/workflow studio | Later       |
+| v1.5.0  | Public repo hygiene and prompt-pack maturity | Done        |
+| v2.0.0  | Atlas as a full local prompt/workflow studio | Next        |
 
 ---
 
@@ -686,7 +686,9 @@ Shipped 2026-06-10.
 
 ---
 
-## v1.5.0 — Public repo hygiene and workflow maturity
+## v1.5.0 — Public repo hygiene and prompt-pack maturity
+
+Shipped 2026-07-02.
 
 Goal:
 
@@ -840,15 +842,17 @@ Every public prompt should have:
 ## Current recommended next step
 
 ```text
-v1.5.0 — public repo hygiene and workflow maturity
+v2.0.0 — Atlas as a full local prompt/workflow studio (scope it)
 ```
 
-All items through v1.4.0 are shipped: the prompt operating system (v1.0.0),
+All items through v1.5.0 are shipped: the prompt operating system (v1.0.0),
 the mq-agent execution bridge (v1.1.0), the Ollama runtime policy (v1.2.0),
-public status/release clarity (v1.3.0), and Save to brain + portable
-`MQ_ROOT` + prompt reorganization (v1.4.0).
+public status/release clarity (v1.3.0), Save to brain + portable `MQ_ROOT` +
+prompt reorganization (v1.4.0), and public repo hygiene + prompt-pack maturity
+(v1.5.0).
 
-The next concrete work is a hygiene release, not new features: align the
-public docs, slim the README, make the mqobsidian boundary explicit, move
-dead prototype source out of the tracked root, add community/CI files, and
-file issues for the next prompt-pack work. Do this before starting v2.0.0.
+v2.0.0 is currently a direction, not a scoped release. The next concrete step
+is to turn it into a plan: pick the first studio capabilities (reusable
+prompt/workflow packs, richer mode routing, tighter mq handoff) while keeping
+the existing boundaries — mq-agent executes, mq-mcp validates, mqobsidian
+persists.
