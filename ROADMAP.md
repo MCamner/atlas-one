@@ -56,7 +56,10 @@ Current project phase:
 v1.0.0 — stable prompt operating system (done)
 v1.1.0 — mq-agent execution bridge polish (done)
 v1.2.0 — Ollama runtime policy for MQ (done)
-v1.3.0 — public surface sync (next)
+v1.3.0 — public status and release clarity (done)
+v1.4.0 — Save to brain, portable MQ_ROOT, prompt reorg (done)
+v1.5.0 — public repo hygiene and workflow maturity (next)
+v2.0.0 — Atlas as a full local prompt/workflow studio (later)
 ```
 
 Completed foundation:
@@ -89,7 +92,10 @@ interaction patterns; mq-mcp remains the review/risk/architecture runtime.
 | v1.0.0  | Stable prompt operating system             | Done          |
 | v1.1.0  | mq-agent execution bridge                  | Done          |
 | v1.2.0  | Ollama runtime policy for MQ               | Done          |
-| v1.3.0  | Public status and release clarity          | Next          |
+| v1.3.0  | Public status and release clarity          | Done          |
+| v1.4.0  | Save to brain, portable MQ_ROOT, prompt reorg | Done       |
+| v1.5.0  | Public repo hygiene and workflow maturity  | Next          |
+| v2.0.0  | Atlas as a full local prompt/workflow studio | Later       |
 
 ---
 
@@ -664,6 +670,71 @@ metadata.
 
 ---
 
+## v1.4.0 — Save to brain, portable MQ_ROOT, prompt reorganization
+
+Shipped 2026-06-10.
+
+### v1.4.0 delivered
+
+* [x] `Save to brain` button — routes Atlas reasoning outputs directly to
+      `decisions/` in the mqobsidian second brain
+* [x] macOS runtime made portable via the `MQ_ROOT` environment variable — no
+      hardcoded home-directory paths
+* [x] Prompt references updated after moving `prompts/` → `docs/prompts/`
+* [x] Second-brain folder structure reorganized (mqobsidian cleanup)
+* [x] README made version-consistent at v1.4.0
+
+---
+
+## v1.5.0 — Public repo hygiene and workflow maturity
+
+Goal:
+
+Make the public surface intentional. After v1.4.0 shipped, README, ROADMAP,
+VERSION and CHANGELOG should agree, the repository root should read as a
+product rather than a workspace, and the MQ ecosystem boundary — including
+mqobsidian — should be visible. This release adds no new execution features.
+
+### v1.5.0 planned scope
+
+* [ ] Align ROADMAP with the v1.4.0 shipped state and define v1.5.0 / v2.0.0
+* [ ] Slim README and reduce repeated product positioning
+* [ ] Make mqobsidian explicit in the architecture (persist / source of truth)
+* [ ] Move dead prototype source to `archive/legacy/`; drop `.bak` and build
+      artifacts from the tracked tree
+* [ ] Add a CI status badge for the prompt/docs checks
+* [ ] Add `SECURITY.md` and `CONTRIBUTING.md`
+* [ ] Add issue and PR templates
+* [ ] File public issues for the next prompt-pack maturity work
+
+### v1.5.0 definition of done
+
+* [ ] README, ROADMAP, VERSION and CHANGELOG agree
+* [ ] Root directory looks intentional; no `.bak` or backup trees tracked
+* [ ] A new visitor can tell the static demo from the local Java backend
+* [ ] The MQ ecosystem boundary (including mqobsidian) is visible
+* [ ] The CI/check workflow is discoverable from the README
+* [ ] Remaining work exists as GitHub issues
+
+### Out of scope
+
+* New execution features or prompt-pack categories
+* Direct Ollama calls from Atlas One
+* Duplicating mq-mcp review or risk logic
+
+---
+
+## v2.0.0 — Atlas as a full local prompt/workflow studio (later)
+
+Not scheduled yet. Direction only.
+
+Atlas grows from a prompt library into a local studio: reusable prompt/workflow
+packs, richer mode routing, and tighter handoff into the mq ecosystem while
+keeping the existing boundaries — mq-agent executes, mq-mcp validates,
+mqobsidian persists.
+
+---
+
 ## Long-term ideas
 
 These are intentionally not scheduled yet.
@@ -735,13 +806,15 @@ Every public prompt should have:
 ## Current recommended next step
 
 ```text
-v1.3.0 — public status and release clarity
+v1.5.0 — public repo hygiene and workflow maturity
 ```
 
-All items through v1.2.0 are complete. The Ollama structured-output provider
-(`mq-mcp/providers/ollama_provider.py`) was implemented and tested as part of
-v1.2.0.
+All items through v1.4.0 are shipped: the prompt operating system (v1.0.0),
+the mq-agent execution bridge (v1.1.0), the Ollama runtime policy (v1.2.0),
+public status/release clarity (v1.3.0), and Save to brain + portable
+`MQ_ROOT` + prompt reorganization (v1.4.0).
 
-The next concrete update is a small documentation/release-alignment pass:
-README, ROADMAP, VERSION, CHANGELOG and GitHub Pages should all describe the
-same current Atlas One role before any new feature work starts.
+The next concrete work is a hygiene release, not new features: align the
+public docs, slim the README, make the mqobsidian boundary explicit, move
+dead prototype source out of the tracked root, add community/CI files, and
+file issues for the next prompt-pack work. Do this before starting v2.0.0.

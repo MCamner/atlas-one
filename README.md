@@ -4,6 +4,8 @@
 
 Status: `v1.4.0 — Save to brain and portable MQ runtime`
 
+[![Prompt & docs checks](https://github.com/MCamner/atlas-one/actions/workflows/check-prompts.yml/badge.svg)](https://github.com/MCamner/atlas-one/actions/workflows/check-prompts.yml)
+
 👉 **Live demo:** <https://mcamner.github.io/atlas-one/>
 
 ---
@@ -16,10 +18,6 @@ Instead of writing prompts ad-hoc, you:
 * select a reasoning mode
 * generate a structured prompt
 * copy or hand off cleanly to ChatGPT
-
----
-
-One input → adaptive prompt type → structured workflow → clean execution
 
 ---
 
@@ -89,32 +87,10 @@ No install. Runs in your browser — no Java required.
 
 ### Why it matters
 
-Most AI usage today is:
-
-* unstructured
-* inconsistent
-* hard to repeat
-
-Atlas Studio introduces:
-
-* **structure** to thinking
-* **consistency** to execution
-* **repeatability** to workflows
-
----
-
-### What you get
-
-* **Adaptive prompt modes** — switch between analysis, architecture, research, strategy, decision, problem solving, execution, and writing
-* **Quick actions** — choose `/atlas`, `/research`, `/write`, `/strategy`, and other modes from the interface
-* **System reasoning preview** — see the selected problem type, route, pipeline, and rationale
-* **Structured prompt library** — reusable prompt patterns for repeatable work
-* **ChatGPT-ready handoff** — copy the final prompt and open ChatGPT in one action
-
----
-
-This is not another prompt tool.
-It's a **system for thinking and execution.**
+Most AI usage today is unstructured, inconsistent and hard to repeat. Atlas
+Studio adds **structure** to thinking, **consistency** to execution and
+**repeatability** to workflows — a system for thinking and execution, not
+another prompt box.
 
 ---
 
@@ -122,30 +98,21 @@ It's a **system for thinking and execution.**
 
 Atlas Studio turns intent into structured AI workflows:
 
-* **Adaptive prompt modes**
-  Maps the task to a useful reasoning style
-
-* **Quick action controls**
-  Let you switch modes without rewriting the prompt manually
-
-* **System reasoning preview**
-  Shows how a request flows through reasoning steps
-
-* **Prompt library system**
-  Loads reusable prompts from `web/prompts.json` and keeps source prompts in
-  `docs/prompts/`
-
-* **Local-first execution**
-  Runs entirely on `127.0.0.1` — no external dependencies
-
-* **ChatGPT handoff**
-  Copies the final prompt and opens ChatGPT for execution
-
-* **mq-agent execution**
-  Runs the routed goal directly via mq-agent (`plan`, `review`, `audit`, `signal`)
-  when the Java backend is running — result appears inline in the UI. The
-  execution panel includes a repo path input, and unmapped modes are shown as
-  `mode → plan (fallback)` before they are sent to mq-agent.
+* **Adaptive prompt modes** — switch between analysis, architecture, research,
+  strategy, decision, problem solving, execution and writing
+* **Quick action controls** — pick `/atlas`, `/research`, `/write`, `/strategy`
+  and other modes without rewriting the prompt
+* **System reasoning preview** — see the selected problem type, route, pipeline
+  and rationale before you generate
+* **Structured prompt library** — reusable prompts loaded from `web/prompts.json`,
+  with source prompts kept in `docs/prompts/`
+* **Local-first execution** — runs entirely on `127.0.0.1`, no external
+  dependencies
+* **ChatGPT handoff** — copy the final prompt and open ChatGPT in one action
+* **mq-agent execution** — run the routed goal directly via mq-agent (`plan`,
+  `review`, `audit`, `signal`) when the Java backend is running; results appear
+  inline, the panel takes a repo path, and unmapped modes show as
+  `mode → plan (fallback)`
 
 ---
 
@@ -183,6 +150,7 @@ Current role split:
 Atlas One   — prompts, mode routing, interaction patterns and handoff text
 mq-agent    — orchestration and command execution flow
 mq-mcp      — review, risk, validation, safety classes and memory contracts
+mqobsidian  — durable memory: persists decisions and curated context (Save to brain)
 Ollama      — optional local model provider, never a decision authority
 ```
 
@@ -192,7 +160,7 @@ atlas-one/
 ├── docs/             # GitHub Pages and prompt library docs
 ├── src/              # Java server (API + static hosting)
 ├── web/              # UI (routing, prompts, visualization)
-├── dist/             # Compiled artifacts
+├── archive/legacy/   # Retired prototype source (not built)
 ├── build_and_run.sh  # Local dev runner
 ├── package_mac_app.sh
 └── run_mac.command
@@ -255,35 +223,6 @@ Create
 
 ---
 
-## How it works
-
-1. User enters intent
-2. System auto-routes to a reasoning mode (architect, debug, review, plan…)
-3. Reasoning, route, and workflow structure are generated
-4. Final prompt is produced
-5. Output can be:
-   * copied and opened in ChatGPT
-   * executed directly via `▶ Run via mq-agent` (requires Java backend + mq-agent)
-     with an optional repo path for review, audit and signal workflows
-
----
-
-## Prompt system
-
-Prompts are defined in:
-
-```text
-web/prompts.json
-```
-
-This allows:
-
-* versioned prompt strategies
-* reusable workflows
-* structured execution patterns
-
----
-
 ## Run locally (Java backend)
 
 Requires Java 17+. Runs the full server version at `http://127.0.0.1:8766`.
@@ -312,15 +251,9 @@ Or as a macOS app bundle:
 
 ## Roadmap
 
-* Modular routing engine
-* Advanced workflow editor
-* Plugin system for prompt packs
-* mq-mcp review, risk and architecture prompt packs
-* Ollama runtime policy prompt pack for mq-mcp provider work
-* Multi-model support
-* CLI integration
-* Export/import of workflows
-* Integration with external tools
+Current: **v1.4.0** shipped. Next: **v1.5.0 — public repo hygiene and workflow
+maturity**. See [ROADMAP.md](ROADMAP.md) for the full release map and the
+v2.0.0 direction.
 
 ---
 
@@ -365,9 +298,8 @@ IT Architect — building practical systems where infrastructure, automation, an
 
 ## Final note
 
-Atlas Studio is not another prompt tool.
-
-It's an attempt to bring **structure, repeatability, and system thinking** into how we use AI.
+Atlas Studio brings **structure, repeatability and system thinking** to how we
+use AI.
 
 ## macOS helper scripts
 

@@ -2,6 +2,26 @@
 
 ## [Unreleased]
 
+### Added
+
+* `SECURITY.md`, `CONTRIBUTING.md`, a feature-request issue template and a pull
+  request template.
+* CI status badge for the prompt/docs checks in the README.
+* `archive/legacy/` for retired prototype source, with a provenance README.
+
+### Changed
+
+* ROADMAP aligned with the v1.4.0 shipped state; v1.5.0 (public repo hygiene)
+  defined as next and a v2.0.0 direction added.
+* README slimmed — merged repeated product positioning and made mqobsidian
+  explicit in the architecture boundary.
+
+### Removed
+
+* Tracked build artifacts (`dist/*.class`), `.bak` backups and the `backups/`
+  script tree; dead `v2` / `atlas-ui-patch` prototype source moved to
+  `archive/legacy/`.
+
 ## [1.4.0] - 2026-06-10
 
 ### Added
