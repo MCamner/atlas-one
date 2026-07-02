@@ -760,14 +760,92 @@ constraints, and `check-prompts.sh` does not yet verify them.
 
 ---
 
-## v2.0.0 — Atlas as a full local prompt/workflow studio (later)
+## v2.0.0 — Atlas as a local prompt/workflow studio
 
-Not scheduled yet. Direction only.
+Scoped, not yet started.
 
-Atlas grows from a prompt library into a local studio: reusable prompt/workflow
-packs, richer mode routing, and tighter handoff into the mq ecosystem while
-keeping the existing boundaries — mq-agent executes, mq-mcp validates,
-mqobsidian persists.
+Goal:
+
+Turn Atlas from a prompt launcher into a local **workflow studio**. The release
+centers on reusable workflow-packs, sequence-aware mode routing, and explicit
+mq handoff contracts — while keeping execution, review and risk logic in the mq
+stack. Atlas stays a packaging and orchestration layer; it does not become an
+execution or decision layer.
+
+After v2.0.0 Atlas should be able to:
+
+* package reusable prompt/workflow packs that chain more than one step
+* route a goal to the right mode **or a defined sequence of modes**
+* hand structured payloads to mq-agent / mq-mcp / mqobsidian over a documented
+  contract
+* remain a packaging and orchestration layer, not an execution layer
+
+Lead with workflow-packs. Support with richer routing. Formalize with mq
+handoff. The three scope blocks below are ordered by build priority.
+
+### Scope
+
+#### 1. Workflow packs (lead)
+
+* [ ] Define a workflow-pack format that extends the mature pack template with
+      an ordered `steps` sequence (each step: mode + starter prompt + expected
+      output)
+* [ ] Add `docs/prompts/WORKFLOW_PACK_TEMPLATE.md` as the copy-paste source
+* [ ] Ship at least three working workflow-pack types (e.g. repo-review flow,
+      architecture-decision flow, learn-and-persist flow)
+* [ ] Extend `check-prompts.sh` to validate workflow-pack structure (ordered
+      steps, per-step mode + expected output, no execution instructions)
+* [ ] Surface workflow packs in the GitHub Pages / web UI alongside single
+      prompts
+
+#### 2. Mode routing v2 (support)
+
+* [ ] Let the router select a **sequence template**, not just a single mode
+* [ ] Map goal → sequence (e.g. `analyze → plan → review`) with a visible,
+      user-editable plan before anything runs
+* [ ] Keep routing declarative: Atlas describes the flow, it does not plan
+      agentically or execute
+* [ ] Show the resolved sequence and per-step mode in the UI
+
+#### 3. MQ handoff contracts (formalize)
+
+* [ ] Define a handoff payload schema (goal, mode/sequence, repo path, pack id,
+      metadata, validation points) from Atlas → mq-agent / mq-mcp / mqobsidian
+* [ ] Document the contract in `docs/MQ_ECOSYSTEM.md` with example payloads
+* [ ] Add a documented, testable handoff endpoint/format — no new review or
+      risk rules in Atlas
+* [ ] Keep persistence going through mqobsidian handoff, not Atlas-side writes
+
+### v2.0.0 definition of done
+
+* [ ] At least three working workflow-pack types, verified by `check-prompts.sh`
+* [ ] Router can select a defined sequence, not only a single mode
+* [ ] Handoff schema is documented and testable, with example payloads
+* [ ] No direct model calls from Atlas
+* [ ] No review/risk logic implemented in Atlas
+* [ ] README, ROADMAP, VERSION and CHANGELOG agree at the release tag
+
+### Out of scope
+
+* Free agentic planning inside Atlas
+* A local review engine in Atlas
+* Duplicated memory or risk assessment from mq-mcp
+* Direct persistence logic in Atlas beyond the handoff
+* Direct Ollama calls from Atlas
+
+### Dependencies and build order
+
+```text
+1. Workflow packs      (Atlas-only; builds on v1.5.0 pack maturity)
+   ↓
+2. Mode routing v2     (needs packs to route into)
+   ↓
+3. MQ handoff contracts (needs a routed sequence to hand off)
+```
+
+Blocks 2 and 3 depend on 1. mq-agent / mq-mcp / mqobsidian keep their existing
+contracts; v2.0.0 adds the Atlas-side composer, router and handoff, nothing in
+the mq runtimes.
 
 ---
 
@@ -842,7 +920,7 @@ Every public prompt should have:
 ## Current recommended next step
 
 ```text
-v2.0.0 — Atlas as a full local prompt/workflow studio (scope it)
+v2.0.0 — Atlas as a local prompt/workflow studio (build workflow packs first)
 ```
 
 All items through v1.5.0 are shipped: the prompt operating system (v1.0.0),
@@ -851,8 +929,9 @@ public status/release clarity (v1.3.0), Save to brain + portable `MQ_ROOT` +
 prompt reorganization (v1.4.0), and public repo hygiene + prompt-pack maturity
 (v1.5.0).
 
-v2.0.0 is currently a direction, not a scoped release. The next concrete step
-is to turn it into a plan: pick the first studio capabilities (reusable
-prompt/workflow packs, richer mode routing, tighter mq handoff) while keeping
-the existing boundaries — mq-agent executes, mq-mcp validates, mqobsidian
-persists.
+v2.0.0 is now scoped (see the section above). The first concrete step is scope
+block 1 — reusable workflow packs: define the workflow-pack format and
+`WORKFLOW_PACK_TEMPLATE.md`, ship at least three working pack types, and extend
+`check-prompts.sh` to validate them. Mode routing v2 and mq handoff contracts
+build on top of that, in that order, while keeping the existing boundaries —
+mq-agent executes, mq-mcp validates, mqobsidian persists.
