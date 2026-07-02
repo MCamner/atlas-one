@@ -9,16 +9,16 @@ structured memory records into actionable architectural insight.
 
 ## Recommended Modes
 
-- Architect
-- Analyze
-- Decide
+* Architect
+* Analyze
+* Decide
 
 ## When to Use
 
-- When reading ADRs from mq-mcp architecture_memory/
-- When a new change may conflict with an existing architecture decision
-- When designing a new component and needing to check established boundaries
-- When onboarding to the mq ecosystem and needing to understand system philosophy
+* When reading ADRs from mq-mcp architecture_memory/
+* When a new change may conflict with an existing architecture decision
+* When designing a new component and needing to check established boundaries
+* When onboarding to the mq ecosystem and needing to understand system philosophy
 
 ## Starter Prompt
 
@@ -73,4 +73,30 @@ Draft an ADR that includes:
 - Decision
 - Consequences
 - Constraints this creates for future work
+```
+
+## Expected Output
+
+* What constraint or principle the ADR establishes, and why
+* The boundary it defines and what breaks if it is ignored
+* A verdict for the current change: compatible / conflicts / needs clarification
+
+## Constraints
+
+* Reason from the retrieved ADR text; do not invent decisions
+* This pack interprets memory — it does not write to architecture_memory/ directly
+* New ADR drafts are proposals for human review, not accepted records
+
+## Example Usage
+
+```text
+Goal:
+Check a new provider design against an existing "mq-mcp owns validation" ADR.
+
+Mode:
+Architect
+
+Output:
+The constraint the ADR sets, the boundary it defines, and a compatible /
+conflicts / needs-clarification verdict for the change.
 ```

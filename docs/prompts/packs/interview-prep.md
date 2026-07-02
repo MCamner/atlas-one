@@ -8,9 +8,9 @@ and system design interviews.
 
 ## Recommended Modes
 
-- Plan
-- Coach
-- Teach
+* Plan
+* Coach
+* Teach
 
 ## Starter Prompt — Interview Strategy
 
@@ -98,3 +98,22 @@ Plan
 Output:
 What they're testing, what I must communicate, prep steps in order.
 ```
+
+## When to Use
+
+* When preparing for a specific interview with limited time
+* When you need structured answers, not just a topic list
+* When practicing behavioral, technical or system-design rounds
+
+## Expected Output
+
+* What each stage is testing for
+* The few things you must communicate clearly
+* Ordered preparation steps and what to avoid
+* For practice rounds: a structured answer and one follow-up question
+
+## Constraints
+
+* Keep spoken answers realistic in length (under ~2 minutes)
+* Base answers on the candidate's real experience — no fabricated stories
+* Coaching only; the pack prepares you, it does not sit the interview

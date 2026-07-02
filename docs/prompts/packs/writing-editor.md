@@ -8,9 +8,9 @@ technical documentation, reports, emails, and longer-form writing.
 
 ## Recommended Modes
 
-- Edit
-- Summarize
-- Review
+* Edit
+* Summarize
+* Review
 
 ## Starter Prompt — Document Edit
 
@@ -93,3 +93,21 @@ Edit
 Output:
 Edited version, structural notes, what was cut.
 ```
+
+## When to Use
+
+* When a draft is too long, unclear, or buries its point
+* When you need structure and tone feedback, not just proofreading
+* When a document must land a decision or argument cleanly
+
+## Expected Output
+
+* The edited version first, then notes explaining the changes
+* What was removed, restructured and deliberately left alone
+* For structure reviews: a diagnosis, then a reordering recommendation
+
+## Constraints
+
+* Preserve the author's voice, claims and technical accuracy
+* Cut for meaning — do not compress below clarity
+* Editing only; do not invent facts or sources to fill gaps

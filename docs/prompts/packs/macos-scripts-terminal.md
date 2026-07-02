@@ -8,16 +8,16 @@ Covers mqlaunch command surface, automation scripts, and workflow structure.
 
 ## Recommended Modes
 
-- Plan
-- Debug
-- Architect
+* Plan
+* Debug
+* Architect
 
 ## When to Use
 
-- When adding a new command to mqlaunch
-- When a terminal workflow breaks or behaves unexpectedly
-- When designing a new automation or login flow
-- When deciding how a new feature fits the macos-scripts command surface
+* When adding a new command to mqlaunch
+* When a terminal workflow breaks or behaves unexpectedly
+* When designing a new automation or login flow
+* When deciding how a new feature fits the macos-scripts command surface
 
 ## Starter Prompt
 
@@ -80,4 +80,31 @@ Notes:
 - External helper scripts referenced by these prompts live outside the model prompts and may require local configuration.
 - See .claude/settings.local.example.json for recommended placeholders and instructions to create your own `.claude/settings.local.json`.
 - Use `MQ_ROOT` or replace `<MQ_ROOT>` placeholders with your repository path.
+```
+
+## Expected Output
+
+* A clear statement of what the workflow does and when it triggers
+* The existing commands/scripts it touches, and its inputs and outputs
+* Failure modes with graceful handling, and a definition of done
+* For command-surface work: the command, flags, no-arg behavior and help text
+
+## Constraints
+
+* Match existing mqlaunch naming and command-surface conventions
+* One command does one clear thing; fail gracefully with a clear message
+* No secrets or machine-specific private paths; use `MQ_ROOT` placeholders
+
+## Example Usage
+
+```text
+Goal:
+Add an `mqlaunch flow` command that lists and launches saved workflows.
+
+Mode:
+Plan
+
+Output:
+What it does, scripts it touches, inputs/outputs, failure handling, and the
+command-surface shape (command, flags, no-arg behavior, help text).
 ```

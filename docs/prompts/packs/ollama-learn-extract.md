@@ -11,23 +11,23 @@ The model is never a decision authority.
 
 ## Recommended Modes
 
-- Analyze
-- Review
+* Analyze
+* Review
 
 ## When to Use
 
-- After running mq-mcp review_file or review_repo — extract lessons from findings
-- After a diff review — identify patterns worth remembering
-- When distilling a long review session into reusable engineering lessons
-- Before calling `ollama_learn_extract` or `learn_extract_from_last_review`
+* After running mq-mcp review_file or review_repo — extract lessons from findings
+* After a diff review — identify patterns worth remembering
+* When distilling a long review session into reusable engineering lessons
+* Before calling `ollama_learn_extract` or `learn_extract_from_last_review`
 
 ## Input Contract
 
 Pass the Ollama model exactly one of:
 
-- Raw review findings text (severity lines from mq-mcp review output)
-- A git diff with context
-- A structured JSON blob from `review_file` or `repo_signal_report`
+* Raw review findings text (severity lines from mq-mcp review output)
+* A git diff with context
+* A structured JSON blob from `review_file` or `repo_signal_report`
 
 Do not pass secrets, API keys, or file contents from outside the repo.
 
@@ -80,13 +80,13 @@ recommended_action, confidence, should_store
 
 Before passing Ollama output to `record_learning`:
 
-- [ ] Output is valid JSON array
-- [ ] Every item has all required schema fields
-- [ ] `evidence` is non-empty and quotes real findings
-- [ ] `confidence` is one of: high, medium, low
-- [ ] `should_store=false` for all low-confidence items
-- [ ] No invented commands or paths
-- [ ] No release or security decisions in `recommended_action`
+* [ ] Output is valid JSON array
+* [ ] Every item has all required schema fields
+* [ ] `evidence` is non-empty and quotes real findings
+* [ ] `confidence` is one of: high, medium, low
+* [ ] `should_store=false` for all low-confidence items
+* [ ] No invented commands or paths
+* [ ] No release or security decisions in `recommended_action`
 
 ## What mq-mcp Does Next
 
@@ -96,3 +96,24 @@ no git commits, no config changes, no approval gates skipped.
 
 Low-confidence items and items with `should_store=false` are discarded.
 The user reviews stored lessons with `learn_status` before acting on them.
+
+## Constraints
+
+* Output JSON only against the schema — no prose, no invented fields
+* The model proposes candidates; mq-mcp validates and stores. Never a decision authority
+* No secrets or out-of-repo content in inputs; no release or security decisions
+* Low-confidence items must set `should_store=false`
+
+## Example Usage
+
+```text
+Goal:
+Turn an mq-mcp review of a diff into stored engineering lessons.
+
+Mode:
+Analyze
+
+Output:
+A JSON array of candidate lessons matching learn_extraction.schema.json, ready
+for mq-mcp validation via record_learning.
+```
