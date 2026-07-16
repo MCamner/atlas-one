@@ -36,12 +36,40 @@ The current proxy documents these integration points:
 * `GET /v1/ai/capabilities` for capability negotiation
 * `POST /v1/ai/text-to-diagram/chat-streaming` for normalized Mermaid over SSE
 
-These paths were verified against the current `MCamner/excalidraw-ai-proxy`
-README during the compatibility spike. Runtime behavior and response framing
-still require an integration test against a running proxy.
+Compatibility was verified on 2026-07-16 against
+`MCamner/excalidraw-ai-proxy` commit `98b9da1d52a8`. Its route tests confirm
+that the capability endpoint advertises text-to-diagram support and that the
+POST endpoint returns repaired Mermaid as buffered SSE `content` events,
+followed by `done` and `[DONE]`.
+
+The proxy does not accept `atlas-diagram-request.v1` directly. Atlas must
+validate that request locally, render its structured fields into one bounded
+prompt and send the proxy wire request:
+
+```json
+{
+  "messages": [
+    { "role": "user", "content": "<rendered Atlas diagram prompt>" }
+  ]
+}
+```
+
+The preflight is compatible when `features.textToDiagram` is `true`,
+`features.streaming` is `true`, and `endpoints.textToDiagram` matches the
+documented POST path. `streamingMode` is currently
+`buffered-after-repair`, so Atlas must not claim token-by-token diagram
+updates. The capability response does not negotiate Atlas schema versions;
+schema compatibility remains Atlas-owned until the proxy exposes an explicit
+version contract.
 
 Atlas should check capabilities before generation and treat all returned
 content as untrusted. Credentials remain server-side in the proxy.
+
+Reproduce the proxy-side verification from a local proxy checkout with
+`npm test`. The verified suite passed 21 tests, including capability metadata,
+missing and oversized prompt rejection, normalized Mermaid SSE, empty output
+and invalid Mermaid handling. This confirms transport compatibility through
+the adapter above; it does not complete Excalidraw import.
 
 ## Error model
 

@@ -913,7 +913,7 @@ Purpose: prove the smallest end-to-end path before adding product UI.
       timeout, rate limit and unsupported capability
 * [x] Add JSON examples for `architect`, `analyze`, `decide`, `plan`, `debug`
       and `review`
-* [ ] Confirm the existing proxy capability endpoint and
+* [x] Confirm the existing proxy capability endpoint and
       `POST /v1/ai/text-to-diagram/chat-streaming` support the handoff
 * [ ] Build a local proof that sends one architecture request through the proxy
       and imports the normalized Mermaid into Excalidraw
