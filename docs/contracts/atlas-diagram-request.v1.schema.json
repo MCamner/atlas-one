@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mcamner.github.io/atlas-one/contracts/atlas-diagram-request.v1.schema.json",
+  "title": "Atlas Diagram Request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "request_id", "goal", "title", "route", "diagram", "intent", "provenance"],
+  "properties": {
+    "schema": { "const": "atlas-diagram-request.v1" },
+    "request_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "goal": { "type": "string", "minLength": 1, "maxLength": 6000 },
+    "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+    "route": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["mode"],
+          "properties": { "mode": { "$ref": "#/$defs/mode" } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sequence"],
+          "properties": {
+            "sequence": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 12,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["mode"],
+                "properties": {
+                  "mode": { "$ref": "#/$defs/mode" },
+                  "expected_output": { "type": "string", "minLength": 1, "maxLength": 500 }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "diagram": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "layout", "include", "relationships", "boundaries"],
+      "properties": {
+        "type": {
+          "enum": ["architecture", "cause-map", "decision-tree", "option-matrix", "roadmap", "process-flow", "diagnostic-flow", "risk-control-map"]
+        },
+        "layout": { "enum": ["left-to-right", "top-to-bottom", "auto"] },
+        "include": {
+          "type": "array",
+          "maxItems": 30,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 160 }
+        },
+        "relationships": {
+          "type": "array",
+          "maxItems": 60,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["from", "to", "label"],
+            "properties": {
+              "from": { "type": "string", "minLength": 1, "maxLength": 160 },
+              "to": { "type": "string", "minLength": 1, "maxLength": 160 },
+              "label": { "type": "string", "minLength": 1, "maxLength": 160 }
+            }
+          }
+        },
+        "boundaries": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "contains"],
+            "properties": {
+              "name": { "type": "string", "minLength": 1, "maxLength": 160 },
+              "contains": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": { "type": "string", "minLength": 1, "maxLength": 160 }
+              }
+            }
+          }
+        },
+        "style_hints": {
+          "type": "object",
+          "description": "Advisory presentation hints; consumers may ignore them.",
+          "additionalProperties": false,
+          "properties": {
+            "theme": { "type": "string", "minLength": 1, "maxLength": 80 },
+            "density": { "enum": ["compact", "balanced", "detailed"] }
+          }
+        }
+      }
+    },
+    "intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation", "validation"],
+      "properties": {
+        "operation": { "enum": ["generate", "refine"] },
+        "validation": { "enum": ["schema-only", "proxy", "mq-review"] },
+        "refinement": { "type": "string", "minLength": 1, "maxLength": 500 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "operation": { "const": "refine" } } },
+          "then": { "required": ["refinement"] },
+          "else": { "not": { "required": ["refinement"] } }
+        }
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["producer", "created_at"],
+      "properties": {
+        "producer": { "const": "atlas-one" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "workflow_pack_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "source_reference": { "type": "string", "minLength": 1, "maxLength": 500 }
+      }
+    }
+  },
+  "$defs": {
+    "mode": {
+      "enum": ["analyze", "decide", "architect", "research", "explain", "teach", "edit", "coach", "plan", "debug", "review", "summarize", "create"]
+    }
+  }
+}

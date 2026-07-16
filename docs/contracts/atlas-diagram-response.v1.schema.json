@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mcamner.github.io/atlas-one/contracts/atlas-diagram-response.v1.schema.json",
+  "title": "Atlas Diagram Response v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "request_id", "status"],
+  "properties": {
+    "schema": { "const": "atlas-diagram-response.v1" },
+    "request_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "status": { "enum": ["success", "request_validation_error", "diagram_validation_error", "unsupported", "rate_limited", "timeout", "cancelled", "upstream_error"] },
+    "diagram": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["format", "content"],
+      "properties": {
+        "format": { "const": "mermaid" },
+        "content": { "type": "string", "minLength": 1, "maxLength": 200000 }
+      }
+    },
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "retryable"],
+      "properties": {
+        "code": { "enum": ["invalid_request_schema", "unsupported_schema_version", "invalid_mermaid", "unsupported_capability", "rate_limit_exceeded", "generation_timeout", "generation_cancelled", "provider_failure"] },
+        "message": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "retryable": { "type": "boolean" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "success" } } },
+      "then": { "required": ["diagram"], "not": { "required": ["error"] } },
+      "else": { "required": ["error"], "not": { "required": ["diagram"] } }
+    },
+    { "if": { "properties": { "status": { "const": "request_validation_error" } } }, "then": { "properties": { "error": { "properties": { "code": { "enum": ["invalid_request_schema", "unsupported_schema_version"] } } } } } },
+    { "if": { "properties": { "status": { "const": "diagram_validation_error" } } }, "then": { "properties": { "error": { "properties": { "code": { "const": "invalid_mermaid" } } } } } },
+    { "if": { "properties": { "status": { "const": "unsupported" } } }, "then": { "properties": { "error": { "properties": { "code": { "const": "unsupported_capability" } } } } } },
+    { "if": { "properties": { "status": { "const": "rate_limited" } } }, "then": { "properties": { "error": { "properties": { "code": { "const": "rate_limit_exceeded" } } } } } },
+    { "if": { "properties": { "status": { "const": "timeout" } } }, "then": { "properties": { "error": { "properties": { "code": { "const": "generation_timeout" } } } } } },
+    { "if": { "properties": { "status": { "const": "cancelled" } } }, "then": { "properties": { "error": { "properties": { "code": { "const": "generation_cancelled" } } } } } },
+    { "if": { "properties": { "status": { "const": "upstream_error" } } }, "then": { "properties": { "error": { "properties": { "code": { "const": "provider_failure" } } } } } }
+  ]
+}

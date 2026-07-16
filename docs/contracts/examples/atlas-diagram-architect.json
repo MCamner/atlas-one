@@ -1,0 +1,28 @@
+{
+  "schema": "atlas-diagram-request.v1",
+  "request_id": "atlas-example-architect-001",
+  "goal": "Design a secure local AI workflow with explicit trust boundaries.",
+  "title": "Local AI workflow architecture",
+  "route": { "mode": "architect" },
+  "diagram": {
+    "type": "architecture",
+    "layout": "left-to-right",
+    "include": ["user", "atlas-one", "excalidraw-ai-proxy", "OpenAI", "Excalidraw", "trust boundaries"],
+    "relationships": [
+      { "from": "atlas-one", "to": "excalidraw-ai-proxy", "label": "diagram request" },
+      { "from": "excalidraw-ai-proxy", "to": "OpenAI", "label": "server-side model request" },
+      { "from": "excalidraw-ai-proxy", "to": "Excalidraw", "label": "normalized Mermaid" }
+    ],
+    "boundaries": [
+      { "name": "browser", "contains": ["atlas-one", "Excalidraw"] },
+      { "name": "server-side credentials", "contains": ["excalidraw-ai-proxy"] }
+    ],
+    "style_hints": { "theme": "mq-amber-dark", "density": "balanced" }
+  },
+  "intent": { "operation": "generate", "validation": "proxy" },
+  "provenance": {
+    "producer": "atlas-one",
+    "created_at": "2026-07-16T00:00:00Z",
+    "source_reference": "docs/ATLAS_CANVAS.md"
+  }
+}

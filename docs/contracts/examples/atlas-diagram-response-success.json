@@ -1,0 +1,6 @@
+{
+  "schema": "atlas-diagram-response.v1",
+  "request_id": "atlas-example-architect-001",
+  "status": "success",
+  "diagram": { "format": "mermaid", "content": "flowchart LR\n  A[Atlas] --> B[Excalidraw]" }
+}

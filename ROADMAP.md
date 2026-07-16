@@ -900,7 +900,7 @@ mq-agent → mq-mcp review → annotations
 
 Purpose: prove the smallest end-to-end path before adding product UI.
 
-* [ ] Define `atlas-diagram-request.v1` with:
+* [x] Define `atlas-diagram-request.v1` with:
   * request id and schema version
   * goal and user-visible title
   * Atlas mode or ordered workflow sequence
@@ -909,17 +909,17 @@ Purpose: prove the smallest end-to-end path before adding product UI.
   * style hints that remain advisory
   * source/provenance metadata
   * explicit validation and refinement intent
-* [ ] Define a versioned response envelope for success, validation failure,
+* [x] Define a versioned response envelope for success, validation failure,
       timeout, rate limit and unsupported capability
-* [ ] Add JSON examples for `architect`, `analyze`, `decide`, `plan`, `debug`
+* [x] Add JSON examples for `architect`, `analyze`, `decide`, `plan`, `debug`
       and `review`
 * [ ] Confirm the existing proxy capability endpoint and
       `POST /v1/ai/text-to-diagram/chat-streaming` support the handoff
 * [ ] Build a local proof that sends one architecture request through the proxy
       and imports the normalized Mermaid into Excalidraw
-* [ ] Record unsupported Excalidraw import or selection APIs before committing
+* [x] Record unsupported Excalidraw import or selection APIs before committing
       to the refinement design
-* [ ] Reject unknown schema versions and malformed payloads with clear errors
+* [x] Reject unknown schema versions and malformed payloads with clear errors
 
 Proposed Atlas-owned files:
 

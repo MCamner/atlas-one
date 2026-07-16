@@ -1,0 +1,31 @@
+{
+  "schema": "atlas-diagram-request.v1",
+  "request_id": "atlas-example-review-001",
+  "goal": "Review an architecture flow for missing controls and unclear ownership.",
+  "title": "Architecture risk and control review",
+  "route": {
+    "sequence": [
+      { "mode": "analyze", "expected_output": "Dependencies and trust boundaries" },
+      { "mode": "review", "expected_output": "Risks, controls and recommendations" }
+    ]
+  },
+  "diagram": {
+    "type": "risk-control-map",
+    "layout": "top-to-bottom",
+    "include": ["facts", "assumptions", "risks", "controls", "recommendations"],
+    "relationships": [
+      { "from": "risks", "to": "controls", "label": "mitigated by" },
+      { "from": "facts", "to": "recommendations", "label": "supports" }
+    ],
+    "boundaries": [
+      { "name": "verified", "contains": ["facts", "controls"] },
+      { "name": "requires review", "contains": ["assumptions", "risks", "recommendations"] }
+    ]
+  },
+  "intent": { "operation": "generate", "validation": "mq-review" },
+  "provenance": {
+    "producer": "atlas-one",
+    "created_at": "2026-07-16T00:00:00Z",
+    "workflow_pack_id": "architecture-review"
+  }
+}
