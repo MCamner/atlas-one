@@ -1,0 +1,16 @@
+{
+  "schema": "atlas-diagram-request.v1",
+  "request_id": "atlas-example-plan-001",
+  "goal": "Plan a safe staged rollout of Atlas Canvas.",
+  "title": "Atlas Canvas rollout",
+  "route": { "mode": "plan" },
+  "diagram": {
+    "type": "roadmap",
+    "layout": "left-to-right",
+    "include": ["contract", "MVP", "refinement", "validation", "release"],
+    "relationships": [{ "from": "contract", "to": "MVP", "label": "enables" }, { "from": "MVP", "to": "refinement", "label": "precedes" }],
+    "boundaries": [{ "name": "first release slice", "contains": ["contract", "MVP"] }]
+  },
+  "intent": { "operation": "generate", "validation": "schema-only" },
+  "provenance": { "producer": "atlas-one", "created_at": "2026-07-16T00:00:00Z" }
+}

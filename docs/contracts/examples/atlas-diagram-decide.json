@@ -1,0 +1,16 @@
+{
+  "schema": "atlas-diagram-request.v1",
+  "request_id": "atlas-example-decide-001",
+  "goal": "Compare two local deployment approaches.",
+  "title": "Deployment approach decision",
+  "route": { "mode": "decide" },
+  "diagram": {
+    "type": "decision-tree",
+    "layout": "top-to-bottom",
+    "include": ["requirements", "option A", "option B", "tradeoffs", "decision"],
+    "relationships": [{ "from": "requirements", "to": "option A", "label": "evaluates" }, { "from": "requirements", "to": "option B", "label": "evaluates" }],
+    "boundaries": [{ "name": "decision inputs", "contains": ["requirements", "tradeoffs"] }]
+  },
+  "intent": { "operation": "generate", "validation": "schema-only" },
+  "provenance": { "producer": "atlas-one", "created_at": "2026-07-16T00:00:00Z" }
+}

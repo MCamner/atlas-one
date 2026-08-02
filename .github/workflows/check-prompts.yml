@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - "docs/prompts/**"
+      - "docs/contracts/**"
+      - "docs/ATLAS_CANVAS.md"
+      - "ROADMAP.md"
       - "exports/**"
       - "web/prompts.json"
       - "docs/prompts.json"
@@ -15,6 +18,9 @@ on:
     branches: [main]
     paths:
       - "docs/prompts/**"
+      - "docs/contracts/**"
+      - "docs/ATLAS_CANVAS.md"
+      - "ROADMAP.md"
       - "exports/**"
       - "web/prompts.json"
       - "docs/prompts.json"
@@ -23,6 +29,20 @@ on:
       - "CHANGELOG.md"
 
 jobs:
+  check-atlas-canvas:
+    name: Atlas Canvas contract check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install contract validator
+        run: python -m pip install check-jsonschema
+
+      - name: Validate Atlas Canvas contracts
+        run: bash scripts/check-atlas-canvas.sh
+
   check-prompts:
     name: Prompt metadata check
     runs-on: ubuntu-latest

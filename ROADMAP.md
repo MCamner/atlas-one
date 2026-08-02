@@ -60,6 +60,7 @@ v1.3.0 — public status and release clarity (done)
 v1.4.0 — Save to brain, portable MQ_ROOT, prompt reorg (done)
 v1.5.0 — public repo hygiene and prompt-pack maturity (done)
 v2.0.0 — Atlas as a local prompt/workflow studio (next)
+v2.1.0 — Atlas Canvas: structured Excalidraw workflows (planned)
 ```
 
 Completed foundation:
@@ -96,6 +97,7 @@ interaction patterns; mq-mcp remains the review/risk/architecture runtime.
 | v1.4.0  | Save to brain, portable MQ_ROOT, prompt reorg | Done       |
 | v1.5.0  | Public repo hygiene and prompt-pack maturity | Done        |
 | v2.0.0  | Atlas as a local prompt/workflow studio      | Next        |
+| v2.1.0  | Atlas Canvas: structured Excalidraw workflows | Planned    |
 
 ---
 
@@ -849,6 +851,304 @@ the mq runtimes.
 
 ---
 
+## v2.1.0 — Atlas Canvas: structured Excalidraw workflows
+
+Planned after v2.0.0.
+
+Goal:
+
+Turn Atlas reasoning modes and workflow sequences into editable Excalidraw
+diagrams without making Atlas a model runtime, diagram renderer, review engine
+or source of truth. Atlas owns intent, routing and the diagram request;
+`excalidraw-ai-proxy` owns model access, streaming and Mermaid normalization;
+Excalidraw owns canvas state and editing; mq-agent / mq-mcp own optional
+execution, validation and review; mqobsidian owns durable curated records.
+
+### Target flow
+
+```text
+User goal
+  ↓
+Atlas mode or workflow sequence
+  ↓
+atlas-diagram-request.v1
+  ↓
+excalidraw-ai-proxy
+  ↓
+normalized Mermaid stream
+  ↓
+editable Excalidraw canvas
+  ↓ optional
+mq-agent → mq-mcp review → annotations
+```
+
+### Architecture boundaries and ownership
+
+* [ ] Atlas One owns mode selection, workflow context, diagram intent, style
+      hints and user-visible handoff
+* [ ] `excalidraw-ai-proxy` owns OpenAI credentials, model routing, prompt
+      limits, rate limits, SSE streaming and Mermaid repair
+* [ ] Excalidraw owns element state, selection state, layout interaction,
+      editing, export and undo/redo
+* [ ] mq-agent owns optional review/audit orchestration
+* [ ] mq-mcp owns validation, safety classification and review contracts
+* [ ] mqobsidian owns durable decisions and curated diagram references
+* [ ] No browser surface receives an API key or calls a model provider directly
+* [ ] No repo duplicates another repo's runtime or review logic
+
+### 1. Contract and compatibility spike
+
+Purpose: prove the smallest end-to-end path before adding product UI.
+
+* [x] Define `atlas-diagram-request.v1` with:
+  * request id and schema version
+  * goal and user-visible title
+  * Atlas mode or ordered workflow sequence
+  * diagram type and layout direction
+  * required concepts, relationships and boundaries
+  * style hints that remain advisory
+  * source/provenance metadata
+  * explicit validation and refinement intent
+* [x] Define a versioned response envelope for success, validation failure,
+      timeout, rate limit and unsupported capability
+* [x] Add JSON examples for `architect`, `analyze`, `decide`, `plan`, `debug`
+      and `review`
+* [x] Confirm the existing proxy capability endpoint and
+      `POST /v1/ai/text-to-diagram/chat-streaming` support the handoff
+* [ ] Build a local proof that sends one architecture request through the proxy
+      and imports the normalized Mermaid into Excalidraw
+* [x] Record unsupported Excalidraw import or selection APIs before committing
+      to the refinement design
+* [x] Reject unknown schema versions and malformed payloads with clear errors
+
+Proposed Atlas-owned files:
+
+```text
+docs/contracts/atlas-diagram-request.v1.schema.json
+docs/contracts/examples/atlas-diagram-architect.json
+docs/contracts/examples/atlas-diagram-review.json
+docs/ATLAS_CANVAS.md
+```
+
+### 2. Atlas mode-to-diagram composer
+
+Purpose: make diagram requests deterministic enough to review and test.
+
+* [ ] Map supported modes to diagram defaults:
+  * `architect` → architecture / trust-boundary diagram
+  * `analyze` → dependency or cause map
+  * `decide` → decision tree or option matrix
+  * `plan` → phased roadmap or process flow
+  * `debug` → diagnostic flow
+  * `review` → risk and control map
+* [ ] Keep every default visible and editable before generation
+* [ ] Compose requests from the resolved v2.0 workflow sequence when present
+* [ ] Let users select diagram type, layout and included concerns explicitly
+* [ ] Add deterministic fallbacks for modes without a dedicated mapping
+* [ ] Prevent free-form Atlas content from becoming hidden system instructions
+* [ ] Show the final request payload in a collapsible preview
+* [ ] Add unit fixtures for every supported mode and fallback
+
+Proposed Atlas-owned files:
+
+```text
+web/atlas-canvas.js
+docs/atlas-canvas.js
+docs/contracts/examples/
+scripts/check-atlas-canvas.sh
+```
+
+### 3. Open in Excalidraw MVP
+
+Purpose: deliver a useful one-way generation flow before bidirectional editing.
+
+* [ ] Add an `Open in Canvas` action beside copy and mq-agent execution
+* [ ] Add a preflight check against the proxy capability endpoint
+* [ ] Show unavailable, connecting, streaming, ready and failed states
+* [ ] Stream generation progress without exposing raw provider responses
+* [ ] Import the completed Mermaid into the configured local Excalidraw editor
+* [ ] Preserve the original Atlas goal, mode and request id as safe metadata
+* [ ] Provide copy/download fallback when Excalidraw is unavailable
+* [ ] Avoid popup-only navigation; require an explicit user action
+* [ ] Add keyboard access and screen-reader labels to the complete flow
+* [ ] Document local ports and configuration without hardcoded private paths
+
+### 4. Excalidraw integration surface
+
+Purpose: keep the Excalidraw fork change small and upstream-aware.
+
+* [ ] Prefer supported Excalidraw import/library mechanisms over fork-specific
+      internals
+* [ ] Add the smallest bridge needed to accept a versioned Atlas handoff
+* [ ] Validate origin, payload size, schema version and allowed message types
+* [ ] Require user confirmation before replacing or adding canvas content
+* [ ] Preserve undo/redo for every Atlas-originated canvas mutation
+* [ ] Store only non-sensitive provenance in element or scene metadata
+* [ ] Add a visible `Generated from Atlas` source marker
+* [ ] Document all fork-specific changes and likely upstream conflicts
+* [ ] Add compatibility tests for the pinned Excalidraw revision
+
+### 5. Selection refinement loop
+
+Purpose: let users evolve a diagram without regenerating the whole scene.
+
+* [ ] Define `atlas-diagram-refinement.v1` for selected elements plus intent
+* [ ] Support initial refinement actions:
+  * expand architecture
+  * add trust boundaries
+  * show dependencies
+  * show risks and controls
+  * simplify selected area
+  * turn selection into an implementation plan
+* [ ] Send only the minimum selected context required for refinement
+* [ ] Preview the proposed change before mutating the canvas
+* [ ] Add or replace only the confirmed selection scope
+* [ ] Preserve stable identifiers where possible
+* [ ] Make every refinement undoable in one action
+* [ ] Handle deleted, stale or unsupported selections safely
+* [ ] Record request lineage without storing raw sensitive diagram content
+
+### 6. MQ validation and annotation loop
+
+Purpose: add evidence-backed review without moving review logic into Atlas.
+
+* [ ] Add a separate, explicit `Validate with MQ` action
+* [ ] Convert the diagram into a compact review payload with source references
+* [ ] Route validation through mq-agent to existing mq-mcp review contracts
+* [ ] Keep validation read-only until the user accepts proposed annotations
+* [ ] Map structured findings to annotation nodes for:
+  * fact
+  * assumption
+  * risk
+  * missing boundary
+  * recommendation
+* [ ] Include finding id, severity, source and timestamp in safe metadata
+* [ ] Never present model-generated annotations as verified facts
+* [ ] Allow users to accept, dismiss or refresh findings individually
+* [ ] Save durable decisions only through an mqobsidian handoff
+
+### 7. MQ visual library and theme
+
+Purpose: make generated diagrams recognizable and semantically consistent.
+
+* [ ] Define an `mq-amber-dark` theme with accessible contrast
+* [ ] Define colors and line styles for facts, assumptions, risks, controls and
+      recommendations
+* [ ] Create reusable components for mq-agent, mq-mcp, mqobsidian, mq-hal and
+      external providers
+* [ ] Add curated Azure, Entra ID, Citrix and IGEL symbols only when licensing
+      permits redistribution
+* [ ] Keep semantic role separate from visual style in the request contract
+* [ ] Make every generated diagram usable without the custom library
+* [ ] Version the library and document migration behavior
+
+### 8. Security, privacy and failure handling
+
+* [ ] Keep proxy binding on localhost by default
+* [ ] Maintain explicit CORS allowlists for Atlas and Excalidraw origins
+* [ ] Enforce request, prompt, image and response size limits
+* [ ] Apply timeouts, cancellation and rate limiting to all generation flows
+* [ ] Redact or reject secrets, tokens and private absolute paths before handoff
+* [ ] Do not persist raw prompts, scenes or provider responses by default
+* [ ] Treat imported Mermaid and diagram metadata as untrusted input
+* [ ] Render errors as user-visible states without leaking credentials or
+      internal provider details
+* [ ] Fail closed when capability negotiation or schema validation fails
+* [ ] Add a public-safe scan before commit, release and generated-doc publish
+
+### 9. Test and release gates
+
+Atlas One gates:
+
+* [ ] Contract examples validate against their JSON schemas
+* [ ] Every supported mode produces a valid deterministic request
+* [ ] Unsupported modes use the documented fallback
+* [ ] Static Pages mode remains useful without the local proxy
+* [ ] `scripts/check-prompts.sh` continues to pass
+* [ ] `scripts/check-docs.sh` continues to pass
+* [ ] `scripts/check-atlas-canvas.sh` passes
+* [ ] `scripts/release-check.sh` passes
+
+Integration gates:
+
+* [ ] Proxy health and capability preflight passes
+* [ ] Text-to-diagram SSE success and error paths are tested
+* [ ] Mermaid repair failures produce a safe, actionable error
+* [ ] Excalidraw import preserves editable elements
+* [ ] Selection refinement changes only confirmed scope and is undoable
+* [ ] MQ review annotations preserve finding provenance
+* [ ] Browser tests cover unavailable proxy, timeout, cancellation and retry
+* [ ] No test or fixture contains real keys, private paths or sensitive scenes
+
+Release gates:
+
+* [ ] Pin and document compatible Atlas, proxy and Excalidraw versions
+* [ ] Update README, ROADMAP, VERSION and CHANGELOG together
+* [ ] Add installation, troubleshooting and rollback documentation
+* [ ] Pass Atlas One, proxy and Excalidraw CI on the integration branches
+* [ ] Complete manual smoke test on a clean local setup
+* [ ] Publish a demo diagram containing no private infrastructure details
+
+### v2.1.0 definition of done
+
+* [ ] A user can turn an Atlas goal into an editable Excalidraw diagram
+* [ ] Architect, analyze, decide, plan, debug and review modes are supported
+* [ ] The request contract is versioned, documented and schema-validated
+* [ ] Proxy capabilities are negotiated before generation
+* [ ] A selected diagram region can be refined with preview and single-step undo
+* [ ] MQ validation is explicit, read-only by default and provenance-preserving
+* [ ] Static Atlas remains useful when local integration services are offline
+* [ ] API keys remain server-side in `excalidraw-ai-proxy`
+* [ ] Atlas contains no duplicated model, review or persistence runtime
+* [ ] Accessibility, security, integration and release gates pass
+
+### Dependencies and build order
+
+```text
+v2.0 workflow sequences
+  ↓
+1. Contract + compatibility spike
+  ↓
+2. Mode-to-diagram composer
+  ↓
+3. Open in Excalidraw MVP
+  ↓
+4. Excalidraw bridge hardening
+  ↓
+5. Selection refinement
+  ↓
+6. MQ validation annotations
+  ↓
+7. Visual library + release hardening
+```
+
+Steps 1–3 form the first releasable vertical slice. Steps 5–7 must not block a
+safe one-way MVP.
+
+### Rollback
+
+* [ ] Keep Atlas Canvas behind a local feature flag until integration gates pass
+* [ ] Preserve copy/export and mq-agent actions as independent fallbacks
+* [ ] Make the Excalidraw bridge additive so it can be disabled without scene
+      migration
+* [ ] Roll back by disabling the feature flag and reverting the integration
+      commits per owner repo; do not rewrite stored user scenes
+* [ ] Keep all request schemas versioned so older clients fail clearly rather
+      than silently changing behavior
+
+### Out of scope
+
+* Atlas-side OpenAI or Ollama calls
+* Autonomous canvas editing without preview and user confirmation
+* Replacing Excalidraw's editor, scene model or export system
+* Reimplementing mq-mcp review, safety or validation rules
+* Persisting diagrams directly from Atlas into mqobsidian
+* Real-time multi-user collaboration
+* Cloud hosting, remote authentication or internet-exposed proxy deployment
+* Automatic infrastructure deployment from a generated diagram
+
+---
+
 ## Long-term ideas
 
 These are intentionally not scheduled yet.
@@ -868,7 +1168,6 @@ These are intentionally not scheduled yet.
 * shareable prompt URLs
 * multi-language prompt packs
 * Swedish Atlas One edition
-* generated architecture diagrams
 * demo videos or GIFs
 
 ---

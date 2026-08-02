@@ -1,0 +1,6 @@
+{
+  "schema": "atlas-diagram-response.v1",
+  "request_id": "atlas-example-architect-001",
+  "status": "diagram_validation_error",
+  "error": { "code": "invalid_mermaid", "message": "Generated diagram could not be normalized.", "retryable": true }
+}
