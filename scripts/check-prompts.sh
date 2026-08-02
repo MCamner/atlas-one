@@ -133,7 +133,7 @@ fi
 echo ""
 echo "[ mode coverage ]"
 while IFS= read -r mode_name; do
-  mode_id="${mode_name,,}"
+  mode_id="$(printf '%s' "$mode_name" | tr '[:upper:]' '[:lower:]')"
   if [[ -f "$MODES_DIR/$mode_id.md" ]]; then
     ok "$mode_id.md exists"
   else

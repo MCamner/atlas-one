@@ -57,6 +57,17 @@ jobs:
       - name: Run prompt check
         run: bash scripts/check-prompts.sh
 
+  check-prompts-macos:
+    name: Prompt metadata check (macOS Bash 3.2)
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run prompt check with system Bash
+        run: /bin/bash scripts/check-prompts.sh
+
   check-docs:
     name: Docs consistency check
     runs-on: ubuntu-latest
