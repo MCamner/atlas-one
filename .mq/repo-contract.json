@@ -1,7 +1,7 @@
 {
   "repo": "atlas-one",
   "role": "prompt-studio",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "status": "active",
   "contracts": [
     "prompt_pack.v1"
