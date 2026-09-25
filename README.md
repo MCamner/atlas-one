@@ -32,7 +32,7 @@ Workflow (analysis / architecture / strategy)
   ↓
 Structured prompt pipeline
   ↓
-ChatGPT execution   OR   mq-agent execution (plan / review / audit / signal)
+ChatGPT handoff   OR   Atlas Core run (evidence-checked, see below)
 ```
 
 ---
@@ -109,10 +109,8 @@ Atlas Studio turns intent into structured AI workflows:
 * **Local-first execution** — runs entirely on `127.0.0.1`, no external
   dependencies
 * **ChatGPT handoff** — copy the final prompt and open ChatGPT in one action
-* **mq-agent execution** — run the routed goal directly via mq-agent (`plan`,
-  `review`, `audit`, `signal`) when the Java backend is running; results appear
-  inline, the panel takes a repo path, and unmapped modes show as
-  `mode → plan (fallback)`
+* **Atlas Core run** — run the goal through Atlas Core when the Java backend is
+  running; Core owns the run, and the panel shows what it reported
 
 ---
 
@@ -155,7 +153,8 @@ flowchart TD
     end
 
     HO -->|copy| EXT[ChatGPT / external LLM<br/>execute externally]
-    HO -->|run| AG[mq-agent<br/>execute / orchestrate]
+    HO -->|run| CORE[Atlas Core<br/>run / loop / evaluate]
+    CORE -. adapter, planned .-> AG[mq-agent<br/>capabilities]
 
     AG --> MC[mq-mcp<br/>review / risk / validation / memory contracts]
     AG -. optional provider .-> OL[Ollama<br/>local model, never a decision authority]
@@ -164,7 +163,9 @@ flowchart TD
 ```
 
 * **Atlas One** — prompts, mode routing, interaction patterns and handoff text
-* **mq-agent** — orchestration and command execution flow
+* **Atlas Core** — owns the run: loop, state, budget, evaluation and stop reason
+* **mq-agent** — capabilities, reached through a Core adapter (not built yet);
+  Atlas One no longer runs it as a second loop
 * **mq-mcp** — review, risk, validation, safety classes and memory contracts
 * **mqobsidian** — durable memory: persists decisions and curated context (Save to brain)
 * **Ollama** — optional local model provider, never a decision authority
@@ -187,7 +188,8 @@ atlas-one/
 * Serves UI + API endpoints:
   * `/api/prompts`
   * `/api/health`
-  * `/api/execute` — routes goal → mq-agent CLI command
+  * `/api/execute` — **legacy, deprecated**: routes goal → mq-agent CLI
+    command. The UI no longer calls it; responses carry `Deprecation: true`
   * `/api/core/runs` — runs a task through Atlas Core (see below)
 
 ### Frontend

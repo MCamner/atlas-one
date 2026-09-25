@@ -150,6 +150,13 @@ public class AtlasServer {
         }
     }
 
+    /**
+     * Legacy / deprecated: runs mq-agent as its own loop, beside Atlas Core.
+     * The UI no longer calls it — Atlas One runs Core (/api/core/runs), and
+     * mq-agent is to be reached through a Core adapter instead. Kept only so
+     * existing local scripts do not break; responses carry a Deprecation
+     * header.
+     */
     static class ExecuteHandler implements HttpHandler {
         private static final String MQ_AGENT_BIN = resolveMqAgentBin();
 
@@ -166,6 +173,7 @@ public class AtlasServer {
                 exchange.sendResponseHeaders(405, -1);
                 return;
             }
+            exchange.getResponseHeaders().set("Deprecation", "true");
 
             String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
             String goal = extractJsonString(body, "goal");
