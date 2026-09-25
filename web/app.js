@@ -15,7 +15,7 @@ function mapEls() {
    "routePreview","workflowPreview","diagramText","diagramPreview","copyOutputBtn","copyChatBtn",
    "openChatBtn","sendChatBtn","exportBtn","commandChips",
    "runMqBtn","mqOutputSection","mqCommand","mqOutput","mqRepoPath","runMqBtn2",
-   "saveBrainBtn"].forEach(id => els[id] = document.getElementById(id));
+   "saveBrainBtn","coreRepoPath","runCoreBtn","cancelCoreBtn","coreRun"].forEach(id => els[id] = document.getElementById(id));
 }
 
 async function loadPrompts() {
@@ -59,6 +59,8 @@ function bindEvents() {
   els.diagramBtn.addEventListener('click', generateDiagram);
   els.runMqBtn.addEventListener('click', () => { els.mqOutputSection.style.display = 'block'; runMqAgent(); });
   els.runMqBtn2.addEventListener('click', runMqAgent);
+  els.runCoreBtn.addEventListener('click', runCore);
+  els.cancelCoreBtn.addEventListener('click', cancelCore);
   els.copyOutputBtn.addEventListener('click', () => navigator.clipboard.writeText(els.editor.value));
   els.copyChatBtn.addEventListener('click', () => navigator.clipboard.writeText(els.handoff.value));
   els.openChatBtn.addEventListener('click', () => window.open('https://chatgpt.com/', '_blank'));
@@ -355,6 +357,160 @@ async function saveToBrain() {
   } finally {
     els.saveBrainBtn.disabled = false;
     setTimeout(() => { els.saveBrainBtn.textContent = 'Save to brain'; }, 3000);
+  }
+}
+
+// --- Atlas Core run -------------------------------------------------------
+// Everything below displays what the Atlas Core CLI reported through
+// /api/core. Nothing here grades, scores or reinterprets a run: a value
+// Core did not report is shown as missing, never inferred.
+
+const CORE_POLL_MS = 500;
+const CORE_MAX_WAIT_MS = 10 * 60 * 1000;
+let coreRunId = null;
+
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+async function coreGet(runId, action) {
+  const res = await fetch(`/api/core/runs/${encodeURIComponent(runId)}/${action}`);
+  return { ok: res.ok, body: await res.json() };
+}
+
+async function runCore() {
+  const task = els.goalInput.value.trim();
+  if (!task) return;
+  els.runCoreBtn.disabled = true;
+  renderCoreMessage('Starting Atlas Core run…');
+  try {
+    const res = await fetch('/api/core/runs', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ task, repo_path: els.coreRepoPath.value.trim() })
+    });
+    const started = await res.json();
+    if (!res.ok) throw new Error(started.error || `HTTP ${res.status}`);
+    coreRunId = started.run_id;
+    els.cancelCoreBtn.disabled = false;
+
+    const deadline = Date.now() + CORE_MAX_WAIT_MS;
+    let status = null;
+    let result = null;
+    while (Date.now() < deadline) {
+      await sleep(CORE_POLL_MS);
+      status = (await coreGet(coreRunId, 'status')).body.data;
+      renderCore({ runId: coreRunId, status });
+      if (status && (status.state === 'finished' || status.state === 'interrupted')) break;
+      // A run that exits without writing its log (a usage error, say) never
+      // leaves not_found; its exit is the answer.
+      const exited = await coreGet(coreRunId, 'result');
+      if (exited.ok) { result = exited.body; break; }
+    }
+    // The run document arrives when the process exits, which is just after
+    // the log says finished.
+    while (!result && Date.now() < deadline) {
+      const exited = await coreGet(coreRunId, 'result');
+      if (exited.ok) { result = exited.body; break; }
+      await sleep(CORE_POLL_MS);
+    }
+    const inspect = (await coreGet(coreRunId, 'inspect')).body.data;
+    const events = (await coreGet(coreRunId, 'events')).body.data;
+    renderCore({ runId: coreRunId, status, inspect, result, events });
+  } catch (err) {
+    renderCoreMessage(`Could not run Atlas Core.\n\nMake sure AtlasServer is running and \`atlas\` is on PATH (or ATLAS_BIN is set).\n\n${err.message}`);
+  } finally {
+    els.runCoreBtn.disabled = false;
+    els.cancelCoreBtn.disabled = true;
+  }
+}
+
+async function cancelCore() {
+  if (!coreRunId) return;
+  await fetch(`/api/core/runs/${encodeURIComponent(coreRunId)}/cancel`, { method: 'POST' });
+}
+
+function renderCoreMessage(text) {
+  els.coreRun.textContent = '';
+  const pre = document.createElement('pre');
+  pre.className = 'mq-output';
+  pre.textContent = text;
+  els.coreRun.appendChild(pre);
+}
+
+function coreTable(rows) {
+  const table = document.createElement('table');
+  rows.forEach(([label, value, mono]) => {
+    const tr = document.createElement('tr');
+    const th = document.createElement('th');
+    th.textContent = label;
+    const td = document.createElement('td');
+    td.textContent = value;
+    if (mono) td.className = 'mono';
+    tr.append(th, td);
+    table.appendChild(tr);
+  });
+  return table;
+}
+
+function coreHeading(text) {
+  const h = document.createElement('h3');
+  h.textContent = text;
+  return h;
+}
+
+function renderCore({ runId, status, inspect, result, events }) {
+  const run = result && result.run;
+  const missing = 'not reported';
+  const lastEvaluation = run && run.evaluations.length ? run.evaluations[run.evaluations.length - 1] : null;
+  const usage = run && run.metadata && run.metadata.budget_usage;
+
+  els.coreRun.textContent = '';
+  els.coreRun.appendChild(coreTable([
+    ['Run id', runId, true],
+    ['State', status ? status.state : missing],
+    ['Status', (inspect && inspect.status) || (status && status.status) || missing],
+    ['Stop reason', inspect && inspect.stop_reason
+      ? `${inspect.stop_reason}${inspect.stop_class ? ` (${inspect.stop_class})` : ''}`
+      : (status && status.stop_reason) || missing],
+    ['Iterations', inspect ? String(inspect.iterations) : status ? String(status.iteration) : missing],
+    ['Budget usage', usage
+      ? `model_calls ${usage.model_calls} · tool_calls ${usage.tool_calls} · tokens ${usage.tokens} · output_bytes ${usage.output_bytes}`
+      : missing],
+    ['requires_user_approval', lastEvaluation ? String(lastEvaluation.requires_user_approval) : missing],
+    ['Uncertainties', inspect ? (inspect.uncertainties.join('; ') || 'none recorded') : missing],
+    ['Events', events ? `${events.length} (last: ${events.length ? events[events.length - 1].kind : 'none'})` : missing],
+  ]));
+
+  if (result && result.exit !== 0 && !run) {
+    // Core printed no run document. Its diagnostic is shown as it came.
+    els.coreRun.appendChild(coreHeading('Run document unavailable'));
+    const pre = document.createElement('pre');
+    pre.className = 'mq-output mq-err';
+    pre.textContent = typeof result.error === 'string'
+      ? result.error : JSON.stringify(result.error, null, 2);
+    els.coreRun.appendChild(pre);
+  }
+
+  if (!inspect) return;
+  els.coreRun.appendChild(coreHeading('Sources (Observation.v1, from atlas inspect)'));
+  const details = inspect.source_details || [];
+  if (!details.length) {
+    els.coreRun.appendChild(coreTable([['sources', 'none recorded']]));
+  } else {
+    els.coreRun.appendChild(coreTable(
+      details.map(item => [item.path, `sha256 ${item.content_sha256}`, true])
+    ));
+  }
+
+  els.coreRun.appendChild(coreHeading('Citation checks (from the last evaluation)'));
+  const checks = lastEvaluation ? lastEvaluation.citation_checks || [] : [];
+  if (!lastEvaluation) {
+    els.coreRun.appendChild(coreTable([['citation_checks', 'no evaluation']]));
+  } else if (!checks.length) {
+    els.coreRun.appendChild(coreTable([['citation_checks', 'empty — Core checked no claims']]));
+  } else {
+    els.coreRun.appendChild(coreTable(
+      checks.map(check => [check.verdict, check.claim || ''])
+    ));
   }
 }
 

@@ -2,6 +2,17 @@
 
 ## [Unreleased]
 
+### Added
+
+* **Atlas Core run** panel and `/api/core/runs` endpoints: Atlas One starts a
+  run through the Atlas Core CLI (`create`, `run`, `status`, `events`,
+  `inspect`, `cancel`) and displays run id, state, stop reason, iterations,
+  budget usage, `requires_user_approval`, uncertainties, sources with path and
+  SHA-256, and citation checks. Atlas One computes none of these; it shows
+  what Core reported. One run is one event log under `~/.atlas-one/runs/`.
+* The route preview is labelled as a prompt preview that has not been
+  executed.
+
 ## [1.5.0] - 2026-07-02
 
 ### Added

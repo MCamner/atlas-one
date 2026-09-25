@@ -30,6 +30,7 @@ public class AtlasServer {
         server.createContext("/api/health", exchange -> sendJson(exchange, "{\"status\":\"ok\",\"app\":\"Atlas Studio\"}"));
         server.createContext("/api/execute", new ExecuteHandler());
         server.createContext("/api/decide", new DecideHandler());
+        server.createContext("/api/core/", new CoreRunHandler());
         server.createContext("/", new StaticHandler());
         server.setExecutor(null);
         server.start();

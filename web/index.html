@@ -62,9 +62,21 @@
           </div>
         </section>
 
+        <section class="card" id="coreSection">
+          <h2>Atlas Core run</h2>
+          <p class="core-note">Executed and graded by Atlas Core. Atlas One shows what Core reports and decides nothing itself.</p>
+          <div class="inline-actions mq-path-row">
+            <label for="coreRepoPath">Repo path</label>
+            <input id="coreRepoPath" placeholder="/path/to/repo (optional)" />
+            <button id="runCoreBtn" class="btn-mq">▶ Run with Atlas Core</button>
+            <button id="cancelCoreBtn" disabled>Cancel</button>
+          </div>
+          <div id="coreRun" class="core-run"></div>
+        </section>
+
         <section class="card two-col">
           <div>
-            <h2>Route Preview</h2>
+            <h2>Route Preview <span class="core-tag">prompt preview — not executed</span></h2>
             <div id="routePreview" class="preview"></div>
           </div>
           <div>
