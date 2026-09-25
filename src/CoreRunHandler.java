@@ -9,7 +9,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
@@ -37,12 +39,50 @@ class CoreRunHandler implements HttpHandler {
     private final Path runsDir;
 
     CoreRunHandler() {
-        String bin = System.getenv("ATLAS_BIN");
-        this.atlasBin = (bin == null || bin.isEmpty()) ? "atlas" : bin;
-        String dir = System.getenv("ATLAS_ONE_RUNS_DIR");
-        this.runsDir = (dir == null || dir.isEmpty())
-            ? Paths.get(System.getProperty("user.home"), ".atlas-one", "runs")
-            : Paths.get(dir);
+        this(envOr("ATLAS_BIN", "atlas"), Paths.get(envOr("ATLAS_ONE_RUNS_DIR",
+            Paths.get(System.getProperty("user.home"), ".atlas-one", "runs").toString())));
+    }
+
+    CoreRunHandler(String atlasBin, Path runsDir) {
+        this.atlasBin = atlasBin;
+        this.runsDir = runsDir;
+    }
+
+    private static String envOr(String name, String fallback) {
+        String value = System.getenv(name);
+        return (value == null || value.isEmpty()) ? fallback : value;
+    }
+
+    /**
+     * Whether a state-changing request may proceed; answers it if not.
+     *
+     * The server binds to 127.0.0.1, but any page open in the user's browser
+     * can still POST to it: a "simple" cross-origin request (text/plain, no
+     * preflight) is sent even though its response cannot be read. Starting a
+     * run on a local repository is not something another origin may do. A
+     * browser always sends Origin on a cross-origin POST, so a request that
+     * carries one must be Atlas One's own; a request without one (curl, a
+     * test) is not from a web page.
+     */
+    private static boolean allowed(HttpExchange exchange, boolean needsJson) throws IOException {
+        String origin = exchange.getRequestHeaders().getFirst("Origin");
+        if (origin != null) {
+            String host = exchange.getRequestHeaders().getFirst("Host");
+            if (host == null || !(origin.equals("http://" + host))
+                    || !(host.startsWith("127.0.0.1:") || host.startsWith("localhost:"))) {
+                send(exchange, 403, "{\"error\":\"cross-origin request refused\"}");
+                return false;
+            }
+        }
+        if (needsJson) {
+            String type = exchange.getRequestHeaders().getFirst("Content-Type");
+            String media = type == null ? "" : type.split(";")[0].trim().toLowerCase();
+            if (!media.equals("application/json")) {
+                send(exchange, 415, "{\"error\":\"Content-Type must be application/json\"}");
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -52,7 +92,7 @@ class CoreRunHandler implements HttpHandler {
         // "", "api", "core", "runs", [id], [action]
         try {
             if (parts.length == 4 && "runs".equals(parts[3]) && "POST".equals(method)) {
-                start(exchange);
+                if (allowed(exchange, true)) start(exchange);
                 return;
             }
             if (parts.length != 6 || !"runs".equals(parts[3]) || !RUN_ID.matcher(parts[4]).matches()) {
@@ -79,6 +119,7 @@ class CoreRunHandler implements HttpHandler {
                         send(exchange, 405, "{\"error\":\"POST required\"}");
                         return;
                     }
+                    if (!allowed(exchange, false)) return;
                     relay(exchange, atlas("cancel", runId, "--event-log", log, "--json"));
                     return;
                 default:
@@ -91,9 +132,19 @@ class CoreRunHandler implements HttpHandler {
 
     private void start(HttpExchange exchange) throws Exception {
         String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
-        String task = AtlasServer.extractJsonString(body, "task").trim();
-        String repoPath = AtlasServer.extractJsonString(body, "repo_path").trim();
-        if (task.isEmpty()) {
+        Map<String, String> fields;
+        try {
+            fields = parseStringObject(body);
+        } catch (IllegalArgumentException e) {
+            send(exchange, 400, "{\"error\":" + AtlasServer.escapeJson("malformed JSON: " + e.getMessage()) + "}");
+            return;
+        }
+        // Passed on exactly as decoded. Core digests and logs the task, so a
+        // trimmed or re-escaped one would make the run's record describe an
+        // input the user never gave.
+        String task = fields.getOrDefault("task", "");
+        String repoPath = fields.getOrDefault("repo_path", "").trim();
+        if (task.trim().isEmpty()) {
             send(exchange, 400, "{\"error\":\"task is required\"}");
             return;
         }
@@ -167,6 +218,96 @@ class CoreRunHandler implements HttpHandler {
         array.append(']');
         send(exchange, 200, "{\"exit\":" + result.exit + ",\"data\":" + array + ",\"error\":"
             + AtlasServer.escapeJson(result.stderr.trim().isEmpty() ? null : result.stderr.trim()) + "}");
+    }
+
+    /**
+     * A JSON object whose values are all strings, decoded exactly.
+     *
+     * The shared `extractJsonString` drops the backslash of an escape, so a
+     * typed newline reached Core as "n". This decodes every JSON string escape
+     * and refuses anything else — another value type, a duplicate key, a raw
+     * control character, trailing text — rather than guessing.
+     */
+    static Map<String, String> parseStringObject(String json) {
+        int[] at = {skip(json, 0)};
+        expect(json, at, '{');
+        Map<String, String> fields = new LinkedHashMap<>();
+        at[0] = skip(json, at[0]);
+        if (peek(json, at[0]) == '}') {
+            at[0]++;
+        } else {
+            while (true) {
+                at[0] = skip(json, at[0]);
+                String key = string(json, at);
+                at[0] = skip(json, at[0]);
+                expect(json, at, ':');
+                at[0] = skip(json, at[0]);
+                String value = string(json, at);
+                if (fields.put(key, value) != null) {
+                    throw new IllegalArgumentException("duplicate key " + key);
+                }
+                at[0] = skip(json, at[0]);
+                char next = peek(json, at[0]);
+                at[0]++;
+                if (next == '}') break;
+                if (next != ',') throw new IllegalArgumentException("expected , or } at " + (at[0] - 1));
+            }
+        }
+        if (skip(json, at[0]) != json.length()) throw new IllegalArgumentException("trailing text");
+        return fields;
+    }
+
+    private static int skip(String json, int at) {
+        while (at < json.length() && " \t\r\n".indexOf(json.charAt(at)) >= 0) at++;
+        return at;
+    }
+
+    private static char peek(String json, int at) {
+        if (at >= json.length()) throw new IllegalArgumentException("unexpected end");
+        return json.charAt(at);
+    }
+
+    private static void expect(String json, int[] at, char wanted) {
+        if (peek(json, at[0]) != wanted) {
+            throw new IllegalArgumentException("expected " + wanted + " at " + at[0]);
+        }
+        at[0]++;
+    }
+
+    private static String string(String json, int[] at) {
+        expect(json, at, '"');
+        StringBuilder out = new StringBuilder();
+        while (true) {
+            char c = peek(json, at[0]++);
+            if (c == '"') return out.toString();
+            if (c < 0x20) throw new IllegalArgumentException("raw control character in string");
+            if (c != '\\') {
+                out.append(c);
+                continue;
+            }
+            char e = peek(json, at[0]++);
+            switch (e) {
+                case '"': out.append('"'); break;
+                case '\\': out.append('\\'); break;
+                case '/': out.append('/'); break;
+                case 'b': out.append('\b'); break;
+                case 'f': out.append('\f'); break;
+                case 'n': out.append('\n'); break;
+                case 'r': out.append('\r'); break;
+                case 't': out.append('\t'); break;
+                case 'u':
+                    if (at[0] + 4 > json.length()) throw new IllegalArgumentException("short \\u escape");
+                    try {
+                        out.append((char) Integer.parseInt(json.substring(at[0], at[0] + 4), 16));
+                    } catch (NumberFormatException bad) {
+                        throw new IllegalArgumentException("bad \\u escape");
+                    }
+                    at[0] += 4;
+                    break;
+                default:
+                    throw new IllegalArgumentException("bad escape \\" + e);
+            }
+        }
     }
 
     private Path logPath(String runId) {

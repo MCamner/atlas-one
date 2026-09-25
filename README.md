@@ -215,6 +215,13 @@ the panel comes from the Core CLI, and a value Core did not report is shown as
 | `GET /api/core/runs/{id}/result` | the run's stdout (`atlas-run.v1`), exit code and stderr |
 | `POST /api/core/runs/{id}/cancel` | `atlas cancel ID --json` |
 
+`POST` requires `Content-Type: application/json` (otherwise `415`) and, when
+the request carries an `Origin`, it must be Atlas One's own localhost origin
+(otherwise `403`): a page on another origin cannot start or cancel a run. The
+body is decoded as strict JSON and the task is passed to Core exactly as typed.
+`java -cp out CoreRunHandlerTest` (after `javac -d out src/*.java
+tests/*.java`) checks both against a fake `atlas`.
+
 One run is one event log: `~/.atlas-one/runs/<run_id>.jsonl`
 (`ATLAS_ONE_RUNS_DIR` overrides the directory). `atlas` must be on `PATH`, or
 set `ATLAS_BIN`.

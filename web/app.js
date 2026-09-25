@@ -377,8 +377,10 @@ async function coreGet(runId, action) {
 }
 
 async function runCore() {
-  const task = els.goalInput.value.trim();
-  if (!task) return;
+  // Sent as typed: Core digests and logs the task, so the record must
+  // describe exactly this input.
+  const task = els.goalInput.value;
+  if (!task.trim()) return;
   els.runCoreBtn.disabled = true;
   renderCoreMessage('Starting Atlas Core run…');
   try {
