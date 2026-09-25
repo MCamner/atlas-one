@@ -2,6 +2,21 @@
 
 ## [Unreleased]
 
+### Added
+
+* **Atlas Core run** panel and `/api/core/runs` endpoints: Atlas One starts a
+  run through the Atlas Core CLI (`create`, `run`, `status`, `events`,
+  `inspect`, `cancel`) and displays run id, state, stop reason, iterations,
+  budget usage, `requires_user_approval`, uncertainties, sources with path and
+  SHA-256, and citation checks. Atlas One computes none of these; it shows
+  what Core reported. One run is one event log under `~/.atlas-one/runs/`.
+* The route preview is labelled as a prompt preview that has not been
+  executed.
+* `/api/core/runs` refuses a POST without `Content-Type: application/json`
+  (415) and one from a foreign `Origin` (403), and decodes its body as strict
+  JSON, so a typed newline reaches Core as a newline. `tests/CoreRunHandlerTest.java`
+  checks both against a fake `atlas`.
+
 ## [1.5.0] - 2026-07-02
 
 ### Added

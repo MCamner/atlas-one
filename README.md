@@ -188,6 +188,7 @@ atlas-one/
   * `/api/prompts`
   * `/api/health`
   * `/api/execute` — routes goal → mq-agent CLI command
+  * `/api/core/runs` — runs a task through Atlas Core (see below)
 
 ### Frontend
 
@@ -197,6 +198,38 @@ atlas-one/
   * prompt generation
   * UI state
   * local storage
+
+### Atlas Core run
+
+The **Atlas Core run** panel sends the goal to [Atlas Core](https://github.com/MCamner/atlas-core)
+and shows what Core reports. Atlas One does not grade anything: every value in
+the panel comes from the Core CLI, and a value Core did not report is shown as
+`not reported`.
+
+| Endpoint | Core command |
+| --- | --- |
+| `POST /api/core/runs` `{task, repo_path}` | `atlas create`, then `atlas run --run-id ID --event-log LOG --json [--repo-path P]` |
+| `GET /api/core/runs/{id}/status` | `atlas status ID --json` (`atlas-status.v1`) |
+| `GET /api/core/runs/{id}/events` | `atlas events ID` (`atlas-event.v1`) |
+| `GET /api/core/runs/{id}/inspect` | `atlas inspect ID --json` (`atlas-inspect.v1`) |
+| `GET /api/core/runs/{id}/result` | the run's stdout (`atlas-run.v1`), exit code and stderr |
+| `POST /api/core/runs/{id}/cancel` | `atlas cancel ID --json` |
+
+`POST` requires `Content-Type: application/json` (otherwise `415`) and, when
+the request carries an `Origin`, it must be Atlas One's own localhost origin
+(otherwise `403`): a page on another origin cannot start or cancel a run. The
+body is decoded as strict JSON and the task is passed to Core exactly as typed.
+`java -cp out CoreRunHandlerTest` (after `javac -d out src/*.java
+tests/*.java`) checks both against a fake `atlas`.
+
+One run is one event log: `~/.atlas-one/runs/<run_id>.jsonl`
+(`ATLAS_ONE_RUNS_DIR` overrides the directory). `atlas` must be on `PATH`, or
+set `ATLAS_BIN`.
+
+The panel shows the run id, state, status, stop reason, iterations, budget
+usage, `requires_user_approval`, uncertainties, each source's path and SHA-256
+from `inspect`, and the last evaluation's citation checks. The route preview
+and editor are a **prompt preview**: nothing there has been executed.
 
 ---
 
