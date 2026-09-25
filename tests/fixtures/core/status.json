@@ -1,0 +1,11 @@
+{
+  "schema": "atlas-status.v1",
+  "run_id": "9f3d3b6d-e65a-4474-b99e-a5d41b88f44d",
+  "state": "finished",
+  "status": "done",
+  "stop_reason": "max_iterations",
+  "iteration": 2,
+  "event_count": 9,
+  "last_event_kind": "run_stopped",
+  "cancel_requested": false
+}

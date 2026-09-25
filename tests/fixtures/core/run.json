@@ -1,0 +1,247 @@
+{
+  "schema": "atlas-run.v1",
+  "task": "Review the README for accuracy",
+  "run_id": "9f3d3b6d-e65a-4474-b99e-a5d41b88f44d",
+  "created_at": "2026-09-25T11:22:45.589762+00:00",
+  "status": "done",
+  "stop_reason": "max_iterations",
+  "iteration": 2,
+  "max_iterations": 2,
+  "route": {
+    "name": "repo_review",
+    "confidence": 0.5,
+    "reason": "Inget nyckelord matchade någon route, men uppgiften ber om en granskning och avgränsar till ämnet 'documentation'.",
+    "steps": [
+      "observe_repo",
+      "summarize",
+      "find_gaps",
+      "prioritize",
+      "recommend_pr_slices"
+    ],
+    "risk_level": "medium"
+  },
+  "plan": {
+    "goal": "Review the README for accuracy",
+    "route_name": "repo_review",
+    "steps": [
+      "observe_repo",
+      "summarize",
+      "find_gaps",
+      "prioritize",
+      "recommend_pr_slices"
+    ],
+    "stop_conditions": [
+      "answer_is_actionable",
+      "quality_score_above_threshold",
+      "max_iterations_reached",
+      "write_action_requires_user_approval"
+    ],
+    "validation_focus": [
+      "verified_sources",
+      "p0_p1_p2",
+      "small_pr_slices",
+      "no_unverified_repo_claims"
+    ],
+    "review": {
+      "snapshot_id": "2b338f883ab736e1",
+      "topic": "documentation",
+      "question": "Does the documentation say what this project is, how to install it and how to run it?",
+      "patterns": [
+        "README.md",
+        "docs/*",
+        "CONTRIBUTING.md"
+      ],
+      "rationale": "The task names documentation; these are the paths that carry the answer in a repository of this shape.",
+      "answering": []
+    },
+    "unused_topic": null
+  },
+  "observations": [
+    "README.md:\n# demo\n\nA tiny repository used as Core fixture input."
+  ],
+  "outputs": [
+    "# Repo Review\n\n## Goal\nReview the README for accuracy\n\n## Review method\n- Repoet bör bedömas utifrån roll, boundaries, docs, tester, public-safe-regler och nästa minsta PR-slice.\n- Live kodsanning ska inte gissas. Den måste verifieras i repo, CI eller relevanta verktyg.\n- Förbättringar bör delas i P0/P1/P2 så att arbetet inte blir en stor blandad PR.\n\n## P0 — fixa först\n- Bekräfta repoets read-order och source-of-truth boundary.\n- Identifiera stale docs eller instruktioner som kan få agenten att läsa för mycket.\n- Lägg till eller uppdatera validation commands om de saknas.\n\n## P1 — fixa sedan\n- Förbättra exempel, screenshots eller demo-output där det hjälper repoets publika förståelse.\n- Lägg till tydligare issue/PR-mallar om repoet saknar styrning.\n- Dela övervuxna docs i små context surfaces.\n\n## P2 — polish\n- Gör README kortare om den duplicerar djupare docs.\n- Lägg till mer kompakta testprompter för Codex/Claude/ChatGPT.\n- Skapa en liten roadmap med nästa 3 PR-slices.\n\n## Suggested PR slices\n1. docs: tighten read-order and truth-boundary section\n2. tests: add/verify context budget and public-safe validation\n3. examples: add one sanitized end-to-end context-pack example\n\n## Recommendation\nTa P0-listan först och kör varje post som en egen PR-slice. Blanda inte in P1 eller P2 i samma diff.\n\n## Next step\nVerifiera P0-listan mot repots faktiska innehåll innan någon ändring görs.\n\n## Confidence\nMedium. This MVP did not perform a full live GitHub scan unless observations were provided by an adapter.\n\n## Sources inspected\n- README.md:\n# demo\n\nA tiny repository used as Core fixture input.\n",
+    "# Repo Review\n\n## Goal\nReview the README for accuracy\n\n## Review method\n- Repoet bör bedömas utifrån roll, boundaries, docs, tester, public-safe-regler och nästa minsta PR-slice.\n- Live kodsanning ska inte gissas. Den måste verifieras i repo, CI eller relevanta verktyg.\n- Förbättringar bör delas i P0/P1/P2 så att arbetet inte blir en stor blandad PR.\n\n## P0 — fixa först\n- Bekräfta repoets read-order och source-of-truth boundary.\n- Identifiera stale docs eller instruktioner som kan få agenten att läsa för mycket.\n- Lägg till eller uppdatera validation commands om de saknas.\n\n## P1 — fixa sedan\n- Förbättra exempel, screenshots eller demo-output där det hjälper repoets publika förståelse.\n- Lägg till tydligare issue/PR-mallar om repoet saknar styrning.\n- Dela övervuxna docs i små context surfaces.\n\n## P2 — polish\n- Gör README kortare om den duplicerar djupare docs.\n- Lägg till mer kompakta testprompter för Codex/Claude/ChatGPT.\n- Skapa en liten roadmap med nästa 3 PR-slices.\n\n## Suggested PR slices\n1. docs: tighten read-order and truth-boundary section\n2. tests: add/verify context budget and public-safe validation\n3. examples: add one sanitized end-to-end context-pack example\n\n## Recommendation\nTa P0-listan först och kör varje post som en egen PR-slice. Blanda inte in P1 eller P2 i samma diff.\n\n## Next step\nVerifiera P0-listan mot repots faktiska innehåll innan någon ändring görs.\n\n## Confidence\nMedium. This MVP did not perform a full live GitHub scan unless observations were provided by an adapter.\n\n## Sources inspected\n- README.md:\n# demo\n\nA tiny repository used as Core fixture input.\n\n## Observed sources\nFilerna nedan lästes denna körning; innehållet återges under 'Sources inspected'. Detta intygar att de observerades — inte att någon brist eller förbättring i repot är sakligt verifierad.\n- `README.md`\n"
+  ],
+  "evaluations": [
+    {
+      "quality_score": 0.78,
+      "passed": false,
+      "score_method": "criteria_met_share",
+      "met_criteria": [
+        "citations_hold",
+        "claims_are_settled",
+        "confidence",
+        "findings_are_checkable",
+        "next_step",
+        "plan_targets_read",
+        "recommendation"
+      ],
+      "unmet_criteria": [
+        "findings_are_on_topic",
+        "sources_documented"
+      ],
+      "reasons": [
+        "Contains recommendation.",
+        "Contains next step.",
+        "Contains confidence.",
+        "Avoids pretending full verification."
+      ],
+      "missing": [
+        "Sources were read but the output does not record which ones."
+      ],
+      "missing_sections": [],
+      "requires_user_approval": false,
+      "should_retry": true,
+      "retry_is_possible": true,
+      "suggested_adjustment": "Ground each finding in an observed source; available: README.md.",
+      "next_action": {
+        "kind": "cite_sources",
+        "gap_codes": [
+          "sources_not_documented",
+          "no_on_topic_finding"
+        ],
+        "actor": "producer",
+        "details": {
+          "fence": "atlas-findings",
+          "available_source_ids": [
+            "e8cce5c73742db3f"
+          ],
+          "available_sources": [
+            "README.md"
+          ]
+        }
+      },
+      "evidence_gaps": [
+        "sources_not_documented",
+        "no_on_topic_finding"
+      ],
+      "unverified_claims": [],
+      "evidence_coverage": null,
+      "citation_checks": [],
+      "blocked_by": []
+    },
+    {
+      "quality_score": 0.89,
+      "passed": false,
+      "score_method": "criteria_met_share",
+      "met_criteria": [
+        "citations_hold",
+        "claims_are_settled",
+        "confidence",
+        "findings_are_checkable",
+        "next_step",
+        "plan_targets_read",
+        "recommendation",
+        "sources_documented"
+      ],
+      "unmet_criteria": [
+        "findings_are_on_topic"
+      ],
+      "reasons": [
+        "Contains recommendation.",
+        "Contains next step.",
+        "Contains confidence.",
+        "Avoids pretending full verification.",
+        "1 verifiable source(s) were held and the output asserts no finding of its own."
+      ],
+      "missing": [],
+      "missing_sections": [],
+      "requires_user_approval": false,
+      "should_retry": false,
+      "retry_is_possible": true,
+      "suggested_adjustment": null,
+      "next_action": {
+        "kind": "answer_the_question",
+        "gap_codes": [
+          "no_on_topic_finding"
+        ],
+        "actor": "producer",
+        "details": {
+          "question": "Does the documentation say what this project is, how to install it and how to run it?",
+          "patterns": [
+            "README.md",
+            "docs/*",
+            "CONTRIBUTING.md"
+          ],
+          "available_source_ids": [
+            "e8cce5c73742db3f"
+          ]
+        }
+      },
+      "evidence_gaps": [
+        "no_on_topic_finding"
+      ],
+      "unverified_claims": [],
+      "evidence_coverage": null,
+      "citation_checks": [],
+      "blocked_by": []
+    }
+  ],
+  "memory_candidates": [],
+  "metadata": {
+    "observation_rounds": [
+      {
+        "requested": 1,
+        "added": [
+          {
+            "source_id": "e8cce5c73742db3f",
+            "path": "README.md",
+            "sha256": "40943909478cdb24653bcc027ddfc9e2502da72ca01dd62db6a52037fd6553f8"
+          }
+        ],
+        "superseded": [],
+        "unchanged": [],
+        "iteration": 0,
+        "patterns": [
+          "README.md",
+          "docs/*",
+          "CONTRIBUTING.md"
+        ]
+      }
+    ],
+    "budget_usage": {
+      "model_calls": 0,
+      "tool_calls": 1,
+      "tokens": 0,
+      "output_bytes": 3599,
+      "deadline_monotonic": 685909.471798083
+    },
+    "memory_skipped": "budgeted_run_has_no_metered_memory_writer"
+  },
+  "state_machine": "atlas-state-machine.v1",
+  "stop_class": "control",
+  "evidence_manifest": {
+    "schema": "atlas-observation-manifest.v1",
+    "snapshot": {
+      "snapshot_id": "2b338f883ab736e1",
+      "taken_at": "2026-09-25T11:22:45.589295+00:00",
+      "commit": "unknown",
+      "ref": "unknown",
+      "worktree_state": "unknown"
+    },
+    "observations": [
+      {
+        "schema": "atlas-observation.v1",
+        "source_id": "e8cce5c73742db3f",
+        "source_type": "local_file",
+        "path": "README.md",
+        "collected_at": "2026-09-25T11:22:45.590526+00:00",
+        "content_sha256": "40943909478cdb24653bcc027ddfc9e2502da72ca01dd62db6a52037fd6553f8",
+        "excerpt": "# demo\n\nA tiny repository used as Core fixture input.",
+        "line_start": 1,
+        "line_end": 3,
+        "snapshot_id": "2b338f883ab736e1",
+        "repo": "unknown",
+        "ref": "unknown",
+        "commit": "unknown",
+        "worktree_state": "unknown",
+        "confidentiality": "unknown",
+        "total_lines": 3,
+        "read_in_full": true,
+        "verification": "unknown",
+        "is_evidence": false
+      }
+    ]
+  }
+}

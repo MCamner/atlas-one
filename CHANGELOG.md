@@ -16,6 +16,14 @@
   (415) and one from a foreign `Origin` (403), and decodes its body as strict
   JSON, so a typed newline reaches Core as a newline. `tests/CoreRunHandlerTest.java`
   checks both against a fake `atlas`.
+* `tests/CoreContractTest.java`: every `/api/core` endpoint against a mock
+  Core that prints documents captured from a real Core run
+  (`tests/fixtures/core`). The answers must be Core's documents and exit codes
+  unchanged, including a run that did not pass.
+* `tests/CoreSmoke.java`: a local smoke test from Atlas One to a real Core.
+  Not run in CI.
+* `.github/workflows/java.yml` compiles `src/` and `tests/` and runs
+  `CoreRunHandlerTest` and `CoreContractTest` on changes to either.
 
 ## [1.5.0] - 2026-07-02
 
