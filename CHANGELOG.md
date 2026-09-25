@@ -17,6 +17,17 @@
   JSON, so a typed newline reaches Core as a newline. `tests/CoreRunHandlerTest.java`
   checks both against a fake `atlas`.
 
+### Deprecated
+
+* `/api/execute` (goal → mq-agent CLI). Kept for local scripts, no longer
+  called by the UI; responses carry `Deprecation: true`.
+
+### Removed
+
+* The **Run via mq-agent** buttons and the mq-agent output panel. Atlas One
+  runs Atlas Core; mq-agent is to be reached through a Core adapter, not as a
+  second loop beside it.
+
 ## [1.5.0] - 2026-07-02
 
 ### Added

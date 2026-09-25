@@ -14,7 +14,6 @@ function mapEls() {
    "promptSearch","savedPromptsList","goalInput","generateBtn","diagramBtn","editor","handoff",
    "routePreview","workflowPreview","diagramText","diagramPreview","copyOutputBtn","copyChatBtn",
    "openChatBtn","sendChatBtn","exportBtn","commandChips",
-   "runMqBtn","mqOutputSection","mqCommand","mqOutput","mqRepoPath","runMqBtn2",
    "saveBrainBtn","coreRepoPath","runCoreBtn","cancelCoreBtn","coreRun"].forEach(id => els[id] = document.getElementById(id));
 }
 
@@ -57,8 +56,6 @@ async function loadPrompts() {
 function bindEvents() {
   els.generateBtn.addEventListener('click', generatePrompt);
   els.diagramBtn.addEventListener('click', generateDiagram);
-  els.runMqBtn.addEventListener('click', () => { els.mqOutputSection.style.display = 'block'; runMqAgent(); });
-  els.runMqBtn2.addEventListener('click', runMqAgent);
   els.runCoreBtn.addEventListener('click', runCore);
   els.cancelCoreBtn.addEventListener('click', cancelCore);
   els.copyOutputBtn.addEventListener('click', () => navigator.clipboard.writeText(els.editor.value));
@@ -267,59 +264,6 @@ function loadProject() {
   els.handoff.value = project.handoff;
 
   generatePrompt();
-}
-
-const MQ_MAPPED_MODES = new Set(['architect','review','debug','research','plan']);
-
-async function runMqAgent() {
-  const goal = els.goalInput.value.trim();
-  if (!goal) return;
-
-  const route = autoRoute(goal);
-  const mode = route.problemType;
-  const repoPath = (els.mqRepoPath.value.trim() || '.').replace(/\/+$/, '');
-
-  const fallback = !MQ_MAPPED_MODES.has(mode);
-  const modeLabel = fallback ? `${mode} → plan (fallback)` : mode;
-
-  els.runMqBtn.disabled = true;
-  els.runMqBtn2.disabled = true;
-  els.runMqBtn.textContent = '⏳ Running…';
-  els.mqOutputSection.style.display = 'block';
-  els.mqCommand.textContent = '';
-  els.mqOutput.textContent = `Mode: ${modeLabel}\nWaiting for mq-agent…`;
-
-  try {
-    const res = await fetch('/api/execute', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ goal, mode, path: repoPath })
-    });
-
-    if (!res.ok) {
-      els.mqOutput.textContent = `HTTP ${res.status}: ${await res.text()}`;
-      return;
-    }
-
-    const data = await res.json();
-    els.mqCommand.textContent = '$ ' + (data.command || '');
-
-    const result = data.result;
-    if (typeof result === 'object' && result !== null) {
-      els.mqOutput.textContent = JSON.stringify(result, null, 2);
-    } else {
-      els.mqOutput.textContent = result || data.error || JSON.stringify(data);
-    }
-
-    els.mqOutput.className = 'mq-output ' + (data.ok ? 'mq-ok' : 'mq-err');
-  } catch (err) {
-    els.mqOutput.textContent = `Could not reach mq-agent.\n\nMake sure AtlasServer is running (not just the static page).\n\n${err.message}`;
-    els.mqOutput.className = 'mq-output mq-err';
-  } finally {
-    els.runMqBtn.disabled = false;
-    els.runMqBtn2.disabled = false;
-    els.runMqBtn.textContent = '▶ Run via mq-agent';
-  }
 }
 
 async function saveToBrain() {
