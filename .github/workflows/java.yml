@@ -1,0 +1,41 @@
+name: Java
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "tests/**"
+      - ".github/workflows/java.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "tests/**"
+      - ".github/workflows/java.yml"
+
+jobs:
+  java:
+    name: Compile and test (Java 17)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Compile
+        run: javac -d out src/*.java tests/*.java
+
+      - name: Core bridge test
+        run: java -cp out CoreRunHandlerTest
+
+      # Mock Core from tests/fixtures/core. CoreSmoke needs a real Core
+      # and runs locally only.
+      - name: Core contract test
+        run: java -cp out CoreContractTest

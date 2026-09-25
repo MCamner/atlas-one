@@ -219,8 +219,19 @@ the panel comes from the Core CLI, and a value Core did not report is shown as
 the request carries an `Origin`, it must be Atlas One's own localhost origin
 (otherwise `403`): a page on another origin cannot start or cancel a run. The
 body is decoded as strict JSON and the task is passed to Core exactly as typed.
-`java -cp out CoreRunHandlerTest` (after `javac -d out src/*.java
-tests/*.java`) checks both against a fake `atlas`.
+
+Tests, after `javac -d out src/*.java tests/*.java`:
+
+| Command | Checks | CI |
+| --- | --- | --- |
+| `java -cp out CoreRunHandlerTest` | the `415`/`403` refusals and the strict JSON decoding, against a fake `atlas` | yes |
+| `java -cp out CoreContractTest` | every endpoint relays Core's document and exit code unchanged, including a run that did not pass and a run with no document, against a mock Core that prints `tests/fixtures/core` | yes |
+| `java -cp out CoreSmoke` | a run on a one-file repository through a real Core: each answer equals what the `atlas` CLI prints, Core read `README.md` with its real SHA-256, and the schema tags match the fixtures | no, needs Core (`ATLAS_BIN` or `atlas` on `PATH`) |
+
+The fixtures were printed by Atlas Core 1.0.0 (`7142524`) for a run on a
+repository holding one `README.md`. When Core's output changes, capture them
+again with `atlas run … --json`, `atlas status`, `atlas inspect` and
+`atlas events` and rerun `CoreSmoke`.
 
 One run is one event log: `~/.atlas-one/runs/<run_id>.jsonl`
 (`ATLAS_ONE_RUNS_DIR` overrides the directory). `atlas` must be on `PATH`, or
